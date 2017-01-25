@@ -2,35 +2,40 @@
 title: --init
 ---
 
---init
+<dev>--init</dev>
 ======
 
 In this first post I am testing various features of the hakyll blog I am going to maintain.
 
 ## Syntax highlighting:
-
 ```python
 a = lambda x: map(y) + 7
 ```
 
-## MathJax:
+## MathJax
 $\frac{e^\pi}{2a}$
 
-### Some random spam
+### Some random spams
 
 Vestibulum leo turpis, dignissim quis ultrices sit amet, iaculis ac ligula.
 Pellentesque tristique, velit eget scelerisque scelerisque, est dolor ultrices
-arcu, quis ullamcorper justo arcu luctus mauris. Integer congue molestie nisi id
+arcu, quis ullamcorper justo :smile: arcu luctus mauris. Integer congue molestie nisi id
 posuere. Fusce pellentesque gravida tempus. Integer viverra tortor nec eros
 mollis quis convallis sem laoreet. [^1] Nulla id libero ac erat varius laoreet. Proin
+
+<details>
+<summary>
+See more content
+</summary>
 sed est est. Curabitur lacinia fermentum lorem, elementum malesuada ipsum
-malesuada ut. Donec suscipit elit id leo vehicula mattis non sed leo. Morbi
+malesuada ut. Donec suscipit elit:x: id leo vehicula mattis non sed leo. Morbi
 varius eleifend varius. Nulla vestibulum, neque vitae aliquam eleifend, nisi
 tellus placerat nunc, quis suscipit elit turpis eu tortor. Etiam euismod
 convallis lectus quis venenatis. Phasellus laoreet magna in nibh cursus eu
-egestas nulla convallis. Aliquam vel ullamcorper risus. Fusce dictum, massa id
+egestas nulla convallis. Aliquam :smile_cat: vel ullamcorper risus. Fusce dictum, massa id
 consequat viverra, nulla ante tristique est, a faucibus nisi enim nec dui. Donec
 metus ligula, condimentum at porttitor eget, lobortis at quam.
+</details>
 
 Aenean vel libero in magna ultricies congue in a odio. Donec faucibus rutrum
 ornare. Fusce dictbum eleifend fermentum. Vestibulum vel nibh a metus porttitor
@@ -42,17 +47,17 @@ ipsum.
 
 [^1]: Some footnote
 
-Nunc tempor dignissim enim, sed tincidunt eros bibendum quis. Curabitur et dolor
-augue, id laoreet mi. Nulla cursus felis id dui vehicula vitae ornare lorem
-blandit. Cras eget dui nec odio volutpat pharetra. Fusce hendrerit justo justo,
-vel imperdiet enim. Vivamus elit risus, interdum ultrices accumsan eleifend,
-vestibulum vitae sapien. Integer bibendum ullamcorper tristique. Nulla quis odio
-lectus, quis eleifend augue. Integer a ligula mauris. Aenean et tempus tortor.
-Quisque at tortor mi. Vivamus accumsan feugiat est a blandit. Sed vitae enim ut
-dolor semper sodales. Duis tristique, ante et placerat elementum, nulla tellus
-pellentesque sapien, quis posuere velit mi eget nulla. Sed vestibulum nunc non
-est porttitor ut rutrum nibh semper. Pellentesque habitant morbi tristique
-senectus et netus et malesuada fames ac turpis egestas.
+<details>
+<summary>
+```python
+def summary(argv):
+```
+</summary>
+```python
+  res = process(argv)
+  return res
+```
+</details>
 
 Nulla adipiscing ultricies lobortis. Vivamus iaculis nisl vitae tellus laoreet
 vitae aliquet lacus mollis. Phasellus ut lacus urna, sed sagittis ante. Etiam

@@ -6,6 +6,8 @@ import           Text.Pandoc.Options
 import           Text.Pandoc.Definition
 import           System.FilePath (replaceExtension)
 
+import qualified Data.Set as S
+
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -21,16 +23,16 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "projects.markdown"]) $ do
+    match (fromList ["about.rst", "projects.markdown", "progress.markdown"]) $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocCompilerWith readerPostOptions writerPostOptions
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
     match "posts/*" $ do
         route $ setExtension "html"
         compile $
-            pandocCompilerWith defaultHakyllReaderOptions pandocPostOptions
+            pandocCompilerWithTransform readerPostOptions writerPostOptions addAnchors
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -38,7 +40,7 @@ main = hakyll $ do
     match "posts/*" $ version "header" $
         compile $ do
             let getHeaders (Pandoc meta blocks) = Pandoc meta (untilFirstParagraph blocks)
-            pandocCompilerWithTransform defaultHakyllReaderOptions pandocHeaderOptions getHeaders
+            pandocCompilerWithTransform readerPostOptions writerHeaderOptions getHeaders
             >>= loadAndApplyTemplate "templates/post.html" headCtx
             >>= relativizeUrls
 
@@ -57,8 +59,7 @@ main = hakyll $ do
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= relativizeUrls
-
+                >>= relativizeUrls    
 
     match "index.html" $ do
         route idRoute
@@ -87,24 +88,58 @@ postCtx =
 
 headCtx :: Context String
 headCtx =
-    field "post_url" (return . flip replaceExtension "html" . toFilePath . itemIdentifier) `mappend`
-    postCtx
+  field "post_url" (return . flip replaceExtension "html" . toFilePath . itemIdentifier)
+    `mappend` postCtx
 
-pandocHeaderOptions :: WriterOptions
-pandocHeaderOptions = defaultHakyllWriterOptions{
+extraReaderExtensions = foldr S.insert (readerExtensions defaultHakyllReaderOptions)
+extraWriterExtensions = foldr S.insert (writerExtensions defaultHakyllWriterOptions)
+
+readerPostOptions :: ReaderOptions
+readerPostOptions = defaultHakyllReaderOptions{
+    readerExtensions = extraReaderExtensions [Ext_emoji]
+}
+ 
+writerHeaderOptions :: WriterOptions
+writerHeaderOptions = defaultHakyllWriterOptions{
     writerHTMLMathMethod = MathJax "",
     writerTableOfContents = False
 }
 
-pandocPostOptions :: WriterOptions
-pandocPostOptions = defaultHakyllWriterOptions{
+writerPostOptions :: WriterOptions
+writerPostOptions = defaultHakyllWriterOptions{
     writerHTMLMathMethod = MathJax "",
+    writerExtensions = extraWriterExtensions [Ext_emoji],
     writerTableOfContents = True,
     writerTOCDepth = 1
 }
 
+isPara :: Block -> Bool
+isPara (Para p) = True
+isPara _ = False
+
 untilFirstParagraph :: [Block] -> [Block]
-untilFirstParagraph [] = []
-untilFirstParagraph (Para p:t) = [Para p]
-untilFirstParagraph (h:t) = h:untilFirstParagraph t
--- TODO: there's a function for that
+untilFirstParagraph x = fst $ foldl (\(acc, fin) b ->
+  if fin then (acc, fin) else (
+    if isPara b then (acc ++ [b], True) else (acc ++ [b], False)
+  )) ([], False) x
+
+addAnchors (Pandoc meta blocks) = Pandoc meta blocks -- (addAnchorsInside blocks)
+
+anchorImage level = Image ("", [], [("width", show size), ("height", show size)]) [] 
+  ("../images/anchor.png", "") where size = 17 - 1 * level
+
+anchorLink name lvl = Link ("", [], []) [anchorImage lvl] ("#" ++ name, "")
+
+getIdenFromAttr :: Attr -> String
+getIdenFromAttr (iden, _, _) = iden
+addAnchorToContent :: String -> Int -> [Inline] -> [Inline]
+addAnchorToContent iden level content = content ++ [Str " ", anchorLink iden level]
+
+addAnchorToHeader :: Block -> Block
+addAnchorToHeader (Header level attr content) = Header level attr 
+  (addAnchorToContent (getIdenFromAttr attr) level content)
+
+addAnchorsInside :: [Block] -> [Block]
+addAnchorsInside (Header l a c:t) = addAnchorToHeader (Header l a c):addAnchorsInside t
+addAnchorsInside (h:t) = h:addAnchorsInside t
+addAnchorsInside [] = []

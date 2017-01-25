@@ -4,5 +4,32 @@
         by $author$
     $endif$
 </div>
-
 $body$
+
+$if(post_url)$ <!-- header of the post-->
+$else$
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = sygi.github.io
+        this.page.identifier = sygii
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//sygii.disqusii.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<script>
+  (function () {
+    'use strict';
+
+    anchors.options.placement = 'right';
+
+    anchors.add('h2, h3');
+
+  })();
+</script>
+
+$endif$
