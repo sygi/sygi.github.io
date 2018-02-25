@@ -1,0 +1,10 @@
+# Install
+sudo apt-get install cabal-install
+cabal update
+cabal install hakyll
+
+# Build
+ghc site.hs
+
+# Run
+./site watch

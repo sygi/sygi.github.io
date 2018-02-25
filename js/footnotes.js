@@ -17,7 +17,7 @@ var Footnotes = {
 		);
 	},
 	setup: function() {
-		var footnotelinks = $(".footnoteRef")
+		var footnotelinks = $(".footnote-ref") // changed here, because pandoc changed
 		
 		footnotelinks.unbind('mouseover',Footnotes.footnoteover);
 		footnotelinks.unbind('mouseout',Footnotes.footnoteoout);

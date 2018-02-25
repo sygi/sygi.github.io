@@ -91,13 +91,9 @@ headCtx =
   field "post_url" (return . flip replaceExtension "html" . toFilePath . itemIdentifier)
     `mappend` postCtx
 
-extraReaderExtensions = foldr S.insert (readerExtensions defaultHakyllReaderOptions)
-extraWriterExtensions = foldr S.insert (writerExtensions defaultHakyllWriterOptions)
 
 readerPostOptions :: ReaderOptions
-readerPostOptions = defaultHakyllReaderOptions{
-    readerExtensions = extraReaderExtensions [Ext_emoji]
-}
+readerPostOptions = defaultHakyllReaderOptions
  
 writerHeaderOptions :: WriterOptions
 writerHeaderOptions = defaultHakyllWriterOptions{
@@ -108,7 +104,6 @@ writerHeaderOptions = defaultHakyllWriterOptions{
 writerPostOptions :: WriterOptions
 writerPostOptions = defaultHakyllWriterOptions{
     writerHTMLMathMethod = MathJax "",
-    writerExtensions = extraWriterExtensions [Ext_emoji],
     writerTableOfContents = True,
     writerTOCDepth = 1
 }

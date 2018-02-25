@@ -5,7 +5,7 @@ title: --init
 <dev>--init</dev>
 ======
 
-In this first post I am testing various features of the hakyll blog I am going to maintain.
+In this first post I am testing various features of the blog I will possibly maintain.
 
 ## Syntax highlighting:
 ```python
@@ -32,7 +32,7 @@ malesuada ut. Donec suscipit elit:x: id leo vehicula mattis non sed leo. Morbi
 varius eleifend varius. Nulla vestibulum, neque vitae aliquam eleifend, nisi
 tellus placerat nunc, quis suscipit elit turpis eu tortor. Etiam euismod
 convallis lectus quis venenatis. Phasellus laoreet magna in nibh cursus eu
-egestas nulla convallis. Aliquam :smile_cat: vel ullamcorper risus. Fusce dictum, massa id
+egestas nulla convallis. Aliquam vel ullamcorper risus. Fusce dictum, massa id
 consequat viverra, nulla ante tristique est, a faucibus nisi enim nec dui. Donec
 metus ligula, condimentum at porttitor eget, lobortis at quam.
 </details>
@@ -49,9 +49,7 @@ ipsum.
 
 <details>
 <summary>
-```python
-def summary(argv):
-```
+Some code
 </summary>
 ```python
   res = process(argv)
