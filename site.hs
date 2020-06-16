@@ -6,6 +6,7 @@ import           Text.Pandoc.Options
 import           Text.Pandoc.Definition
 import           System.FilePath (replaceExtension)
 
+import qualified Data.Text as T
 import qualified Data.Set as S
 
 --------------------------------------------------------------------------------
@@ -23,7 +24,7 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "projects.markdown", "progress.markdown"]) $ do
+    match (fromList ["subpages/about.rst", "subpages/privacy.rst", "projects.markdown", "progress.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompilerWith readerPostOptions writerPostOptions
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
@@ -120,15 +121,15 @@ untilFirstParagraph x = fst $ foldl (\(acc, fin) b ->
 
 addAnchors (Pandoc meta blocks) = Pandoc meta blocks -- (addAnchorsInside blocks)
 
-anchorImage level = Image ("", [], [("width", show size), ("height", show size)]) [] 
+anchorImage level = Image ("", [], [("width", T.pack $ show size), ("height", T.pack $ show size)]) [] 
   ("../images/anchor.png", "") where size = 17 - 1 * level
 
-anchorLink name lvl = Link ("", [], []) [anchorImage lvl] ("#" ++ name, "")
+anchorLink name lvl = Link ("", [], []) [anchorImage lvl] (T.pack $ "#" ++ name, "")
 
-getIdenFromAttr :: Attr -> String
+getIdenFromAttr :: Attr -> T.Text
 getIdenFromAttr (iden, _, _) = iden
-addAnchorToContent :: String -> Int -> [Inline] -> [Inline]
-addAnchorToContent iden level content = content ++ [Str " ", anchorLink iden level]
+addAnchorToContent :: T.Text -> Int -> [Inline] -> [Inline]
+addAnchorToContent iden level content = content ++ [Str " ", anchorLink (T.unpack iden) level]
 
 addAnchorToHeader :: Block -> Block
 addAnchorToHeader (Header level attr content) = Header level attr 
