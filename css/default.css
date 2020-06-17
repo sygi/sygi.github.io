@@ -42,12 +42,12 @@ div#footer {
     color: #555;
     font-size: 12px;
     margin-top: 30px;
-    padding: 12px 0px 12px 0px;
+    padding: 12px 12px 12px 20px;
     box-shadow: 2px 0px 6px black;	
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     position: relative;
-    width: 100%;
+    width: 666px;  /* 700 - 12 - 20 */
     height: 100%;
 }
 
@@ -62,14 +62,14 @@ span#privacy {
 span#acknowledgements {
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 24px;
   transform: translateY(-50%);
 }
 
 div#content {
     background-color: white;
     background-image: url("../../images/handmadepaper.png");
-    padding: 20px;
+    padding: 20px 20px 0px 20px ;
     border-style:solid;
     border-width:1.5px;
     border-color: #a8a8a8;
@@ -105,6 +105,10 @@ div.info {
     color: #555;
     font-size: 14px;
     font-style: italic;
+}
+
+div.stub {
+  padding-bottom: 20px;
 }
 
 pre.sourceCode {
