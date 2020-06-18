@@ -24,7 +24,7 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["subpages/about.rst", "subpages/privacy.markdown", "projects.markdown", "progress.markdown"]) $ do
+    match (fromList ["subpages/about.markdown", "subpages/privacy.markdown", "projects.markdown", "progress.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompilerWith readerPostOptions writerPostOptions
             >>= loadAndApplyTemplate "templates/default.html" defaultContext

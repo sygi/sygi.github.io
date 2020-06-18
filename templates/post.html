@@ -4,22 +4,28 @@
         by $author$
     $endif$
 </div>
+<h1>$title$</h1>
 $body$
 
 $if(post_url)$ <!-- header of the post-->
 $else$
+
 <div id="disqus_thread"></div>
 <script>
-    var disqus_config = function () {
-        this.page.url = "https://sygnowski.ml"
-        this.page.identifier = "sygii"
-    };
-    (function() {
-        var d = document, s = d.createElement('script');
-        s.src = '//sygii.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
 </script>
 <script>
   (function () {

@@ -2,10 +2,7 @@
 title: --init
 ---
 
-<dev>--init</dev>
-======
-
-In this first post I am testing various features of the blog I will possibly maintain.
+In this post I am just testing various features of the blog. There is nothing interesting here.
 
 ## Syntax highlighting:
 ```python
