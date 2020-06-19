@@ -8,3 +8,11 @@ ghc site.hs
 
 # Run
 ./site watch
+
+# Deploy
+./site build
+git checkout master
+cp -a _site/. .
+git add <new files>
+git commit
+git push yet master
