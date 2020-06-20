@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
         <title>Digital version of T.I.M.E stories</title>
         <link rel="stylesheet" type="text/css" href="../css/default.css" />
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -56,12 +57,12 @@
 <figure>
 <img src="../images/ts/card.png" style="width:50.0%" alt /><figcaption>Back of an item card. Note the small number 20 in bottom-left corner.</figcaption>
 </figure>
-<p>To be able to use a scenario, we need to divide the cards into separate files. Ideally, the filename/directory structure would describe which card it is (eg. location X), but that is not possible without looking at the cards, so we decided to store the files under <code>scenario_name/card_number/(front|back).webp</code>. We used webp as an image format because it offered great compression rates (and is supported by nearly all browsers).</p>
+<p>To be able to use a scenario, we need to divide the cards into separate files. Ideally, the filename/directory structure would describe which card it is (eg. location X), but that is not possible without looking at the cards, so we decided to store the files under <code>scenario/card_number</code> with the file names <code>(front|back).webp</code>. We used webp as an image format because it offered great compression rates (and is supported by nearly all browsers).</p>
 <p>We made two separate tools for cutting pdf- and png-based scenarios.</p>
 <h3 id="pdf-based">Pdf-based</h3>
 <p>Most pdf-based scenarios followed the same ordering of cards withing the scenario, so we were able to hard-code. A bigger problem here were different sizes of margins in different files.</p>
 <figure>
-<img src="../images/ts/page.png" alt /><figcaption>An example page to be cut into single cards.</figcaption>
+<img src="../images/ts/page.png" style="width:90.0%" alt /><figcaption>An example page to be cut into single cards.</figcaption>
 </figure>
 <p>We went for the human-in-the-loop approach for detecting the size of margins, where the user was choosing an appropriate margin for the first page of the scenario and we assumed that the margins don’t change within one file.</p>
 <p>To make it convenient for the user to do so, the console-based tool was increasing a margin by a fixed amount when the user pressed <code>+</code> and decreasing it when they pressed <code>-</code>. Whenever the user changed the direction of change (i.e. going from a margin that’s too big to a one that’s too small), we decreased the amount of change, allowing the user to quickly get to a margin that’s nearly-perfect and finetuning it.</p>
@@ -98,9 +99,9 @@
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  <span class="dt">name</span><span class="op">:</span> <span class="bu">String</span><span class="op">,</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  <span class="dt">cards</span><span class="op">:</span> { <span class="dt">type</span><span class="op">:</span> <span class="bu">Array</span><span class="op">,</span> <span class="dt">defaultValue</span><span class="op">:</span> [] }<span class="op">,</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  <span class="st">&quot;cards.$&quot;</span><span class="op">:</span> <span class="bu">String</span><span class="op">,</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="dt">currentCardIndex</span><span class="op">:</span> {<span class="dt">type</span><span class="op">:</span> SimpleSchema<span class="op">.</span><span class="at">Integer</span><span class="op">,</span> <span class="dt">optional</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  <span class="dt">currentSide</span><span class="op">:</span> {<span class="dt">type</span><span class="op">:</span> <span class="bu">String</span><span class="op">,</span> <span class="dt">allowedValues</span><span class="op">:</span> [<span class="st">&quot;front&quot;</span><span class="op">,</span> <span class="st">&quot;back&quot;</span>]<span class="op">,</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>                <span class="dt">optional</span><span class="op">:</span> <span class="kw">true</span>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  <span class="dt">currentCardIndex</span><span class="op">:</span> {<span class="dt">type</span><span class="op">:</span> SimpleSchema<span class="op">.</span><span class="at">Integer</span><span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>                     <span class="dt">optional</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="dt">currentSide</span><span class="op">:</span> {<span class="dt">type</span><span class="op">:</span> <span class="bu">String</span><span class="op">,</span> <span class="dt">allowedValues</span><span class="op">:</span> [<span class="st">&quot;front&quot;</span><span class="op">,</span> <span class="st">&quot;back&quot;</span>]<span class="op">,</span> <span class="dt">optional</span><span class="op">:</span> <span class="kw">true</span>}</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>})<span class="op">;</span></span></code></pre></div>
 <p>We assume the card number and side is enough info to find the URL of the card. In addition to the basic schema, we implemented a number of hooks when inserting or updating the data:</p>
 <ol type="1">
@@ -128,7 +129,7 @@
 <p>In the beginning, we implemented moving cards between holders as clicking one holder and then the other. It wasn’t very intuitive, so we decided to move them using drag&amp;drop.</p>
 <p>We opted for Angular Material’s <a href="https://material.angular.io/cdk/drag-drop/overview">Drag and Drop</a> module. While the terminology suggests it’s made to move <em>items</em> between <em>lists</em>, we find it fine to consider a single card a <code>cdkDrag</code> and one holder to be a single-element <code>cdkDropList</code>.</p>
 <figure>
-<img src="../images/ts/moving-card.gif" alt /><figcaption>Moving card from one holder to another.</figcaption>
+<img src="../images/ts/moving-card.gif" style="width:100.0%" alt /><figcaption>Moving card from one holder to another.</figcaption>
 </figure>
 <h3 id="rotating-cards">Rotating cards</h3>
 <p>While most of the cards are oriented vertically, some of them present horizontally best. One popular example is the cards of the map, which show different locations available to the agents.</p>
@@ -146,7 +147,7 @@ Moving cards to holders with a different orientation: before and after.
 <p>Initially, we just made a panel where the player chose the number of players and received the total results, but while playtesting one of the scenarios, we stumbled upon a practice of re-rolling a die (e.g. one character was allowed to choose one of the dice after a throw and roll it once more, hoping for a better result). It wasn’t possible to do with our dice, as the player didn’t get the division of the total result into particular dice (was this score of 4 a 2 + 2 + 0 + 0 or 1 + 1 + 1 + 1?). Because of that, we decided to show separate dice with results (apart from the total) and allowed the user to click on any die to reroll it.</p>
 <p>However, this wasn’t working perfectly from the UI perspective; the die could get the same result as the previous one after the reroll, and if this happened, the user doesn’t get any feedback that the system indeed registered the reroll. Because of that, we added an animation based on <a href="https://material.io/develop/web/components/animation/">material</a> where the previous die fades away and the new one slowly appears, so that the users see the change.</p>
 <figure>
-<img src="../images/ts/dice.gif" alt /><figcaption>Animation when rerolling challenge dice.</figcaption>
+<img src="../images/ts/dice.gif" style="width:70.0%" alt /><figcaption>Animation when rerolling challenge dice.</figcaption>
 </figure>
 <p>Another problem with the interface was that every time the agents leave a location one of the players should throw the Time Unit die to spend TU. In the physical game, everyone sees whether the die has been thrown and the score subtracted from the tracker. In the digital version, players don’t see whether others have thrown the die if they don’t track the available TU closely.</p>
 <p>To make sure people know whether the die has been thrown already, we send every player a notification once anyone throws the TU die.</p>
