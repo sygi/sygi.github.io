@@ -11,6 +11,8 @@
         <script src="https://code.jquery.com/jquery-2.2.2.min.js" type="text/javascript"></script>
         <script src="../../js/footnotes.js" type="text/javascript"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
     </head>
     <body>
         <div id="header">
@@ -24,6 +26,20 @@
 
         <div id="content">
             
+  <div class="stub">
+    <div class="info">
+    Posted on July 11, 2020
+    
+</div>
+<h1>Drawabox: 14 months later</h1>
+<p>In May 2019, I decided to learn how to draw. To structure my learning, I was following a free online drawing course: <a href="https://drawabox.com">Drawabox</a>. 14 months later, I finished it and I am writing down my experience.</p>
+
+ <!-- header of the post-->
+
+
+    <a href="posts/2020-07-11-drawabox.html">Continue reading</a>
+  </div>
+
   <div class="stub">
     <div class="info">
     Posted on June 19, 2020
@@ -74,6 +90,9 @@
           </span>
         </div>
     <script>
+    require(['https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5.js'], function(module) {
+        new module.Bilderrahmen({ closeOnOutsideClick: true });
+    });
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
     const cookie = document.getElementById("cookie");
