@@ -13,6 +13,8 @@
         <script src="https://code.jquery.com/jquery-2.2.2.min.js" type="text/javascript"/>
         <script src="../../js/footnotes.js" type="text/javascript"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
     </head>
     <body>
         <div id="header">
@@ -46,6 +48,9 @@
           </span>
         </div>
     <script>
+    require(['https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5.js'], function(module) {
+        new module.Bilderrahmen({ closeOnOutsideClick: true });
+    });
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
     const cookie = document.getElementById("cookie");
