@@ -5,7 +5,7 @@ title: Jakub Sygnowski
 Jakub Sygnowski
 ==========
 
-I am a Research Engineer in [DeepMind](deepmind.com).
+I am a Research Engineer in [DeepMind](https://deepmind.com).
 
 On this page I share a couple of summaries of projects I did for fun, written before jumping to the next exciting thing.
 
