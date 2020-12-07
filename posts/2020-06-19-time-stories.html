@@ -56,18 +56,22 @@
 <li>as a set of png files that contain a sheet of around 5x6 cards, either front or back.</li>
 </ol>
 <p>In either of these, each card has a small number at the bottom, to be able to sort the cards and match fronts with backs.</p>
-<div class="figure">
+<figure>
 <img src="../images/ts/card.png" alt="Back of an item card. Note the small number 20 in bottom-left corner." style="width:50.0%" />
-<p class="caption">Back of an item card. Note the small number 20 in bottom-left corner.</p>
-</div>
+<figcaption>
+Back of an item card. Note the small number 20 in bottom-left corner.
+</figcaption>
+</figure>
 <p>To be able to use a scenario, we need to divide the cards into separate files. Ideally, the filename/directory structure would describe which card it is (eg. location X), but that is not possible without looking at the cards, so we decided to store the files under <code>scenario/card_number</code> with the file names <code>(front|back).webp</code>. We used webp as an image format because it offered great compression rates (and is supported by nearly all browsers).</p>
 <p>We made two separate tools for cutting pdf- and png-based scenarios.</p>
 <h3 id="pdf-based">Pdf-based</h3>
 <p>Most pdf-based scenarios followed the same ordering of cards withing the scenario, so we were able to hard-code. A bigger problem here were different sizes of margins in different files.</p>
-<div class="figure">
+<figure>
 <img src="../images/ts/page.png" alt="An example page to be cut into single cards." style="width:90.0%" />
-<p class="caption">An example page to be cut into single cards.</p>
-</div>
+<figcaption>
+An example page to be cut into single cards.
+</figcaption>
+</figure>
 <p>We went for the human-in-the-loop approach for detecting the size of margins, where the user was choosing an appropriate margin for the first page of the scenario and we assumed that the margins don’t change within one file.</p>
 <p>To make it convenient for the user to do so, the console-based tool was increasing a margin by a fixed amount when the user pressed <code>+</code> and decreasing it when they pressed <code>-</code>. Whenever the user changed the direction of change (i.e. going from a margin that’s too big to a one that’s too small), we decreased the amount of change, allowing the user to quickly get to a margin that’s nearly-perfect and finetuning it.</p>
 <p>For example, if the user pressed <code>---+-</code>, the first three signals would decrease margin by 16px each, the next one will increase it by 8px, and the next one will decrease it by 4px.</p>
@@ -132,10 +136,12 @@ HoldersSchema <span class="op">=</span> <span class="kw">new</span> <span class=
 <h2 id="pulling-cards">Pulling cards</h2>
 <p>In the beginning, we implemented moving cards between holders as clicking one holder and then the other. It wasn’t very intuitive, so we decided to move them using drag&amp;drop.</p>
 <p>We opted for Angular Material’s <a href="https://material.angular.io/cdk/drag-drop/overview">Drag and Drop</a> module. While the terminology suggests it’s made to move <em>items</em> between <em>lists</em>, we find it fine to consider a single card a <code>cdkDrag</code> and one holder to be a single-element <code>cdkDropList</code>.</p>
-<div class="figure">
+<figure>
 <img src="../images/ts/moving-card.gif" alt="Moving card from one holder to another." style="width:100.0%" />
-<p class="caption">Moving card from one holder to another.</p>
-</div>
+<figcaption>
+Moving card from one holder to another.
+</figcaption>
+</figure>
 <h3 id="rotating-cards">Rotating cards</h3>
 <p>While most of the cards are oriented vertically, some of them present horizontally best. One popular example is the cards of the map, which show different locations available to the agents.</p>
 <p>One problem which appears when starting to drag and drop cards is the behavior of placeholders which are shown in the to-be-dropped-into holders when the source and sink holder are of different orientation. The default behavior with the Drag and Drop module is to make the placeholder to be the same as the element being dragged. In our case that meant trying to show a vertical placeholder in the horizontal holder and vice versa, which looked wrong.</p>
@@ -151,19 +157,23 @@ Moving cards to holders with a different orientation: before and after.
 <p>In the second case, the players throw a number of dice equal to the value of their statistic (like strength or eloquence) and count the number of “hits” which help the player succeed in the test and “skulls” which hurt the player.</p>
 <p>Initially, we just made a panel where the player chose the number of players and received the total results, but while playtesting one of the scenarios, we stumbled upon a practice of re-rolling a die (e.g. one character was allowed to choose one of the dice after a throw and roll it once more, hoping for a better result). It wasn’t possible to do with our dice, as the player didn’t get the division of the total result into particular dice (was this score of 4 a 2 + 2 + 0 + 0 or 1 + 1 + 1 + 1?). Because of that, we decided to show separate dice with results (apart from the total) and allowed the user to click on any die to reroll it.</p>
 <p>However, this wasn’t working perfectly from the UI perspective; the die could get the same result as the previous one after the reroll, and if this happened, the user doesn’t get any feedback that the system indeed registered the reroll. Because of that, we added an animation based on <a href="https://material.io/develop/web/components/animation/">material</a> where the previous die fades away and the new one slowly appears, so that the users see the change.</p>
-<div class="figure">
+<figure>
 <img src="../images/ts/dice.gif" alt="Animation when rerolling challenge dice." style="width:70.0%" />
-<p class="caption">Animation when rerolling challenge dice.</p>
-</div>
+<figcaption>
+Animation when rerolling challenge dice.
+</figcaption>
+</figure>
 <p>Another problem with the interface was that every time the agents leave a location one of the players should throw the Time Unit die to spend TU. In the physical game, everyone sees whether the die has been thrown and the score subtracted from the tracker. In the digital version, players don’t see whether others have thrown the die if they don’t track the available TU closely.</p>
 <p>To make sure people know whether the die has been thrown already, we send every player a notification once anyone throws the TU die.</p>
 <h2 id="player-pawns">Player pawns</h2>
 <p>In the physical version of the game, every round every player puts their pawn above the location card they want to explore. We made something similar, where each players’ pawn is placed above the card they chose for the given round. One problem, which exists for either version of the game, is spending Time Units every round. As each player performs their actions somewhat independently of others, sometimes it’s hard to make sure every player has done the same number of rounds, especially when some of the players wait for others to finish their challenges.</p>
 <p>To make it easier to keep of track the number of rounds each player did, we added a small mark that we put next to a player token whenever that player moves to another location or throws a die (each of which constitutes an action).</p>
-<div class="figure">
+<figure>
 <img src="../images/ts/pawn-mark.png" alt="The mark on the pawn after the player did the action." />
-<p class="caption">The mark on the pawn after the player did the action.</p>
-</div>
+<figcaption>
+The mark on the pawn after the player did the action.
+</figcaption>
+</figure>
 <p>One facilitation we tried introducing to the gameplay was to automate the throwing of the TU die whenever players leave a location. We thought that leaving the location can be recorded whenever the first location card is removed, and we could throw the die without their action.</p>
 <p>This had one problem though, as the fact of cards moving is independently observed by each of the players, so when we threw a die every time someone observed removal of the first card, the die was thrown 4 times. I didn’t want to send the request only from a player with a given color (e.g. only blue player), as there may be two (or none) players impersonating a blue player at a given moment. I tried to have a hacky version of the server refusing to accept the throw-die request for a short time after another player requested it, but as each player’s call is running a separate thread, it wasn’t reliable and we decided to abandon this feature.</p>
 <h2 id="service">Service</h2>
