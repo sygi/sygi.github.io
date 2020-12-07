@@ -1,7 +1,8 @@
 # Install
 sudo apt-get install cabal-install
 cabal update
-cabal install hakyll
+stack/cabal install hakyll
+stack ghc site.hs
 
 # Build
 ghc site.hs
