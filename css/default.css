@@ -61,6 +61,10 @@ div#footer {
     height: 100%;
 }
 
+div#archive {
+    padding-bottom: 20px;
+}
+
 @media screen and (max-width: 750px) {
   body {
     width: 100%;  /* don't show margins on mobile */
