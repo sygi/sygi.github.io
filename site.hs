@@ -70,7 +70,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             all_posts <- recentFirst =<< post_headers
-            let some_posts = take 5 all_posts
+            let some_posts = take 10 all_posts
 
             let headerCtx =
                       listField "posts" headCtx (return some_posts) `mappend`

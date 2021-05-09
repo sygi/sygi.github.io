@@ -4,10 +4,14 @@
         by $author$
     $endif$
 </div>
+$if(post_url)$ <!-- header of the post-->
+<h1><a href="$post_url$">$title$</a></h1>
+$else$
 <h1>$title$</h1>
+$endif$
 $body$
 
-$if(post_url)$ <!-- header of the post-->
+$if(post_url)$
 $else$
 
 <div id="disqus_thread"></div>
