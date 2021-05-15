@@ -49,8 +49,17 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/post.html" headCtx
             >>= relativizeUrls
 
+    match "posts/*" $ version "only_title" $
+        compile $ do
+            let onlyMetadata (Pandoc meta blocks) = Pandoc meta ([])
+            pandocCompilerWithTransform readerPostOptions writerHeaderOptions onlyMetadata
+            >>= loadAndApplyTemplate "templates/post.html" headCtx
+            >>= relativizeUrls
+
     let post_contents = loadAll ("posts/*" .&&. hasNoVersion) :: Compiler [Item String]
     let post_headers = loadAll ("posts/*" .&&. hasVersion "header") :: Compiler [Item String]
+
+    let post_titles = loadAll ("posts/*" .&&. hasVersion "only_title") :: Compiler [Item String]
 
     create ["archive.html"] $ do
         route idRoute
@@ -69,11 +78,14 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            all_posts <- recentFirst =<< post_headers
-            let some_posts = take 10 all_posts
+            all_headers <- recentFirst =<< post_headers
+            all_titles <- recentFirst =<< post_titles
+            let expanded_prefix = 5
+            let first_posts = take expanded_prefix all_headers
+            let last_posts = drop expanded_prefix all_titles
 
             let headerCtx =
-                      listField "posts" headCtx (return some_posts) `mappend`
+                      listField "posts" headCtx (return (first_posts ++ last_posts)) `mappend`
                       defaultContext
 
             getResourceBody
