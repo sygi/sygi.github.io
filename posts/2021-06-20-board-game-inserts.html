@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Compressed inserts for board games</title>
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <script src="https://code.jquery.com/jquery-2.2.2.min.js" type="text/javascript"></script>
+        <script src="../../js/footnotes.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on June 20, 2021
+    
+</div>
+<h1>Compressed inserts for board games</h1>
+<p>Board games are often sold in boxes that are bigger than necessary to fit the game elements. It makes sense from a marketing perspective: oversized shiny covers are better at grabbing the attention of buyers in a shop. Once bought, the big boxes are a pain: they are problematic when moving homes and take more shelf-size than needed. For this reason, at the end of 2018, we tried to design new, smaller boxes for board games with my <a href="https://micha7a.github.io">girlfriend</a>.</p>
+<h2 id="technology-choice">Technology choice</h2>
+<p>We decided to make the box by cutting it from plywood with a laser cutter.</p>
+<p>To get started, we generated a generic box design using a <a href="https://boxdesigner.connectionlab.org">Box Designer website</a> (another generator is available at <a href="https://makeabox.io">makebox.io</a>).</p>
+<figure>
+<img src="../images/bg_inserts/blank_box.png" alt="Generic box" style="width:60.0%" />
+<figcaption>
+This is how a typical box looks like.
+</figcaption>
+</figure>
+<h3 id="inkscape-workflow">Inkscape workflow</h3>
+<p>We edited the box in Inkscape by adding and removing notches and adding separators. The goal was to create several small boxes to fit the elements of a Mice and Mystics game.</p>
+<p>In the process of doing so, we improved our Inkscape skills. The features we learned and used the most were snapping, guides, and align-and-distribute. They helped to keep everything of perfect size (including keeping lines centered around where they should be).</p>
+<h3 id="kerf">Kerf</h3>
+<p>One reason we wanted to keep all the sizes exact is kerf. Kerf is the width of the cut that the laser cutter makes in the wood. It’s generally small (in our case we the kerf was around 0.1mm), but it’s still necessary to take it into account to make the box’ notches stick together.</p>
+<p>Let’s imagine we create a design file with a notch of size 10mm and the corresponding hole to be 10mm, too. If we cut the file as-is, with 0.1mm kerf, we’ll end up with a notch of size around 9.9mm (we’ll lose half of the kerf on both sides of the notch) and a 10.1mm hole. The leeway of 0.2mm will make the connection loose and useless.</p>
+<p>Instead, we should adjust their sizes, such that the notch can barely enter the hole: the wood can compress a little when joining the elements, and the pressure will keep them together.</p>
+<p>I tried to find a way to achieve that in Inkscape automatically, but I didn’t find a satisfactory way of doing so. Some of the tutorials I found didn’t work with Paths instead of Objects or were only able to increase the size of the notch but not to make the hole smaller.</p>
+<p>To get the effect I wanted, I wrote a small Inkscape extension (code <a href="https://github.com/sygi/inkscape_add_kerf">here</a>).</p>
+<p>In the end, this is how one of the Mice and Mystics boxes turned out:</p>
+<figure>
+<img src="../images/bg_inserts/spider.svg" alt="Design file" style="width:40.0%" /> <img src="../images/bg_inserts/mnm_pajak.jpg" alt="Box photo" style="width:42.0%" />
+<figcaption>
+The design of the box and the its photo after assembly.
+</figcaption>
+</figure>
+<h2 id="time-stories">Time stories</h2>
+<p>After getting some experience with smaller boxes, we moved to make a single, complex box for T.I.M.E stories. The original box is notoriously oversized: all elements are relatively small (a couple of dices, pawns, and cardboard tokens), but the box is probably the biggest one I (used to :) own.</p>
+<p>The overall process was the same as with the smaller boxes: measuring elements, choosing the compartments, and drawing them in Inkscape. One new feature I played with here was engraving: making a mark in the wood that isn’t deep enough to cut it through.</p>
+<p>Here, I decided to put numbers next to the holes: they can be kept barely visible, yet they are very convenient when assembling a complex box with multiple inner compartments.</p>
+<figure>
+<img src="../images/bg_inserts/ts_numbers.png" alt="Numbers on the box" style="width:40.0%" />
+<figcaption>
+A part of the design with holes numbered.
+</figcaption>
+</figure>
+<p>When kerf is chosen correctly, the notches are keeping together surprisingly sturdily. Because of that, I didn’t want to use the notches for the cover: it’s going to be opened and closed often, and disassembling the notched connection took a bit of effort. Instead, I decided to go for the sliding cover and a small engraving in the walls to fit the cover.</p>
+<p>When printing, the cuts should be done starting with engraving and then moving from the inner cuts to the outer ones: the wood can otherwise move a bit when popping out of the sheet, and the future cuts will be made inaccurate.</p>
+The size of the final box ended up to be 12.5cm x 16cm x 3.1cm, compared to 30cm x 30cm x 7.6 cm of the original box.
+<figure>
+<img src="../images/bg_inserts/ts_open_red.jpg" alt="Final box" style="width:35.0%" /> <img src="../images/bg_inserts/ts_comparison_red.jpg" alt="Comparison with orignal box" style="width:35.0%" />
+<figcaption>
+Picture of the box and a comparison to the original one.
+</figcaption>
+</figure>
+<h3 id="board">Board</h3>
+<p>The original Time Stories box is big but also fits a substantial game board. Michalina decided to draw a new, more compact board to print it later.</p>
+<p>We wanted to fit the board in an A-something format because it’s easy to print and store. We managed to arrange the whole board on a sheet of A2, but to do so, we had to evict the codex cards outside the board, leaving on a border only indicators on where they should go.</p>
+<p>Michalina designed the functional elements in Inkscape and finished the look in (raster) Krita. She drew the background in Krita and traced the vector lines with a brush using a neat Krita feature (<code>Edit-&gt;Stroke selected shapes</code>).</p>
+<figure>
+<img src="../images/bg_inserts/ts_rasterized.png" alt="Rasterized line" style="width:60.0%" />
+<figcaption>
+Fancy raster lines generated from a vector-graphics, straight line.
+</figcaption>
+</figure>
+<p>We printed the board on two A3 sheets of good quality and nicely covered it with a transparent film… and then forgot to take it with us on holiday, so we printed it again on regular A4 paper.</p>
+<figure>
+<a href="../images/bg_inserts/ts_board.png"><img src="../images/bg_inserts/ts_board_red.png" alt="Board for the game" style="width:75.0%" /></a>
+<figcaption>
+Design of the board by Michalina.
+</figcaption>
+</figure>
+<h3 id="costs">Costs</h3>
+<p>So, how much does making a box like this cost?</p>
+<p>In terms of time, it took us probably around 10 hours to get comfortable enough with Inkscape, probably another 4 hours to design a new box and an hour or two to cut and assemble it.</p>
+<p>In terms of the materials, the main cost would have been the amortization of a laser cutter: these devices tend to cost a couple of thousand dollars. We had access to one for free in the company we worked at, so no cost for us.</p>
+<p>For a box like a time-stories one, we needed three A4 sheets of plywood (after arranging elements nicely). We bought a box of 20 sheets on Amazon for 2£, so the cost here was 30p per box (if not counting that we didn’t end up using all of the plywood sheets).</p>
+<h3 id="final-words">Final words</h3>
+<p>The files to cut the box and print the board are available <a href="../data/bg_inserts/ts_box.zip">here</a>. Overall, this project was a lot of fun and we’ll likely do more of these in the future.</p>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+<script>
+  (function () {
+    'use strict';
+    anchors.options.placement = 'right';
+    anchors.add('h2, h3');
+  })();
+</script>
+
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+    <script>
+    require(['https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5.js'], function(module) {
+        new module.Bilderrahmen({ closeOnOutsideClick: true });
+    });
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', gaProperty, 'auto');
+    ga('send', 'pageview');
+    </script>
+
+  </body>
+</html>
