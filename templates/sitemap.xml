@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>$root$</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.</priority>
+  </url>
+$for(pages)$
+  <url>
+    <loc>$root$/$post_url$</loc>
+    <lastmod>$if(modified)$$modified$$else$$if(date)$$date$$endif$$endif$</lastmod>
+  </url>
+$endfor$
+</urlset>

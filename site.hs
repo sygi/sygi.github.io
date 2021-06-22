@@ -28,6 +28,8 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
+    match "templates/*" $ compile templateBodyCompiler
+
     match (fromList ["subpages/about.markdown", "subpages/privacy.markdown", "projects.markdown", "progress.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompilerWith readerPostOptions writerPostOptions
@@ -60,6 +62,19 @@ main = hakyll $ do
     let post_headers = loadAll ("posts/*" .&&. hasVersion "header") :: Compiler [Item String]
 
     let post_titles = loadAll ("posts/*" .&&. hasVersion "only_title") :: Compiler [Item String]
+  
+    create ["sitemap.xml"] $ do
+        route idRoute
+        compile $ do
+            posts <- recentFirst =<< post_titles
+            singlePages <- loadAll $ fromList ["index.html", "subpages/about.markdown", "subpages/privacy.markdown"]
+            let pages = posts `mappend` singlePages
+                sitemapCtx = 
+                    constField "root" root `mappend`
+                    listField "pages" headCtx (return pages)
+            makeItem "" 
+                >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
+-- TODO: make a single version of the list, remove archive, projects, progress.
 
     create ["archive.html"] $ do
         route idRoute
@@ -85,6 +100,7 @@ main = hakyll $ do
             let last_posts = drop expanded_prefix all_titles
 
             let headerCtx =
+                      modificationTimeField "modified" "%Y-%m-%d" `mappend`
                       listField "posts" headCtx (return (first_posts ++ last_posts)) `mappend`
                       defaultContext
 
@@ -93,13 +109,16 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" headerCtx
                 >>= relativizeUrls
 
-    match "templates/*" $ compile templateBodyCompiler
-
 
 
 --------------------------------------------------------------------------------
+root :: String
+root = "https://sygnowski.ml"
 postCtx :: Context String
 postCtx =
+    constField "root" root `mappend`
+    constField "default_author" "Jakub Sygnowski" `mappend`
+    modificationTimeField "modified" "%Y-%m-%d" `mappend`
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
 
