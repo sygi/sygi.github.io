@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Jakub Sygnowski blog</title>
+        <link>https://sygnowski.ml</link>
+        <description><![CDATA[Posts on games, programming, and art.]]></description>
+        <atom:link href="https://sygnowski.ml/rss.xml" rel="self"
+                   type="application/rss+xml" />
+        <lastBuildDate>Sun, 20 Jun 2021 00:00:00 UT</lastBuildDate>
+        <item>
+    <title>Compressed inserts for board games</title>
+    <link>https://sygnowski.ml/posts/2021-06-20-board-game-inserts.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on June 20, 2021
+    
+</div>
+<h1>Compressed inserts for board games</h1>
+<p>Board games are often sold in boxes that are bigger than necessary to fit the game elements. It makes sense from a marketing perspective: oversized shiny covers are better at grabbing the attention of buyers in a shop. Once bought, the big boxes are a pain: they are problematic when moving homes and take more shelf-size than needed. For this reason, at the end of 2018, we tried to design new, smaller boxes for board games with my <a href="https://micha7a.github.io">girlfriend</a>.</p>
+<h2 id="technology-choice">Technology choice</h2>
+<p>We decided to make the box by cutting it from plywood with a laser cutter.</p>
+<p>To get started, we generated a generic box design using a <a href="https://boxdesigner.connectionlab.org">Box Designer website</a> (another generator is available at <a href="https://makeabox.io">makebox.io</a>).</p>
+<figure>
+<img src="/images/bg_inserts/blank_box.png" alt="Generic box" style="width:60.0%" />
+<figcaption>
+This is how a typical box looks like.
+</figcaption>
+</figure>
+<h3 id="inkscape-workflow">Inkscape workflow</h3>
+<p>We edited the box in Inkscape by adding and removing notches and adding separators. The goal was to create several small boxes to fit the elements of a Mice and Mystics game.</p>
+<p>In the process of doing so, we improved our Inkscape skills. The features we learned and used the most were snapping, guides, and align-and-distribute. They helped to keep everything of perfect size (including keeping lines centered around where they should be).</p>
+<h3 id="kerf">Kerf</h3>
+<p>One reason we wanted to keep all the sizes exact is kerf. Kerf is the width of the cut that the laser cutter makes in the wood. It’s generally small (in our case we the kerf was around 0.1mm), but it’s still necessary to take it into account to make the box’ notches stick together.</p>
+<p>Let’s imagine we create a design file with a notch of size 10mm and the corresponding hole to be 10mm, too. If we cut the file as-is, with 0.1mm kerf, we’ll end up with a notch of size around 9.9mm (we’ll lose half of the kerf on both sides of the notch) and a 10.1mm hole. The leeway of 0.2mm will make the connection loose and useless.</p>
+<p>Instead, we should adjust their sizes, such that the notch can barely enter the hole: the wood can compress a little when joining the elements, and the pressure will keep them together.</p>
+<p>I tried to find a way to achieve that in Inkscape automatically, but I didn’t find a satisfactory way of doing so. Some of the tutorials I found didn’t work with Paths instead of Objects or were only able to increase the size of the notch but not to make the hole smaller.</p>
+<p>To get the effect I wanted, I wrote a small Inkscape extension (code <a href="https://github.com/sygi/inkscape_add_kerf">here</a>).</p>
+<p>In the end, this is how one of the Mice and Mystics boxes turned out:</p>
+<figure>
+<img src="/images/bg_inserts/spider.svg" alt="Design file" style="width:40.0%" /> <img src="/images/bg_inserts/mnm_pajak.jpg" alt="Box photo" style="width:42.0%" />
+<figcaption>
+The design of the box and the its photo after assembly.
+</figcaption>
+</figure>
+<h2 id="time-stories">Time stories</h2>
+<p>After getting some experience with smaller boxes, we moved to make a single, complex box for T.I.M.E stories. The original box is notoriously oversized: all elements are relatively small (a couple of dices, pawns, and cardboard tokens), but the box is probably the biggest one I (used to :) own.</p>
+<p>The overall process was the same as with the smaller boxes: measuring elements, choosing the compartments, and drawing them in Inkscape. One new feature I played with here was engraving: making a mark in the wood that isn’t deep enough to cut it through.</p>
+<p>Here, I decided to put numbers next to the holes: they can be kept barely visible, yet they are very convenient when assembling a complex box with multiple inner compartments.</p>
+<figure>
+<img src="/images/bg_inserts/ts_numbers.png" alt="Numbers on the box" style="width:40.0%" />
+<figcaption>
+A part of the design with holes numbered.
+</figcaption>
+</figure>
+<p>When kerf is chosen correctly, the notches are keeping together surprisingly sturdily. Because of that, I didn’t want to use the notches for the cover: it’s going to be opened and closed often, and disassembling the notched connection took a bit of effort. Instead, I decided to go for the sliding cover and a small engraving in the walls to fit the cover.</p>
+<p>When printing, the cuts should be done starting with engraving and then moving from the inner cuts to the outer ones: the wood can otherwise move a bit when popping out of the sheet, and the future cuts will be made inaccurate.</p>
+The size of the final box ended up to be 12.5cm x 16cm x 3.1cm, compared to 30cm x 30cm x 7.6 cm of the original box.
+<figure>
+<img src="/images/bg_inserts/ts_open_red.jpg" alt="Final box" style="width:35.0%" /> <img src="/images/bg_inserts/ts_comparison_red.jpg" alt="Comparison with orignal box" style="width:35.0%" />
+<figcaption>
+Picture of the box and a comparison to the original one.
+</figcaption>
+</figure>
+<h3 id="board">Board</h3>
+<p>The original Time Stories box is big but also fits a substantial game board. Michalina decided to draw a new, more compact board to print it later.</p>
+<p>We wanted to fit the board in an A-something format because it’s easy to print and store. We managed to arrange the whole board on a sheet of A2, but to do so, we had to evict the codex cards outside the board, leaving on a border only indicators on where they should go.</p>
+<p>Michalina designed the functional elements in Inkscape and finished the look in (raster) Krita. She drew the background in Krita and traced the vector lines with a brush using a neat Krita feature (<code>Edit-&gt;Stroke selected shapes</code>).</p>
+<figure>
+<img src="/images/bg_inserts/ts_rasterized.png" alt="Rasterized line" style="width:60.0%" />
+<figcaption>
+Fancy raster lines generated from a vector-graphics, straight line.
+</figcaption>
+</figure>
+<p>We printed the board on two A3 sheets of good quality and nicely covered it with a transparent film… and then forgot to take it with us on holiday, so we printed it again on regular A4 paper.</p>
+<figure>
+<a href="/images/bg_inserts/ts_board.png"><img src="/images/bg_inserts/ts_board_red.png" alt="Board for the game" style="width:75.0%" /></a>
+<figcaption>
+Design of the board by Michalina.
+</figcaption>
+</figure>
+<h3 id="costs">Costs</h3>
+<p>So, how much does making a box like this cost?</p>
+<p>In terms of time, it took us probably around 10 hours to get comfortable enough with Inkscape, probably another 4 hours to design a new box and an hour or two to cut and assemble it.</p>
+<p>In terms of the materials, the main cost would have been the amortization of a laser cutter: these devices tend to cost a couple of thousand dollars. We had access to one for free in the company we worked at, so no cost for us.</p>
+<p>For a box like a time-stories one, we needed three A4 sheets of plywood (after arranging elements nicely). We bought a box of 20 sheets on Amazon for 2£, so the cost here was 30p per box (if not counting that we didn’t end up using all of the plywood sheets).</p>
+<h3 id="final-words">Final words</h3>
+<p>The files to cut the box and print the board are available <a href="../data/bg_inserts/ts_box.zip">here</a>. Overall, this project was a lot of fun and we’ll likely do more of these in the future.</p>
+]]></description>
+    <pubDate>Sun, 20 Jun 2021 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2021-06-20-board-game-inserts.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
+    <title>Digital painting exercises</title>
+    <link>https://sygnowski.ml/posts/2021-05-09-digital-painting-exercises.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on May  9, 2021
+    
+</div>
+<h1>Digital painting exercises</h1>
+<p>I think I am learning the quickest when doing a sequence of well-defined challenges of appropriate difficulty. As I didn’t find a course of digital drawing I’d like to follow, I was compiling separate exercises from various sources. They helped me to make small steps of progress in improving my digital painting skills.</p>
+<h1 id="drawing-people">Drawing people</h1>
+<p>For a start, I decided to revisit Proko lessons and learn to better draw people on a tablet.</p>
+<h2 id="line-of-action-developing-workflow">Line of Action, developing workflow</h2>
+<p>A popular exercise when learning to draw people is the timed drawing, where students draw a model in a short, predefined period of time. The goal is to be able to concentrate on capturing general gesture as opposed to details.</p>
+<p>Many websites help to run a similar exercise online, where the student is drawing from a prepared picture which changes every couple of minutes.</p>
+<p>I was using two websites for this: <a href="https://line-of-action.com">Line of Action</a> and <a href="https://www.youtube.com/channel/UCliUF1c8m7MUspaCykJljSg">New Masters Academy</a> channel on Youtube. They both have lots of content to draw.</p>
+<p>You can see the effects of my experimentation below:</p>
+<figure>
+<a href="/images/digital_painting2/people/sketches/A.png" target="_blank"><img src="/images/digital_painting2/people/sketches/A.png" alt="Human sketch" style="width:80.0%" /><img data-bilderrahmen="sketches"/></a>
+<figcaption>
+Attempts at timed drawing of people.
+</figcaption>
+</figure>
+<p>After doing these drawings, I have developed a workflow that seems to work well for me:</p>
+<ol style="list-style-type: decimal">
+<li>I start with a quick gesture line</li>
+<li>Then, on another layer, I draw basic shapes on top to get all body parts in place.</li>
+<li>Finally, I draw a contour line with a slightly smoothing pen on the final layer.</li>
+</ol>
+<figure>
+<img src="/images/digital_painting2/people/workflow/gesture.png" alt="Gesture drawing" style="width:30.3%" /> <img src="/images/digital_painting2/people/workflow/shapes.png" alt="Basic shapes" style="width:29.95%" /> <img src="/images/digital_painting2/people/workflow/contour.png" alt="Contour" style="width:30.0%" />
+<figcaption>
+Stages of the drawing.
+</figcaption>
+</figure>
+<p>Before moving on to the next thing, I made a couple of drawings following the workflow below:</p>
+<figure>
+<a href="/images/digital_painting2/people/final/A.png" target="_blank"><img src="/images/digital_painting2/people/final/A.png" alt="Human drawing" style="width:50.0%" /><img data-bilderrahmen="people"/></a>
+<figcaption>
+Final drawings made using this workflow.
+</figcaption>
+</figure>
+<h2 id="portrait-painting">Portrait painting</h2>
+<p>In the poses drawings, I omitted hands, feet, and faces, as they are harder than the overall shape of the body and a topic on their own. I decided to spend a bit of time learning to draw heads, though.</p>
+<p>Initially, I did two sketches using the same reference page as before:</p>
+<figure>
+<img src="/images/digital_painting2/people/Heads.png" alt="Heads" style="width:70.0%" />
+<figcaption>
+Sketches of a head.
+</figcaption>
+</figure>
+<p>I then moved to digital painting. I started by following <a href="www.youtube.com/watch?v=0CDd22s3jec">the walkthrough</a> on a Sam Does Arts youtube channel:</p>
+<figure>
+<img src="/images/digital_painting2/people/Sam.png" alt="Tutorial painting" style="width:45.0%" />
+<figcaption>
+Portrait painting based on a tutorial.
+</figcaption>
+</figure>
+<p>While not everything here looks great, I think the overall shapes and colors went fine.</p>
+<p>Then, I tried to paint my girlfriend from a photo. To decrease the number of things to think about, I allowed myself to trace the picture to establish the initial shapes. Somehow, they still didn’t end up as well as they should, which created an opportunity to learn the <a href="https://procreate.art/handbook/procreate/adjustments/adjustments-liquify/">liquify tool</a>, which allows to smoothly shrink and stretch elements of the picture.</p>
+<p>Another element that didn’t work well in this picture is the saturation of colors. While one would usually see less saturation in strongly-lit areas, as the skin has red stuff beneath it, you can see more vibrant colors in lighted areas than in neutral light (see <a href="https://en.wikipedia.org/wiki/Subsurface_scattering">subsurface scattering</a>). The shadows also ended up too grey, looking too much like dirt.</p>
+<figure>
+<video width="450" height="480" controls>
+<source src="/images/digital_painting2/people/misia-crop.mp4" type="video/mp4"> Your browser does not support the video tag.
+</video>
+<figcaption>
+Recording of the painting.
+</figcaption>
+</figure>
+<h1 id="art-studies">Art studies</h1>
+<p>I found online a suggestion for improving one’s art: to analyze the paintings of others or movie frames. I decided to try two methods: a value and a color study.</p>
+<h2 id="value-studies">Value studies</h2>
+<p>Value (lightness) is a primary tool for creating a contrast in a picture. To think about how others use values in their art, I followed an exercise to draw using only three colors: white, black, and grey. Initially, the areas that light reaches are covered with white, then the half-tone ones are getting changed to grey. Arguably, this exercise helps to understand the shape of the objects in the pictures.</p>
+<figure>
+<img src="/images/digital_painting2/analysis/values.png" alt="Value study" style="width:70.0%" />
+<figcaption>
+Value study of a couple of paintings and movie frames.
+</figcaption>
+</figure>
+<h2 id="color-studies">Color studies</h2>
+<p>The other exercise I tried was a more holistic analysis of the pictures of others. I looked over a couple of them and tried to understand the techniques used and reproduce them in a simplified form.</p>
+<p>I used pictures of <a href="https://www.youtube.com/channel/UC0XHwYwoeWJC9d0ndtev5vw">AngryMikko</a> and <a href="https://www.youtube.com/channel/UCsDxB-CSMQ0Vu_hTag7-2UQ">Marco Bucci</a> for this, whose colors (despite having different styles) I enjoy.</p>
+<figure>
+<p><a href="/images/digital_painting2/analysis/mikko1.png"><img src="/images/digital_painting2/analysis/mikko1.png" alt="House analysis" style="width:45.0%" /></a> <a href="/images/digital_painting2/analysis/mikko2.png"><img src="/images/digital_painting2/analysis/mikko2.png" alt="Tree analysis" style="width:45.0%" /></a></p>
+<figcaption>
+Analysis of “Maybe Tomorrow” (<a href="https://www.instagram.com/p/CADWmN4DbER/?hl=en">original</a>) and “Moon Chalice” (<a href="https://www.instagram.com/p/CHhdBFDDqfa/">original</a>) by AngryMikko.
+</figcaption>
+</figure>
+<p>The main observation from Mikko was that, although his pictures feel colorful, he’s only using high saturation in a small portion of them: most of the time, he uses the saturation lower than 50%.</p>
+<figure>
+<a href="/images/digital_painting2/analysis/bucci.png"><img src="/images/digital_painting2/analysis/bucci.png" alt="Tree character" style="width:65.0%" /></a>
+<figcaption>
+Analysis of “GoodMorning” (<a href="https://www.marcobucci.com/personal-work?lightbox=dataItem-j7ali1xo1">original</a>) by Marco Bucci.
+</figcaption>
+</figure>
+<p>On the other hand, Marco uses more highly-saturated areas. He also uses a bunch of different brushes compared to Mikko. It seems that, as the character was the main focus, its high value/saturation looks good even though it should be more in shadow behind the tree.</p>
+<h1 id="exercises">Exercises</h1>
+<p>Apart from studying others’ work, I also did a couple of custom exercises.</p>
+<h2 id="lightning-a-cube">Lightning a cube</h2>
+<p>First, after watching a couple of tutorials about color theory (<a href="https://www.youtube.com/watch?v=xcCJ2CU-bFw">Light and shadow</a>, <a href="https://www.youtube.com/watch?v=gwLQ0cDb4cE">Understanding shadow colors</a>, <a href="https://www.youtube.com/watch?v=botKNa3YGsI">Cavemen color theory</a>), I decided to summarize the general ideas behind natural colors of areas in light and shadow.</p>
+<figure>
+<a href="/images/digital_painting2/exercises/Lightning.png"><img src="/images/digital_painting2/exercises/Lightning.png" alt="Cube lightning" style="width:65.0%" /></a>
+<figcaption>
+Exercise/notes about lightning a cube.
+</figcaption>
+</figure>
+<h2 id="rocks">Rocks</h2>
+<p>Then, I decided to put it into practice a bit more and tried drawing rocks. I partially followed the tutorials (<a href="https://www.youtube.com/watch?v=b-7XzBg1wPM">1</a>, <a href="https://www.youtube.com/watch?v=puTpnQRKzUQ">2</a>, <a href="https://www.youtube.com/watch?v=bFB9FE18POY&amp;t=252s&amp;ab_channel=WalidFeghali">3</a>), and partially tried to imagine the shapes on my own and confirm my understanding of lightning on a rock.</p>
+<figure>
+<a href="/images/digital_painting2/exercises/Rocks.png"><img src="/images/digital_painting2/exercises/Rocks.png" alt="Rocks drawings" style="width:65.0%" /></a>
+<figcaption>
+Exercises in drawing a rock.
+</figcaption>
+</figure>
+<h2 id="glowing-stuff">Glowing stuff</h2>
+<p>Then, I tried to learn how to draw glowing things, as I find them to look cool. I decided to draw a picture of a turtle in a dark forest with some symbols glowing on its shell.</p>
+<figure>
+<a href="/images/digital_painting2/exercises/Turtle.png"><img src="/images/digital_painting2/exercises/Turtle.png" alt="Turtle painting" style="width:80.0%" /></a>
+<figcaption>
+Painting of a turtle.
+</figcaption>
+</figure>
+<p>It turned out that the glowing letters were surprisingly simple to do; for this, I followed the advice of using multiple layers with more and more blurred images.</p>
+<p>However, the overall image turned out so-so. I think these were the main problems:</p>
+<p>I didn’t plan the composition/focal point/values upfront. The initial idea was to have a bigger view with a horizon line and fancy lights, but I decided to cut the complexity and concentrate on the turtle.</p>
+<p>Even with a reduced view, I think there is too much area on the picture where nothing happens. I should have tried to put more contrasting elements around.</p>
+<p>Apart from this, it seems I took Mikko’s example too much to heart and used saturated colors too little. I tried to fix it in the post-process, which only helped to some extent.</p>
+<h1 id="summary">Summary</h1>
+<p>I did a few exercises to improve my use of colors and ability to draw people. While I still envy colorful landscapes and would like to learn how to paint them, I think that I like more the style of strong lines and simple, close to flat colors (more <em>drawing</em> than <em>painting</em>).</p>
+<p><a href="/images/digital_painting2/people/sketches/B.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/C.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/D.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/E.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/F.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/G.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/H.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/I.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/J.png" target="_blank"><img data-bilderrahmen="sketches"/></a></p>
+<p><a href="/images/digital_painting2/people/final/B.png" target="_blank"><img data-bilderrahmen="people"/></a><a href="/images/digital_painting2/people/final/C.png" target="_blank"><img data-bilderrahmen="people"/></a><a href="/images/digital_painting2/people/final/D.png" target="_blank"><img data-bilderrahmen="people"/></a></p>
+]]></description>
+    <pubDate>Sun, 09 May 2021 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2021-05-09-digital-painting-exercises.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
+    <title>Choosing game engine</title>
+    <link>https://sygnowski.ml/posts/2021-04-05-choosing-game-engine.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on April  5, 2021
+    
+</div>
+<h1>Choosing game engine</h1>
+<p>The idea of telling stories interactively through video games is appealing to me. Some time ago, I started writing a scenario for a first, test game. In this post, I write down my experience of choosing a game engine.</p>
+<h1 id="motivation">Motivation</h1>
+<p>Between grade 6 and entering the workforce at around 25 years old, I haven’t played many games. Growing up playing Super Mario Bros, FIFA, or Ages of Empires II, I associated computer games more with cheap adrenaline rushes than discovering new worlds.</p>
+<p>It changed dramatically after playing <a href="https://store.steampowered.com/app/582500/We_Were_Here/">We Were Here</a> and <a href="https://store.steampowered.com/app/230230/Divinity_Original_Sin_Classic/">Divinity Original Sin</a> with my girlfriend. These are cooperative games with no reflex elements and are more about exploring the game world than defeating opponents.</p>
+<p>At the same time, we were a bit disappointed with We Were Here, as, even though we liked the walkie-talkie coop mechanic, the gameplay was centered around solving abstract puzzles: there’s a little story to discover there<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<p>I decided to fix this and try to make a game similar to We Were Here with a stronger focus on the story and learn some game development in the process.</p>
+<h1 id="what-is-a-game-engine">What is a game engine</h1>
+<p>Making a game involves a lot of complex elements: checking if game objects collide, networking, playing sounds, etc. Many of these can be done once and reused in many games: one doesn’t need to reinvent from scratch how the light bounces from objects or how to communicate player actions in a multi-player game.</p>
+<p>The ability to separate some reusable solutions caused the birth of a concept of a <em>game engine</em>: a program made to simplify the process of game creation by providing common patterns, allowing the game designers to concentrate on the game’s content instead of low-level details.</p>
+<p>The fixed solutions provided by the game engine may not always be appropriate for a given game. Bigger game studios producing AAA titles will effectively implement proprietary game engines on their own, which will allow them to optimize hardware usage and production workflow for their games.</p>
+<p>For the smaller, independent game creators, game engines available on the market are a godsend, as they allow to start making games without investing thousands of manhours in solving ray-tracing issues or creating animation pipelines.</p>
+<p>For my first game, I obviously want to reuse known solutions as much as possible, so I was trying out various game engines to see what they offer.</p>
+<h1 id="choosing-game-engine">Choosing game engine</h1>
+<p>When searching for the game engine over the internet, two popular choices come up often: Unity and Unreal.</p>
+<h2 id="unreal">Unreal</h2>
+<p>As I hope the mechanics in my game will be relatively simple (to concentrate on the story), the first feature of the game engine I was looking at was: the code language used to write the game. In the case of Unreal, it is C++, which I like, so I decided to try it out first.</p>
+<p>For a start, I decided to create a 3D scene with a small city, a lake, a mountain, etc. While I learned lots of both Unreal and general 3D-modelling concepts, creating a 3D scene felt quite overwhelming and more effort than I’d like to put on the visuals alone. It would be exarberated if I needed to make some assets for the game: for the test scene I was taking them from the internet, which wouldn’t look good/wouldn’t be permitted by the license in a game.</p>
+<p>A nice thing that I didn’t expect was the option to export the game to HTML5. When thinking about it, I’d certainly like to be able to embed the game on a website: it’ll be much easier to show the result of my work if one doesn’t need to install anything nor have any particular OS to do so.</p>
+<p>Unfortunately, due to all the blows and whistles that Unreal comes with, the final export file was over 100MB, despite my attempts to make it as small as possible. Because of it, I wasn’t able to serve it on Github pages and put it on Google Cloud storage instead… and lost access to it after the free trial finished :( <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>One idea that I quite liked in Unreal is <a href="https://docs.unrealengine.com/en-US/ProgrammingAndScripting/Blueprints/index.html">blueprints</a>. They are a visual programming language that allows people to connect various object properties without writing code. While writing code feels natural to me, the nicely rendered diagrams showing how the properties are changing look appealing.</p>
+<figure>
+<img src="../images/game_engines/unreal_blueprint.png" alt="Blueprint" style="width:70.0%" />
+<figcaption>
+Blueprint in Unity.
+</figcaption>
+</figure>
+<p>Overall, I liked Unreal a lot for what it is: a professional-grade 3D game engine. At the same time, I realized that making a proper 3D game is a big undertaking, and I shouldn’t try it for the first game I ever made.</p>
+<h2 id="unity">Unity</h2>
+<p>After Unreal, I spent a couple of hours playing with its main competitor: Unity.</p>
+<p>While it has better support for 2D, it had enough pain points to scare me off quickly.</p>
+<p>For a start, while formally supported under Linux, the UI seemed to not look great under Cinnamon, and I remember having some problems with the installation. Linux is clearly not a prime target for Unity.</p>
+<p>As the engine is as packed as Unreal, is it loaded slowly and took a lot of disk space. The scenes took a long time to build which would be a hinder to the debugging speed.</p>
+<p>Furthermore, the game development language is C#, which I haven’t used so far. While it seems similar to Java, and I could learn it, I’d prefer it if I didn’t have to.</p>
+<p>Finally, the business model of the engine put me off. While Unreal is open-source with a fee to pay when your sales exceed 100k USD/year (which won’t happen for me), Unity has a separate “pro” engine available for people who pay for it. While I certainly don’t need all the features of a full-fledged game engine, the feeling that further down the line, there may be things I’ll not be able to do because I didn’t pay was not a good first encounter.</p>
+<h2 id="evennia">Evennia</h2>
+<p>When limiting the scope after getting overwhelmed with 3D in Unreal, I played with the other end of the art-complexity spectrum and tried to make the game purely text-based. I discovered an old, unpopular “in my times” genre of games: <a href="https://en.wikipedia.org/wiki/MUD">multi-user dungeons (MUDs)</a>.</p>
+<p>MUDs are similar to Roguelikes in being purely text-based, but MUDs are multi-player by definition, and the available commands are text-based, like <code>look around</code> or <code>go through the door</code> as opposed to the grid-based movement.</p>
+<p>For MUDs, there are also game engines to simplify their building process, which, for example, take care of all the network-related stuff. The one I was playing with is called <a href="https://www.evennia.com">Evennia</a>. It’s written in (and uses as the game language) Python what is a plus for me.</p>
+<p>As MUDs are inherently simpler (programming-wise) than fancy 3D games, the engine itself doesn’t have a lot of code, and I was able to find my way around it pretty quickly. I managed to add a way to display pictures, as I thought an occasional image here and there will make the puzzles more interesting.</p>
+<p>In the end, I decided to try 2D graphics again, but as I liked the experience with Evennia I may go back to it some time (for a second game :).</p>
+<h2 id="godot">Godot</h2>
+<p>After my mixed experience with leading game engines, I looked around the internet more and found <a href="godotengine.org/">Godot</a>. It’s a free and open-source game engine that supports both 2D and 3D games. Despite being a powerful game engine, the editor is light (&lt;100 MB) and quick: building a scene takes &lt;1 s, and many changes are hot-reloaded while the game is running. It is important for me, as I left my desktop in London for the pandemic and I’m left with only a laptop with no graphic card now.</p>
+<p>I was surprised that even though the engine developers and not able to sponsor the content, there is a lot of tutorials and guides online for using Godot. At the same time, the majority of these tutorials are targeted at beginner programmers/kids; finding higher-level design guides for building big games wasn’t easy.</p>
+<h3 id="scene-tree">Scene tree</h3>
+<p>The philosophy of game design in Godot revolves around building a <em>Scene</em> (which is vaguely equivalent to a <em>class</em> in Object-Oriented Programming) with a tree of <em>Nodes</em> (like fields, but you can arrange them hierarchically).</p>
+<figure>
+<img src="../images/game_engines/godot_tree.png" alt="Tree scene" style="width:60.0%" />
+<figcaption>
+Example Scene tree in Godot.
+</figcaption>
+</figure>
+<p>Being able to combine various elements not only in code but also using the editor UI is surprisingly natural for someone who typically only writes code. It particularly helps for visual things like images, as dragging the image to a correct place is simpler than guessing the correct position in code.</p>
+<p>This feature is available not only for the built-in classes but also for any other field marked <code>export</code> by the programmer. Thanks to that and the extensibility of the engine, I was able to make a plugin that sets a <code>horizon_line</code> field in a background image based on a click position. It will make it easy to scale the sprite for the character with the rules of the perspective.</p>
+<p>While I like the nodes system overall, I also have a complaint about it. As the <code>script</code> (code) is just a text file that can be attached to any number of nodes (not only scenes but also its elements). Because of that, there are many ways to achieve inheritance (sharing of code in a more specific object): you can either use <em>inherited scenes</em> or <em>extend</em> the script itself.</p>
+<p>As a result, it’s not clear which entities should be nodes and which should be scenes, and one needs to spend time making decisions that wouldn’t be needed if there was only one class-like concept, owning its code as in the OOP principles. To some extent, this problem can be solved by establishing conventions on when to use scenes vs nodes.</p>
+<h3 id="language">Language</h3>
+<p>Godot engine is written in C++, but the default game development language is GDScript, a custom language built for Godot. While writing a whole language for the game engine feels too idiosyncratic to me (seriously, is there not enough unpopular languages?), I somewhat buy <a href="https://docs.godotengine.org/en/stable/about/faq.html#what-were-the-motivations-behind-creating-gdscript">the arguments of developers</a>: they wanted to have a dynamically-typed language but struggled with GIL in Python.</p>
+<p>As there is, technically, a way to integrate Godot with Python, I was initially planning to use it, but in the end, GDScript ended up being close enough to Python that I couldn’t care enough to spend time changing it.</p>
+<p>Of course, it misses some syntactic-sugar features like f-strings or list comprehensions, but I didn’t find anything too painful for me language-wise.</p>
+<p>For completeness’ sake, I should mention that Godot also offers a custom visual programming language (like Unreal’s blueprints), and the integration with C# and C++ seems to be easier than the one with python.</p>
+<h1 id="final-words">Final words</h1>
+<p>Game development is hard. I tried a couple of game engines which make the process much easier and ended up with Godot. My initial plans of making a story-rich online coop will probably be replaced with making a small point-and-click adventure game.</p>
+<p>As of now, I have most of the story-independent code written and will move on to describe game scenes in more detail, likely followed by creating the assets. You can play the debug scene <a href="../data/game_engines/maduka.html">here</a>.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I read that the sequel, <a href="https://store.steampowered.com/app/865360/We_Were_Here_Together/">We Were Here Together</a>, has more story.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>I may be able to recover it once I get access to my desktop after returning to London.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+]]></description>
+    <pubDate>Mon, 05 Apr 2021 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2021-04-05-choosing-game-engine.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
+    <title>Starting with digital painting</title>
+    <link>https://sygnowski.ml/posts/2021-01-30-digital-painting.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on January 30, 2021
+    
+</div>
+<h1>Starting with digital painting</h1>
+<p>Having drawn a lot of black-and-white ink sketches, I have now moved to draw digitally. Last summer, I got an iPad Pro, and I’m learning the basics of digital painting now. It has unlocked a myriad (literally) of colors and new techniques to acquire, so I felt like wandering in the fog again.</p>
+<p>To impose a structure on my journey and follow the advice of deliberate practice, I looked for a systematic course to guide me through the learning process.</p>
+<h2 id="video-tutorials">Video tutorials</h2>
+<p><a href="ctrlpaint.com/">Ctrl+Paint</a> sounded like that but, after taking a detailed look it felt focused on watching videos with theory (and teaching Photoshop’s interface, while I use Procreate) as opposed to particular exercises.</p>
+<p>I thus turned to Youtube, which has dozens of videos on every topic. I started by following a couple of landscape tutorials by <a href="https://www.youtube.com/channel/UCTEy6Nok4pMzhCp2TS2DmdA">James Julier</a>. I particularly liked them, as the author uses only a simple round brush, which resulted in one less decision to make by me.</p>
+<figure>
+<a href="../images/painting/landscape1.png" target="_blank"><img src="../images/painting/landscape1.png" alt="Snowy tree" style="width:32.2%" /><img data-bilderrahmen="landscapes"/></a> <a href="../images/painting/landscape2.png" target="_blank"><img src="../images/painting/landscape2.png" alt="Mountain dark" style="width:34.2%" /><img data-bilderrahmen="landscapes"/></a> <a href="../images/painting/landscape3.png" target="_blank"><img src="../images/painting/landscape3.png" alt="Mountain light" style="width:32.2%" /><img data-bilderrahmen="landscapes"/></a>
+<figcaption>
+The landscape pictures I painted.
+</figcaption>
+</figure>
+<p>Here are the pictures I created. As you see, I didn’t have the patience to finish all the details. I was also missing a planning/sketching phase, as James dives directly into painting but to me, it wasn’t always clear what he’s drawing at a given moment.</p>
+<p>Other stuff I watched on youtube include <a href="https://www.youtube.com/channel/UC0XHwYwoeWJC9d0ndtev5vw">angrymikko</a>, even though his lessons seem a little too advanced for me yet, and <a href="https://www.youtube.com/channel/UCsDxB-CSMQ0Vu_hTag7-2UQ">Marco Bucci</a>. I also watched Marco’s digital drawing course on skillshare (using a trial). Overall, I didn’t find a lot of quality content on skillshare, though.</p>
+<h3 id="brushes">Brushes</h3>
+<p>Many of the Youtube videos I watched were of the form: “You can buy my brush set here. It’s easy to follow my tutorial with it”. It was rather disappointing, as I didn’t want to spend my precious motivation on learning someone’s vendor locked-in brush.</p>
+<p>I thought that I like the texture of watercolors though, so I still found some <a href="https://procreate.brushes.work/watercolor-paint-brushes-procreate-5/">free watercolor brush set</a> and tried to follow <a href="https://www.youtube.com/watch?v=gryrZ7CXcG8&amp;ab_channel=CalvinatDrifterStudio">a watermelon tutorial</a>.</p>
+<figure>
+<a href="../images/painting/watermelon.png"><img src="../images/painting/watermelon.png" alt="Watermelon" style="width:70.0%" /></a>
+</figure>
+<p>While the effects were not terrible, I felt like I had to fight against the brushes a bit. Furthermore, having a lot of different brushes (with many of them being hard to use) slowed me down as I needed to spend time to choose among them.</p>
+<p>In the end, after doing these tutorials I knew I should look for one “general” brush for everything and that I want something simple, namely, a brush with:</p>
+<ul>
+<li>~uniform opacity within a stamp</li>
+<li>ability to cover an area with a flat color (potentially with multiple strokes)</li>
+<li>no/little reaction to tilt (it’s way too hard for me to control)</li>
+<li>pressure sensitivity shouldn’t change the size of the stroke (it’s hard to control edges of the lines otherwise)</li>
+<li>no line smoothing, as it looks weird when the line doesn’t end up where I draw + the delay is annoying</li>
+</ul>
+<p>I tried finding a brush like this online. Most of them the ones I found were hard to use, with various effects happening with tilts and pressure. I found one, though, a <a href="https://procreate.brushes.work/copic-marker-brush/">copic marker brush</a> which (after some small modifications) I liked a lot. Apart from it, I made a couple of versions of the default round brush (with various shapes) as I liked the idea of them not being rotationally symmetric (so that you kind of can draw a rough edge without making the brush very small).</p>
+<h2 id="other-exercises">Other exercises</h2>
+<p>Apart from directly following full tutorials and semi-productively watching videos, I did a couple of shorter exercises:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://www.youtube.com/watch?v=MnQO-xxp3j4&amp;ab_channel=Let&#39;sDrawwithBeeJayDeL">Shading a crab</a> to make it look 3D. It was surprisingly simple to achieve that effect with the selection tool &amp; airbrush for the shading. One thing, however, that I missed in procreate, was the ability to <a href="https://folio.procreate.art/discussions/3/6/13529?page=2">disable touch during selection</a>. Without it, it’s currently easy to put extra selection points by mistake.</li>
+</ol>
+<figure>
+<a href="../images/painting/crab.png"><img src="../images/painting/crab.png" alt="Crab exercise" style="width:80.0%" /></a>
+<figcaption>
+As I just wanted to see how the tools work, I didn’t particularly strive for the final look.
+</figcaption>
+</figure>
+<ol start="2" style="list-style-type: decimal">
+<li>Drawing <a href="https://www.reddit.com/r/learnart/comments/6rg53z/tutorial_on_how_to_paint_ghibli_style_trees/">Ghibli-style trees</a>. I tried doing it using the “watercolor” brushes but they made the edges smooth what didn’t look great. For the last version (bottom), I used an oval version of the simple round brush, which I think looks a bit better.</li>
+</ol>
+<figure>
+<a href="../images/painting/trees.png"><img src="../images/painting/trees.png" alt="Trees exercise" style="width:80.0%" /></a>
+</figure>
+<ol start="3" style="list-style-type: decimal">
+<li>I tried reproducing a <a href="https://www.reddit.com/r/learnart/comments/eiltgl/studio_ghibli_background_study_i_did_to_learn/">Ghibli background</a>. It was a good lesson, e.g. on color choice and the amount of time to spend on various details (you can see I dropped some details mid-tree). </br> For this picture, I used a “Painty Round” brush from Procreate <a href="https://procreate.art/all-star">all-star brush set</a>. While the brush itself was ok, I don’t feel like I used much of its texture, and, at the same time, the streamlining/line smoothing drove me mad.</li>
+</ol>
+<figure>
+<a href="../images/painting/ghibli.png"><img src="../images/painting/ghibli.png" alt="Ghibli tree" style="width:90.0%" /></a>
+<figcaption>
+While the final image is far from perfect, it turned out way better than I expected.
+</figcaption>
+</figure>
+<ol start="4" style="list-style-type: decimal">
+<li>Still life: a standard exercise from the classical painting is also applicable for digital. It removes the complexity of deciding what exactly to draw; you’re merely replicating what you see and improving your craft.</li>
+</ol>
+<figure>
+<a href="../images/painting/still-life.png"><img src="../images/painting/still-life.png" alt="Watermelon" style="width:90.0%" /></a>
+<figcaption>
+I used a simple scene here but will try with more complex one next.
+</figcaption>
+</figure>
+<ol start="5" style="list-style-type: decimal">
+<li>Painting with light: an exercise where you take a picture and try painting it with just one color. It seems like a useful thing to do at the beginning of the piece to decide where the light/shadow areas are. I haven’t tried it yet but will do it soon.</li>
+</ol>
+<h2 id="random-hints">Random hints</h2>
+<p>Here are some of the hints repeated by various artists:</p>
+<ol style="list-style-type: decimal">
+<li>During digital painting, it’s worth it to flip the canvas horizontally or vertically from time to time to assess the picture from the new view. The final artwork should work whether it’s flipped or not.</li>
+<li>On the other hand, you can disable colors on the tablet and draw in black&amp;white, using the color picker to choose colors. You will be painting in the full color range, but the areas of different value will be visible better.</li>
+<li>Despite many artists selling custom Procreate brushes on their channels, they recommend learning a single brush and using it thorough the whole painting</li>
+<li>The light should be on the opposite side of the hue range from the shadow. In other words, if the light is warm, the shadow should be cold.</li>
+<li>Multiply blending mode is useful for shadows (as it always makes things darker)</li>
+<li>To learn to match the colors in real-life and in the color palette, there is an exercise: we take a picture, select a part of it, and try to <a href="https://www.ctrlpaint.com/videos/guess-that-color">guess</a> the color by selecting it in the palette.</li>
+</ol>
+<p>With all of these lessons, tutorials, and exercises I have a lot of things to try. I’ll likely make a new post after I put them into practice some more.</p>
+]]></description>
+    <pubDate>Sat, 30 Jan 2021 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2021-01-30-digital-painting.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
+    <title>Escape from Auschwitz: a fan T.I.M.E stories scenario</title>
+    <link>https://sygnowski.ml/posts/2020-12-07-auschwitz.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on December  7, 2020
+    
+</div>
+<h1>Escape from Auschwitz: a fan T.I.M.E stories scenario</h1>
+<p>Ever since I got T.I.M.E stories for Christmas a couple of years ago, I was planning to make a fan scenario. I have finally found some time to develop the expansion recently.</p>
+<p>T.I.M.E stories is a decksploration board game, about which I wrote a bit <a href="https://sygnowski.ml/posts/2020-06-19-time-stories.html">here</a>. The game itself defines mechanics (somewhat similarly to e.g. RPGs) and sells different scenarios (stories) as expansions. There’s a <a href="https://boardgamegeek.com/geeklist/225429/time-stories-print-and-play-scenarios-available-bg">long list</a> of fan-made scenarios, many of which are really high-quality<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<p>The high-level idea for the story (mild spoilers ahead) is the daring <a href="https://en.wikipedia.org/wiki/Kazimierz_Piechowski">escape</a> of Kazimierz Piechowski and his fellows from Auschwitz concentration camp.</p>
+<h1 id="preparations">Preparations</h1>
+<p>Initially, the story was meant to be about the escape of <a href="https://en.wikipedia.org/wiki/Witold_Pilecki">Witold Pilecki</a>, but after reading the details of his story I felt that the escape alone was not a worthy enough element of his biography. The escape of Piechowski seemed to fit the mechanics of time stories better.</p>
+<p>To better understand the living conditions in the camp, I read <a href="https://en.wikipedia.org/wiki/Pilecki&#39;s_Report">Pilecki’s Report</a>: a document written by Pilecki and smuggled out by Stanisław Jaster.</p>
+<p>I chose that obtaining this report will be the main topic of my scenario.</p>
+<p>I also collected maps of Auschwitz I and, with the help of a historian friend, found <a href="http://lekcja.auschwitz.org/en_15_ucieczki/">the details of this particular escape</a>. I tried keeping the scenario close to the real event, although I made small changes to drive the story.</p>
+<h1 id="technical">Technical</h1>
+<p>I kept notes on the game setting in a markdown note. In there, I wrote there decisions on puzzles, the mechanism to leave and enter the inner camp, locations, the meaning of state tokens, and the like.</p>
+<p>As the details of each location started to grow with the actual card texts, I moved them to a separate markdown file. I then wrote a short program that converted this file to a filetree with directories corresponding to locations and png files of each card with the rendered texts.</p>
+<h1 id="inkscape">Inkscape</h1>
+<p>After the list of locations and their contents was more or less decided, I started creating the actual cards. I was (still am) planning to create custom graphics for the locations, so I left the backs of the cards blank (apart from location names) and worked mostly on the fronts.</p>
+<p>I made the cards in <a href="https://inkscape.org">Inkscape</a>: it was a relatively nice experience. For one type of cards (front, backs, A-cards, etc.) I pasted the background texture and locked it and was adding things on top of it. When I was adding new elements like shields, tokens, but also choosing the design of text boxes, I was saving a new copy of the “template” card with the additional elements placed outside of the page. This way, I had a file with dozens of tokens, shields, and others ready to be drag and drop to the card page in the default svg template.</p>
+<p>One particularly useful thing was the ability to create a card from a given subset of the image file, so I was able to create a couple of cards laying next to each other and easily cut them into separate cards. It was useful in creating the map and a multi-card puzzle.</p>
+<h1 id="graphic-design">Graphic design</h1>
+<p>All of the graphic elements I used so far weren’t created by me. I was surprised I was able to find free fonts (with a license allowing me to use them) on <a href="www.1001fonts.com" class="uri">www.1001fonts.com</a>, and paper-like textures on <a href="www.myfreetextures.com" class="uri">www.myfreetextures.com</a>. I used a small number of images for item cards <a href="www.pixabay.com" class="uri">www.pixabay.com</a>.</p>
+<p>I made a couple of smaller graphic-design decisions like adding the semi-transparent text boxes below texts to improve readability.</p>
+<p>I also chose a font and size for every type of text, with most typical texts written with Lato 15. 15 was quite big, which made it necessary to cut some texts, but I think having less text made the cards better.</p>
+<h1 id="playtests">Playtests</h1>
+<p>I ran two playtests with friends. They discovered many important problems, e.g.:</p>
+<ul>
+<li>initially, I made a camp border a solid line, even around the camp gate and people didn’t try to go there because they assumed it wasn’t available</li>
+<li>the mechanic for leaving the camp was not explained clearly enough</li>
+<li>story was too linear</li>
+</ul>
+<p>I hopefully was able to fix those to a large degree.</p>
+<h1 id="compiling">Compiling</h1>
+<p>Once the cards were ready to play, I wrote a script that copied them in the correct order, as I was developing them in the directory tree based on the location name as above.</p>
+<p>Then, I used a small subset of <a href="http://heresy.mrtrashcan.com/home/the-tools/">heresy tools</a> to join the cards together in a print-and-play pdf.</p>
+<h1 id="remaining-problems">Remaining problems</h1>
+<p>I think my workflow was ok-ish, but definitely could be improved.</p>
+<p>In particular, the compiling phase for me included many steps: running the reordering script, moving the cards, substituting alpha with a light-grey (so that empty cards are visible in a pdf), and running heresy tools. This felt like unnecessary manual labor. Using heresy tools in full promise to help with it, but the need to manually enter the sizes and shapes is a no-deal for me. Having a single-step compilation could also allow me to generate a pdf with texts as vector graphics without converting to pngs first as I do now.</p>
+<p>Apart from this, my handling of card texts could be improved. Currently, I stored them both in the markdown file and the final svg. Because of this, whenever something needed to be changed, I had to make the change in both places. Also, manually copying the texts to svg caused them to not be positioned in the same way.</p>
+<p>Finally, when I figured out how to properly justify text in Inkscape, I already had the texts placed everywhere, so I didn’t bother to change them.</p>
+<h1 id="final-words">Final words</h1>
+<p>Without further ado, this is <a href="https://drive.google.com/file/d/1MzdS5eCEafiefC1Lmfx_WlrzFDWUweAh/view?usp=sharing">a link to the scenario</a> and its <a href="https://rpggeek.com/geeklist/206708/item/8006732#item8006732">BGG item page</a>.</p>
+<p>I believe the whole game is finished, except for the custom graphics, which are not necessary for playing and will take a while to finish (it’s around 50 images to draw).</p>
+<p>If you end up playing it, I’ll greatly appreciate <a href="https://forms.gle/Pf5pVWJfm1gusz4D6">your feedback</a>.</p>
+<p>Apart from the images, I plan to do a Polish translation soon.</p>
+<figure>
+<img src="../images/auschwitz/cover.png" alt="Cover" style="width:50.0%" />
+<figcaption>
+Game “cover”.
+</figcaption>
+</figure>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I played <a href="https://boardgamegeek.com/boardgame/200443/switching-gears-fan-expansion-time-stories">Switching Gears</a> and <a href="https://boardgamegeek.com/boardgame/205847/pariah-missouri-fan-expansion-time-stories">Pariah Missouri</a>, and <a href="https://repository.rebel.pl/wydawnictwo/timestories/Varsovia_2100.pdf">Varsovia 2100</a>.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+]]></description>
+    <pubDate>Mon, 07 Dec 2020 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2020-12-07-auschwitz.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
+    <title>Rushing through Proko courses</title>
+    <link>https://sygnowski.ml/posts/2020-10-10-proko.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on October 10, 2020
+    
+</div>
+<h1>Rushing through Proko courses</h1>
+<p>After finishing Drawabox, I tried to learn drawing the human figure with the <a href="https://proko.com">Proko</a> courses. I went through the free videos of the Figure and Head drawing courses and did a lot of exercises.</p>
+<h2 id="general-views-on-proko">General views on Proko</h2>
+<p>Proko courses concentrate on drawing a human figure. There is a couple of them, concentrating on the general figure, head, and specific parts of the anatomy. Each course consists of very detailed videos showing anatomical details and specific techniques for drawing them. The courses have paid and free versions; for the free versions, some of the videos are shorter or unavailable.</p>
+<p>During the school closure due to pandemic, Proko offered an extension to his typically week-long free trial (which contains one full paid lesson from each course) to a month. I felt like the extra content of the paid lesson was not worth it, especially for a beginner like me, as the free videos are still quite long and detailed and there are literally hundreds of them available: more than I had time to watch. However, the trial came with lots of example drawings to the lesson, which I used while doing the other lessons.</p>
+<p>In general, the Proko courses (especially the free videos) have less structure than the drawabox course. There is no “do this exercise 17 times and move over”, but rather “after watching this lesson on hands, draw some hands”. I approached the course with the deliberate practice approach, aiming to do lots of lame drawings and improving in the process.</p>
+<p>I ended up following two courses from Proko: Figure Drawing and Portrait Drawing, as well as watching his Drawing Basics videos (which cover similar topics as drawabox on shapes, perspective, etc.).</p>
+<h2 id="figure-drawing">Figure drawing</h2>
+<p>Videos from the Figure drawing course are presented at the top of <a href="https://www.proko.com/library">Proko’s video library</a> and it is a recommended course to start from. This is where I started too.</p>
+<h3 id="gesture">Gesture</h3>
+<p>The first and most time-consuming lesson from the course is on drawing gesture. Gesture is the flow of the pose, the ability to describe what the person is doing without accurately depicting the anatomical details. The lesson stresses the importance of following the general flow, using simple lines, as opposed to tracing the contour of the figure.</p>
+<p>The lesson proposes timed exercises to draw the gesture: to take a picture with the model, and plan to draw the gesture in 30 seconds or 2 minutes. Depending on the planned time-length, the gesture should have more or fewer details. As it was hard for me to plan such short drawings, I extended the timings to 1 and 5 minutes and drew the gestures slightly more detailed than on the presented examples.</p>
+<p>The full version of this lesson was part of the trial, so it contained lots of example drawings, which I used for my exercises: I started with drawing them (in a timed manner) on my own, then looked at how Proko was drawing them, looking for mistakes in my drawings, and making yet another timed-exercise for a given photo, hopeful to fix the original issues.</p>
+<p>I decided to draw along with all the presented example drawings, which there was around 20; this exercise definitely improved my feeling of human anatomy and the ability to express the pose in a small number of lines.</p>
+<p><a href="../images/proko/gesture/simple/A.jpg" target="_blank">Pictures<img data-bilderrahmen="gesture"/></a></p>
+<h3 id="beans">Beans</h3>
+<p>After studying the gesture, Proko goes to introduce his simple models of the human torso: the bean and the robo-bean. These are useful to attach the feeling of the 3-dimensionality to the flat gesture, without adding too many details at the same time.</p>
+<p><a href="../images/proko/bean/A.jpg" target="_blank">Pictures<img data-bilderrahmen="beans"/></a></p>
+<h3 id="mannequization">Mannequization</h3>
+<p>One can introduce a similar model to simplify drawing other parts of the body. They are particularly helpful when drawing from imagination, when it’s easier (as it has a lower number of degrees of freedom) to introduce a box or a cylinder to denote a particular part of the body and check the proportions than try to introduce both the complex shape and proportions at the same time.</p>
+<p><a href="../images/proko/mannequin/A.jpg" target="_blank">Pictures<img data-bilderrahmen="mannequin"/></a></p>
+<h3 id="shading">Shading</h3>
+<p>After these lessons, Proko has a very short one where he goes on how to shade a drawing with all the highlights, core shadow, and half-tones on an example of a generic muscle. Then, in the next lesson, he shows an example of a full-body, couple-of-hours human figure with full shading, inviting his students to draw along. This was way above what I felt I can do at a time, so I skipped this and moved to the portrait drawing course.</p>
+<figure>
+<img src="../images/proko/muscle.png" alt="Presentation" style="width:48.5%" /> <img src="https://www.proko.com/wp-content/uploads/2014/02/Figure-Drawing-Yoni-Finished.jpg" alt="Expectation" style="width:50.37%" />
+<figcaption>
+Explained example shading (left) vs expectation for the next drawing (right).
+</figcaption>
+</figure>
+<h2 id="markmaking">Markmaking</h2>
+<p>In the figure drawing course, Proko uses a charcoal pencil. I used a 2B/3B graphite one, as I haven’t had anything else.</p>
+<p>When I played with shading I was having two problems: - shading big areas in the picture were taking a lot of time - when shading, the lines I was making were creating a lined pattern as opposed to a nice gradient (ie. it was clear in which direction I put the lines and it wasn’t in any way related to the underlying 3d objects).</p>
+<figure>
+<img src="../images/proko/shading.jpg" alt="Picture with straight-line effect visible." style="width:40.0%" />
+<figcaption>
+Picture with straight-line effect visible.
+</figcaption>
+</figure>
+<p>For the first problem, I was able to reduce it a bit by sharpening the pencil in a similar way to the one described in <a href="https://www.proko.com/drawing-supplies-i-use-in-my-videos/#.X2cYsXWYVTY">this video</a>. Even though I was using a graphite pencil, it still was relatively easy to do this.</p>
+<p>For the lined pattern, I tried putting shading in a little bit more circular fashion which helped a bit. I think having a softer pencil (eg. 6B) would help more.</p>
+<p>I thought using charcoal would also help here, so I bought a charcoal (and another carbon one, which apparently feels like something between charcoal and graphite) pencil.</p>
+<figure>
+<img src="../images/proko/shading.jpg" alt="Picture with straight-line effect visible." style="width:40.0%" />
+<figcaption>
+Nose picture drawn with charcoal.
+</figcaption>
+</figure>
+<p>As you can see in the picture above, the effects were not so great. I had problems controlling the value I put on the paper when using charcoal much more than with graphite. The texture of the paper was also creeping through the picture, leaving weird traces of white. I suspect this may go away with practice (and potentially softer charcoal), but I decided to go back to graphite.</p>
+<h2 id="head-drawing">Head drawing</h2>
+<p>After finishing (if one could ever “finish” a topic like figure drawing) the figure course, I proceeded to the portrait drawing course. I realized that it was actually created by Proko earlier, which may explain the assumption in the previous course to be able to deal with shading/head on one’s own for the full-body drawing.</p>
+<p>Compared to the previous one, it’s more in the style of “this is how you draw a nose” vs giving general methods for photorealistic drawing. Nevertheless, it still gives detailed anatomical details and informative techniques that can be applied to any head.</p>
+<p>I started the course by doing one picture with each of the body elements covered in the lessons: eye, nose, mouth, etc. While doing them, I was surprised at first that my pictures were actually looking quite professional (after adding the shading). However, the amount of time it was taking to draw simple body parts was discouraging and the fully-shaded style of pictures wasn’t as appealing to me as drawabox-style single-lines one. I thus decided to move on to more comics-like drawings despite doing a few exercises for this course.</p>
+<p><a href="../images/proko/head/A.jpg" target="_blank">Pictures<img data-bilderrahmen="head"/></a></p>
+<h2 id="overall">Overall</h2>
+<p>I was doing the Proko courses from July until September. The two months are barely enough to touch the surface of the vast topics that I studied, so I feel like I rushed through the courses. At the same time, I feel like I got the basic idea in each of the lessons and while I would need a lot more practice to feel comfortable with all of it, I definitely improved a lot through the courses. I’m not sure what exactly I’ll do next, but I plan to play more with fine-tip pens again, likely drawing comic-style pictures.</p>
+<p><a href="../images/proko/gesture/simple/B.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/simple/C.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/simple/D.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/simple/E.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/simple/F.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/A.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/B.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/C.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/D.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/E.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/F.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/G.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/H.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/I.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/J.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/K.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/L.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/M.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/N.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/O.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/P.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Q.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/R.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/S.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/T.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/U.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/V.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/W.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/X.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Y.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Z.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Z.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Z1.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Z2.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Z3.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Z4.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a><a href="../images/proko/gesture/full/Z5.jpg" target="_blank"><img data-bilderrahmen="gesture"/></a></p>
+<p><a href="../images/proko/bean/B.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/bean/C.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/bean/D.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/bean/E.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/bean/F.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/robobean/A.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/robobean/B.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/robobean/C.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/robobean/D.jpg" target="_blank"><img data-bilderrahmen="beans"/></a><a href="../images/proko/mannequin/B.jpg" target="_blank"><img data-bilderrahmen="mannequin"/></a><a href="../images/proko/mannequin/C.jpg" target="_blank"><img data-bilderrahmen="mannequin"/></a><a href="../images/proko/mannequin/D.jpg" target="_blank"><img data-bilderrahmen="mannequin"/></a><a href="../images/proko/mannequin/E.jpg" target="_blank"><img data-bilderrahmen="mannequin"/></a><a href="../images/proko/mannequin/F.jpg" target="_blank"><img data-bilderrahmen="mannequin"/></a></p>
+<p><a href="../images/proko/head/B.jpg" target="_blank"><img data-bilderrahmen="head"/></a><a href="../images/proko/head/C.jpg" target="_blank"><img data-bilderrahmen="head"/></a><a href="../images/proko/head/D.jpg" target="_blank"><img data-bilderrahmen="head"/></a><a href="../images/proko/head/E.jpg" target="_blank"><img data-bilderrahmen="head"/></a></p>
+]]></description>
+    <pubDate>Sat, 10 Oct 2020 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2020-10-10-proko.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
+    <title>Drawabox: 14 months later</title>
+    <link>https://sygnowski.ml/posts/2020-07-11-drawabox.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on July 11, 2020
+    
+</div>
+<h1>Drawabox: 14 months later</h1>
+<p>In May 2019, I decided to learn how to draw. To structure my learning, I was following a free online drawing course: <a href="https://drawabox.com">Drawabox</a>. 14 months later, I finished it and I am writing down my experience.</p>
+<h2 id="my-background">My background</h2>
+<p>In an attempt to increase my creativity and produce some artistic works I am trying to learn various artistic media. I recently played with world-building in Unreal, was making Android apps, and was painting board game figures. Now was the time for drawing.</p>
+<p>I drew nothing since middle school and I only have a vague recollection of any drawing/painting that we did there. I remember though that I was terrible… and terribly uninterested in it at a time. I was going to learn totally from scratch then.</p>
+<h2 id="course-choice-drawabox">Course choice: Drawabox</h2>
+<p>Because of my lack of any grounding, I was looking for an opinionated course that would teach me the fundamentals well, with particular examples as opposed to showing a variety of styles I would have hard time to wrap my head around. Other than that, I wanted the course to have relatively little reading/watching compared to the actual exercising: I knew that a big chunk of my struggles will be with physically executing the exercises, so I wanted to prioritize getting a lot of practice over listening/reading a lot.</p>
+<p>After a short internet search, I decided to try <a href="https://drawabox.com">Drawabox</a> out, which teaches constructional drawing from beginning. It requires you to use fineliners to not have to worry with line width (and to not be able to erase the lines to learn confidence in markmaking) and ignores matters of shading and many others. It is divided into 7 lessons with different topics, each of which has a bit of reading/videos and tons of exercises to do.</p>
+<h2 id="what-i-didnt-follow">What I didn’t follow</h2>
+<p>While I generally tried to closely follow the course and understand all the concepts before moving on, I made some small deviations to the course assumptions to keep my motivation up.</p>
+<p>First, Uncomfortable (the Drawabox’ author) encourages to dedicate half of the drawing time for drawing “for pleasure” and the other half for his exercises themselves. Being totally lost at the beginning and looking for a set of fixed, well-grounded exercises I didn’t want to occupy myself and wonder what (and how!) to draw apart from it. Also, being able to devote only an hour or two per week for drawing, if I also spent a big chunk of time drawing “other things” I’d quickly lose momentum, especially given how many regular “in-course” exercises there are in Drawabox.</p>
+<p>Other than that, one of the guidelines was to start each drawing session with 10 minutes of exercises from lessons 1 &amp; 2 (after finishing them). I also didn’t do this due to lack of time, up until the last lesson (vehicles), where the inability to draw good ellipses was really hurting me.</p>
+<h2 id="particular-lessons">Particular lessons</h2>
+<p>Below I quickly review each of the lessons and attach my pictures for posterity.</p>
+<h3 id="lesson-1-lines-ellipses-and-boxes">Lesson 1: Lines, Ellipses, and Boxes</h3>
+<p>The first lesson lays a foundation on the mechanical aspect of drawing and perspective theory. Being green most of the information here: drawing from the shoulder, vanishing points, etc. was new to me.</p>
+<p>The course firmly stipulates to draw from the shoulder, to make the lines smooth and confident. While I mostly followed this advice, I have to admit using an elbow in some of the later lessons for details.</p>
+<p><a href="../images/drawabox/lesson1/A.jpg" target="_blank">Pictures<img
+        data-bilderrahmen="lesson1"/></a></p>
+<h3 id="box-challenge">250 box challenge</h3>
+<p>After the first lesson, Uncomfortable proposes an optional “250 boxes challenge”. Initially, I decided to skip it, as it felt boring and too much. I only got back to it before lesson 6, which was a good choice, as the ability to draw boxes only starts to be useful there (for lessons 3–5 I drew natural shapes, which are more “sausage-shaped”).</p>
+<p>After actually doing 100 of the 250 boxes, I felt I already knew how to draw the boxes (although not always being able to perfectly execute it), so I decided to not waste more time on it.</p>
+<p>On the other hand, even after doing that many boxes, there were still some issues that were not clear to me:</p>
+<ol style="list-style-type: decimal">
+<li>not all of the boxes drawn with the proposed “Y method” correspond to a real box. For example, the box in the Drawabox logo is not :P</li>
+<li>Not all of the boxes can be drawn with the method: if the line of the horizon is cutting the front face, all of the “Y”s will have the shape of an arrow instead</li>
+</ol>
+<figure>
+<img src="https://d15v304a6xpq4b.cloudfront.net/assets/images/drawabox-logo.png" alt="Drawabox logo: if we see the front face straight, the side should be hidden!" style="width:40.0%" />
+<figcaption>
+Drawabox logo: if we see the front face straight, the side should be hidden!
+</figcaption>
+</figure>
+<p>In retrospect, after doing a couple (tens of?) boxes, it would have been more useful to follow up with the following exercises:</p>
+<ol style="list-style-type: lower-alpha">
+<li>try to imagine the orientation of the box and draw it,</li>
+<li>start drawing the box with one side and fill the rest.</li>
+</ol>
+<h3 id="lesson-2-contour-lines-texture-and-construction">Lesson 2: Contour Lines, Texture and Construction</h3>
+<p>The second lesson introduces the basics of 3D. I remember the ribbon-made arrows were very hard at the beginning (which you can see on the pictures), but I think I improved a lot while doing the exercises.</p>
+<p>Apart from 3D, this lesson contains exercises on texture, which felt out of place in there (and in the course in general, as it is focused on constructional drawing, ie. making sure that the things have the correct general form). On the other hand, texture exercises were the first exercises that looked nice, which was a useful motivation boost after doing tens of boring exercises in the first two lessons.</p>
+<p><a href="../images/drawabox/lesson2/A.jpg" target="_blank">Pictures<img data-bilderrahmen="lesson2"/></a></p>
+<h3 id="lesson-3-applying-construction-to-plants">Lesson 3: Applying Construction to Plants</h3>
+<p>Lesson 3 starts the second part of the course, where the students apply the learned concepts to different types of things. In all of them, it is encouraged to draw from reference, to concentrate on construction as opposed to imagining the object itself.</p>
+<p>This lesson’s topic is plants, which are a nice start, as most of the parts here (namely petals) are still 2D, so the perspective is not as hard.</p>
+<p><a href="../images/drawabox/lesson3/A.jpg" target="_blank">Pictures<img data-bilderrahmen="lesson3"/></a></p>
+<h3 id="lesson-4-applying-construction-to-insects-and-arachnids">Lesson 4: Applying Construction to Insects and Arachnids</h3>
+<p>The next lesson is about insects. One observation I made here is that I tended to draw small pictures which made the line too thick (as it is fixed to 0.5mm with the fineliner).</p>
+<p>Apart from trying to make bigger pictures (which made them nicer independently from the thinner lines), I also moved to a 0.4mm fineliner (and 0.1mm one for doing construction lines in lessons 6 &amp; 7).</p>
+<p><a href="../images/drawabox/lesson4/A.jpg" target="_blank">Pictures<img data-bilderrahmen="lesson4"/></a></p>
+<h3 id="lesson-5-applying-construction-to-animals">Lesson 5: Applying Construction to Animals</h3>
+<p>Animals had a surprisingly high good-look to hardness to create ratios, i.e. despite not being comfortable with my skills at all at this point, I have to say some of the pictures are actually not bad :)</p>
+<p>Also, I observed that re-doing a given picture makes it easier (and better), but also teaches you less.</p>
+<p><a href="../images/drawabox/lesson5/A.jpg" target="_blank">Pictures<img data-bilderrahmen="lesson5"/></a></p>
+<h3 id="cylinders-and-wheels">250 cylinders and wheels</h3>
+<p>Between lesson 6 and lesson 7, Uncomfortable encourages doing the 250 cylinders challenge. Similarly to the boxes’ ones, I did only a part of them: around 50–100.</p>
+<p>One missing thing from the cylinders challenge instructions is that the checking method works only if you drew a perfect cube: otherwise, not all of the lines should converge to the VP. On the other hand, drawing perfect cubes is tricky: there is a guide on the construction in lesson 7, but it’s based on guessing a bit anyway.</p>
+<p>Similarly, for the wheels challenge, I only did a small subset of them: they were not perfect, but I doubt I would be able to make them more round with (the boring!) practice.</p>
+<h3 id="lesson-6-applying-construction-to-everyday-objects">Lesson 6: Applying Construction to Everyday Objects</h3>
+<p>This is where you understand why you drew so many boxes before. On the other hand, drawing the boxes with the required shape/rotation and with a ruler is slightly different than drawing hundreds free-hand. As I’ve written above, I feel like trying to imagine a box with a given rotation and then drawing it free-hand would prepare me better for this.</p>
+<p>Anyway, being able to use the ruler was nice: pictures immediately start to look more professional, just because the things converge to VPs, proportions are correct, etc. At the same time, I still tried to draw the final, non-construction lines free-hand: no really sure why, but using the ruler for the final lines felt like cheating.</p>
+<p><a href="../images/drawabox/lesson6/A.jpg" target="_blank">Pictures<img data-bilderrahmen="lesson6"/></a></p>
+<h3 id="lesson-7-applying-construction-to-vehicles">Lesson 7: Applying Construction to Vehicles</h3>
+<p>As the author of the course said, vehicles are the boss fight of the RPG that Drawabox would be. Even though it was allowed to use ballpoint pens (which would make it easier with their thin line width), I stuck to fineliners (with a 0.1mm fineliner for construction lines).</p>
+<p>There were a lot of tricky elements, guessing the 3D shape of things, not being clear where to put the horizon line, etc. but I think that after some pictures the patterns started to appear and next pictures seem to be easier/better.</p>
+<p>Using an ellipse guide would be super useful, but I lost access to mine due to pandemic.</p>
+<p>One construction which I needed but was not presented in the course was how to move “one wheel” deeper from an arbitrary point (so we are at X and want to be at X + 1), which is useful when the first wheel doesn’t start at the equal number of wheels starting from the front of the box. After some trial and error, it was possible to figure this construction out, though.</p>
+<p><a href="../images/drawabox/lesson7/A.jpg" target="_blank">Pictures<img data-bilderrahmen="lesson7"/></a></p>
+<h2 id="final-words">Final words</h2>
+<p>As mentioned in the title, it took me 14 months to finish the course, which required making around 100 pictures. I was doing it mostly during the weekends, at most a couple of hours per week—more after the pandemics started and I got to have a lot of time :).</p>
+<p>It was a great (and free!) course, I definitely feel like I grew from 0 to a place where I can start diving into more advanced topics. I plan to give <a href="https://www.proko.com/">Proko</a> a try next. <a href="../images/drawabox/lesson1/B.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/C.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/D.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/E.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/F.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/G.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/H.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/I.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/J.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/K.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/L.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/M.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a><a href="../images/drawabox/lesson1/N.jpg" target="_blank"><img data-bilderrahmen="lesson1"/></a> <a href="../images/drawabox/lesson2/B.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/C.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/D.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/E.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/F.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/G.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/H.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/I.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/J.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a><a href="../images/drawabox/lesson2/K.jpg" target="_blank"><img data-bilderrahmen="lesson2"/></a> <a href="../images/drawabox/lesson3/B.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/C.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/D.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/E.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/F.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/G.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/H.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/I.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/J.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/K.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/L.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a><a href="../images/drawabox/lesson3/M.jpg" target="_blank"><img data-bilderrahmen="lesson3"/></a> <a href="../images/drawabox/lesson4/B.jpg" target="_blank"><img data-bilderrahmen="lesson4"/></a><a href="../images/drawabox/lesson4/C.jpg" target="_blank"><img data-bilderrahmen="lesson4"/></a><a href="../images/drawabox/lesson4/D.jpg" target="_blank"><img data-bilderrahmen="lesson4"/></a><a href="../images/drawabox/lesson4/E.jpg" target="_blank"><img data-bilderrahmen="lesson4"/></a><a href="../images/drawabox/lesson4/F.jpg" target="_blank"><img data-bilderrahmen="lesson4"/></a><a href="../images/drawabox/lesson4/G.jpg" target="_blank"><img data-bilderrahmen="lesson4"/></a><a href="../images/drawabox/lesson4/H.jpg" target="_blank"><img data-bilderrahmen="lesson4"/></a><a href="../images/drawabox/lesson4/I.jpg" target="_blank"><img data-bilderrahmen="lesson4"/></a> <a href="../images/drawabox/lesson5/B.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/C.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Creal.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/D.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/E.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/F.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Freal.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/G.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/H.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/I.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/J.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Jreal.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/K.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/L.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Lreal.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/M.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Mreal2.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Mreal.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/N.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Nreal.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/O.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Oreal.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/P.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a><a href="../images/drawabox/lesson5/Preal.jpg" target="_blank"><img data-bilderrahmen="lesson5"/></a> <a href="../images/drawabox/lesson6/B.jpg" target="_blank"><img data-bilderrahmen="lesson6"/></a><a href="../images/drawabox/lesson6/C.jpg" target="_blank"><img data-bilderrahmen="lesson6"/></a><a href="../images/drawabox/lesson6/D.jpg" target="_blank"><img data-bilderrahmen="lesson6"/></a><a href="../images/drawabox/lesson6/E.jpg" target="_blank"><img data-bilderrahmen="lesson6"/></a><a href="../images/drawabox/lesson6/F.jpg" target="_blank"><img data-bilderrahmen="lesson6"/></a><a href="../images/drawabox/lesson6/G.jpg" target="_blank"><img data-bilderrahmen="lesson6"/></a><a href="../images/drawabox/lesson6/H.jpg" target="_blank"><img data-bilderrahmen="lesson6"/></a><a href="../images/drawabox/lesson6/I.jpg" target="_blank"><img data-bilderrahmen="lesson6"/></a> <a href="../images/drawabox/lesson7/Areal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Areal2.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Areal3.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/B.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Breal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Breal2.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/C.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Creal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/D.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Dreal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/E.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Ereal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/F.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/G.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/H.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/I.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Ireal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/J.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Jreal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/K.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/L.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Lreal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/M.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Mreal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a></p>
+]]></description>
+    <pubDate>Sat, 11 Jul 2020 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2020-07-11-drawabox.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
+    <title>Digital version of T.I.M.E stories</title>
+    <link>https://sygnowski.ml/posts/2020-06-19-time-stories.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on June 19, 2020
+    
+</div>
+<h1>Digital version of T.I.M.E stories</h1>
+<p><a href="https://boardgamegeek.com/boardgame/146508/time-stories">T.I.M.E stories</a> is a cooperative board game where the players take the role of agents, who remotely control the avatars which are put in some turbulent moment of history to prevent spacetime disintegration due to events not going according to the historical record. Together with my girlfriend: <a href="https://micha7a.github.io">Michalina Pacholska</a> we decided to make a digital version of it.</p>
+<h2 id="mechanics">Mechanics</h2>
+<p>Despite being a <em>board</em> game, T.I.M.E stories is mostly a decksploration game: each mission has an associated deck of 100–200 cards which define the game world to be explored by the players.</p>
+<p>The deck consists of <em>location</em> cards, which describe the venue of the game, hero cards depicting avatars which players can impersonate during a mission, <em>items</em> which can be used by avatars, and others.</p>
+<p>The location cards are grouped into bigger locations (like “windmill” or “the forest”). Agents explore a location by each choosing one card to see and following its instructions. On the cards there are NPCs to talk to, challenges to perform and items to collect.</p>
+<p>An effect of visiting a given location card can be unlocking a new location, introduce some scenario-specific mechanic (eg. you can choose a random card and look at it for 5s or make it easier to convince an NPC to do something) or spending some precious time talking to an NPC which does not have any clue for you whatsoever.</p>
+<p>Each agent has a unique set of traits that are described on its player card and collects the items separately (but the players can exchange items when they are on the same location card).</p>
+<p>The change in the state of the world is implemented through receiving <em>state tokens</em>, which block some location cards or dialogue options (eg. you can’t ask an NPC about his brother if you don’t know him yet). The game tracks resources using a number of regular <em>tokens</em>.</p>
+<p>The challenges with NPCs are resolved using a dice-based combat system, and the passage of time is measured in <em>Time Units</em>, passing whenever agents do actions or change locations. If the time allocated for a given <em>run</em> of the scenario passes, the run is considered failed and the agents need to start from scratch (but armed with the gained knowledge about the world).</p>
+<h2 id="moving-digital">Moving digital</h2>
+<p>We really like playing the game, but, being far from our usual gaming groups, we didn’t expect to be able to play it in real life in the foreseeable future (not to mention the raging pandemic). Because of this, we decided to build a digital version of the game, to be played in the browser.</p>
+<p>At the beginning of this project, we had a rudimentary experience in web development, so the project was mostly a learning journey for us. Because of that, we have made many questionable engineering decisions along the way (and many we don’t know yet that are questionable), mostly trying to deliver the features without trying too hard to do everything <em>right</em> on the first try.</p>
+<h2 id="assumptions">Assumptions</h2>
+<p>We have made the following design assumptions:</p>
+<ol style="list-style-type: decimal">
+<li>We should be able to play a scenario without a need for a human to look over the cards. The scenario cards are available in non-structured formats (more on that later). Without looking at the cards we are not e.g., able to split cards into items and locations, but we also don’t spoil the game for the person preparing the scenario.</li>
+<li>We want the app to be a game simulator, ie. we assume that players will enforce the game rules (subtracting TUs, having access to a subset of locations, etc.) themselves. The scenarios often provide various innovative deviations from the basic rules, e.g. vehicles making it cheaper to move locations, resetting state tokens mid-scenario, a future-teller talisman allowing to see a random card in the deck, etc. We decided we want to give the players the final control over following the rules.</li>
+<li>We will not distinguish between different user connections to the server. In other words, everyone will be able to do the same actions, see the same cards, etc. As in the physical game, the users will choose the color of their pawn (which is used to mark the location card the agent is in), but nothing will prevent the users from changing it mid-game, peeking at other players’ cards, etc.</li>
+</ol>
+<h2 id="preparing-scenarios">Preparing scenarios</h2>
+<p>The original game has many extensions to buy, containing different scenarios. There are also dozens of fan-made scenarios that are available to download for free (a list of them can be found <a href="https://boardgamegeek.com/thread/1533236/overview-scenarios-authors-countries">here</a>). In our app, we will be using the fan-made scenarios, which are available in two formats:</p>
+<ol style="list-style-type: decimal">
+<li>as a pdf with 4 cards/page (ready to print)</li>
+<li>as a set of png files that contain a sheet of around 5x6 cards, either front or back.</li>
+</ol>
+<p>In either of these, each card has a small number at the bottom, to be able to sort the cards and match fronts with backs.</p>
+<figure>
+<img src="../images/ts/card.png" alt="Back of an item card. Note the small number 20 in bottom-left corner." style="width:50.0%" />
+<figcaption>
+Back of an item card. Note the small number 20 in bottom-left corner.
+</figcaption>
+</figure>
+<p>To be able to use a scenario, we need to divide the cards into separate files. Ideally, the filename/directory structure would describe which card it is (eg. location X), but that is not possible without looking at the cards, so we decided to store the files under <code>scenario/card_number</code> with the file names <code>(front|back).webp</code>. We used webp as an image format because it offered great compression rates (and is supported by nearly all browsers).</p>
+<p>We made two separate tools for cutting pdf- and png-based scenarios.</p>
+<h3 id="pdf-based">Pdf-based</h3>
+<p>Most pdf-based scenarios followed the same ordering of cards withing the scenario, so we were able to hard-code. A bigger problem here were different sizes of margins in different files.</p>
+<figure>
+<img src="../images/ts/page.png" alt="An example page to be cut into single cards." style="width:90.0%" />
+<figcaption>
+An example page to be cut into single cards.
+</figcaption>
+</figure>
+<p>We went for the human-in-the-loop approach for detecting the size of margins, where the user was choosing an appropriate margin for the first page of the scenario and we assumed that the margins don’t change within one file.</p>
+<p>To make it convenient for the user to do so, the console-based tool was increasing a margin by a fixed amount when the user pressed <code>+</code> and decreasing it when they pressed <code>-</code>. Whenever the user changed the direction of change (i.e. going from a margin that’s too big to a one that’s too small), we decreased the amount of change, allowing the user to quickly get to a margin that’s nearly-perfect and finetuning it.</p>
+<p>For example, if the user pressed <code>---+-</code>, the first three signals would decrease margin by 16px each, the next one will increase it by 8px, and the next one will decrease it by 4px.</p>
+<p>We observed that while pdf files opened in Chrome don’t refresh on change, the Evince viewer does refresh them, which made it more convenient to change margins without changing window focus.</p>
+<p>We used PyPDF2, pdf2image, and curses to make this tool.</p>
+<h3 id="png-based">Png-based</h3>
+<p>When cutting the sheets of card images, there were no problems with margins (there are none), but instead, with the order of cards. Here, different scenarios had both different orderings: either first cards in each sheet are numbered 1, 2, 3, …, or consecutive cards in the first sheet and sometimes the order of a couple of cards was just mixed up without any (apparent) structure.</p>
+<p>Initially, I decided to try out cutting the small part of the image where the card number was present and use an off-the-shelf OCR tool to read it. I used an apparently popular OCR tool: tesseract.</p>
+<p>I suspected it will work out-of-the-box, but couldn’t be more wrong. I ended up: a) converting the image to black-and-white and increasing contrast to make it easier for tesseract to detect the numbers b) providing <a href="https://tesseract-ocr.github.io/tessdoc/Data-Files.html">separate data files</a> to tesseract, specially trained for mathematics, as I suspected the language bias would make it harder to decipher single numbers c) conditioned tesseract to detect only digits.</p>
+<p>Even with these changes, I only managed to detect around half of the card numbers in every second scenario.</p>
+<p>Obviously, this wasn’t good enough, so I again resorted to using human assistance. Having dissected the card numbers from the cards, I found it acceptable to show them to the user for detection, as they would not be spoilery.</p>
+<p>Providing the readings for all the missing numbers would be a lot of work, so instead, we used the following algorithm:</p>
+<ol style="list-style-type: decimal">
+<li>We try to predict the next number to be used using OCR (<code>OCR_t</code>).</li>
+<li>We predict the next number to be used as a linear extrapolation from previous two number: <code>diff_t := x_{t-1} - x_{t-2}</code>. <code>pred_t := x_{t-1} + diff_t</code>.</li>
+<li>If the two predictions match (<code>pred_t = OCR_t</code>), we use it without asking the user: <code>x_t := OCR_t</code>.</li>
+<li>If not, we ask the user who can either accept the second prediction or provide the input on their own.</li>
+</ol>
+<p>Note that the second prediction would work for both orderings of the cards (assuming there are no errors in the ordering). In practice, as the number of places where the numbers would be mixed up was relatively small (say, &lt;5% numbers), it worked quite reliably, with the user just confirming that the predicted number is correct most of the time, and providing the actual number in a small number of cases only.</p>
+<h2 id="choosing-a-framework">Choosing a framework</h2>
+<p>We spent some time choosing which web development framework to use. Initially, we considered going for a minimal version in django where one person streams the “table” with all the cards and players just click appropriate links on their devices.</p>
+<p>We decided to go for a more challenge (and learning) and go for a <a href="https://en.wikipedia.org/wiki/Single-page_application">single-page application</a> where the app would serve the game board to all players. After looking over the list of SPA-frameworks, we decided to give (Typescript-based) <a href="https://en.wikipedia.org/wiki/Angular_(web_framework)">Angular</a> and <a href="https://socket.io">socket.io</a> a go.</p>
+<p>Only after hitting some first import errors and <a href="https://stackoverflow.com/questions/61192037/typescript-import-errors">asking for help on StackOverflow</a>, we realized that Angular itself is client-side only, and we need to have a separate server to be able to communicate between clients.</p>
+<p>After taking another look at available options, we decided to go for <a href="https://en.wikipedia.org/wiki/Meteor_(web_framework)">MeteorJS</a>, which proved to make it easy to synchronize the common state. For the frontend, we still used Angular and helped ourselves with <a href="https://github.com/Urigo/meteor-rxjs">meteor-rxjs</a> to listen to changes in the data in a reactive way.</p>
+<h2 id="the-database">The database</h2>
+<p>Meteor uses a MongoDB database and a convenient interface to it in the form of <a href="https://guide.meteor.com/collections.html">Collections</a>. In our case, the main part of the data lived in two collections: Cards and Holders with basically the following schemas:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">CardsSchema <span class="op">=</span> <span class="kw">new</span> <span class="at">SimpleSchema</span>(<span class="op">{</span>
+  <span class="dt">number</span><span class="op">:</span>  <span class="va">SimpleSchema</span>.<span class="at">Integer</span><span class="op">,</span>
+  <span class="dt">holderId</span><span class="op">:</span> String
+<span class="op">}</span>)<span class="op">;</span>
+
+HoldersSchema <span class="op">=</span> <span class="kw">new</span> <span class="at">SimpleSchema</span>(<span class="op">{</span>
+  <span class="dt">name</span><span class="op">:</span> String<span class="op">,</span>
+  <span class="dt">cards</span><span class="op">:</span> <span class="op">{</span> <span class="dt">type</span><span class="op">:</span> Array<span class="op">,</span> <span class="dt">defaultValue</span><span class="op">:</span> [] <span class="op">},</span>
+  <span class="st">&quot;cards.$&quot;</span><span class="op">:</span> String<span class="op">,</span>
+  <span class="dt">currentCardIndex</span><span class="op">:</span> <span class="op">{</span><span class="dt">type</span><span class="op">:</span> <span class="va">SimpleSchema</span>.<span class="at">Integer</span><span class="op">,</span>
+                     <span class="dt">optional</span><span class="op">:</span> <span class="kw">true</span><span class="op">},</span>
+  <span class="dt">currentSide</span><span class="op">:</span> <span class="op">{</span><span class="dt">type</span><span class="op">:</span> String<span class="op">,</span> <span class="dt">allowedValues</span><span class="op">:</span> [<span class="st">&quot;front&quot;</span><span class="op">,</span> <span class="st">&quot;back&quot;</span>]<span class="op">,</span> <span class="dt">optional</span><span class="op">:</span> <span class="kw">true</span><span class="op">}</span>
+<span class="op">}</span>)<span class="op">;</span></code></pre></div>
+<p>We assume the card number and side is enough info to find the URL of the card. In addition to the basic schema, we implemented a number of hooks when inserting or updating the data:</p>
+<ol style="list-style-type: decimal">
+<li>When inserting a new card or updating holderId, we insert/remove the id of the card to the appropriate holders.</li>
+<li>After changing the set of cards in a given holder, we sort the cards by their numbers. When the cards are not sorted, finding a given card may be tedious in the deck of &gt;100 cards. At the same time, as the scenario creators expected the deck to be initially sorted, the cards with consecutive numbers are semantically connected (e.g. cards of a given location).</li>
+<li>When we add a new card to a given holder, after sorting the cards, we make sure that the new card ends up on top of the deck. Otherwise, it was easy to move a card to a holder by mistake and lose track of it within tens of other cards.</li>
+</ol>
+<h3 id="the-order-of-insertion">The order of insertion</h3>
+<p>At the start of the game, we needed to insert all cards to a deck holder. We found all card numbers by listing a given directory, and then needed to add them one by one to the database (as the <a href="https://docs.meteor.com/api/collections.html#Mongo-Collection-insert">insert</a> is only able to add one document to the database).</p>
+<p>As the mentioned-above hooks are not atomic (for example to sort cards we need to first retrieve them from the database, sort them and insert them back), we need to make sure that the insertions to the collections happen in a synchronous way to prevent race conditions.</p>
+<p>One way to do so would be to use the default mechanism for insertion for collections, which is synchronous and wait for the results. This would not allow us to reactively observe changes using meteor-rxjs (as it uses its own, asynchronous wrapper over insert). This would not be a big problem if we were to initialize the database once, but we also wanted to have a button that would allow us to change the scenario (and reinitialize the database) while the app is running.</p>
+<p>In theory, this should be possible to implement using <a href="https://rxjs-dev.firebaseapp.com/api/index/function/concat">rxjs’ concat</a>, which takes a number of Observables and subscribes to them one at a time, moving to the next one whenever the previous one finishes. The problem with that solution is that meteor-rxjs’ insert <a href="https://github.com/Urigo/meteor-rxjs/blob/master/src/ObservableCollection.ts#L127">doesn’t wait for the subscription</a> before inserting, so creating all the Observables for inserting all of the cards will already start calling the underlying inserts and their hooks, causing race conditions before we even start subscribing to any of them.</p>
+<p>The solution we went for involved active waiting for when the subscription for insertion of card <code>N</code> is called before inserting the <code>N + 1</code>-th card. However, the simple:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> inserted <span class="op">=</span> <span class="va">allCards</span>.<span class="at">map</span>(c <span class="op">=&gt;</span> <span class="kw">false</span>)<span class="op">;</span>
+
+<span class="cf">for</span>(<span class="op">;</span> i <span class="op">&lt;</span> <span class="va">allCards</span>.<span class="at">length</span><span class="op">;</span>) <span class="op">{</span>
+  <span class="cf">if</span> (<span class="op">!</span>inserted[i]) <span class="op">{</span>
+    inserted[i] <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>
+    <span class="va">Cards</span>.<span class="at">insert</span>(allCards[i]).<span class="at">subscribe</span>(() <span class="op">=&gt;</span> <span class="op">{</span> i<span class="op">++;</span> <span class="op">}</span>)<span class="op">;</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+<p>did not work. As Meteor methods are running in <a href="https://docs.meteor.com/api/methods.html#DDPCommon-MethodInvocation-unblock">one fiber per client</a>, running the code above will result in an endless loop which will never transfer execution context to the insert method.</p>
+<p>Adding a simple <code>await sleep(10)</code>, solved the issue, as the execution could go to inserting the appropriate card and returning whenever insertion finished.</p>
+<h2 id="pulling-cards">Pulling cards</h2>
+<p>In the beginning, we implemented moving cards between holders as clicking one holder and then the other. It wasn’t very intuitive, so we decided to move them using drag&amp;drop.</p>
+<p>We opted for Angular Material’s <a href="https://material.angular.io/cdk/drag-drop/overview">Drag and Drop</a> module. While the terminology suggests it’s made to move <em>items</em> between <em>lists</em>, we find it fine to consider a single card a <code>cdkDrag</code> and one holder to be a single-element <code>cdkDropList</code>.</p>
+<figure>
+<img src="../images/ts/moving-card.gif" alt="Moving card from one holder to another." style="width:100.0%" />
+<figcaption>
+Moving card from one holder to another.
+</figcaption>
+</figure>
+<h3 id="rotating-cards">Rotating cards</h3>
+<p>While most of the cards are oriented vertically, some of them present horizontally best. One popular example is the cards of the map, which show different locations available to the agents.</p>
+<p>One problem which appears when starting to drag and drop cards is the behavior of placeholders which are shown in the to-be-dropped-into holders when the source and sink holder are of different orientation. The default behavior with the Drag and Drop module is to make the placeholder to be the same as the element being dragged. In our case that meant trying to show a vertical placeholder in the horizontal holder and vice versa, which looked wrong.</p>
+<figure>
+<img src="../images/ts/rotated-cards-before.gif" alt="Moving rotated cards: before." style="width:40.0%" /> <img src="../images/ts/rotated-cards-after.gif" alt="Moving rotated cards: after." style="width:39.0%" />
+<figcaption>
+Moving cards to holders with a different orientation: before and after.
+</figcaption>
+</figure>
+<p>We fixed it with <a href="https://angular.io/api/core/Renderer2">Renderer2</a>, which is able to read and change the CSS class of any html element. We called it when processing the <a href="https://material.angular.io/cdk/drag-drop/api#CdkDropList">cdkDropListEntered</a> event, which is called whenever we hover an item above a container.</p>
+<h2 id="rolling-dice">Rolling dice</h2>
+<p>One part of the mechanics of the game is the use of dice to: 1. Measure the passage of time which the agents have left 1. Resolve the results of the challenges.</p>
+<p>In the second case, the players throw a number of dice equal to the value of their statistic (like strength or eloquence) and count the number of “hits” which help the player succeed in the test and “skulls” which hurt the player.</p>
+<p>Initially, we just made a panel where the player chose the number of players and received the total results, but while playtesting one of the scenarios, we stumbled upon a practice of re-rolling a die (e.g. one character was allowed to choose one of the dice after a throw and roll it once more, hoping for a better result). It wasn’t possible to do with our dice, as the player didn’t get the division of the total result into particular dice (was this score of 4 a 2 + 2 + 0 + 0 or 1 + 1 + 1 + 1?). Because of that, we decided to show separate dice with results (apart from the total) and allowed the user to click on any die to reroll it.</p>
+<p>However, this wasn’t working perfectly from the UI perspective; the die could get the same result as the previous one after the reroll, and if this happened, the user doesn’t get any feedback that the system indeed registered the reroll. Because of that, we added an animation based on <a href="https://material.io/develop/web/components/animation/">material</a> where the previous die fades away and the new one slowly appears, so that the users see the change.</p>
+<figure>
+<img src="../images/ts/dice.gif" alt="Animation when rerolling challenge dice." style="width:70.0%" />
+<figcaption>
+Animation when rerolling challenge dice.
+</figcaption>
+</figure>
+<p>Another problem with the interface was that every time the agents leave a location one of the players should throw the Time Unit die to spend TU. In the physical game, everyone sees whether the die has been thrown and the score subtracted from the tracker. In the digital version, players don’t see whether others have thrown the die if they don’t track the available TU closely.</p>
+<p>To make sure people know whether the die has been thrown already, we send every player a notification once anyone throws the TU die.</p>
+<h2 id="player-pawns">Player pawns</h2>
+<p>In the physical version of the game, every round every player puts their pawn above the location card they want to explore. We made something similar, where each players’ pawn is placed above the card they chose for the given round. One problem, which exists for either version of the game, is spending Time Units every round. As each player performs their actions somewhat independently of others, sometimes it’s hard to make sure every player has done the same number of rounds, especially when some of the players wait for others to finish their challenges.</p>
+<p>To make it easier to keep of track the number of rounds each player did, we added a small mark that we put next to a player token whenever that player moves to another location or throws a die (each of which constitutes an action).</p>
+<figure>
+<img src="../images/ts/pawn-mark.png" alt="The mark on the pawn after the player did the action." />
+<figcaption>
+The mark on the pawn after the player did the action.
+</figcaption>
+</figure>
+<p>One facilitation we tried introducing to the gameplay was to automate the throwing of the TU die whenever players leave a location. We thought that leaving the location can be recorded whenever the first location card is removed, and we could throw the die without their action.</p>
+<p>This had one problem though, as the fact of cards moving is independently observed by each of the players, so when we threw a die every time someone observed removal of the first card, the die was thrown 4 times. I didn’t want to send the request only from a player with a given color (e.g. only blue player), as there may be two (or none) players impersonating a blue player at a given moment. I tried to have a hacky version of the server refusing to accept the throw-die request for a short time after another player requested it, but as each player’s call is running a separate thread, it wasn’t reliable and we decided to abandon this feature.</p>
+<h2 id="service">Service</h2>
+<p>We decided to serve the application using Amazon Web Services, taking advantage of its global free tier, allowing us to use small amounts (way bigger than our needs) of compute and storage from a central-European cluster, which was useful for us as we didn’t want to spend time trying to speed up the request time/cache the requests.</p>
+<h3 id="meteor-up">Meteor up</h3>
+<p>To easily set the server up on the micro EC2 instance, we used <a href="http://meteor-up.com">Meteor Up</a>. I was surprised how plug-and-play the tool was: it checks the connection to the server, bundles the whole meteor code, node, nginx into a docker container, sends it to the server, and turns it on.</p>
+<p>There even was an option to bundle together the mongoDB database, but we went for setting it up ourselves so that we could make changes to it that would preserve new deploys of the meteor code.</p>
+<h3 id="storage">Storage</h3>
+<p>For storing and serving the files we went for a standard S3 solution. One scenario is around 300 files and 30MB altogether, so the free tier allowance of 5GB of data was more than enough. The bigger problem was the number of requests: 20k GET requests and 2k PUT/COPY/LIST requests per month.</p>
+<p>As during the scenario each client requests every card multiple times, I was worried we will get the limit on the number of GET requests, but after setting up <a href="https://docs.meteor.com/packages/appcache.html">appcache</a> as well as the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control">Cache-Control</a> headers, the number of GET requests per (4h-long) game run was 2k or 3k.</p>
+<p>The bigger problem turn out to be the PUT/COPY/LIST requests. I didn’t expect problems here, even though each file needed to be inserted separately, as we need to insert each scenario only once, so there could be around 6 scenarios we could insert per month, and we only do one LIST request per run where we initially create a database.</p>
+<p>However, when trying the app out, I observed a bigger number of requests than the number of files suggested. I tried using <a href="https://aws.amazon.com/cloudtrail/">AWS CloudTrial</a> as well as <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerLogs.html">server access logging</a>, which are two tools for aggregating logs to show types and origins of the requests to S3 buckets, but didn’t find anything suspicious there, apart from the logs about inserting the logs themselves.</p>
+<h3 id="dns-ssl">DNS, SSL</h3>
+<p>I already had a free website domain claimed from <a href="https://freenom.com">freenom.com</a> and a DNS server set up at <a href="https://freedns.afraid.org/">freeDNS</a>, and I only wanted to set up another subdomain there.</p>
+<p>Initially, I considered getting an <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP</a> address, which would allow me to attach the fixed IP to the different EC2 instances, which I was planning to take up and down; mostly because I didn’t want to waste the resources it is running on, as I was only planning to occasionally play with friends.</p>
+<p>As the Elastic IPs are only free while the instance they are attached to is running, instead of using them I decided to go for the dynamic IP on the EC2 and used dynamic DNS service on freedns, which allows to set up a cron job on EC2 to request a change of the IP to the current address whenever the instance is up.</p>
+<h2 id="final-notes">Final notes</h2>
+<p>This project was an experiment in web development, site hosting, and writing the blog post. Thanks for everyone who playtested the various versions with us.</p>
+<p>The final state of the project can be seen here: <a href="../images/ts/all.png"><img src="../images/ts/all.png" alt="Full view of the final app." style="width:100.0%" /></a></p>
+]]></description>
+    <pubDate>Fri, 19 Jun 2020 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2020-06-19-time-stories.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
+    <title>--init</title>
+    <link>https://sygnowski.ml/posts/2016-03-24-init.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on March 24, 2016
+    
+</div>
+<h1>--init</h1>
+<p>In this post I am just testing various features of the blog. There is nothing interesting here.</p>
+<h2 id="syntax-highlighting">Syntax highlighting:</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">map</span>(y) <span class="op">+</span> <span class="dv">7</span></code></pre></div>
+<h2 id="mathjax">MathJax</h2>
+<p><span class="math inline">\(\frac{e^\pi}{2a}\)</span></p>
+<h3 id="some-random-spams">Some random spams</h3>
+<p>Vestibulum leo turpis, dignissim quis ultrices sit amet, iaculis ac ligula. Pellentesque tristique, velit eget scelerisque scelerisque, est dolor ultrices arcu, quis ullamcorper justo :smile: arcu luctus mauris. Integer congue molestie nisi id posuere. Fusce pellentesque gravida tempus. Integer viverra tortor nec eros mollis quis convallis sem laoreet. <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> Nulla id libero ac erat varius laoreet. Proin</p>
+<p><details> <summary> See more content </summary> sed est est. Curabitur lacinia fermentum lorem, elementum malesuada ipsum malesuada ut. Donec suscipit elit:x: id leo vehicula mattis non sed leo. Morbi varius eleifend varius. Nulla vestibulum, neque vitae aliquam eleifend, nisi tellus placerat nunc, quis suscipit elit turpis eu tortor. Etiam euismod convallis lectus quis venenatis. Phasellus laoreet magna in nibh cursus eu egestas nulla convallis. Aliquam vel ullamcorper risus. Fusce dictum, massa id consequat viverra, nulla ante tristique est, a faucibus nisi enim nec dui. Donec metus ligula, condimentum at porttitor eget, lobortis at quam. </details></p>
+<p>Aenean vel libero in magna ultricies congue in a odio. Donec faucibus rutrum ornare. Fusce dictbum eleifend fermentum. Vestibulum vel nibh a metus porttitor rhoncus. Pellentesque id quam neque, eget molestie arcu. Integer in elit vel neque viverra ultricies in eget massa. Nam ut convallis est. Pellentesque eros eros, sodales non vehicula et, tincidunt ut odio. Cras suscipit ultrices metus sit amet molestie. Fusce enim leo, vehicula sed sodales quis, adipiscing at ipsum.</p>
+<p><details> <summary> Some code </summary></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">  res <span class="op">=</span> process(argv)
+  <span class="cf">return</span> res</code></pre></div>
+<p></details></p>
+<p>Nulla adipiscing ultricies lobortis. Vivamus iaculis nisl vitae tellus laoreet vitae aliquet lacus mollis. Phasellus ut lacus urna, sed sagittis ante. Etiam consectetur pretium nisl sed dignissim. Pellentesque convallis, nisl eget commodo mollis, sem magna consequat arcu, sed pretium ipsum arcu sit amet neque. Aliquam erat volutpat. Morbi sed mi sed urna vestibulum placerat vitae vel metus. Fusce ac ante at justo pharetra vehicula. Vivamus vel tortor eget augue aliquet aliquet at vel odio. Nunc venenatis, magna quis facilisis fringilla, augue tellus varius neque, in vulputate est eros ut tortor. Duis lorem neque, aliquam congue posuere id, condimentum non dui. Phasellus ut dui massa, porttitor suscipit augue. Praesent quis tellus quam, vel volutpat metus. Vivamus enim est, aliquam in imperdiet et, sagittis eu ligula. Vestibulum hendrerit placerat orci et aliquet. Cras pharetra, dolor placerat lobortis tempor, metus odio cursus ligula, et posuere lacus ligula quis dui.</p>
+<p>Donec a lectus eu nibh malesuada aliquam. Proin at metus quam, et tincidunt leo. Quisque lacus justo, scelerisque sodales pulvinar sed, dignissim ut sapien. Vivamus diam felis, adipiscing sollicitudin ultricies id, accumsan ac felis. In eu posuere ligula. Suspendisse potenti. Donec porttitor dictum dui id vehicula. Integer ante velit, congue id dictum et, adipiscing a tortor.</p>
+<h2 id="page-links">Page links:</h2>
+<p><a href="http://github.com/sygi/some-link">here</a> <a href="#mathjax">local</a></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Some footnote<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+]]></description>
+    <pubDate>Thu, 24 Mar 2016 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2016-03-24-init.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+
+    </channel>
+</rss>
