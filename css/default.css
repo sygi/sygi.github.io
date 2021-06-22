@@ -20,7 +20,7 @@ div#header {
     background-color: white;
     background-image: url("../../images/handmadepaper.png");
     margin-bottom: 20px;
-    padding: 12px 20px 12px 20px;
+    padding: 10px 20px 4px 20px;
     box-shadow: 2px 2px 10px black;	
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -29,7 +29,7 @@ div#header {
 div#logo a {
     color: black;
     float: left;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
 }
@@ -40,11 +40,16 @@ div#header #navigation {
 
 div#header #navigation a {
     color: black;
-    font-size: 17px;
+    font-size: 19px;
     font-weight: bold;
     margin-left: 12px;
     text-decoration: none;
     text-transform: uppercase;
+}
+
+div#header #navigation img {
+  height: auto;
+  max-height: 17px;
 }
 
 div#footer {
