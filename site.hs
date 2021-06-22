@@ -40,6 +40,8 @@ main = hakyll $ do
         route $ setExtension "html"
         compile $
             pandocCompilerWithTransform readerPostOptions writerPostOptions addAnchors
+            >>= loadAndApplyTemplate "templates/post-body.html"    postCtx
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -48,14 +50,14 @@ main = hakyll $ do
         compile $ do
             let getHeaders (Pandoc meta blocks) = Pandoc meta (untilFirstParagraph blocks)
             pandocCompilerWithTransform readerPostOptions writerHeaderOptions getHeaders
-            >>= loadAndApplyTemplate "templates/post.html" headCtx
+            >>= loadAndApplyTemplate "templates/post-body.html" headCtx
             >>= relativizeUrls
 
     match "posts/*" $ version "only_title" $
         compile $ do
             let onlyMetadata (Pandoc meta blocks) = Pandoc meta ([])
             pandocCompilerWithTransform readerPostOptions writerHeaderOptions onlyMetadata
-            >>= loadAndApplyTemplate "templates/post.html" headCtx
+            >>= loadAndApplyTemplate "templates/post-body.html" headCtx
             >>= relativizeUrls
 
     let post_contents = loadAll ("posts/*" .&&. hasNoVersion) :: Compiler [Item String]
@@ -75,6 +77,13 @@ main = hakyll $ do
             makeItem "" 
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 -- TODO: make a single version of the list, remove archive, projects, progress.
+
+    create ["rss.xml"] $ do
+        route idRoute
+        compile $ do
+            let feedCtx = postCtx `mappend` bodyField "description"
+            posts <- recentFirst =<< loadAllSnapshots ("posts/*" .&&. hasNoVersion) "content"
+            renderRss feedConfiguration feedCtx posts
 
     create ["archive.html"] $ do
         route idRoute
@@ -127,7 +136,6 @@ headCtx =
   field "post_url" (return . flip replaceExtension "html" . toFilePath . itemIdentifier)
     `mappend` postCtx
 
-
 readerPostOptions :: ReaderOptions
 readerPostOptions = defaultHakyllReaderOptions
  
@@ -144,6 +152,17 @@ writerPostOptions = defaultHakyllWriterOptions{
     writerTOCDepth = 1
 }
 
+-- Feed
+feedConfiguration :: FeedConfiguration
+feedConfiguration = FeedConfiguration
+    { feedTitle       = "Jakub Sygnowski blog"
+    , feedDescription = "Posts on games, programming, and art."
+    , feedAuthorName  = "Jakub Sygnowski"
+    , feedRoot        = "https://sygnowski.ml"
+    , feedAuthorEmail = "sygnowski@gmail.com"
+    }
+
+-- Post headers on the index page.
 isPara :: Block -> Bool
 isPara (Para p) = True
 isPara _ = False
@@ -154,6 +173,8 @@ untilFirstParagraph x = fst $ foldl (\(acc, fin) b ->
     if isPara b then (acc ++ [b], True) else (acc ++ [b], False)
   )) ([], False) x
 
+
+-- Anchors Disabled: they don't look great
 addAnchors (Pandoc meta blocks) = Pandoc meta blocks -- (addAnchorsInside blocks)
 
 anchorImage level = Image ("", [], [("width", show size), ("height", show size)]) [] 
