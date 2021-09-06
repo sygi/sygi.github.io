@@ -53,7 +53,7 @@
 <p>As I hope the mechanics in my game will be relatively simple (to concentrate on the story), the first feature of the game engine I was looking at was: the code language used to write the game. In the case of Unreal, it is C++, which I like, so I decided to try it out first.</p>
 <p>For a start, I decided to create a 3D scene with a small city, a lake, a mountain, etc. While I learned lots of both Unreal and general 3D-modelling concepts, creating a 3D scene felt quite overwhelming and more effort than I’d like to put on the visuals alone. It would be exarberated if I needed to make some assets for the game: for the test scene I was taking them from the internet, which wouldn’t look good/wouldn’t be permitted by the license in a game.</p>
 <p>A nice thing that I didn’t expect was the option to export the game to HTML5. When thinking about it, I’d certainly like to be able to embed the game on a website: it’ll be much easier to show the result of my work if one doesn’t need to install anything nor have any particular OS to do so.</p>
-<p>Unfortunately, due to all the blows and whistles that Unreal comes with, the final export file was over 100MB, despite my attempts to make it as small as possible. Because of it, I wasn’t able to serve it on Github pages and put it on Google Cloud storage instead… and lost access to it after the free trial finished :( <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>Unfortunately, due to all the blows and whistles that Unreal comes with, the final export file was over 100MB, despite my attempts to make it as small as possible. Because of it, I wasn’t able to serve it on Github pages, and put it on S3 instead (<a href="https://sygi-blog.s3.eu-central-1.amazonaws.com/unreal/MovingUnrealPackaged-HTML5-Shipping.html">link</a>).</p>
 <p>One idea that I quite liked in Unreal is <a href="https://docs.unrealengine.com/en-US/ProgrammingAndScripting/Blueprints/index.html">blueprints</a>. They are a visual programming language that allows people to connect various object properties without writing code. While writing code feels natural to me, the nicely rendered diagrams showing how the properties are changing look appealing.</p>
 <figure>
 <img src="../images/game_engines/unreal_blueprint.png" alt="Blueprint" style="width:70.0%" />
@@ -102,7 +102,6 @@ Example Scene tree in Godot.
 <hr />
 <ol>
 <li id="fn1"><p>I read that the sequel, <a href="https://store.steampowered.com/app/865360/We_Were_Here_Together/">We Were Here Together</a>, has more story.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>I may be able to recover it once I get access to my desktop after returning to London.<a href="#fnref2">↩</a></p></li>
 </ol>
 </div>
 
