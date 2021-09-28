@@ -64,6 +64,10 @@ main = hakyll $ do
     let post_headers = loadAll ("posts/*" .&&. hasVersion "header") :: Compiler [Item String]
 
     let post_titles = loadAll ("posts/*" .&&. hasVersion "only_title") :: Compiler [Item String]
+
+    create ["robots.txt"] $ do
+        route idRoute
+        compile $ getResourceBody >>= relativizeUrls
   
     create ["sitemap.xml"] $ do
         route idRoute
