@@ -7,8 +7,190 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygnowski.ml/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Mon, 06 Sep 2021 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Wed, 29 Sep 2021 00:00:00 UT</lastBuildDate>
         <item>
+    <title>T.I.M.E stories expansion graphic workflow</title>
+    <link>https://sygnowski.ml/posts/2021-09-29-graphic-workflow.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on September 29, 2021
+    
+</div>
+<h1>T.I.M.E stories expansion graphic workflow</h1>
+<p>At the end of last year, I made a fan <a href="https://sygnowski.ml/posts/2020-12-07-auschwitz.html">time stories scenario</a>. Concretely, only the “story” part was finished then, with all the graphics missing. This year, together with Michalina, I was working on and off on adding the custom images to the game. Being relatively new to graphic design, I tried a couple of different styles and workflows for creating the content.</p>
+<h2 id="stylesworkflows">Styles/workflows</h2>
+<h3 id="first-plans">First plans</h3>
+<p>Initially, I planned to do a simple lineart drawing + flat colors to make it easy to create a lot of images. The first image I created used this technique and took around 8h to draw (+an hour or two for adding people on top).</p>
+<figure>
+<a href="../images/graphic_workflow/generic_gate.png"><img src="../images/graphic_workflow/generic_gate.png" alt="Drawing of the gate camp" style="width:30.0%" /></a>
+<figcaption>
+The image of the gate camp used in the game. Despite being simple, it still took a while to finish.
+</figcaption>
+</figure>
+<h3 id="going-fancy">Going fancy</h3>
+<p>Then, I decided to see how close I could get to being photorealistic. I planned to make the first location (Appellplatz) through a collage of drawing, applying textures, and manipulating other images from the internet. I hoped to spend more time on this location to get it really nice and choose a final workflow for other pictures based on how long different parts of this process took and how much they contributed to the final look.</p>
+<p>I ended up using many images from <a href="collections.ushmm.org">United State Holocaust Museum</a> who have photos of concentration camp clothing available online, some textures from <a href="https://polyhaven.com">Poly Haven</a>, and lots of photo manipulation in Procreate. Initially, I was planning to apply <a href="https://en.wikipedia.org/wiki/Neural_Style_Transfer">style transfer</a> on top of the image to give it a more painterly look and hide the anatomy/perspective problems that I created (what ended up to be an overly optimistic goal).</p>
+<figure>
+<a href="../images/graphic_workflow/appellplatz_full.png"><img src="../images/graphic_workflow/appellplatz_full.png" alt="Full panorama of the first location" style="width:95.0%" /></a>
+<figcaption>
+As you can see, the results (before applying style transfer) aren’t great, despite taking 28h on this image alone.
+</figcaption>
+</figure>
+<h3 id="style-transfer">Style transfer</h3>
+<p>I played a bit with various methods for doing style transfer to fix the image that I created. As I didn’t want the stylization to spin into a 5-year research project,<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> I looked only at the tools that are easy to use (in particular don’t require training a neural network).</p>
+<h4 id="neural-style-transfer">Neural Style Transfer</h4>
+<p>The classic<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> method for doing style transfer involves optimizing a (content) image using gradient descent to keep late activations of some CNN the same while changing the early ones to match the ones of another (style) image.</p>
+<p>The results were not great: I tried <a href="https://deepart.io">deepart.io</a> and <a href="https://reiinakano.com/arbitrary-image-stylization-tfjs/">Arbitrary Style Transfer in the Browser</a>, but the style application was too strong (even on the lowest setting), making it too hard to read the details of the images.</p>
+<figure>
+<img src="../images/graphic_workflow/style_transfer1.png" alt="Result of applying neural style transfer" style="width:95.0%" /> <img src="../images/graphic_workflow/style_transfer2.jpg" alt="Another result of applying neural style transfer" style="width:95.0%" />
+<figcaption>
+Results of applying style transfer.
+</figcaption>
+</figure>
+<p>Another problem with them (and all the other browser-based tools that I tried) was that they support only small images, while I wanted to keep everything in high pixel density.</p>
+<h4 id="nvidia-tools">NVIDIA tools</h4>
+<p>NVIDIA has <a href="https://www.nvidia.com/en-us/research/ai-demos/">some of their research</a> available interactively through the browser. I tried two tools that could be useful for style manipulation:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://nvidia-research-mingyuliu.com/gaugan/">GauGAN</a>, where the user draws a rough segmentation map with different colors corresponding to different textures (eg. you can paint “trees” or “rock”), and the model generates an image based on this map and a reference landscape image. Low details, not the workflow I wanted, no people.</li>
+<li><a href="https://www.nvidia.com/research/inpainting">Inpainting</a>, where the user deletes parts of the image, and the model tries to fill the gaps. I tried deleting parts of the image with broken anatomy, but the inpainted results blended to the background more than fixing the details.</li>
+</ol>
+<figure>
+<img src="../images/graphic_workflow/inpainting_mask2.png" alt="Mask to inpaint" style="width:40.0%" /> <img src="../images/graphic_workflow/inpainting_result.png" alt="Result of the inpainting" style="width:40.0%" />
+<figcaption>
+An inpainted picture with hands masked out. The model doesn’t draw new hands but rather tries to smooth the surrounding background.
+</figcaption>
+</figure>
+<h4 id="gmic">G’MIC</h4>
+<p><a href="https://gmic.eu">G’MIC</a> is an extensive, open-source library for processing images. It is included in many popular graphics software (eg. GIMP, photoshop, Krita) as a plugin and also has <a href="https://gmicol.greyc.fr">an online version</a>.</p>
+<p>Among others, it has many filters available for postprocessing of the images. I tried a couple of them.</p>
+<figure>
+<img src="../images/graphic_workflow/appellplatz_illustration.png" alt="Result of the g’mic transform" style="width:95.0%" />
+<figcaption>
+First panorama after applying an “illustration look” filter.
+</figcaption>
+</figure>
+<p>The G’MIC filters deliver on their promise: they change the style of the images, with some of them making them more painterly. At the same time, as they are hard-coded (not learned) they can’t focus on fixing the places where the geometry was wrong.</p>
+<h4 id="style-transfer-results">Style transfer results</h4>
+<p>The tools I tried couldn’t help me in my workflow: they weren’t able to fix what I did wrong when creating the images.</p>
+<p>I believe that the necessary research for this to happen has already been done: it should be possible to take a loss <span class="math inline">\(L(x)\)</span> describing “how likely a given image <span class="math inline">\(x\)</span> comes from a dataset <span class="math inline">\(D\)</span>” (taken from a GAN discriminator or a density estimation model) and update a given image using gradients <span class="math inline">\(\frac{\text{d}L}{\text{d}x}\)</span>.</p>
+<p>A technique that is closest to this that I know of is <a href="https://en.wikipedia.org/wiki/DeepDream">DeepDream</a>. It optimizes the features of the image to facilitate classifying it with one of the classes instead of “matching the dataset” though, which causes a trippy, overly-objectified effect.</p>
+<figure>
+<a href="../images/graphic_workflow/deep_dream.jpg"><img src="../images/graphic_workflow/deep_dream.jpg" alt="Result of the deep dream transform" style="width:95.0%" /></a>
+<figcaption>
+An effect of applying DeepDream to my image.
+</figcaption>
+</figure>
+<p>As I couldn’t find a successful style transfer tool, I went with the raw images in the end.</p>
+<h3 id="going-3d">Going 3D</h3>
+<p>After spending way too long on the Appellplatz image despite the results not being great, I made a step back and looked for different options. I decided to try to use Blender (a 3D-modelling tool) to aid with the image creation. I would be modeling the backgrounds in Blender, rendering them, and then drawing the people on top of the renders.</p>
+<p>After learning the basics of Blender<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> with <a href="https://www.youtube.com/watch?v=TPrnSACiTJ4&amp;ab_channel=BlenderGuru">the donut tutorial</a>, it was relatively quick to prepare models that are good enough.</p>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<figure>
+<model-viewer style="width: 80%; height: 300px; margin-left: auto; margin-right: auto;"
+  field-of-view='20deg'
+camera-controls interaction-prompt="when-focused"
+  alt="A 3D model of a barrack." src="../data/graphic_workflow/barrack.gltf"> </model-viewer>
+<figcaption>
+The 3D model of a camp barrack that I created with Blender (using some free assets).
+</figcaption>
+</figure>
+<p>The existence of a huge library of free (mostly CC attribution) 3D assets on <a href="https://sketchfab.com">sketchfab</a> made modeling easier, but, most of the time, I was creating cubes and adding free textures (from PolyHaven again) on my own.</p>
+<p>A great feature of the 3D workflow was that I didn’t need to fix the shot/perspective at the very beginning of a drawing. Instead, after the model was mostly done, I moved the camera/changed its focal length to put the characters in the correct part of the image.</p>
+<p>While making the first barrack (and learning Blender) took some time, I could then make the next scene in only a couple of hours, which was a significant improvement over the hand-drawn/photo-manipulation workflows.</p>
+<figure>
+<img src="../images/graphic_workflow/exit.png" alt="Render of exit" style="width:70.0%" />
+<figcaption>
+Creating this scene (using pre-made assets) took me only an hour or two!
+</figcaption>
+</figure>
+<h2 id="graphics-workflow">Graphics workflow</h2>
+<p>Apart from creating the graphics themselves, I needed a mechanism for adding them to the cards. Initially, I had each card available as an svg, which I manually exported to png via Inkscape’s UI. Then, I would use a script to order the cards and generate a pdf.</p>
+<p>One problem with that workflow is that whenever one multi-card panorama changes, it is necessary to cut it into pieces again, add each of them to the corresponding Inkscape file (a.svg-h.svg), and then export them again.</p>
+<p>What I ended up doing is, frankly, what I should have started with: keeping only a single svg file for a location and exporting it card by card using Inkscape’s command-line interface.</p>
+<h3 id="export-script">Export script</h3>
+<p>Here is a piece of the script that I ended up using:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># bash numbers tables starting from 0, but seq starts with 1</span>
+<span class="kw">for</span> <span class="ex">i</span> in <span class="kw">`</span><span class="fu">seq</span> <span class="va">$((${#CARDS[@]}</span> - 1<span class="va">))</span><span class="kw">`;</span> <span class="kw">do</span>
+  <span class="ex">inkscape</span> --export-filename=<span class="va">${CARDS[i]}</span>.png \
+  --export-area=<span class="va">$(($WIDTH</span>*(<span class="va">$i</span>-1)<span class="va">))</span>:0:<span class="va">$(($WIDTH</span>*<span class="va">$i))</span>:<span class="va">$HEIGHT</span> \
+  --export-dpi=60 full.svg
+<span class="kw">done</span></code></pre></div>
+<p>One problem with that was setting the correct <code>$WIDTH</code>: as my svg file unit was a millimeter, but the command-line interface uses “user unit” (which, as I learned later, corresponds to one pixel under 96dpi, independently of the chosen export-dpi), I eyeballed/binary searched the conversion rate.</p>
+<h3 id="guides">Guides</h3>
+<p>Guides are the axis-aligned lines that help to arrange the objects on the canvas. In Inkscape, after double-clicking a guide, one can set its position (including the origin, which is a point on the line) numerically.</p>
+<p>I used them to accurately scale the external panoramas pasted to the Inkscape files: I would have two guides, with origins set to the opposite corners of the page, and scale the image while snapping to the guide origin.</p>
+<h3 id="arranging-objects-on-the-cards">Arranging objects on the cards</h3>
+<p>Another issue with multi-card Inkscape files I encountered was centering a text/object on each card separately.</p>
+<figure>
+<a href="../images/graphic_workflow/appellplatz_full.png"><img src="../images/graphic_workflow/appellplatz_full.png" alt="Full panorama of the first location" style="width:95.0%" /></a>
+<figcaption>
+I wanted each title (eg. “Appellplatz - C”) to be on the center of the respective card.
+</figcaption>
+</figure>
+<p>Inkscape has an “Align and Distribute” tool to do transformations like this, but you can only either:</p>
+<ul>
+<li>Center all objects wrt. page, object, or selection, or</li>
+<li>Distribute all objects equidistantly (in some sense) among themselves.</li>
+</ul>
+<p>As it isn’t possible to express the centering I wanted directly, I had to get creative. What I ended up doing is:</p>
+<ol style="list-style-type: decimal">
+<li>I created a thin line at both ends of the page. Guides helped with placing them precisely.</li>
+<li>I placed the objects to be centered on each card on separate cards (inaccurately)</li>
+<li>I added a thin line somewhere between each card.</li>
+<li>I selected all lines and objects and turned on “Distribute centers equidistantly horizontally”.</li>
+</ol>
+<figure>
+<a href="../images/graphic_workflow/inkscape_full.png"><img src="../images/graphic_workflow/inkscape_full.png" alt="Screenshot from Inkscape" style="width:70.0%" /></a>
+<figcaption>
+All objects are selected before distributing them.
+</figcaption>
+</figure>
+<p>Note that using just the lines at the ends (to skip point 3 above) doesn’t work, as it would put the same distance between the end of the last text and the border of the page as between the texts themselves, where the latter one should be twice as big (as it covers space on two cards).</p>
+<h3 id="flow-text">Flow text</h3>
+<p>There are two types of objects for storing text in Inkscape:</p>
+<ul>
+<li>regular text,</li>
+<li>flowed text.</li>
+</ul>
+<p>Flowed text, apart from paths describing the letters, contains a blue “bounding box” with the area that the text should fit into. It is more convenient to work with, as you don’t need to change newlines every time you modify the text.</p>
+<p>I found two ways of getting a flowed text in Inkscape:</p>
+<ol style="list-style-type: decimal">
+<li>To select an area that will become the bounding box after choosing the text tool (as opposed to clicking on the canvas once, what creates regular text).</li>
+<li>To select a (regular) text object and then another object with shift, and choose Text &gt; Flow into frame.</li>
+</ol>
+<p>Initially, I thought I will be using the second option with semi-transparent text boxes to improve visibility, but the Flow into frame option doesn’t allow to set margins between the frame and the text.</p>
+<p>I found a workaround for adding the margins, involving creating another invisible box inside, but I found the first option with manually specifying the bounding box easier to use.</p>
+<h3 id="simple-card-generation">Simple card generation</h3>
+<p>There are many similar cards in a Time stories deck: item cards (differ only by the number), all “A” cards look basically the same, etc. Instead of creating them manually, one can create a template and generate multiple svgs from it, filling the template with the data.</p>
+<p>There is a small library to do this: <a href="https://github.com/mbr/svglue">svglue</a>. To create a template, one adds a <code>template-id</code> attribute to a <code>tspan</code> element in xml editor in Inkscape where the text will be substituted. Then, it’s possible to do the following:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">template <span class="op">=</span> svglue.load(<span class="bu">file</span><span class="op">=</span><span class="st">&quot;template.svg&quot;</span>)
+template.set_text(<span class="st">&quot;my_template_id&quot;</span>, <span class="st">&quot;new text&quot;</span>)
+content <span class="op">=</span> template.<span class="fu">__str__</span>().decode(<span class="st">&#39;utf8&#39;</span>)
+
+<span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;output.svg&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> f:
+    f.write(content)</code></pre></div>
+<p>The magic with <code>__str__()</code> is needed as the library is quite unsupported and doesn’t handle python3 strings well. Other than that (and finding a separate <code>set_flowtext</code> for flowed text), it worked really well and saved me lots of time.</p>
+<figure>
+<a href="../images/graphic_workflow/a.png"><img src="../images/graphic_workflow/a.png" alt="Example A card" style="width:30.0%" /></a>
+<figcaption>
+Example card generated using the template: other cards would only change the location name and the list of cards at the bottom.
+</figcaption>
+</figure>
+<h1 id="final-words">Final words</h1>
+<p>Using the workflow above, I did graphics for the back cards of all but two locations of the game. Michalina agreed to draw the remaining two; then, I will generate a “final” version of the cards. Ideally, I would cut pieces of the graphics (or even draw new ones) to put on the front sides as well, but after spending so much time on this, I’ll leave it be.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Obligatory reference to <a href="https://xkcd.com/1425/">the “Tasks” xkcd</a>.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Created in 2015, so fairly old for the contemporary standards.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>which deserves another blog post.<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+]]></description>
+    <pubDate>Wed, 29 Sep 2021 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2021-09-29-graphic-workflow.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Life after MIM UW analysis: making of</title>
     <link>https://sygnowski.ml/posts/2021-09-06-alma-survey.html</link>
     <description><![CDATA[<div class="info">
@@ -677,7 +859,7 @@ I used a simple scene here but will try with more complex one next.
 <p>I made the cards in <a href="https://inkscape.org">Inkscape</a>: it was a relatively nice experience. For one type of cards (front, backs, A-cards, etc.) I pasted the background texture and locked it and was adding things on top of it. When I was adding new elements like shields, tokens, but also choosing the design of text boxes, I was saving a new copy of the “template” card with the additional elements placed outside of the page. This way, I had a file with dozens of tokens, shields, and others ready to be drag and drop to the card page in the default svg template.</p>
 <p>One particularly useful thing was the ability to create a card from a given subset of the image file, so I was able to create a couple of cards laying next to each other and easily cut them into separate cards. It was useful in creating the map and a multi-card puzzle.</p>
 <h1 id="graphic-design">Graphic design</h1>
-<p>All of the graphic elements I used so far weren’t created by me. I was surprised I was able to find free fonts (with a license allowing me to use them) on <a href="www.1001fonts.com" class="uri">www.1001fonts.com</a>, and paper-like textures on <a href="www.myfreetextures.com" class="uri">www.myfreetextures.com</a>. I used a small number of images for item cards <a href="www.pixabay.com" class="uri">www.pixabay.com</a>.</p>
+<p>All of the graphic elements I used so far weren’t created by me. I was surprised I was able to find free fonts (with a license allowing me to use them) on <a href="https://www.1001fonts.com">1001fonts.com</a>, and paper-like textures on <a href="https://www.myfreetextures.com">www.myfreetextures.com</a>. I used a small number of images for item cards <a href="https://www.pixabay.com">pixabay.com</a>.</p>
 <p>I made a couple of smaller graphic-design decisions like adding the semi-transparent text boxes below texts to improve readability.</p>
 <p>I also chose a font and size for every type of text, with most typical texts written with Lato 15. 15 was quite big, which made it necessary to cut some texts, but I think having less text made the cards better.</p>
 <h1 id="playtests">Playtests</h1>
