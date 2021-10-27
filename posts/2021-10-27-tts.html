@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        
+        <meta name="author" content="Jakub Sygnowski" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <script defer src="https://code.jquery.com/jquery-2.2.2.min.js" type="text/javascript"></script>
+        <script defer src="../../js/footnotes.js" type="text/javascript"></script>
+        <!--<script defer src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>-->
+        <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+        <title>Easy-to-use text-to-speech</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on October 27, 2021
+    
+</div>
+<h1>Easy-to-use text-to-speech</h1>
+<p>Adventure games, the genre I like, tend to contain a lot of talking. Apart from writing the character statements on the screen, bigger game studios hire voice actors to record them and play the recordings. It is a lengthy and costly process. I decided to see how far text-to-speech is from being able to substitute human actors for indie adventure games.</p>
+<h2 id="problem-definition">Problem definition</h2>
+<p>I define the text-to-speech problem as: - take as input a short English text prepared by the game writer and one of a couple of identities of the game characters - produce an audio wave where a character speaks the text.</p>
+<p>Text-to-speech is an active research domain, and one could easily spend weeks (or a whole career) looking for the best solution. I chose to limit myself to methods that: 1. are available for free, 2. don’t require me to do further research to make it work, 3. are easily available on the internet; in particular require no training neural networks on a high-end GPU for days.</p>
+<h2 id="high-level-state-of-research">High-level state of research</h2>
+<p>To explain how the current models work, one needs to first define what a <em>mel-spectrogram</em> is.</p>
+<p>According to <a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Wikipedia</a>:</p>
+<blockquote>
+<p>Mel-frequency cepstrum (MFC) is a representation of the short-term power spectrum of a sound, based on a linear cosine transform of a log power spectrum on a nonlinear mel scale of frequency.</p>
+</blockquote>
+<p>Putting it in English, mel-spectrogram describes how much energy the part of the sound wave of a given frequency transports in time.</p>
+<p>It’s a three-dimensional plot: the color conveys the amount of energy (lighter color: more energy), the Y-axis corresponds to frequency, and the X-axis to time.</p>
+<figure>
+<img src="../images/tts/mel-spectrogram.jpg" alt="alttext" style="width:30.0%" />
+<figcaption>
+An example mel-spectrogram. Note a region of lower energy after around 130 time units, which corresponds to a pause in the sound wave.
+</figcaption>
+</figure>
+<p>An important property of mel-spectrograms is that they contain less information than the initial sound wave, i.e. there are multiple waves with the same mel-spectrogram.</p>
+<h3 id="current-models">Current models</h3>
+<p>To generate a single sound wave from a sentence of text, people currently apply two models sequentially: 1. An acoustic model, which transforms text to a mel-spectrogram, e.g. <a href="https://arxiv.org/abs/1712.05884">Tacotron 2</a>, <a href="https://arxiv.org/abs/2005.11129">Glow-TTS</a>, or <a href="https://arxiv.org/abs/2006.04558">FastSpeech 2</a>. 2. A vocoder, which maps the mel-spetrogram to the actual sound wave. The most popular vocoder is <a href="https://arxiv.org/abs/2010.05646">HiFi-GAN</a>, with other examples being <a href="https://arxiv.org/abs/1910.06711">MelGAN</a> and <a href="https://arxiv.org/abs/1811.00002">WaveGlow</a>.</p>
+<figure>
+<img src="../images/tts/diagram.jpg" alt="alttext" style="width:90.0%" />
+<figcaption>
+A high-level diagram describing architecture of the text-to-speech models.
+</figcaption>
+</figure>
+<p>There are some end-to-end models, like <a href="https://arxiv.org/abs/1609.03499">WaveNet</a> or <a href="https://arxiv.org/pdf/2006.04558.pdf">FastSpeech 2s</a> which are able to generate waves directly from text (without intermediate mel-spectrograms), but they don’t seem to be as popular these days.</p>
+<h2 id="datasets">Datasets</h2>
+<p>There are dozens of <a href="https://github.com/jim-schwoebel/voice_datasets">datasets</a> of varying quality containing recorded voice and the corresponding text. After skimming the papers above, I think these are the most popular ones: - <a href="https://keithito.com/LJ-Speech-Dataset/">LJ Speech</a>: a dataset with one female English speaker, reading 13100 short audio clips from 7 non-fiction books, consisting of approximately 24 hours in total. - <a href="https://research.google/tools/datasets/libri-tts/">LibriTTS</a>: a multi-speaker English dataset containing 585 hours of speech by 2456 speakers (around 15min/speaker), reading Project Gutenberg books. - <a href="https://datashare.ed.ac.uk/handle/10283/2950">VCTK</a>: 44 hours of mostly newspaper passages, read by 109 English speakers with different accents<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, so 0.5h of speech/speaker.</p>
+<h2 id="analysis-of-the-models">Analysis of the models</h2>
+<p>For the sake of this post, I tried out the three acoustic models mentioned above: <a href="https://github.com/NVIDIA/tacotron2">Tacotron 2</a>, <a href="https://github.com/jaywalnut310/glow-tts">Glow-TTS</a>, <a href="https://ming024.github.io/FastSpeech2/">FastSpeech 2</a>, whose implementations are available on Github. I combined them with a <a href="https://github.com/jik876/hifi-gan">Hifi-GAN</a> vocoder.</p>
+<h3 id="using-pretrained-models">Using pretrained models</h3>
+<p>While all of the papers claim they managed to train on either LJSpeech or one of VCTK and LibriTTS, for Glow-TTS and Tacotron 2 it was hard to find models pretrained on the multi-speaker datasets.</p>
+<p>Here are the samples generated from the models based on LJSpeech:</p>
+<figure>
+<audio controls src="../data/tts/glowtts_hifigan_lj.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<audio controls src="../data/tts/tacotron_hifigan_lj.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<audio controls src="../data/tts/fastspeech2_hifigan_lj.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<figcaption>
+Samples generated from Glow-TTS, Tacotron, and FastSpeech2 with HiFi-GAN trained on LJ Speech (left to right).
+</figcaption>
+</figure>
+<p>Both GlowTTS and tacotron sound great, with Glow-TTS maybe being a bit better. Fastspeech breaks a little and has problems with semicolons.</p>
+<p>For a game with multiple characters, I need to generate a couple of different voices. While FastSpeech’s quality was not as good as the other models’, the authors of its Github repo provided a model pretrained on VCTK with an ability to condition on a speaker.</p>
+<p>Here are samples I generated using FastSpeech2 with two different speakers:</p>
+<figure>
+<audio controls src="../data/tts/fastspeech2_hifigan_vctk.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<audio controls src="../data/tts/fastspeech2_hifigan_vctk_another.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<figcaption>
+Samples from FastSpeech2 trained on VCTK, conditioned on speakers 270 and 277.
+</figcaption>
+</figure>
+<p>Not surprisingly, the voice is even more robotic<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> (VCTK has more data overall, but less per speaker), but at least the model is easily accessible.</p>
+<h4 id="modifying-the-vocoder">Modifying the vocoder</h4>
+<p>I mentioned on which datasets the acoustic models above were trained, but what about the vocoder (HiFi-GAN)?</p>
+<p>In <a href="https://github.com/jik876/hifi-gan">its repo</a>, authors provide checkpoints of HiFi-GAN trained on either: LJSpeech (in a version finetuned to the mel-spectrograms provided by Tacotron or not), VCTK, or LJSpeech, VCTK, and LibriTTS together. The last one (called universal model) was provided for easy finetuning to a particular acoustic model/another dataset.</p>
+<p>To generate the previous samples, I used the vocoder model trained on the same dataset as acoustic model used (using the Tacotron-finetuned version for LJSpeech)<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
+<p>One may wonder: to what extent the choice of the dataset the vocoder was trained on is important? In other words: can we train a single vocoder and use it with different datasets?</p>
+<p>Technically, the vocoder needs to choose one sound wave out of many that have the same mel-spectrogram as its input. However, it’s possible that the mel-spectrogram contains all the important information about the sound, and there is only one “reasonable” sound wave to choose, and the vocoder only needs to learn how to find it.</p>
+<p>As the vocoder’s input is only the mel-spetrogram (no separate text), it has to include the information about <em>what</em> is said. Is the speaker’s identity encoded there too? If not (and it’s the vocoder that injects this information into the sound wave), we will be able to change the speaker by using a different HiFi-GAN checkpoint.</p>
+<p>I tried doing just that: passed a mel-spectrogram generated by a model trained on LJ Speech to the vocoder trained on VCTK:</p>
+<figure>
+<audio controls src="../data/tts/glowtts_hifigan_vctk.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<figcaption>
+Sample of the Glow-TTS model trained on LJ Speech, using Hifi-GAN vocoder trained on VCTK.
+</figcaption>
+</figure>
+<p>As you can hear, the original (LJ Speech) voice is still audible in the sound wave, meaning that mel-spectrogram contains speaker-specific features. At the same time, the voice is more shaken compared to when the correct checkpoint was used, meaning that the vocoder itself needs to be adjusted to the dataset, too.</p>
+<h3 id="finetuning">Finetuning</h3>
+<p>Everything I generated so far was either using the same female voice of LJ Speech, or was noisy. As I would like to get samples with multiple voices, I decided to try finetuning (adjusting the weights of) the models.</p>
+<p>For the extra data to finetune the models on, I used all data available for speaker 270 in VCTK. It is a male voice (so easy to distinguish from the LJ Speech one, even for an amateur like me), and there is around half an hour of it available.</p>
+<p>Out of the models I tested above, finetuning is easily possible only for Tacotron and HiFi-GAN, as:</p>
+<ul>
+<li>Fastspeech2 comes already trained on VCTK, so I can’t expect to get anything better than what’s already there <a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</li>
+<li>the authors of the Glow-TTS repo provide a pretrained model for inference, but they don’t publish a part of the training model (one handling Data-dependent initialization) that is necessary for finetuning.</li>
+</ul>
+<h4 id="tacotron">Tacotron</h4>
+<p>I finetuned the LJSpeech model for another 6000 steps. The validation loss was already at the lowest after 2000. As the training was taking around an hour for 1000 steps, two hours was enough to finetune Tacotron on the new speaker’s data.</p>
+<p>Here are the samples from the model, generated with the VCTK version of Hifi-GAN:</p>
+<figure>
+<audio controls src="../data/tts/tacotron_vctk_2000.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<audio controls src="../data/tts/tacotron_vctk_6000.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<figcaption>
+Sample of Tacotron finetuned after 2000 steps, and one after 6000 steps. Sound the same, with some robotic noise at the beginning.
+</figcaption>
+</figure>
+<h4 id="hifi-gan">HiFi-GAN</h4>
+<p>When Tacotron generates mel-spectrograms, it does so one timestep at a time, passing whatever was generated at the previous steps as an input for the current-step generation<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</p>
+<p>It means if a model makes a mistake mid-sentence, it’s hard for it to get back on track. One can hear it easily early in the training when the model starts the sentence correctly but then breaks down into mumbling:</p>
+<figure>
+<audio controls src="../data/tts/tacotron_vctk_600.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<figcaption>
+Tacotron finetuned to a different actor after only 600 steps.
+</figcaption>
+</figure>
+<p>To avoid being passed “wrong” mel-spectrograms while still adapting the vocoder to the ones produced by a particular acoustic model, HiFi-GAN uses Tacotron in a “teacher-forcing” mode when it is finetuned.</p>
+<p>This mode is a method to change the inference behavior of Tacotron. When generating the <span class="math inline">\(i\)</span>-th slice of the mel-spectrogram, instead of conditioning the model on the previous output the model generated, it uses the ground-truth mel-spectrogram (produced out of a ground-truth sound wave) as the conditioning input.</p>
+<p>This way, even if at some point the Tacotron model produces the wrong mel-spectrogram slice, the error will not get accumulated, as the future predictions won’t use the incorrect slice.</p>
+<p>As such, the training data for HiFi-GAN consists of mel-spectrograms produced in the teacher-forcing mode by the already finetuned Tacotron and the sound waves. After generating it, I finetuned the vocoder using the “universal” checkpoint from the repo.</p>
+<p>Here are samples I got without finetuning (using base universal checkpoint) HiFi-GAN (left), and after finetuning for around 10h (right).</p>
+<figure>
+<audio controls src="../data/tts/tacotron_universal_2000.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<audio controls src="../data/tts/tacotron_hifi_finetuned_2000.wav">
+Your browser does not support the <code>audio</code> element.
+</audio>
+<figcaption>
+Sample of the finetuned (after 2000 steps) Tacotron, using a pretrained (left) and finetuned (right) HiFi-GAN.
+</figcaption>
+</figure>
+<p>The finetuning helped a bit, but it didn’t manage to fully remove the metallic vibration when the actor would be taking a breath.</p>
+<h4 id="compute">Compute</h4>
+<p>Apart from learning the details of text-to-speech technology, this experiment was also an exercise in getting free access to the computing power.</p>
+<p>Everyone knows that training the models on a CPU takes a long time. Furthermore, the code is written in a way that you need to modify the code to not use a GPU, which isn’t always easy.</p>
+<p>I tried out two venues that offer free GPU for training deep learning models: 1. <a href="https://colab.research.google.com">Google Colab</a> 2. <a href="https://gradient.run/free-gpu">Paperspace notebooks</a></p>
+<p>I found Colab easier to use overall: it was quicker to connect to a runtime, and the integration with Google Drive made moving data and the code between the local machine and the Colab easy.</p>
+<p>Another benefit of Colab is that it’s more popular, so there are lots of instructions online on how to do even complex things<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>.</p>
+<p>The top selling point of Paperspace is that they give a guaranteed uptime of up to 6h.</p>
+<p>In the Colab, Google sends a pop-up to check whether you’re still there every couple of hours and disconnects you after some time anyway. In Paperspace, when you request a machine you may be asked to wait, but once you get it reserved, it’s yours for the period you requested it for.</p>
+<p>Even more, you can close the browser window/turn off the computer and still expect the GPU to be crunching the matrices for you in the background, while the Colab disconnects you from the accelerator the moment you close the tab.</p>
+<p>It makes Paperspace more convenient for training, as you can leave it for the night, not having to continuously monitor the process.</p>
+<p>I also liked the interface of Paperspace a bit more, as it looked a bit more like a full VM with a disk and terminal (even though I didn’t manage to make tensorboard work), but that’s a minor difference.</p>
+<p>Overall, I would say that Colab is better for doing quick inference, and Paperspace would be my choice for finetuning models. Full training (which would take around a week for the models I tested) would still be painful to do in 6h increments, but I didn’t want to do it anyway.</p>
+<h2 id="prosodies">Prosodies</h2>
+<p>If you hear a couple of sample sentences generated by these models, you’ll likely find them correctly pronounced but lifeless. The intonation, accent, and rhythm that conveys emotions (called <a href="https://en.wikipedia.org/wiki/Prosody_(linguistics)">prosody</a> by the linguists) are not there.</p>
+<p>One could claim that understanding the text enough to express prosody is an insanely difficult problem, but I don’t think it’s crazy to expect it to be solved anytime soon. It sounds easier than the type of things <a href="https://openai.com/blog/openai-api/">GPT-3</a> does, although GPT-3 is an effort bigger by orders of magnitude (in terms of parameters, people, compute, etc.) than any of the models described above.</p>
+<p>I haven’t seen TTS expressing emotion yet, though. I found <a href="https://apple.github.io/neural-tts-with-prosody-control/">one paper</a> that goes in the direction of controlling the prosody with some good samples, but unfortunately without available code.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The significant majority of the speakers come from the British Isles.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>quite appropriately to be fair, given that it’s generated by a machine<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>For LibriTTS, even though the HiFi-GAN repo doesn’t contain the model trained only on LibriTTS, the FastSpeech2 code authors included a LibriTTS checkpoint directly in theirs.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>Technically, multi-speaker training could be more difficult than finetuning on a single (new) voice. I still don’t expect anything better than the poor quality of LJ Speech, for which a lot of data is available.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>the models that have this property are called <em>autoregressive</em><a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>For example, for another project, it was easy to get Colab to record video from the webcam and play it back.<a href="#fnref6">↩</a></p></li>
+</ol>
+</div>
+
+
+  <!-- nonheader -->
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+<!-- <script>
+  (function () {
+    'use strict';
+    anchors.options.placement = 'right';
+    anchors.add('h2, h3');
+  })();
+</script> -->
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+    <script>
+    require(['https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5.js'], function(module) {
+        new module.Bilderrahmen({ closeOnOutsideClick: true });
+    });
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', gaProperty, 'auto');
+    ga('send', 'pageview');
+    </script>
+
+  </body>
+</html>
