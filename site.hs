@@ -108,7 +108,7 @@ main = hakyll $ do
         compile $ do
             all_headers <- recentFirst =<< post_headers
             all_titles <- recentFirst =<< post_titles
-            let expanded_prefix = 5
+            let expanded_prefix = 10
             let first_posts = take expanded_prefix all_headers
             let last_posts = drop expanded_prefix all_titles
 
