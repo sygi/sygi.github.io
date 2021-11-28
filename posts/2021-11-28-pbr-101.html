@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        
+        <meta name="author" content="Jakub Sygnowski" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <script defer src="https://code.jquery.com/jquery-2.2.2.min.js" type="text/javascript"></script>
+        <script defer src="../../js/footnotes.js" type="text/javascript"></script>
+        <!--<script defer src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>-->
+        <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+        <title>Physically-based rendering 101</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on November 28, 2021
+    
+</div>
+<h1>Physically-based rendering 101</h1>
+<p>After watching one of the <a href="https://www.youtube.com/channel/UCbfYPyITQ-7l4upoX8nvctg">Two minute papers</a> videos: a short video summary of a research paper made by ‪Károly Zsolnai-Fehér‬, YouTube algorithm suggested I should watch <a href="https://users.cg.tuwien.ac.at/zsolnai/gfx/rendering-course/">the rendering course</a> of the same author next. My physically-based rendering knowledge is very fragmented: I was immersed in the lingo without understanding it through friends who are doing PhDs in related areas, and I tried and failed to read <a href="https://pbr-book.org">PBRT</a>. I watched Karoly’s course to connect the dots and, hopefully, to understand Blender better.</p>
+<h2 id="ray-tracing">Ray tracing</h2>
+<p>At the heart of physically-based rendering is the ray tracing algorithm. It describes how rays of light travel through a 3D scene:</p>
+<ol style="list-style-type: decimal">
+<li>light starts at a light source,</li>
+<li>it goes in a straight line to objects, and bounces off them, until</li>
+<li>it hits the camera, in front of which there is a canvas on which the image will appear.</li>
+</ol>
+<figure>
+<img src="../images/pbr/ray_tracing.png" alt="Ray tracing diagram" style="width:70.0%" />
+<figcaption>
+Figure representing ray tracing, from “Predicting acoustic emission attenuation in solids using ray-tracing within a 3D solid model” by Mohamed El-Shaib.
+</figcaption>
+</figure>
+<h2 id="specular-reflection-model">Specular reflection model</h2>
+<p>To formalize the above algorithm, one needs to define a model deciding in which direction a light ray reflects from a surface it hits.</p>
+<p>One simple reflection model is the specular reflection. It assumes the reflected ray angle to the normal of the surface is the same as the angle between the shining ray and the normal.</p>
+<figure>
+<img src="../images/pbr/specular_reflection_back.png" alt="Specular reflection model" style="width:70.0%" />
+<figcaption>
+Specular reflection model. Angle MNP is the same as PNO.
+</figcaption>
+</figure>
+<p>If one knows the shapes and locations of objects, lights, and the camera and assumes the reflections follow the specular model, it is easy to calculate the paths of light rays in the scene.</p>
+<p>The resulting images would assume that every surface behaves as an ideal mirror, though.</p>
+<h2 id="various-materials">Various materials</h2>
+<p>The reality is more complex, and there are multitudes of different materials with varying behaviors, like:</p>
+<ul>
+<li>reflecting the light of different colors that makes us see colorful images,</li>
+<li>reflecting rays not in a single direction, but in a range of directions (<a href="https://en.wikipedia.org/wiki/Diffuse_reflection">diffuse reflection</a>),</li>
+<li>allowing (a part of) light to pass through the material after being <a href="https://en.wikipedia.org/wiki/Refraction">refracted</a> at the boundary of mediums (e.g. in glass).</li>
+</ul>
+<h3 id="bxdf-formalism">BxDF formalism</h3>
+<p>To formally describe the distribution of the reflected light, scientists use a function called Bidirectional Reflectance Distribution Function (BRDF). It is a non-negative function of three parameters</p>
+<p><span class="math display">\[f_r(p, \omega_i, \omega_o): R^3 \times [-\pi, \pi]^2 \times [-\pi, \pi]^2 \rightarrow R_+ \cup \{0\}\]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the point on the surface hit by the ray, <span class="math inline">\(\omega_i\)</span> is the angle (on the hemisphere) between the incoming ray and the plane tangent to the object in <span class="math inline">\(p\)</span>, and <span class="math inline">\(\omega_o\)</span> is the angle on the same hemisphere between the outgoing ray and the tangent.</p>
+<p>When the value of BRDF is high, a lot of the energy of the ray coming from the direction <span class="math inline">\(\omega_i\)</span> passes to the ray outgoing in the direction <span class="math inline">\(\omega_o\)</span>; if it is 0, that ray is not reflecting in this direction at all.</p>
+<p>BRDF is normalized to behave like a probability density function:</p>
+<p><span class="math display">\[\forall_p \int f_r(p, \omega_i, \omega_o) \text{d}\omega_i \text{d}\omega_o \le 1\]</span></p>
+<p>where the integral can be less than 1 to account for the energy loss.</p>
+<p>Apart from the light reflected from the surface of an object, we would like to model light passing (transmitted) through partially transparent materials. To do so, we use an analogical function called Bidirectional Transmittance Distribution Function (BTDF) <span class="math inline">\(f_t(p, \omega_i, \omega_o)\)</span> which describes the amount of energy preserved when light ray coming from direction <span class="math inline">\(\omega_i\)</span> hits point <span class="math inline">\(p\)</span> and gets refracted to a direction <span class="math inline">\(\omega_o\)</span> on the hemisphere on the other side of the surface.</p>
+<p>The sum of these functions, describing the two effects together, is called a Bidirectional Scattering Distribution Function (BSDF, <span class="math inline">\(f\)</span>):</p>
+<p><span class="math display">\[f(p, \omega_i, \omega_o) = f_r(p, \omega_i, \omega_o) + f_t(p, \omega_i, \omega_o)\]</span></p>
+<figure>
+<img src="../images/pbr/bsdf.png" alt="BSDF" style="width:70.0%" />
+<figcaption>
+A diagram showing the split of BSDF into transmittance and reflectance parts.
+</figcaption>
+</figure>
+<h4 id="color">Color</h4>
+<p>Note that I never mentioned the color in the definitions above. Under this model, we assume that the BSDF (distribution of directions of the outgoing light) is independent of the color (wavelength) of the ray. It is a simplifying assumption that makes it impossible to model situations like dispersion in a prism (where different colors are refracted by a different angle, i.e. need different BSDFs). Nevertheless, it doesn’t affect most of the scenes, and is used in Blender, so we’ll stick with it.</p>
+<p>It doesn’t mean that the objects themselves don’t have color, but as handling it is independent from how the light ray travels through the scene, it will be skipped here<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<figure>
+<img src="../images/pbr/prism_crop.jpg" alt="Dispersion effect in the prism" style="width:50.0%" />
+<figcaption>
+A dispersion effect which requires different BSDFs for different colors. <a href="https://commons.wikimedia.org/wiki/File:Színszóródás_prizmán2.jpg">A photo made by Zátonyi Sándor</a> shared on CC-SA license.
+</figcaption>
+</figure>
+<h2 id="rendering-equation">Rendering equation</h2>
+<p>How do we use the information about how the light is scattered on various surfaces to draw pixels on the screen?</p>
+<p>Under <a href="https://en.wikipedia.org/wiki/Pinhole_camera">a standard camera model</a><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>, the camera is a point, in front of which there is a canvas where the image will appear. The energy of a light ray determines the intensity of the pixel on the canvas that the light ray passed through before reaching the camera.</p>
+<figure>
+<img src="../images/pbr/pinhole_background.png" alt="Camera model" style="width:70.0%" />
+<figcaption>
+Diagram showing the canvas spread in front of the camera.
+</figcaption>
+</figure>
+<p>To model the light shining from a particular point in space, apart from knowing how a single ray scatters locally (BSDFs), we need a way to sum up all the incoming light rays into a single outgoing one. To do this, we use a <em>rendering equation</em>:</p>
+<p><span class="math display">\[L_o(p, \omega_o) = L_e(p, \omega_o) + \int f(p, \omega_i, \omega_o) L_i(p, \omega_i) \text{cos}(\sphericalangle(\omega_i, \omega_o)) \text{d} \omega_i\]</span></p>
+<p>Where <span class="math inline">\(L_o\)</span> is the light outgoing from <span class="math inline">\(p\)</span> in the direction of <span class="math inline">\(\omega_o\)</span>, <span class="math inline">\(L_e\)</span> is the amount of the light emitted in that direction (i.e. when <span class="math inline">\(p\)</span> is a light source), and <span class="math inline">\(L_i\)</span> is the total light intensity incoming from direction <span class="math inline">\(\omega_i\)</span>.</p>
+<p>Note that we can calculate <span class="math inline">\(L_i\)</span> recursively: to get the amount of light incoming to <span class="math inline">\(p\)</span> from direction <span class="math inline">\(\omega_i\)</span>, we can find <span class="math inline">\(q\)</span>: the point on the intersection of the incoming ray and the surface nearest to <span class="math inline">\(p\)</span>, and the light incoming to <span class="math inline">\(p\)</span> from <span class="math inline">\(q\)</span> will be the same as the light outgoing from <span class="math inline">\(q\)</span> in the direction of <span class="math inline">\(p\)</span>: <span class="math display">\[L_i(p, \omega_i) = L_i(p, \overrightarrow{qp}) = L_o(q, \overrightarrow{pq})\]</span></p>
+<figure>
+<img src="../images/pbr/pq_rendering_background.png" alt="Diagram showing how to calculate incoming light from outgoing light" style="width:40.0%" />
+<figcaption>
+Diagram illustrating how to calculate the light incoming to point <span class="math inline">\(p\)</span> based on the light outgoing from <span class="math inline">\(q\)</span>.
+</figcaption>
+</figure>
+<p>If we knew how to calculate the integral in the rendering equation, we could get the angle between a ground plane and the camera - pixel vector for each pixel on the canvas and calculate the light incoming to the camera from that direction: <span class="math display">\[L_i(\text{camera}, \overrightarrow{(\text{pixel}, \text{canvas})})\]</span></p>
+<p>using the rendering equation, which would define the intensity of the pixel.</p>
+<h3 id="approximating-the-integral">Approximating the integral</h3>
+<p>As anyone who ever calculated an integral knows, analytically working out an integral is difficult in all but the simplest of cases. Even if we restricted our BSDFs to very simple functions (limiting the properties of materials that we could express), we’d still need to do the calculation recursively over all (generally infinitely many) of the points the light ray can reach.</p>
+<p>As the exact solution to the rendering equation is infeasible, we will be looking for an approximate one. The most popular method to do so is <em><a href="https://en.wikipedia.org/wiki/Monte_Carlo_integration">Monte Carlo integration</a></em>.</p>
+<p>It is based on the interpretation of the integral as a mean value of the function of a random variable: <span class="math display">\[\int_X f(x) \text{d}x = \mathbb{E}_{x \sim X} f(x)\]</span></p>
+<p>Now, instead of calculating the function for every possible value of the random variable <span class="math inline">\(X\)</span>, we can sample it a couple of times according to its distribution and average the value of the function in these points: <span class="math display">\[\mathbb{E}_X f(x) \approx µ_N = \frac{1}{N}\sum_{i=1}^N f(x_i), x_i \sim X\]</span></p>
+<p>Of course, the more samples we take (the bigger N is), the closer (on average<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>) the resulting mean <span class="math inline">\(µ_N\)</span> will be to the real mean <span class="math inline">\(\mathbb{E}_{x \sim X} f(x)\)</span>. At the same time, the <span class="math inline">\(µ_N\)</span> estimator is unbiased, i.e. has no consistent skew to be bigger or lower than the true mean.</p>
+<p>This leads to an algorithm we can implement. For a given pixel <span class="math inline">\(p\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>We find the first intersection point <span class="math inline">\(q\)</span> on the vector <span class="math inline">\(\overrightarrow{cp}\)</span> starting in the camera <span class="math inline">\(c\)</span> and passing through the pixel.</li>
+<li>We sample the new incoming direction (corresponding to <span class="math inline">\(\omega_i\)</span> in the rendering equation) uniformly from the hemisphere centered in <span class="math inline">\(q\)</span>.</li>
+<li>We recursively calculate <span class="math inline">\(L_i(q, \omega_i)\)</span>, stopping the recursion after a fixed number of bounces (the process would never end otherwise).</li>
+<li>We set the pixel to <span class="math inline">\(L_e(q, \overrightarrow{pc})\)</span> (positive if <span class="math inline">\(q\)</span> is a light source) + <span class="math inline">\(f(q, \omega_i, \overrightarrow{pc})\)</span> (BSDF) times the value of recursively calculated incoming light (<span class="math inline">\(L_i(q, \omega_i)\)</span>) times the cosine of the angle between <span class="math inline">\(\omega_i\)</span> and <span class="math inline">\(\overrightarrow{pc}\)</span>.</li>
+<li>As we repeat this process with sampling multiple directions <span class="math inline">\(\omega_i\)</span> and average the results, the pixel intensity approaches the correct value based on the rendering equation.</li>
+</ol>
+<h4 id="disclaimer-on-practice">Disclaimer on practice</h4>
+<p>This process, while unbiased (except for the fact that we cut the recursion after a couple of bounces), can require a lot of samples to converge. In particular, for a punctual light, it is effectively impossible to hit it (we would reach it with probability 0).</p>
+<p>There are some simple ways to make it more efficient, e.g. by shooting rays from both the camera and the light source at the same time or changing the distribution of rays to a different one than uniform over angles and correcting the resulting integral (<a href="https://en.wikipedia.org/wiki/Importance_sampling">importance sampling</a>).</p>
+<p>Many PhDs have been written on how to speed up the rendering process. To keep things simple, I’ll assume the model described above, with rays shooting from the camera to approximate the integrals with vanilla Monte-Carlo, even if this is not how one implements a modern renderer in practice.</p>
+<h2 id="artist-to-math-translation">Artist to math translation</h2>
+<p>BSDF is a representation of the material that’s convenient for a computer, as it can easily sample outgoing ray directions and quantify the amount of lost energy from the bounce.</p>
+<p>Expressing the material in terms of a BSDF is tricky for artists who create 3D models, though: it’s more natural for humans to think about the physical properties like color or glossiness than about the 7-dimensional BSDF.</p>
+<p>To facilitate the process of constructing materials, 3D rendering software has nodes that can map physical parameters like “Transmission” or “Roughness” into a BSDF which will be later used by the renderer.</p>
+<p>The most popular node in Blender that outputs a BSDF is called <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/principled.html">Principled BSDF</a>. It is based on <a href="https://static1.squarespace.com/static/58586fa5ebbd1a60e7d76d3e/t/593a3afa46c3c4a376d779f6/1496988449807/s2012_pbs_disney_brdf_notes_v2.pdf">a seminal paper</a> from Disney, where they were investigating ways to express a BSDF using a small number of properties understandable by artists.</p>
+<p>In the next blog post, I analyze its parameters to see how they influence the produced material.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I plan to do another blog post dealing specifically with various properties of materials, including color.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Ignoring camera lenses and inversion of the image caused by the pinhole.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>See <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">law of large numbers</a> for a formalization and proof of this statement.<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+
+  <!-- nonheader -->
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+<!-- <script>
+  (function () {
+    'use strict';
+    anchors.options.placement = 'right';
+    anchors.add('h2, h3');
+  })();
+</script> -->
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+    <script>
+    require(['https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5.js'], function(module) {
+        new module.Bilderrahmen({ closeOnOutsideClick: true });
+    });
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', gaProperty, 'auto');
+    ga('send', 'pageview');
+    </script>
+
+  </body>
+</html>
