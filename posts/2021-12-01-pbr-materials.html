@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        
+        <meta name="author" content="Jakub Sygnowski" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <script defer src="../../js/footnotes.js" type="text/javascript"></script>
+        <!--<script defer src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>-->
+        <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+        <title>Physically based rendering: materials</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on December  1, 2021
+    
+</div>
+<h1>Physically based rendering: materials</h1>
+<p>3D scenes consist of objects, each of which has a shape and a material. The shape is defined through a mesh: a collection of vertices, edges, and faces living in a 3D world. The material describes the color of the object and how it reflects and transmits light. In this post, I inspect a popular way of expressing the material: a principled BSDF to see how its numerous parameters influence the look of an object.</p>
+<h2 id="principled-bsdf">Principled BSDF</h2>
+<p>As a quick reminder from <a href="../posts/2021-11-28-pbr-101.html">the previous post</a>, the way the light bounces of objects is described as a function called BSDF to a computer.</p>
+<p>That representation is not natural for people: it’s based on the interpretation of light as a multi-dimensional probability density function. To make it easier for artists to define the materials, Disney <a href="https://static1.squarespace.com/static/58586fa5ebbd1a60e7d76d3e/t/593a3afa46c3c4a376d779f6/1496988449807/s2012_pbs_disney_brdf_notes_v2.pdf">came up with a shader</a><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> called Principled BSDF whose inputs are physically-based properties like “roughness” or “metallic” which get translated to a BSDF.</p>
+<figure>
+<img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_shader_principled_node.png" alt="Principled BSDF Blender node" style="width:35.0%" />
+<figcaption>
+A node containing all the settings to describe a material using Principled BSDF in Blender.
+</figcaption>
+</figure>
+<p>Principled BSDF has become the industry standard for describing materials. Despite its principle to be as intuitive as possible, it has a lot of parameters one can change, whose meaning is not always obvious, making using the shader overwhelming at first.</p>
+<p>Below, I summarize my understanding of various properties the shader has.</p>
+<h2 id="base-color">Base color</h2>
+<p>Color is the most basic property a material can have.</p>
+<p>The standard BSDF formalism doesn’t capture the color of objects. To do so, we need to attach an extra property to the light ray containing the color of the light (described as a 3-element RGB vector). Whenever the ray hits an object, its color coordinates get multiplied by the RBG coordinates of the object, decreasing the intensity of the corresponding channels.</p>
+<p>Let’s consider the ray going in the direction from the sun to the camera:</p>
+<ol style="list-style-type: decimal">
+<li>The ray starts perfectly white, with color represented as <code>(1., 1., 1.)</code></li>
+<li>The ray hits a perfectly red object, i.e. having color (1., 0., 0.). The color of the ray changes to <code>(1., 0., 0.)</code>.</li>
+<li>The ray goes further and hits a grey object of color <code>(0.5, 0.5, 0.5)</code>. The ray’s color gets multiplied to <code>(0.5, 0., 0.)</code>, which corresponds to dark red.</li>
+<li>The ray hits the camera where it’s averaged with other incoming rays, creating an (RGB) pixel.</li>
+</ol>
+<figure>
+<img src="../images/pbr_materials/color.png" alt="Change of light ray color diagram" style="width:70.0%" />
+<figcaption>
+Diagram showing a change in the light ray color when being reflected from colorful surfaces.
+</figcaption>
+</figure>
+<h2 id="specular-vs-diffuse-reflections">Specular vs diffuse reflections</h2>
+<p>The specular reflection model assumes the light rays are reflected under the same angle to the normal as the incoming light<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
+<p>There is another model of reflection, which assumes that the incident light gets scattered in all directions with equal probability, called <a href="https://en.wikipedia.org/wiki/Diffuse_reflection">diffuse reflection</a>.</p>
+<p>The physical mechanism behind the diffuse reflection is like this:</p>
+<ol style="list-style-type: decimal">
+<li>The light ray crosses the surface of the material.</li>
+<li>Inside, the material is mostly empty, except for a small number of particles.</li>
+<li>When the ray hits a particle, it gets reflected in a random direction.</li>
+</ol>
+<figure>
+<img src="../images/pbr_materials/diffuse.gif" alt="Diagram with a diffuse and specular reflections" style="width:70.0%" />
+<figcaption>
+Comparison of specular and diffuse reflection by GianniG46 (<a href="https://commons.wikimedia.org/wiki/File:Lambert2.gif">link</a>).
+</figcaption>
+</figure>
+<p>Principled BSDF handles these two reflection models by first calculating the light intensity corresponding to each of them separately, and then simply summing them up.</p>
+<h3 id="subsurface-scattering">Subsurface scattering</h3>
+<p>The behavior of light rays reflecting from the material particles is called <em>subsurface scattering</em>. Apart from being reflected in a random direction, the light rays change color during scattering. As the internals of the material may have a different color than the surface (e.g., skin is white-pink and the internal parts of a body are red), the color of the reflected ray may depend on how deep it entered material.</p>
+<figure>
+<img src="../images/pbr_materials/subsurface_res.jpg" alt="Photo showing subsurface scattering" style="width:40.0%" />
+<figcaption>
+Subsurface scattering in the human hand. Scaled-down <a href="https://commons.wikimedia.org/wiki/File:Skin_Subsurface_Scattering.jpg">photo by Davepoo2014</a>.
+</figcaption>
+</figure>
+<p>The Principled BSDF in Blender has three parameters for controlling the subsurface scattering:</p>
+<ol style="list-style-type: decimal">
+<li>Subsurface, controlling overall strength of subsurface scattering. It is a multiplier to the radius.</li>
+<li>Subsurface color, defining the color of the material internals.</li>
+<li>Subsurface radius, defining the average depth the light rays enter the material. It is provided as a 3-dimensional vector: one for RGB colors, to allow materials to, e.g., only allow the red color to enter.</li>
+</ol>
+<h2 id="metallic">Metallic</h2>
+<p>There are two types of materials: <a href="https://en.wikipedia.org/wiki/Electrical_conductor">conductors</a> (often called metallic by the artistic community) and <a href="https://en.wikipedia.org/wiki/Dielectric">dielectrics</a>.</p>
+<p>For conductors, the light enters the material to a much smaller depth than for dielectrics. Visually it manifests itself by:</p>
+<ol style="list-style-type: decimal">
+<li>Conductors not permitting passing any light through the material. In other words, only dielectrics are transmissive.</li>
+<li>Both types of materials cause specular reflection (occurring at the surface of the material), but only dielectrics induce a diffuse one (needing to enter the material to a certain depth).</li>
+<li>The specular reflection itself is of the same color as the incoming light in the case of dielectrics but tinted by the color of the material for conductors.</li>
+</ol>
+<p>Physically, materials are either conductors or dielectrics (not anything in between). The parameter in the shader allows for in-between values, which correspond to non-photorealistic blends between the two.</p>
+<p>As its alternative name suggests, conductors are basically only metals, whereas dielectrics are all other real-life materials.</p>
+<figure>
+<img src="../images/pbr_materials/metallic.png" alt="Render of a metallic material" style="width:40.0%" /> <img src="../images/pbr_materials/dielectric.png" alt="Render of a dielectric material" style="width:40.0%" />
+<figcaption>
+Conductor (left) vs dielectric (right). Dielectric has a bigger proportion of diffuse reflection (flat pink color). The specular reflection is tinted towards pink in case of metallic and white for the dielectric.
+</figcaption>
+</figure>
+<h2 id="transmission">Transmission</h2>
+<p>For dielectrics, a part of the light shining on the surface is reflected in a specular way, and a part of it enters the material.</p>
+<p>For the light that enters the material, a part of it randomly hits the material particles and gets reflected in a diffuse reflection, and the rest passes through the material as transmitted light.</p>
+<p><em>Transmission</em> parameter controls the proportion of light that leaves the object on the other side. Value of 1 means that there is no diffuse reflection: the specular parameter decides the strength of the specular reflection, and all the remaining light passes through the object.</p>
+<p>The color of the light ray is still multiplied by the base color of the object, allowing the creation of materials like colored glass, which transmit some colors but absorb others.</p>
+<figure>
+<img src="../images/pbr_materials/transmission.png" alt="Render of a transmissive material" style="width:40.0%" />
+<figcaption>
+Fully transmissive (glass-like) material, with a red base color.
+</figcaption>
+</figure>
+<h2 id="index-of-refraction">Index of refraction</h2>
+<p>Light travels at a different speed in different mediums. It’s fastest in a vacuum, with a speed of nearly 300.000 km/s. The ratio between the speed of light in a vacuum to the speed of light in a given material is called its <em>index of refraction</em> (IOR). For example, the IOR of glass is 1.33, meaning the light is slower in glass by around 1/3.</p>
+<p>The wave-like nature of light can explain an effect called refraction, where the direction of light changes when moving between two mediums with different indices of refraction.</p>
+<figure>
+<img src="../images/pbr_materials/snells_law.png" alt="Diagram illustrating Snell’s law" style="width:35.0%" />
+<figcaption>
+Illustration of Snell’s law, which states that the relation between angles of refraction <span class="math inline">\(\theta\)</span> and the indices of refraction <span class="math inline">\(n\)</span> satisfies <span class="math inline">\(n_1\sin \theta_1 = n_2 \sin \theta_2\)</span>.
+</figcaption>
+</figure>
+<p>The IOR parameter found in the Principled BSDF controls the refraction angle, allowing the artist to match materials with a known index of refraction.</p>
+<h2 id="specular">Specular</h2>
+<p>Fresnel reflectance defines that part of the light that is reflected off the surface in a specular way when the light shines on it from the normal direction (i.e., perpendicularly to the surface) for a dielectric.</p>
+<p>Physically, it <a href="https://en.wikipedia.org/wiki/Fresnel_equations#Power_(intensity)_reflection_and_transmission_coefficients">can be calculated from IOR</a> of the material<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
+<p><span class="math display">\[f_0 = \frac{(IOR - 1)^2}{(IOR+1)^2}\]</span></p>
+<p>As the resulting values would be between 0 and 8% for most of the materials (although there are dielectrics with higher specular reflection, for example, a diamond specularly reflects 17% of the incoming light), Fresnel reflectance is expressed through a normalized specular parameter as:</p>
+<p><span class="math display">\[S = f_0/0.08\]</span></p>
+<p>On that scale, a typical dielectric with <span class="math inline">\(f_0 = 0.04\)</span> will have a specular parameter of <span class="math inline">\(0.5\)</span>.</p>
+<p>The Fresnel reflectance <span class="math inline">\(f_0\)</span> is also used to calculate the Fresnel effect that causes a higher reflection at grazing (far from the normal) angles</p>
+<figure>
+<img src="../images/pbr_materials/no_fresnel.png" alt="Render of a material with no Fresnel effect" style="width:40.0%" /> <img src="../images/pbr_materials/fresnel.png" alt="Render of a material with Fresnel effect" style="width:40.0%" />
+<figcaption>
+Illustration of a fresnel effect. Notice faint, light highlights at the borders of the sphere on the right (with specular &gt;0).
+</figcaption>
+</figure>
+<p>The split between specular and diffuse reflection applies only to the dielectrics. For conductors, all reflection happens in a specular way, so controlling the specular parameter doesn’t make physical sense<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</p>
+<h3 id="specular-tint">Specular tint</h3>
+<p>As we said before, the specular reflection for dielectrics doesn’t change the color of the light ray. To achieve an artistic (non-physically accurate) effect of specular reflection tinting the light towards the base color of the material, Principled BSDF offers the <em>specular tint</em> parameter.</p>
+<h2 id="microfacet-model-and-roughness">Microfacet model and roughness</h2>
+<p>One can divide the reflected light can into:</p>
+<ul>
+<li>specular reflection, reflecting the light in the direction under the same angle to the normal as the incident light, and</li>
+<li>diffuse reflection, reflecting the light in all directions, present only for dielectrics.</li>
+</ul>
+<p>The surface of the materials is rarely perfectly flat: it often has some general surface and a lot of microscopic variations to it, called microfacets. When a ray of light shines onto a surface with these bumps, it often hits an area whose normal is not the same as the global normal of the surface.</p>
+<figure>
+<img src="https://google.github.io/filament/images/diagram_macrosurface.png" alt="Figure explaining microfacets" style="width:80.0%" />
+<figcaption>
+A figure (from <a href="https://google.github.io/filament/Filament.html#figure_microfacets">Filament documentation</a>) explaining the idea of microfacets.
+</figcaption>
+</figure>
+<p>Because of that, the light reflected through a specular reflection doesn’t take a single direction but rather a range of angles around it.</p>
+<p>Instead of modeling the actual microscopic structure of the material (which would be tedious and computationally inefficient), the renderers are using statistical models<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> to decide in which direction the rays will (specularly) reflect.</p>
+<p>The shader has a parameter called <em>roughness</em>, controlling how wide the distribution of reflected rays will be. Materials with lower roughness will appear shinier as more highlights will appear on their surface.</p>
+<figure>
+<img src="https://google.github.io/filament/images/diagram_roughness.png" alt="Illustration of effect of roughness parameter on the BSDF" style="width:95.0%" />
+<figcaption>
+Illustration of the roughness parameter: higher roughness (left), corresponding to a more bumpy surface, causes a wider range of directions of reflected rays. Comes from <a href="https://google.github.io/filament/Filament.html#figure_roughness">Filament docs</a>.
+</figcaption>
+</figure>
+<h2 id="anisotropic">Anisotropic</h2>
+<p>For typical materials, the variation in the surface is random, and the specular reflection, on average, goes in the same direction as if the object was flat. High roughness can increase the variance of reflection but doesn’t change the mean direction.</p>
+<p>For some types of materials, the assumption about the randomness of microfacets is not correct. For example, a surface made of sanded metal, seen on the bottom of a pan, has a regular pattern that systematically changes reflections.</p>
+<p>To allow accounting for this effect, Principled BSDF has a parameter called <em>anisotropy</em> that modifies the direction of the reflections. The <em>tangent</em> setting controls the angles of the reflections, and anisotropy the strength of the effect.</p>
+<figure>
+<img src="../images/pbr_materials/isotropic.png" alt="Render of an isotropic material" style="width:40.0%" /> <img src="../images/pbr_materials/anisotropic.png" alt="Render of an anisotropic material" style="width:40.0%" />
+<figcaption>
+Increasing anisotropy (right) allows changing the direction of the specular reflection.
+</figcaption>
+</figure>
+<h2 id="clearcoat">Clearcoat</h2>
+<p>The microfacet model assumes that there is a single parameter: roughness describing the “bumpiness” of the material’s surface, which doesn’t change with the depth of the material.</p>
+<p>It makes it hard to capture materials that by themselves are rough but are covered with a coat of shiny paint, like lacquered wood or colorful aluminum cans.</p>
+<p>To simplify defining such materials, there is a <em>clearcoat</em> parameter that adds a thin layer of colorless paint, with the roughness that we can control separately, on top of the given material.</p>
+<figure>
+<img src="../images/pbr_materials/no_clearcoat.png" alt="Render of material without clearcoat" style="width:40.0%" /> <img src="../images/pbr_materials/clearcoat.png" alt="Render of a material with clearcoatl" style="width:40.0%" />
+<figcaption>
+A can with a high clearcoat (right) has a more shiny look to it.
+</figcaption>
+</figure>
+<h2 id="sheen">Sheen</h2>
+<p>Another material property that creates a layer on top of the regular material is <em>sheen</em>. It is used to describe an effect causing materials like fleece or velvet to be slightly lighter near the borders.</p>
+<h2 id="principled-bsdf-in-blender">Principled BSDF in Blender</h2>
+<p>I looked at how different shader parameters influence the final look of the materials in Blender. It was intimidating at first, but in the end, only 3-4 of them (roughness, metallic, specular, transmission) express most of the variability in the materials.</p>
+<p>While I looked specifically at the Blender (Cycles) implementation of the Principled BSDF, other renderers use the same terminology, e.g. <a href="https://mitsuba2.readthedocs.io/en/latest/generated/plugins.html#bsdfs">Mitsuba</a>, or <a href="https://google.github.io/filament/Materials.html">Filament</a>, so the understanding of these parameters is useful independent of the actual render used.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>a program for drawing pixels on a screen<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>See section Specular reflection model in <a href="../posts/2021-11-28-pbr-101.html">the previous post</a>.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>However, it looks like changing this parameter in Blender does influence the level of Fresnel effect applied.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>However, it looks like changing this parameter in Blender does influence the level of Fresnel effect applied.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>Blender allows to choose between two versions of <a href="https://www.cs.cornell.edu/~srm/publications/EGSR07-btdf.pdf">GGX</a>.<a href="#fnref5">↩</a></p></li>
+</ol>
+</div>
+
+
+  <!-- nonheader -->
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+<!-- <script>
+  (function () {
+    'use strict';
+    anchors.options.placement = 'right';
+    anchors.add('h2, h3');
+  })();
+</script> -->
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+    <script>
+    require(['https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5.js'], function(module) {
+        new module.Bilderrahmen({ closeOnOutsideClick: true });
+    });
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', gaProperty, 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js" type="text/javascript"></script>
+
+  </body>
+</html>
