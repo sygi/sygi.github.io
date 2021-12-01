@@ -17,7 +17,7 @@ var Footnotes = {
 		);
 	},
 	setup: function() {
-		var footnotelinks = $(".footnote-ref") // changed here, because pandoc changed
+		var footnotelinks = $(".footnoteRef")
 		
 		footnotelinks.unbind('mouseover',Footnotes.footnoteover);
 		footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
@@ -63,7 +63,7 @@ var Footnotes = {
       position:'absolute',
 			left:left,
 			top:top,
-			opacity:0.95
+			opacity:0.97
 		});
 	},
 	footnoteoout: function() {
@@ -82,7 +82,7 @@ var Footnotes = {
 		clearTimeout(Footnotes.footnotetimeout);
 		$('#footnotediv').stop();
 		$('#footnotediv').css({
-				opacity: 0.95
+				opacity: 0.97
 		});
 	}
 }

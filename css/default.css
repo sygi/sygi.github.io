@@ -130,6 +130,19 @@ div.stub {
   padding-bottom: 20px;
 }
 
+/* Footnote */
+div#footnotediv {
+  font-size: 90%;
+  background-color: #F8F8F8;
+  padding: 0px 10px;
+  border: 1px solid #C6C6C6;
+  box-shadow: 0 0 7px;
+}
+div#footnotediv p {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
 /* Table */
 div.table-wrapper {
   margin: 0 auto;
