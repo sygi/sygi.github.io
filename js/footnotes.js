@@ -31,6 +31,7 @@ var Footnotes = {
 		$('#footnotediv').remove();
 		
 		var id = $(this).attr('href').substr(1);
+		var refid = "#" + id.substr(0, 2) + "ref" + id.substr(2);
 		var position = $(this).offset();
 	
 		var d = document.createElement('div');
@@ -48,7 +49,14 @@ var Footnotes = {
 			div.bind('mouseout',Footnotes.footnoteoout);
 		}
 
-		var el = document.getElementById(id);
+		var el = document.getElementById(id).cloneNode(true);
+		var maybe_inner_el = el.firstChild;
+		if (maybe_inner_el) {
+			var maybe_backlink = maybe_inner_el.lastChild;
+			if (maybe_backlink.getAttribute && maybe_backlink.getAttribute("href") === refid){
+				maybe_inner_el.removeChild(maybe_backlink);
+			}
+		}
 		div.html('<div>'+$(el).html()+'</div>');
 		
 		$(document.body).append(div);

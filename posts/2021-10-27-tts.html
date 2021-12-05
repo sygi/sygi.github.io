@@ -9,10 +9,6 @@
         
         <link rel="stylesheet" type="text/css" href="../css/default.css" />
         <link rel="icon" href="../images/favicon.png" />
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-        <script defer src="../../js/footnotes.js" type="text/javascript"></script>
-        <!--<script defer src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>-->
         <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
         <title>Easy-to-use text-to-speech</title>
@@ -241,9 +237,30 @@ Sample of the finetuned (after 2000 steps) Tacotron, using a pretrained (left) a
             and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
           </span>
         </div>
-    <script>
-    require(['https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5.js'], function(module) {
+    <script defer>
+    require.config({
+      paths: {
+        'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
+        'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
+        'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min' <!-- for footnotes -->
+      }
+    });
+
+    require(['bilderrahmen'], function(module) {
         new module.Bilderrahmen({ closeOnOutsideClick: true });
+    });
+    require(['anchorjs'], function(module){
+      const anchors = new module();
+      console.log(anchors);
+      anchors.add();
+    });
+    require(['mathjax']);
+    require(['jquery'], function(jQuery){
+      jQuery.ajax({
+        url: '../../js/footnotes.js',
+        async: false
+      });
     });
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
@@ -271,8 +288,5 @@ Sample of the finetuned (after 2000 steps) Tacotron, using a pretrained (left) a
     ga('create', gaProperty, 'auto');
     ga('send', 'pageview');
     </script>
-
-    <script src="https://code.jquery.com/jquery-2.2.2.min.js" type="text/javascript"></script>
-
   </body>
 </html>

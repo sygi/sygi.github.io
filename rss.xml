@@ -179,7 +179,7 @@ A can with a high clearcoat (right) has a more shiny look to it.
 <hr />
 <ol>
 <li id="fn1"><p>a program for drawing pixels on a screen<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>See section Specular reflection model in <a href="../posts/2021-11-28-pbr-101.html">the previous post</a>.<a href="#fnref2">↩</a></p></li>
+<li id="fn2"><p>See section <a href="../posts/2021-11-28-pbr-101.html#specular-reflection-model">Specular reflection model</a> in the previous post.<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>However, it looks like changing this parameter in Blender does influence the level of Fresnel effect applied.<a href="#fnref3">↩</a></p></li>
 <li id="fn4"><p>However, it looks like changing this parameter in Blender does influence the level of Fresnel effect applied.<a href="#fnref4">↩</a></p></li>
 <li id="fn5"><p>Blender allows to choose between two versions of <a href="https://www.cs.cornell.edu/~srm/publications/EGSR07-btdf.pdf">GGX</a>.<a href="#fnref5">↩</a></p></li>
