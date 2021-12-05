@@ -178,8 +178,8 @@ untilFirstParagraph x = fst $ foldl (\(acc, fin) b ->
   )) ([], False) x
 
 
--- Anchors Disabled: they don't look great
-addAnchors (Pandoc meta blocks) = Pandoc meta blocks -- (addAnchorsInside blocks)
+-- Anchors Disabled here: they are added automatically by anchorjs
+addAnchors (Pandoc meta blocks) = Pandoc meta blocks --(addAnchorsInside blocks)
 
 anchorImage level = Image ("", [], [("width", show size), ("height", show size)]) [] 
   ("../images/anchor.png", "") where size = 17 - 1 * level

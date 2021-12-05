@@ -47,7 +47,7 @@ Diagram showing a change in the light ray color when being reflected from colorf
 
 The specular reflection model assumes the light rays are reflected under the same angle to the normal as the incoming light[^2].
 
-[^2]: See section Specular reflection model in [the previous post](../posts/2021-11-28-pbr-101.html).
+[^2]: See section [Specular reflection model](../posts/2021-11-28-pbr-101.html#specular-reflection-model) in the previous post.
 
 There is another model of reflection, which assumes that the incident light gets scattered in all directions with equal probability, called [diffuse reflection](https://en.wikipedia.org/wiki/Diffuse_reflection).
 
