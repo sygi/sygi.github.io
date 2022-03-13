@@ -32,23 +32,23 @@
 <p>Ever since I got T.I.M.E stories for Christmas a couple of years ago, I was planning to make a fan scenario. I have finally found some time to develop the expansion recently.</p>
 <p>T.I.M.E stories is a decksploration board game, about which I wrote a bit <a href="https://sygnowski.ml/posts/2020-06-19-time-stories.html">here</a>. The game itself defines mechanics (somewhat similarly to e.g. RPGs) and sells different scenarios (stories) as expansions. There’s a <a href="https://boardgamegeek.com/geeklist/225429/time-stories-print-and-play-scenarios-available-bg">long list</a> of fan-made scenarios, many of which are really high-quality<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
 <p>The high-level idea for the story (mild spoilers ahead) is the daring <a href="https://en.wikipedia.org/wiki/Kazimierz_Piechowski">escape</a> of Kazimierz Piechowski and his fellows from Auschwitz concentration camp.</p>
-<h1 id="preparations">Preparations</h1>
+<h2 id="preparations">Preparations</h2>
 <p>Initially, the story was meant to be about the escape of <a href="https://en.wikipedia.org/wiki/Witold_Pilecki">Witold Pilecki</a>, but after reading the details of his story I felt that the escape alone was not a worthy enough element of his biography. The escape of Piechowski seemed to fit the mechanics of time stories better.</p>
 <p>To better understand the living conditions in the camp, I read <a href="https://en.wikipedia.org/wiki/Pilecki's_Report">Pilecki’s Report</a>: a document written by Pilecki and smuggled out by Stanisław Jaster.</p>
 <p>I chose that obtaining this report will be the main topic of my scenario.</p>
 <p>I also collected maps of Auschwitz I and, with the help of a historian friend, found <a href="http://lekcja.auschwitz.org/en_15_ucieczki/">the details of this particular escape</a>. I tried keeping the scenario close to the real event, although I made small changes to drive the story.</p>
-<h1 id="technical">Technical</h1>
+<h2 id="technical">Technical</h2>
 <p>I kept notes on the game setting in a markdown note. In there, I wrote there decisions on puzzles, the mechanism to leave and enter the inner camp, locations, the meaning of state tokens, and the like.</p>
 <p>As the details of each location started to grow with the actual card texts, I moved them to a separate markdown file. I then wrote a short program that converted this file to a filetree with directories corresponding to locations and png files of each card with the rendered texts.</p>
-<h1 id="inkscape">Inkscape</h1>
+<h2 id="inkscape">Inkscape</h2>
 <p>After the list of locations and their contents was more or less decided, I started creating the actual cards. I was (still am) planning to create custom graphics for the locations, so I left the backs of the cards blank (apart from location names) and worked mostly on the fronts.</p>
 <p>I made the cards in <a href="https://inkscape.org">Inkscape</a>: it was a relatively nice experience. For one type of cards (front, backs, A-cards, etc.) I pasted the background texture and locked it and was adding things on top of it. When I was adding new elements like shields, tokens, but also choosing the design of text boxes, I was saving a new copy of the “template” card with the additional elements placed outside of the page. This way, I had a file with dozens of tokens, shields, and others ready to be drag and drop to the card page in the default svg template.</p>
 <p>One particularly useful thing was the ability to create a card from a given subset of the image file, so I was able to create a couple of cards laying next to each other and easily cut them into separate cards. It was useful in creating the map and a multi-card puzzle.</p>
-<h1 id="graphic-design">Graphic design</h1>
+<h2 id="graphic-design">Graphic design</h2>
 <p>All of the graphic elements I used so far weren’t created by me. I was surprised I was able to find free fonts (with a license allowing me to use them) on <a href="https://www.1001fonts.com">1001fonts.com</a>, and paper-like textures on <a href="https://www.myfreetextures.com">www.myfreetextures.com</a>. I used a small number of images for item cards <a href="https://www.pixabay.com">pixabay.com</a>.</p>
 <p>I made a couple of smaller graphic-design decisions like adding the semi-transparent text boxes below texts to improve readability.</p>
 <p>I also chose a font and size for every type of text, with most typical texts written with Lato 15. 15 was quite big, which made it necessary to cut some texts, but I think having less text made the cards better.</p>
-<h1 id="playtests">Playtests</h1>
+<h2 id="playtests">Playtests</h2>
 <p>I ran two playtests with friends. They discovered many important problems, e.g.:</p>
 <ul>
 <li>initially, I made a camp border a solid line, even around the camp gate and people didn’t try to go there because they assumed it wasn’t available</li>
@@ -56,15 +56,15 @@
 <li>story was too linear</li>
 </ul>
 <p>I hopefully was able to fix those to a large degree.</p>
-<h1 id="compiling">Compiling</h1>
+<h2 id="compiling">Compiling</h2>
 <p>Once the cards were ready to play, I wrote a script that copied them in the correct order, as I was developing them in the directory tree based on the location name as above.</p>
 <p>Then, I used a small subset of <a href="http://heresy.mrtrashcan.com/home/the-tools/">heresy tools</a> to join the cards together in a print-and-play pdf.</p>
-<h1 id="remaining-problems">Remaining problems</h1>
+<h2 id="remaining-problems">Remaining problems</h2>
 <p>I think my workflow was ok-ish, but definitely could be improved.</p>
 <p>In particular, the compiling phase for me included many steps: running the reordering script, moving the cards, substituting alpha with a light-grey (so that empty cards are visible in a pdf), and running heresy tools. This felt like unnecessary manual labor. Using heresy tools in full promise to help with it, but the need to manually enter the sizes and shapes is a no-deal for me. Having a single-step compilation could also allow me to generate a pdf with texts as vector graphics without converting to pngs first as I do now.</p>
 <p>Apart from this, my handling of card texts could be improved. Currently, I stored them both in the markdown file and the final svg. Because of this, whenever something needed to be changed, I had to make the change in both places. Also, manually copying the texts to svg caused them to not be positioned in the same way.</p>
 <p>Finally, when I figured out how to properly justify text in Inkscape, I already had the texts placed everywhere, so I didn’t bother to change them.</p>
-<h1 id="final-words">Final words</h1>
+<h2 id="final-words">Final words</h2>
 <p>Without further ado, this is <a href="https://drive.google.com/file/d/1MzdS5eCEafiefC1Lmfx_WlrzFDWUweAh/view?usp=sharing">a link to the scenario</a> and its <a href="https://rpggeek.com/geeklist/206708/item/8006732#item8006732">BGG item page</a>.</p>
 <p>I believe the whole game is finished, except for the custom graphics, which are not necessary for playing and will take a while to finish (it’s around 50 images to draw).</p>
 <p>If you end up playing it, I’ll greatly appreciate <a href="https://forms.gle/Pf5pVWJfm1gusz4D6">your feedback</a>.</p>

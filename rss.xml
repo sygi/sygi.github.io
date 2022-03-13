@@ -7,8 +7,152 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygnowski.ml/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Wed, 01 Dec 2021 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 13 Mar 2022 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Historia jednej paczki</title>
+    <link>https://sygnowski.ml/posts/2022-03-13-customs.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on March 13, 2022
+    
+</div>
+<h1>Historia jednej paczki</h1>
+<p>Here goes a story of a package with private items that I sent before moving from Switzerland to Poland. One may be surprised that this mundane topic is granted a blogpost, but the story is filled with absurdities. As I am afraid they would not be understandable if I tried to express the drama in English, this post is exceptionally written in Polish.</p>
+<p>Kiedy wyjechałem kilka lat temu z Polski, normalnym było dla mnie, że sprawy w instytucjach państwowych są zaczynane dopiero po wyczerpaniu drogi reklamacyjnej, gdy nie ma już żadnych sposobów na uniknięcie zajęcia się sprawą. Prowadziło to do śmiesznych (lub nie) sytuacji, na przykład gdy po złożeniu skargi brytyjski urząd podatkowy pytał, czy 40 funtów (i wystawienie nowego dokumentu) jest wystarczającą rekompensatą za literówkę w moim imieniu w jakimś dokumencie.</p>
+<figure>
+<a href="../images/customs/hmrc_cheque.jpg"><img src="../images/customs/hmrc_cheque.jpg" alt="Czek od HMRC" style="width:80.0%" /></a>
+<figcaption>
+Czek z rekompensatą od HMRC.
+</figcaption>
+</figure>
+<p>Przed niedawną przeprowadzką ze Szwajcarii wysłaliśmy część rzeczy do Polski pocztą, i nawet nie pomyślałem zawczasu, że paczka będzie przetwarzana przez Pocztę Polską. A nawet gdybym pomyślał, to pewnie bym uznał, że to najwyżej będzie iść trochę dłużej. Rzeczywistość jednak przerosła moją wyobraźnię.</p>
+<p>Po 3 dniach podróży paczki wewnątrz Szwajcarii, ślad po niej zaginął. Kilka tygodni później poprosiłem szwajcarską pocztę o zlokalizowanie paczki. Po ich interwencji, paczka pojawiła się w systemie do monitoringu w Warszawie. Wiadomo: dopóki nikt się nie upomni, nie ma co przekazywać paczki, a nuż odbiorca zapomni?</p>
+<p>Dzień później paczka przeniosła się do Działu Obsługi Zagranicznej (dalej: DOZ) w Lublinie, a Poczta przysłała zawiadomienie wnioskujące o podanie informacji na temat zawartości paczki, żeby móc złożyć zeznanie celne.</p>
+<figure>
+<img src="../images/customs/map_ann.png" alt="Mapa podróży paczki po Polsce" style="width:80.0%" />
+<figcaption>
+Nie wnikajmy, czemu paczka została przeniesiona do Lublina skoro docelowy adres jest bliżej Warszawy, w mazowieckim.
+</figcaption>
+</figure>
+<h2 id="zawiadomienie">Zawiadomienie</h2>
+<p>Pomińmy kwestię tego, że te informacje zostały podane przy wysyłce paczki w Szwajcarii (Poczta Polska łaskawie dołączyła załączony do paczki list przewozowy): wiadomo, pracownik poczty wypełniający deklaracje celne nie musi umieć przetłumaczyć nazw towarów na język polski.</p>
+<p>Zawiadomienie zawiera informację, że “niedopełnienie [w ciągu 14 dni] formalności skutkuje odmową przyjęcia wniosku zgodnie z art. 12 rozporządzenia (UE) 2015/2447 oraz udzielenie Poczcie Polskiej zgody na zwrot przesyłki do nadawcy”. O ile można pominąć fakt, że wspomniany artykuł nie wspomina nic o jakimkolwiek zwracaniu przesyłek, to ciekawe jest, że nikt nie zastanowił się, że w przypadku tej paczki nadawca ma ten sam adres, co adres docelowy.</p>
+<figure>
+<a href="../images/customs/nadawca_odbiorca.png"><img src="../images/customs/nadawca_odbiorca.png" alt="Adresy w liście przewozowym" style="width:75.0%" /></a>
+<figcaption>
+Adres nadawcy i odbiorcy na liście przewozowym.
+</figcaption>
+</figure>
+<p>Postanowiłem nie testować, czy w przypadku braku informacji z mojej strony paczka zostanie przesłana bez dalszych opłat (normalnie jest opłata 8.50zł za złożenie deklaracji celnej<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>); spodziewałem się, że wypełnię oświadczenie, poczta złoży deklarację celną i dostarczy paczkę za kilka dni. Jak można się domyślić z długości posta, tak się jednak nie stało.</p>
+<p>Zawiadomienie od poczty zawiera listę sytuacji, w których poczta nie złoży deklaracji celnej, i odbiorca musi to zrobić “we własnym zakresie” bądź skorzystać z agencji celnej. Część z tych sytuacji, np. gdy wartość towaru przekracza 1000 euro wynika z przepisów, a część (np. że jest to towar powracający, tzn. używany wcześniej w Polsce), to bezpodstawna twórczość pracowników poczty.</p>
+<p>Jako, że w moim przypadku żadna z nich nie miała miejsca, nie spodziewałem się problemów: wypełniłem oświadczenie i czekałem na nadejście przesyłki.</p>
+<p>Nie dostałem żadnej informacji zwrotnej z poczty w ciągu kilku dni po wypełnieniu oświadczenia. Próbowałem dzwonić na załączone (dwa) numery telefonów: jednego nikt nie odbierał, a na drugim włączała się poczta głosowa.</p>
+<p>W kontakcie z centralą poczty dostałem informację, że poczta dokłada wszelkich starań, żeby szybko składać te deklaracje i że opóźnienia na pewno są z winy Urzędu Celnego. Kilka minut później DOZ odpisał na moje oświadczenie sprzed tygodnia: wiadomo, nie ma co przetwarzać oświadczenia, dopóki odbiorca się nie upomni.</p>
+<h2 id="pierwsza-odmowa">Pierwsza odmowa</h2>
+<p>Niestety, DOZ odmówił złożenia deklaracji na podstawie nowo-wymyślonej zasady: poczta nie składa deklaracji celnych w przypadku mienia przesiedleńczego. Mienie przesiedleńcze to towary, których osoba używała w obcym kraju, i chce je przywieźć do Polski, bo przeprowadza się tutaj na stałe. W przypadku mienia przesiedleńczego Urząd Celny aplikuje specjalne zwolnienie z cła.</p>
+<p>O ile zgodnie z prawem poczta ma obowiązek wypełniać deklaracje celne z mieniem przesiedleńczym w imieniu odbiorców, to byłoby zrozumiałe, że poczta mogłaby nie chcieć aplikować o jakieś specjalne zwolnienia. W moim przypadku nie chciałem z niego korzystać, głównie dlatego, że tak czy inaczej wszystkie<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> towary ze Szwajcarii są zwolnione z cła, podobnie jak towary o małej wartości, jakie moja paczka zawierała.</p>
+<p>Żeby było śmieszniej, nawet gdybym chciał, to nie mogę zgodnie z prawem skorzystać z tej ulgi, bo przysługuje ona tylko dla osób, które przenoszą się do Polski na stałe<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>, co nie było prawdą w moim przypadku.</p>
+<h2 id="druga-odmowa">Druga odmowa</h2>
+<p>Odpisałem więc DOZ, że paczka nie zawiera mienia przesiedleńczego, i że mogą spokojnie składać deklarację.</p>
+<p>Po tygodniu poczta odpisała, że może to nie jest mienie przesiedleńcze, ale jako że jest ten sam nadawca i odbiorca, to oni traktują to jako “mienie osobiste” i “zgodnie z przepisami” poczta nie może odprawiać tego typu paczek.</p>
+<p>Jednocześnie w mailu pracownik poczty dołączył link do <a href="https://www.poczta-polska.pl/hermes/uploads/2021/06/Zasady-wykonywania-przez-PP-zg%C5%82osze%C5%84-celnych-w-imporcie-2021-08-06-final.pdf">zasad składania deklaracji celnych</a>, z których w żaden sposób nie wynika, że poczta nie składa deklaracji rzeczy osobistych. Po zwróceniu uwagi, że zasady mówią co innego, i zapytaniu w ogóle o jakie przepisy chodzi, pani z poczty uznała, że nie warto już ze mną dyskutować i przestała odpisywać.</p>
+<h2 id="reklamacja">Reklamacja</h2>
+<p>W międzyczasie złożyłem reklamację. Jako instytucja publiczna, Poczta Polska ma proces reklamacyjny zdefiniowany ustawą<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>, z 30-ma dniami na odpowiedź, i obowiązkiem podania dalszej drogi reklamacyjnej, podobnie jak banki.</p>
+<p>Poczta realizuje obowiązek odbierana reklamacji przez <a href="https://ereklamacje.poczta-polska.pl">stronę</a>. Strona, bardzo sprytnie, umożliwia zarówno złożenie reklamacji, jak i skargi, przy której (jak mniemam) ustawowe wymagania odpowiedzi na reklamację nie obowiązują.</p>
+<p>Dodatkowo, przy składaniu reklamacji, aby załączyć skan maila od poczty, musiałem złożyć oświadczenie, że “wszystkie załączone dokumenty są prawdziwe i nie zawierają wirusów”. Mam nadzieję, że nie okaże się, że pdf emaila nie spełnia założenia “prawdziwości” dokumentu.</p>
+<figure>
+<img src="../images/customs/oswiadczenie_reklamacja.png" alt="Oświadczenie potrzebne do złożenia reklamacji" style="width:100.0%" />
+<figcaption>
+Oświadczenie, które trzeba kliknąć przed wysłaniem reklamacji do Poczty Polskiej.
+</figcaption>
+</figure>
+<p>Odpowiedź na reklamację otrzymałem już po 27 dniach. W odpowiedzi (która sugeruje, że złożyłem “skargę” a nie “reklamację”) pracownik podsumowuje zasady składania deklaracji celnych i stwierdza:</p>
+<blockquote>
+<p>Niezależnie od powyższego, za wszelkie utrudnienia i negatywne odczucia związane ze zgłoszoną sprawą uprzejmie przepraszamy</p>
+</blockquote>
+<p>zupełnie nie odnosząc się do tego, dlaczego poczta nie złożyła deklaracji, skoro zasady, które wspomniał mówią, że powinna.</p>
+<p>W odpowiedzi brak jest jakiejkolwiek metody kontaktu: jak odpowiedź mi nie odpowiada, mogę przecież złożyć drugą reklamację i dostać kolejną odpowiedź (za kolejne 25+ dni). To też zrobiłem, ale jednocześnie zacząłem próbować odzyskać paczkę innymi kanałami.</p>
+<h2 id="kontakt-ze-szwajcarskąpocztą">Kontakt ze Szwajcarską pocztą</h2>
+<p>W międzyczasie Szwajcarzy napisali, że znaleźli paczkę i że czeka na zwolenienie przez celników na poczcie. Pewnie się zdziwili, jak im odpisałem, że wygląda na to, że poczta nie złożyła (i nie zamierza) jeszcze deklaracji celnej, bo przesyłka ma tego samego nadawcę, co odbiorcę.</p>
+<p>Z tego, co pisali, próbowali potem ustalić z Pocztą Polską o co w ogóle chodzi, ale poczta im też przestała odpisywać.</p>
+<p>Jako że nie bardzo byli w stanie cokolwiek pomóc z paczkę, zaproponowali 70SFr. odszkodowania, cytując:</p>
+<blockquote>
+<p>We hope that this compensation will meet with your satisfaction. We want satisfied customers and hope that we can regain your trust with our courtesy.</p>
+</blockquote>
+<h2 id="kis-i-puesc">KIS i PUESC</h2>
+<p>Jako że poczta nie chciała złożyć deklaracji, zadzwoniłem do <a href="https://www.kis.gov.pl/zalatwianie-spraw/udzielanie-informacji">Krajowej Informacji Skarbowej</a>, aby dowiedzieć się, w jaki sposób można złożyć deklarację “we własnym zakresie”, jak sugerowała poczta.</p>
+<p>Po drugiej stronie była nawet miła pani, która głównie przekonywała mnie, że to poczta powinna złożyć deklarację (tak, jakbym tego nie wiedział) i że tak będzie najprościej, bo oni składają uproszczony formularz, a normalni ludzie muszą wypełniać kody towarów i w ogóle jest to bardzo skomplikowane.</p>
+<p>Po poszkaniu online, jak składać deklaracje celne, trafiłem na rządową platformę <a href="https://puesc.gov.pl">PUESC</a>, która ma służyć do wszelkich rzeczy związanych z cłem. Wygląda na to, że platforma ma <a href="https://www-2.puesc.gov.pl/web/puesc/strona-glowna">starą wersję</a>, która wspiera składanie deklaracji celnych (ta funkcjonalność nie została jeszcze zmigrowana).</p>
+<p>Po załóżeniu konta na platformie, trafiłem do sekcji składania formularzy, ale jedynym, co dało się tam wysłać to pliki XML. Nie było dla mnie jasne w jaki sposób taki plik skonstruować.</p>
+<p>Po zapytaniu o to na help desku PUESCu dowiedziałem się, że platforma zakłada, że użytkownik ma oprogramowanie, które generuje poprawne XMLe. Szukałem chwilę darmowego oprogramowania online do tego, ale znalazłem tylko płatne, z cenami rzędu 1000zł/stanowisko. Tego typu programów używają agencje celne.</p>
+<h2 id="papierowy-sad">Papierowy SAD</h2>
+<p>Przeglądając zasady składania wniosków o <a href="https://www.podatki.gov.pl/clo/informacje-dla-przedsiebiorcow/procedury-celne/procedura-dopuszczenia-do-obrotu/">dopuszczenie towarów do obrotu</a>, trafiłem na informację, że deklarację można złożyć nie tylko elektronicznie, ale także na papierowym <a href="https://ec.europa.eu/taxation_customs/single-administrative-document-sad_en">formularzu SAD</a>.</p>
+<p>Formularz zawiera te same informacje, co pełne deklaracje celne składane przez importerów/agencje celne, więc <a href="https://www-2.puesc.gov.pl/documents/10180/111775799/Instrukcja+wype%C5%82niania+zg%C5%82osze%C5%84%20celnych+AIS_IMPORT+AES_ECS2+NCTS2+wersja+2.3.pdf/b0c80b60-bfad-430d-8883-54027e3465dd">instrukcja</a>, jak go wypełnić ma kilkaset stron (plus lista z 12 tysiącami pozycji z kodami towarów).</p>
+<p>Na początku wydawało się, że wypełnienie tego formularza będzie bardzo trudne, ale, czytając instrukcje pole po polu, było tylko kilka takich, w których miałem wątpliwości. Stwierdziłem, że bardziej mi się opłaca wypełnić je jakkolwiek i poprawić po dostaniu odmowy z urzędu niż próbować dochodzić, czym różni się “kontyngent taryfowy” od “plafonu taryfowego”.</p>
+<p>Główna trudność (poza przypominaniem sobie jakie dokładnie towary znajdują się w paczce i ile ważą) formularza znajdowała się w części wspólnej dla wszystkich towarów: przy wymienianianiu towarów większość danych się powtarzała, a pozostałe były proste do wypełnienia (waga, kod towaru, wartość, kraj pochodzenia).</p>
+<p>Wypełniony formularz SAD zapisałem jako pdf i wysłałem za pomocą ePUAP jako załącznik do wniosku do Urzędu Celnego w Białej Podlaskiej (która to zarządza oddziałem w Lublinie, gdzie znajdowała się paczka).</p>
+<h2 id="komunikat-zc215">Komunikat ZC215</h2>
+<p>W międzyczasie, na stronie PUESC, trafiłem na <a href="https://www-2.puesc.gov.pl/documents/10180/111161805/xsd+-+AIS-IMP.zip/773564a6-16dd-477f-bf70-4eaf66d72958">dokumentację</a> w formacie <a href="https://en.wikipedia.org/wiki/XML_Schema_(W3C)">XML Schema</a>, opisującą różne wnioski (komunikaty), które można wysyłać przez PUESC. Po zrozumieniu, w jaki sposób opisują one komunikaty do wysłania i który komunikat (Zgłoszczenie Celne: dopuszczenie do obrotu, o kodzie ZC215) chcę złożyć, pomyślałem, że mógłbym wczytać plik XSD ze schemą, wygenerować pusty komunikat i powypełniać pola ręcznie.</p>
+<p>Na szczęście, nie musiałem tego robić, bo w międzyczasie znalazłem <a href="https://www-2.puesc.gov.pl/documents/10180/111161805/AIS_IMP_SXML_PL_w_3_14.pdf/84481207-b5c9-4904-9689-8f14020c55a3">specyfikację XML</a> opisującą które pola są obowiązkowe w których komunikatach i co one znaczą w języku naturalnym.</p>
+<figure>
+<img src="../images/customs/itemizowanie.png" alt="Opis itemizowania w specyfikacji xml" style="width:35.0%" />
+<figcaption>
+Sposób opisu listy parametów w oficjalnej specyfikacji XML.
+</figcaption>
+</figure>
+<p>Pliki XSD wciąż się przydały, bo pozwalają na automatyczną walidację, czy komunikat zgadza się ze schemą. Pythonowa biblioteka <a href="https://pypi.org/project/xmlschema/">xmlschema</a> robiła to bardzo wygodnie, pokazując, których elementów i atrybutów gdzie brakuje.</p>
+<h2 id="reguły">Reguły</h2>
+<p>Kiedy komunikat był już—jak się spodziewałem—skończony, trzeba było go podpisać przed złożeniem w PUESC.</p>
+<p>Niestety, stary portal wspiera tylko podpis fizycznym podpisem kwalifikowanym (którego nie mam), albo “certyfikatem celnym”, do uzyskania którego, wyglądało że trzeba fizycznie pójść do urzędu (co, z punktu widzenia bezpieczeństwa, miałoby jakiś sens).</p>
+<p>Postanowiłem spróbować podpisać dokument korzystając z zewnętrznego, rządowego <a href="https://www.gov.pl/web/gov/podpisz-dokument-elektronicznie-wykorzystaj-podpis-zaufany">portalu</a> do podpisywania dowolnych dokumentów. Korzystając z tej strony byłem w stanie łatwo podpisać komunikat uwierzytelniając się przez ePUAP.</p>
+<p>Po wysłaniu tak podpisanego komunikatu, dostałem jednak informację zwrotną z odrzuceniem komunikatu. Informacja (sformatowana w postaci XMLa, którego czytało się trochę niewygodnie) zawierała zestaw reguł, których mój komunikat nie spełniał.</p>
+<p>Większość z nich była zdefiniowana w formie założeń typu “jeśli pole X występuje i nie jest = 42, wtedy pole Y też musi występować”, choć niektóre z nich po prostu opisywały fakt, że jakieś pole jest obowiązkowe (co dałoby się wyrazić za pomocą scheme’y).</p>
+<p>Tak, czy inaczej, automatyczne generowanie informacji zwrotnej po kilku minutach po kilku minutach było bardzo wygodne, bo pozwalało mi szybko zweryfikować i poprawiać komunikat.</p>
+<p>Niestety, jedna z błędnych reguł informowała, że format podpisu jest nieprawidłowy: wygląda na to, że podpis z rządowej strony do podpisywania dokumentów nie jest zgodny z wymaganiami PUESC.</p>
+<h2 id="podpis-elektroniczny">Podpis elektroniczny</h2>
+<p>Zauważyłem, że w nowym serwisie PUESC pojawiają się komunikaty, które wysyłałem przez stary. Dodatkowo, nowy PUESC pozwala na podpisanie komunikatów korzystając z ePUAPU jako trzecia opcja (oprócz podpisu kwalifikowanego i certyfikatu celnego). Niestety, nowy PUESC nie pozwala na wysyłanie komunikatów celnych (które są na razie wspierane tylko przez stary), a aby “wysłać dokument” w starym EPUESC (co spowoduje jego migrację do nowego), musi on być już podpisany. Nie można więc przesłać komunikatu ze starego do nowego PUESCu po to, aby go podpisać i potem wysłać starym systemem.</p>
+<p>Na szczęście, okazało się, że generowanie certyfikatów celnych, które w starym PUESC wymagało pójścia do urzędu, w przypadku nowego PUESCu da się zrobić przez stronę. Tu znowu miejsce na duży plus dla rządowych systemów informatycznych, bo program pozwalający na wygenerowanie certyfikatu: <a href="https://puesc.gov.pl/pki/resource/Instrukcja_CertSign.pdf">CertSign</a> da się uruchomić nawet na linuxie (wygląda, że jest napisany jako jakiś applet javowy). Z drugiej strony nie do końca rozumiem w jaki sposób działa uwierzytelnienie potrzebne do wygenenerowania certyfikatu, skoro konto w PUESC zakładałem (jeśli dobrze pamiętam) tylko na email, i w żadnym momencie nie byłem poproszony o zautoryzowanie przez ePUAP.</p>
+<p>W każdym razie, po rozwiązaniu drobnych problemów wymagających dodania certyfikatów publicznych rządowych stron w przeglądarce, byłem w stanie podpisywać XMLe korzystając z własnego certyfikatu celnego.</p>
+<h2 id="rozmowa-z-urzędem-celnym">Rozmowa z Urzędem Celnym</h2>
+<p>Odpowiedź z odrzuceniem wniosku dostałem już po kilkudziesięciu minutach, co było szokiem, bo musiał na to zgłoszenie spojrzeć urzędnik, a co więcej komunikat wysłałem ok. godziny 17 w sobotę.</p>
+<p>Co więcej, zwrotka zawierała numer kontaktowy! Telefon odebrała stosunkowo miła pani, która, po upewnieniu się, że jestem pełnoletni (xD)<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>, zaczęła wymieniać, co było źle we wniosku, który złożyłem.</p>
+<p>Pani twierdziła, że tam jest dużo błędów, i że prościej mi będzie skorzystać z agencji celnej, ale jednak była bardzo pomocna i wymieniła wszystko, co chciała, żebym zmienił we wniosku. Wbrew temu, co mówiła, były to dosyć proste rzeczy do poprawienia, typu: w tym polu chcą jeszcze PESEL (mimo, że XML schema tego nie wymagała), a w polu “miejsce dostawy” chcą tylko miejscowość, a nie “26-400 Przysucha, Polska”.</p>
+<p>Po około 30-to minutowej rozmowie, pani stwierdziła, żebym jeszcze skontaktował się z Panem Zbyszkiem<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>, który zajmuje się moją paczką i który próbował napisać do mnie maila.</p>
+<p>Po stwierdzeniu, że nie dostałem wspomnianego maila, pani przełączyła mnie na telefon z nim.</p>
+<h2 id="pan-zbyszek">Pan Zbyszek</h2>
+<p>Podczas rozmowy Pan Zbyszek okazał się być super (jeszcze bardziej niż poprzednia pani, która też była całkiem ok).</p>
+<p>Stwierdził on (a rozmowa miała miejsce jakąś godzinę po tym, jak wysłałem formularz przez PUESC, w sobotę wieczorem), że zdążył już porozmawiać z ludźmi na poczcie, i że oni się zgodzili złożyć tę deklarację, tylko żebym im napisał oświadczenie, że w paczce nie ma mienia przesiedleńczego. I że on wie, że ja już im to pisałem, i że właściwie to oni powinni tę deklarację złożyć tak, czy inaczej, ale jak mu napiszę to oświadczenie i wyślę w poniedziałek (bo nie pracuje w niedzielę), to on pójdzie na pocztę i wszystko z nimi załatwi.</p>
+<p>Oczywiście bardzo mu podziękowałem, ale też zapytałem, jak to jest, że oni są tacy spoko w tym urzędzie, a na poczcie już od dwóch miesięcy próbuję tę paczkę odzyskać i nic nie da się załatwić. Odpowiedział, że nie ma sprawy i, że im też się nie chce, cytując, pierdzielić z odrzucaniem i poprawianiem tych formularzy, kiedy poczta może złożyć dużo prostszą deklarację, a wiadomo, że to nie są jakieś towary o dużej wartości, na które im by się w ogóle chciało patrzeć.</p>
+<p>Dodatkowo, Pan Zbyszek był ciekawy jak udało mi się wysłać ten komunikat przez PUESC, bo mówił, że to był pierwszy raz, kiedy widział, żeby go wypełniła osoba fizyczna, a nie firma/agencja celna ^^.</p>
+<h2 id="koniec-historii">Koniec historii</h2>
+<p>Po tym, jak Pan Zbyszek “ogarnął sprawę” w poniedziałek wieczorem, w paczka została dostarczona do Przysuchy w środę.</p>
+<p>Dostałem później (tym razem po 22 dniach) jeszcze odpowiedź na drugą reklamację, w której urzędnik PP stwierdza:</p>
+<blockquote>
+<p>Z uwagi na wprowadzone na terenie całej Unii Europejskiej nowe regulacje (…), czas potrzebny na obsługę przesyłek z krajów spoza UE uległ wydłużeniu z przyczyn niezależnych od Poczty Polskiej S.A.</p>
+</blockquote>
+<p>Jak można się domyślać, postępowanie poczty nie przysparza im zbyt dobrych ocen, w szczególności na Google Maps. Na koniec chcę się podzielić jedną z niewielu pozytywnych opinii, które DOZ w Lublinie tam dostał:</p>
+<figure>
+<img src="../images/customs/komentarz_pp.png" alt="Opinia o poczcie" style="width:60.0%" />
+<figcaption>
+Komentarz do opinii o poczcie.
+</figcaption>
+</figure>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>która, jak później się dowiedziałem, łamie postanowienia Międzynarodowej Unii Pocztowej, konkretnie art. 20.4 <a href="https://www.upu.int/UPU/media/upu/files/UPU/aboutUpu/acts/actsOfCurrentCycle/actsActsOfThe26ThCongressIstanbul2016En.pdf">Decyzji z międzynarodowego kongresu pocztowego ze Stanbułu</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>z jakimiś specjalnymi wyjątkami<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>patrz: art. 47 <a href="http://isap.sejm.gov.pl/isap.nsf/download.xsp/WDU20040540535/U/D20040535Lj.pdf">ustawy z dnia 11 marca 2004 r. o podatku od towarów i usług</a><a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>Art. 92 <a href="http://isap.sejm.gov.pl/isap.nsf/download.xsp/WDU20120001529/U/D20121529Lj.pdf">Dz.U.2020.1041</a><a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>pozwoliłem sobie nie skomentować, że zmuszanie dzieci do wypełniania tych formularzy byłoby znęcaniem się nad nieletnimi<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>imię zmienione, nie wiem, czy chciałby zostać boheterem tej historii<a href="#fnref6">↩</a></p></li>
+</ol>
+</div>
+]]></description>
+    <pubDate>Sun, 13 Mar 2022 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2022-03-13-customs.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Physically based rendering: materials</title>
     <link>https://sygnowski.ml/posts/2021-12-01-pbr-materials.html</link>
     <description><![CDATA[<div class="info">
@@ -324,8 +468,17 @@ Diagram illustrating how to calculate the light incoming to point <span class="m
 <h1>Easy-to-use text-to-speech</h1>
 <p>Adventure games, the genre I like, tend to contain a lot of talking. Apart from writing the character statements on the screen, bigger game studios hire voice actors to record them and play the recordings. It is a lengthy and costly process. I decided to see how far text-to-speech is from being able to substitute human actors for indie adventure games.</p>
 <h2 id="problem-definition">Problem definition</h2>
-<p>I define the text-to-speech problem as: - take as input a short English text prepared by the game writer and one of a couple of identities of the game characters - produce an audio wave where a character speaks the text.</p>
-<p>Text-to-speech is an active research domain, and one could easily spend weeks (or a whole career) looking for the best solution. I chose to limit myself to methods that: 1. are available for free, 2. don’t require me to do further research to make it work, 3. are easily available on the internet; in particular require no training neural networks on a high-end GPU for days.</p>
+<p>I define the text-to-speech problem as:</p>
+<ul>
+<li>take as input a short English text prepared by the game writer and one of a couple of identities of the game characters</li>
+<li>produce an audio wave where a character speaks the text.</li>
+</ul>
+<p>Text-to-speech is an active research domain, and one could easily spend weeks (or a whole career) looking for the best solution. I chose to limit myself to methods that:</p>
+<ol style="list-style-type: decimal">
+<li>are available for free,</li>
+<li>don’t require me to do further research to make it work,</li>
+<li>are easily available on the internet; in particular require no training neural networks on a high-end GPU for days.</li>
+</ol>
 <h2 id="high-level-state-of-research">High-level state of research</h2>
 <p>To explain how the current models work, one needs to first define what a <em>mel-spectrogram</em> is.</p>
 <p>According to <a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Wikipedia</a>:</p>
@@ -342,7 +495,11 @@ An example mel-spectrogram. Note a region of lower energy after around 130 time 
 </figure>
 <p>An important property of mel-spectrograms is that they contain less information than the initial sound wave, i.e. there are multiple waves with the same mel-spectrogram.</p>
 <h3 id="current-models">Current models</h3>
-<p>To generate a single sound wave from a sentence of text, people currently apply two models sequentially: 1. An acoustic model, which transforms text to a mel-spectrogram, e.g. <a href="https://arxiv.org/abs/1712.05884">Tacotron 2</a>, <a href="https://arxiv.org/abs/2005.11129">Glow-TTS</a>, or <a href="https://arxiv.org/abs/2006.04558">FastSpeech 2</a>. 2. A vocoder, which maps the mel-spetrogram to the actual sound wave. The most popular vocoder is <a href="https://arxiv.org/abs/2010.05646">HiFi-GAN</a>, with other examples being <a href="https://arxiv.org/abs/1910.06711">MelGAN</a> and <a href="https://arxiv.org/abs/1811.00002">WaveGlow</a>.</p>
+<p>To generate a single sound wave from a sentence of text, people currently apply two models sequentially:</p>
+<ol style="list-style-type: decimal">
+<li>An acoustic model, which transforms text to a mel-spectrogram, e.g. <a href="https://arxiv.org/abs/1712.05884">Tacotron 2</a>, <a href="https://arxiv.org/abs/2005.11129">Glow-TTS</a>, or <a href="https://arxiv.org/abs/2006.04558">FastSpeech 2</a>.</li>
+<li>A vocoder, which maps the mel-spetrogram to the actual sound wave. The most popular vocoder is <a href="https://arxiv.org/abs/2010.05646">HiFi-GAN</a>, with other examples being <a href="https://arxiv.org/abs/1910.06711">MelGAN</a> and <a href="https://arxiv.org/abs/1811.00002">WaveGlow</a>.</li>
+</ol>
 <figure>
 <img src="../images/tts/diagram.jpg" alt="alttext" style="width:90.0%" />
 <figcaption>
@@ -351,7 +508,12 @@ A high-level diagram describing architecture of the text-to-speech models.
 </figure>
 <p>There are some end-to-end models, like <a href="https://arxiv.org/abs/1609.03499">WaveNet</a> or <a href="https://arxiv.org/pdf/2006.04558.pdf">FastSpeech 2s</a> which are able to generate waves directly from text (without intermediate mel-spectrograms), but they don’t seem to be as popular these days.</p>
 <h2 id="datasets">Datasets</h2>
-<p>There are dozens of <a href="https://github.com/jim-schwoebel/voice_datasets">datasets</a> of varying quality containing recorded voice and the corresponding text. After skimming the papers above, I think these are the most popular ones: - <a href="https://keithito.com/LJ-Speech-Dataset/">LJ Speech</a>: a dataset with one female English speaker, reading 13100 short audio clips from 7 non-fiction books, consisting of approximately 24 hours in total. - <a href="https://research.google/tools/datasets/libri-tts/">LibriTTS</a>: a multi-speaker English dataset containing 585 hours of speech by 2456 speakers (around 15min/speaker), reading Project Gutenberg books. - <a href="https://datashare.ed.ac.uk/handle/10283/2950">VCTK</a>: 44 hours of mostly newspaper passages, read by 109 English speakers with different accents<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, so 0.5h of speech/speaker.</p>
+<p>There are dozens of <a href="https://github.com/jim-schwoebel/voice_datasets">datasets</a> of varying quality containing recorded voice and the corresponding text. After skimming the papers above, I think these are the most popular ones:</p>
+<ul>
+<li><a href="https://keithito.com/LJ-Speech-Dataset/">LJ Speech</a>: a dataset with one female English speaker, reading 13100 short audio clips from 7 non-fiction books, consisting of approximately 24 hours in total.</li>
+<li><a href="https://research.google/tools/datasets/libri-tts/">LibriTTS</a>: a multi-speaker English dataset containing 585 hours of speech by 2456 speakers (around 15min/speaker), reading Project Gutenberg books.</li>
+<li><a href="https://datashare.ed.ac.uk/handle/10283/2950">VCTK</a>: 44 hours of mostly newspaper passages, read by 109 English speakers with different accents<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, so 0.5h of speech/speaker.</li>
+</ul>
 <h2 id="analysis-of-the-models">Analysis of the models</h2>
 <p>For the sake of this post, I tried out the three acoustic models mentioned above: <a href="https://github.com/NVIDIA/tacotron2">Tacotron 2</a>, <a href="https://github.com/jaywalnut310/glow-tts">Glow-TTS</a>, <a href="https://ming024.github.io/FastSpeech2/">FastSpeech 2</a>, whose implementations are available on Github. I combined them with a <a href="https://github.com/jik876/hifi-gan">Hifi-GAN</a> vocoder.</p>
 <h3 id="using-pretrained-models">Using pretrained models</h3>
@@ -456,7 +618,11 @@ Sample of the finetuned (after 2000 steps) Tacotron, using a pretrained (left) a
 <h4 id="compute">Compute</h4>
 <p>Apart from learning the details of text-to-speech technology, this experiment was also an exercise in getting free access to the computing power.</p>
 <p>Everyone knows that training the models on a CPU takes a long time. Furthermore, the code is written in a way that you need to modify the code to not use a GPU, which isn’t always easy.</p>
-<p>I tried out two venues that offer free GPU for training deep learning models: 1. <a href="https://colab.research.google.com">Google Colab</a> 2. <a href="https://gradient.run/free-gpu">Paperspace notebooks</a></p>
+<p>I tried out two venues that offer free GPU for training deep learning models:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://colab.research.google.com">Google Colab</a></li>
+<li><a href="https://gradient.run/free-gpu">Paperspace notebooks</a></li>
+</ol>
 <p>I found Colab easier to use overall: it was quicker to connect to a runtime, and the integration with Google Drive made moving data and the code between the local machine and the Colab easy.</p>
 <p>Another benefit of Colab is that it’s more popular, so there are lots of instructions online on how to do even complex things<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>.</p>
 <p>The top selling point of Paperspace is that they give a guaranteed uptime of up to 6h.</p>
@@ -782,8 +948,8 @@ Example card generated using the template: other cards would only change the loc
 <h2 id="the-survey">The survey</h2>
 <p>To get better coverage of the subjects, I decided to prepare a survey among the alumni. I created an anonymous form using Google Forms and sent the request to fill the survey on the Facebook group of the faculty and the alumni email group.</p>
 <p>The survey accepted responses from 17th to 21st July. It asked questions about the salary and about other criteria like gender, size of the city where one was living in, or the number of hours one worked weekly.</p>
-<h1 id="problems-with-the-analysis">Problems with the analysis</h1>
-<h2 id="measuring-salaries">Measuring salaries</h2>
+<h2 id="problems-with-the-analysis">Problems with the analysis</h2>
+<h3 id="measuring-salaries">Measuring salaries</h3>
 <p>The biggest problem I encountered while analyzing the data was how to compare the salaries earned in different countries.</p>
 <p>The survey asked about the gross salary in the local currency of the country where the person lives. While converting it to a common currency isn’t that big of an issue, averaging the salaries between different countries may give an incomplete view due to varying living costs between countries.</p>
 <p>My initial plan was to calculate, for each person, what percentage of the median salary in the given country it earns and then average these. I would get the information that, on average, MIM alumni get 175% of the median salary of their country (fabricated data).</p>
@@ -792,7 +958,7 @@ Example card generated using the template: other cards would only change the loc
 <p>It is a way for modifying the exchange rates between currencies to take into account differing prices such that a unit of a currency can buy the same amount of goods (from a fixed basket). For example, if 2 Polish złotys can buy one bread in Poland, and 1 Swiss franc can buy one bread in Switzerland, the PPP exchange rate would be 2 PLN = 1 CHF, independently of the actual (FOREX) exchange rate between these currencies. In other words, it allows us to express the salaries as “the amount of standardized goods” that one could buy with them and compare these instead.</p>
 <p>The exchange rates of national currencies with PPP are <a href="https://appsso.eurostat.ec.europa.eu/nui/submitViewTableAction.do">available from Eurostat</a> for a wide range of countries.</p>
 <p>As with any economic model, PPP comes with assumptions. In our case, when we use PPP to help us average salaries, we assume that the worker spends the money in the same country as the one he earns it in. If a person earns in a high-income country but spends in a low-cost one (as is common with immigrants returning to Poland from Western countries), looking at the earned salary via the lens of goods available in the high-cost country doesn’t make sense, as the worker will be buying these goods cheaper than PPP would estimate.</p>
-<h2 id="monthly-salary">Monthly salary</h2>
+<h3 id="monthly-salary">Monthly salary</h3>
 <p>In Poland, it’s common to express salary per month. As some of the salaries reported in the survey were significantly below the minimum salary, I suspect these were indeed monthly and not annual salaries.</p>
 <p>On the other hand, some of the entries included even lower numbers, below a thousand PLN, suggesting that the salary was given in the thousands, not nominally.</p>
 <p>Initially, I planned to allow only numbers &gt;= 10000 in the form to avoid these problems. It turned out, though, that:</p>
@@ -801,7 +967,7 @@ Example card generated using the template: other cards would only change the loc
 <li>when I set the limit for a short time, some people who don’t work still wanted to put a number here (even though the question was optional). To do so, they were putting the lowest possible number (10000). Using it in the analysis would introduce a bias.</li>
 </ol>
 <p>In the end, I allowed any numbers and filtered out the ones lower than the minimum salary.</p>
-<h2 id="year-2019">Year 2019</h2>
+<h3 id="year-2019">Year 2019</h3>
 <p>As I was afraid that the results for the year 2020 would be skewed due to the pandemic (and people, like myself, moving to a different country or getting to work from home), I asked about the salary information from 2019.</p>
 <p>Apart from the salary, the survey asked many other statistical questions, like highest degree finished, which I later used to aggregate data.</p>
 <figure>
@@ -811,10 +977,10 @@ Aggregation of salary based on the highest degree received.
 </figcaption>
 </figure>
 <p>Overall, the decision to use 2019 seems a reasonable one. I’m afraid though that people who finished a degree between 2019 and now answered with their salary from before graduation, which would confuse the aggregates a bit.</p>
-<h2 id="distributing-the-survey">Distributing the survey</h2>
+<h3 id="distributing-the-survey">Distributing the survey</h3>
 <p>I sent the survey to the student group on Facebook and an alumni email group on 17th July. While people started filling it using the Facebook link immediately, it turned out that the alumni group is censored, and the censor doesn’t work on the weekends, so the email reached the group only on Monday.</p>
 <p>I decided to close the survey a couple of days later as I didn’t get as many responses anymore. Because of that, I got a complaint that the survey closed too soon and would be biased towards people who don’t have a life outside of the internet ;)</p>
-<h1 id="final-words">Final words</h1>
+<h2 id="final-words">Final words</h2>
 <p>I was positively surprised by the number of responses I got: the survey recorded 203 entries. I prepared the analysis of the results (in Polish) and made it available <a href="https://sygnowski.ml/data/alma/writeup.pdf">here</a>. The code I used to analyze the data is <a href="https://github.com/sygi/alma">here</a>.</p>
 <p>Unsurprisingly, the data I gathered presented the view of the MIM UW alumni that’s somewhere in-between my biased anecdata (where most of the people move abroad and earn a lot) and the data from ELA. Overall, the data looks reasonable.</p>
 <p>It may be worthwhile to repeat the survey in a couple of years.</p>
@@ -832,15 +998,20 @@ Aggregation of salary based on the highest degree received.
 </div>
 <h1>Tax residency for fun and profit</h1>
 <p>Tax rules, which describe what portion of one’s profit needs to pay to the government, are famously complex. If they involve multiple countries, they are even more confusing. Having moved to a different country for the 2020 pandemic, I studied the regulations in detail and decided to write down my observations for the future.</p>
-<h1 id="rule-of-law-101">Rule of law 101</h1>
-<p>One can summarize the general process of setting up tax law in a simple way (even though the rules themselves may be complex): 1. Parliament votes on legislative acts which decide on details of who, when, and how much tax should pay. 2. The act is published (“promulgated”) in an official bulletin and becomes law. 3. Courts resolve the disagreement between the taxpayer and tax authorities, and civil officers (bailiffs, police, etc.) enforce compliance.</p>
+<h2 id="rule-of-law-101">Rule of law 101</h2>
+<p>One can summarize the general process of setting up tax law in a simple way (even though the rules themselves may be complex):</p>
+<ol style="list-style-type: decimal">
+<li>Parliament votes on legislative acts which decide on details of who, when, and how much tax should pay.</li>
+<li>The act is published (“promulgated”) in an official bulletin and becomes law.</li>
+<li>Courts resolve the disagreement between the taxpayer and tax authorities, and civil officers (bailiffs, police, etc.) enforce compliance.</li>
+</ol>
 <p><a href="https://en.wikipedia.org/wiki/Sovereign_state">Sovereignity</a> of the country guarantees that the law enacted in this way usually applies only on its territory. For example, it’s not possible for folks in Bundestag to decide on what taxes should residents of Sydney pay.</p>
-<h1 id="double-taxation-agreements">Double taxation agreements</h1>
+<h2 id="double-taxation-agreements">Double taxation agreements</h2>
 <p>Limiting the taxes to the territory of a state doesn’t solve all the international taxation issues.</p>
 <p>For one, it shouldn’t be possible to evade taxes just by making repeated trips to a tax haven (area of low rates of taxation) on the day one’s salary is paid. On the other hand, a country doesn’t want to impose regular income taxes on tourists or attendees of a business meeting even if they happen to be physically present under its jurisdiction on their pay date.</p>
 <p>As taxation systems (and the political power) differ significantly between countries, it feels impossible to set a single, precise set of tax rules that all countries could agree to. For this to happen, one would need to consider all possible taxes and exact situations when they should or shouldn’t be levied.</p>
 <p>Instead of that, countries opt for bilateral treaties where pairs of countries (e.g. Germany and France) agree on which country has the right to tax different types of income. Such a treaty is called a <em>Double Taxation Agreement</em> (DTA).</p>
-<h1 id="oecd-model-tax-convention">OECD model tax convention</h1>
+<h2 id="oecd-model-tax-convention">OECD model tax convention</h2>
 <p>Even though getting all countries to agree on a common set of rules in a binding treaty feels like a lost cause, there are some general rules that countries want from their DTAs.</p>
 <p>To simplify the process of writing the tax agreements with others, several Western countries, grouped in an intergovernmental organization OECD<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, prepared a <a href="https://www.oecd.org/tax/treaties/1914467.pdf">model tax convention</a> which forms a common ground, helping them to start drafting the treaties.</p>
 <figure>
@@ -850,7 +1021,7 @@ Map of OECD countries.
 </figcaption>
 </figure>
 <p>The tax convention tries to formalize the idea of a person being liable for tax only in one country: the one where they live. While the details on the rates, procedures, or exemption methods differ between DTAs, the principles are the same in the DTAs of OECD countries. Let’s review them below.</p>
-<h2 id="tax-residency">Tax residency</h2>
+<h3 id="tax-residency">Tax residency</h3>
 <p>The crucial concept defined in the model tax convention is <em>tax residency</em>. It’s meant to be a unique country where a given person generally pays taxes for their worldwide income.</p>
 <p>The content of the article of the model convention defining tax residency:</p>
 <p><details> <summary> Article 4: Residence </summary></p>
@@ -866,19 +1037,19 @@ Map of OECD countries.
 <li><p>Where by reason of the provisions of paragraph 1 a person other than an individual is a resident of both Contracting States, then it shall be deemed to be a resident only of the State in which its place of effective management is situated. </details></p></li>
 </ol>
 <p>In simple words, if both signatories of the treaty want a given person to pay tax on its worldwide income, there is a set of criteria to review to determine in which (single) country the person will be considered a tax resident (likely giving it the right to tax their worldwide income).</p>
-<h3 id="country-specific-tax-residency-criteria">Country-specific tax residency criteria</h3>
+<h4 id="country-specific-tax-residency-criteria">Country-specific tax residency criteria</h4>
 <p>Thanks to the criteria overriding national laws on tax residency, countries can set the rules freely in their local legislation. Even if the country-specific rules would overlap, making a single person “tax resident” in multiple countries based on their national law, the DTA will describe how to choose a single country for tax residency.</p>
 <p>A commonly used criterium for tax residency says that a person who resides in a given country for more than 183 days in a given tax year is tax resident there. If every country used only this provision, there wouldn’t be any issues with multiple countries claiming overlapping tax residency. It’s often the case though that, apart from 183 days, there is an additional criterium saying that a person who has a house, family, or a “center of vital interests” in a country, would be considered tax resident there, even if they spent most of the year abroad.</p>
 <p>There are also some countries where even a short stay triggers tax residency; for example, in Switzerland, a working individual becomes tax resident after 30 days of stay. The overlapping tax residency may thus happen, and the use of DTA criteria may be necessary to establish a single country of tax residency.</p>
-<h3 id="no-tax-residency">No tax residency</h3>
+<h4 id="no-tax-residency">No tax residency</h4>
 <p>As countries decide on their tax residency rules without much regard to other countries’ regulations<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>, it may as well happen that a given person is not considered a tax resident in any particular country based on its laws.</p>
 <p>For example, a person moving between 3 countries without his “center of vital interests” and spending less than 183 days in any of them due to frequent business visits may have no tax residency.</p>
 <p>Does it mean such a person doesn’t have to pay any taxes? Of course not :) The countries often have rules saying that non-residents pay taxes on the portion of the income arising from that country. If a person is tax resident elsewhere, they may use the DTA to override the “non-resident paying local taxes” rule. If they are not resident in any country and are non-resident in multiple countries, they would be paying local taxes in each of them. They won’t be able to use DTAs in that case, as the DTA only clarifies the criteria for overlapping tax residency, i.e. multiple countries wanting to tax a person on the worldwide income.</p>
-<h3 id="changes-within-the-tax-year">Changes within the (tax) year</h3>
+<h4 id="changes-within-the-tax-year">Changes within the (tax) year</h4>
 <p>The country-specific rules for tax residency are often expressed in terms of the whole tax year, e.g. “a person is tax resident for the whole tax year if they spend at least 183 days during that year”.</p>
 <p>What happens when someone’s situation changes in the middle of a year, by buying a home or permanently moving to another country in June?</p>
 <p>The DTA solution is simple: it is not concerned about tax years at all (which may run differently in the two countries, e.g. in the UK the tax year starts April 6th). Instead, all of its provisions apply at any given moment; if someone’s circumstances change on June 15th, they may be considered a tax resident of one country until June 14th and the resident of another from June 15th onwards. It would give each country the right to tax only the portion of the income earned in the corresponding part of the year. Then, the countries typically apply their regular tax brackets only to the “home” part of the tax year.</p>
-<h2 id="income-from-employment">Income from employment</h2>
+<h3 id="income-from-employment">Income from employment</h3>
 <p>Most articles of the model tax convention explain which country possesses the taxation right for a particular type of income. Let’s take a look at article 15, describing income from employment.</p>
 <p><details> <summary> Article 15: Income from employment </summary></p>
 <ol style="list-style-type: decimal">
@@ -894,13 +1065,13 @@ Map of OECD countries.
 <p>The article presents a general rule, saying that salary should be taxed in the country of tax residency unless the work is happening in the other country when the salary can be taxed by both countries.</p>
 <p>It also adds an exception that even if the work happens in a country where the worker is non-resident (according to the treaty), if the worker is present there at most 183 days in any period of 12 months (and some other conditions are satisfied), only the residence country has the taxation rights to the salary.</p>
 <p>This exception is important for people spending short amounts of time in other countries, for example attending conferences or business meetings: without it, every short-term visit to a different country would give taxation rights to the income earned while in the other country.</p>
-<h2 id="methods-of-eliminating-double-taxation">Methods of eliminating double taxation</h2>
+<h3 id="methods-of-eliminating-double-taxation">Methods of eliminating double taxation</h3>
 <p>What happens when this exception cannot be applied, and the salary can be taxed by both countries? It may occur when the employer sends the worker to supervise a project abroad for a year.</p>
 <p>As allowing both countries to tax the same income would be harmful to the worker and discourage international collaboration, countries agree in a DTA a method for exempting the income taxed in the other country from taxation to some level.</p>
 <p>Typically, the residence country (the one having the right to tax the worldwide income) offers the taxpayer an exemption to bring the total level of taxation somewhere close to the maximum level that the person would suffer in any given country.</p>
 <p>It can be realized in a couple of different ways: using tax credits, exemption with progression, or proportional exemption.</p>
 <p>Let’s assume the residence country taxes has two tax brackets: 10% for the income until 100 units and 20% afterward, and the non-residence country taxes everything at 15%, and see an example of how the different methods work out in practice.</p>
-<h3 id="tax-credits">Tax credits</h3>
+<h4 id="tax-credits">Tax credits</h4>
 <p>With tax credits, the residence country decreases the tax due by the amount of tax the worker pays in the other country.</p>
 <div class="table-wrapper">
 <table>
@@ -931,7 +1102,7 @@ Map of OECD countries.
 </table>
 </div>
 <p>The residence country taxes the worldwide income (120), with the first 100 taxed 10% (10), and the next 20 at 20% (4), and decreases the tax by the amount paid in non-residence country (3).</p>
-<h3 id="exemption-with-progression">Exemption with progression</h3>
+<h4 id="exemption-with-progression">Exemption with progression</h4>
 <p>When the country allows exemption with progression, instead of decreasing the tax directly, they only tax the income earned in the residence country, but the tax brackets take into account the income earned abroad. Let’s see the same example:</p>
 <div class="table-wrapper">
 <table>
@@ -957,7 +1128,7 @@ Map of OECD countries.
 </table>
 </div>
 <p>The residence country taxes the first 80 in the first (10%) bracket (as 20 of the first-bracket allowance was used up by the foreign income). The remaining 20 is taxed in the second bracket (20%, 4).</p>
-<h3 id="proportional-exemption">Proportional exemption</h3>
+<h4 id="proportional-exemption">Proportional exemption</h4>
 <p>The proportional exemption has some elements of the previous two methods of eliminating double taxation. Here, we first calculate the total tax and exemption as in the tax credit example. Then, we calculate the proportion of the paid tax that corresponds to the income earned abroad. If this proportion is higher than the tax credit, only that proportion is allowed as a credit.</p>
 <div class="table-wrapper">
 <table>
@@ -989,19 +1160,19 @@ Map of OECD countries.
 </div>
 <p>Proportion of the tax for the income abroad: 20/120 * 14 = 2.33. In this case, the tax due in the residence country will be 10 + 4 - 2.33.</p>
 <p>One needs to remember that these three kinds of exemptions are just examples, and the countries are free to agree on any exemption method they find appropriate in their DTAs.</p>
-<h2 id="commentary">Commentary</h2>
+<h3 id="commentary">Commentary</h3>
 <p>The model tax convention (and any particular DTA) is relatively short: it has 20-something articles, around 1 A4 page each. It cannot possibly describe any possible situation in detail. As a complement to this document, OECD published a much lengthier, 380-page long, <a href="https://www.oecd.org/berlin/publikationen/43324465.pdf">Commentaries on the articles of the model tax convention</a>. It describes the tax convention articles and the reasoning behind them in more detail, giving practical examples. While it’s non-binding (as only the particular DTA is binding), various courts use it to help them interpret the articles of the DTAs.</p>
-<h1 id="enforcing-the-agreement">Enforcing the agreement</h1>
+<h2 id="enforcing-the-agreement">Enforcing the agreement</h2>
 <p>We know what to do when we think a country-specific law is violated: we go to the court, and it makes a judgment. But what to do if the two countries’ institutions have different interpretations of the DTA, e.g. when both countries claim “you are considered a tax resident of our country”?</p>
-<h2 id="mutual-agreement-procedure">Mutual agreement procedure</h2>
+<h3 id="mutual-agreement-procedure">Mutual agreement procedure</h3>
 <p>As we said earlier, referring an issue to a court in any particular country may not work, as their jurisdiction won’t cover the other state (after all, the other country’s courts may disagree!).</p>
 <p>To give the taxpayer a mechanism to get a binding interpretation of the DTA, the countries agree to a special legal process, called Mutual Agreement Procedure (MAP).</p>
 <p>It is initiated by the taxpayer who claims that the resolutions of the DTA are not followed by one of the countries. Both countries take part in the process and are trying to agree to a common interpretation. If they fail to do so within a time limit, the issue is referred to somewhat independent arbitration.</p>
 <p>Given that MAP requires engaging both countries’ legal teams, it looks like a slow process one would prefer to avoid.</p>
-<h1 id="final-words">Final words</h1>
+<h2 id="final-words">Final words</h2>
 <p>The international tax rules are complex, and the countries’ tax authorities often want you to pay all of the tax to their country. It’s worth knowing under what conditions you have to do so and when to claim taxation is not appropriate.</p>
 <p>Understanding the rules may help you to pay less tax, as sometimes changing your decision (e.g. buying a house, selling stock, moving countries at a different time) may lead to your income being taxed in another country that has a lower tax rate.</p>
-<h2 id="disclaimer">Disclaimer</h2>
+<h3 id="disclaimer">Disclaimer</h3>
 <p>As I am not a tax professional, you should take the information above as a grain of salt.</p>
 <div class="footnotes">
 <hr />
@@ -1106,9 +1277,9 @@ Design of the board by Michalina.
 </div>
 <h1>Digital painting exercises</h1>
 <p>I think I am learning the quickest when doing a sequence of well-defined challenges of appropriate difficulty. As I didn’t find a course of digital drawing I’d like to follow, I was compiling separate exercises from various sources. They helped me to make small steps of progress in improving my digital painting skills.</p>
-<h1 id="drawing-people">Drawing people</h1>
+<h2 id="drawing-people">Drawing people</h2>
 <p>For a start, I decided to revisit Proko lessons and learn to better draw people on a tablet.</p>
-<h2 id="line-of-action-developing-workflow">Line of Action, developing workflow</h2>
+<h3 id="line-of-action-developing-workflow">Line of Action, developing workflow</h3>
 <p>A popular exercise when learning to draw people is the timed drawing, where students draw a model in a short, predefined period of time. The goal is to be able to concentrate on capturing general gesture as opposed to details.</p>
 <p>Many websites help to run a similar exercise online, where the student is drawing from a prepared picture which changes every couple of minutes.</p>
 <p>I was using two websites for this: <a href="https://line-of-action.com">Line of Action</a> and <a href="https://www.youtube.com/channel/UCliUF1c8m7MUspaCykJljSg">New Masters Academy</a> channel on Youtube. They both have lots of content to draw.</p>
@@ -1138,7 +1309,7 @@ Stages of the drawing.
 Final drawings made using this workflow.
 </figcaption>
 </figure>
-<h2 id="portrait-painting">Portrait painting</h2>
+<h3 id="portrait-painting">Portrait painting</h3>
 <p>In the poses drawings, I omitted hands, feet, and faces, as they are harder than the overall shape of the body and a topic on their own. I decided to spend a bit of time learning to draw heads, though.</p>
 <p>Initially, I did two sketches using the same reference page as before:</p>
 <figure>
@@ -1165,9 +1336,9 @@ Portrait painting based on a tutorial.
 Recording of the painting.
 </figcaption>
 </figure>
-<h1 id="art-studies">Art studies</h1>
+<h2 id="art-studies">Art studies</h2>
 <p>I found online a suggestion for improving one’s art: to analyze the paintings of others or movie frames. I decided to try two methods: a value and a color study.</p>
-<h2 id="value-studies">Value studies</h2>
+<h3 id="value-studies">Value studies</h3>
 <p>Value (lightness) is a primary tool for creating a contrast in a picture. To think about how others use values in their art, I followed an exercise to draw using only three colors: white, black, and grey. Initially, the areas that light reaches are covered with white, then the half-tone ones are getting changed to grey. Arguably, this exercise helps to understand the shape of the objects in the pictures.</p>
 <figure>
 <img src="/images/digital_painting2/analysis/values.png" alt="Value study" style="width:70.0%" />
@@ -1175,7 +1346,7 @@ Recording of the painting.
 Value study of a couple of paintings and movie frames.
 </figcaption>
 </figure>
-<h2 id="color-studies">Color studies</h2>
+<h3 id="color-studies">Color studies</h3>
 <p>The other exercise I tried was a more holistic analysis of the pictures of others. I looked over a couple of them and tried to understand the techniques used and reproduce them in a simplified form.</p>
 <p>I used pictures of <a href="https://www.youtube.com/channel/UC0XHwYwoeWJC9d0ndtev5vw">AngryMikko</a> and <a href="https://www.youtube.com/channel/UCsDxB-CSMQ0Vu_hTag7-2UQ">Marco Bucci</a> for this, whose colors (despite having different styles) I enjoy.</p>
 <figure>
@@ -1192,9 +1363,9 @@ Analysis of “GoodMorning” (<a href="https://www.marcobucci.com/personal-work
 </figcaption>
 </figure>
 <p>On the other hand, Marco uses more highly-saturated areas. He also uses a bunch of different brushes compared to Mikko. It seems that, as the character was the main focus, its high value/saturation looks good even though it should be more in shadow behind the tree.</p>
-<h1 id="exercises">Exercises</h1>
+<h2 id="exercises">Exercises</h2>
 <p>Apart from studying others’ work, I also did a couple of custom exercises.</p>
-<h2 id="lightning-a-cube">Lightning a cube</h2>
+<h3 id="lightning-a-cube">Lightning a cube</h3>
 <p>First, after watching a couple of tutorials about color theory (<a href="https://www.youtube.com/watch?v=xcCJ2CU-bFw">Light and shadow</a>, <a href="https://www.youtube.com/watch?v=gwLQ0cDb4cE">Understanding shadow colors</a>, <a href="https://www.youtube.com/watch?v=botKNa3YGsI">Cavemen color theory</a>), I decided to summarize the general ideas behind natural colors of areas in light and shadow.</p>
 <figure>
 <a href="/images/digital_painting2/exercises/Lightning.png"><img src="/images/digital_painting2/exercises/Lightning.png" alt="Cube lightning" style="width:65.0%" /></a>
@@ -1202,7 +1373,7 @@ Analysis of “GoodMorning” (<a href="https://www.marcobucci.com/personal-work
 Exercise/notes about lightning a cube.
 </figcaption>
 </figure>
-<h2 id="rocks">Rocks</h2>
+<h3 id="rocks">Rocks</h3>
 <p>Then, I decided to put it into practice a bit more and tried drawing rocks. I partially followed the tutorials (<a href="https://www.youtube.com/watch?v=b-7XzBg1wPM">1</a>, <a href="https://www.youtube.com/watch?v=puTpnQRKzUQ">2</a>, <a href="https://www.youtube.com/watch?v=bFB9FE18POY&amp;t=252s&amp;ab_channel=WalidFeghali">3</a>), and partially tried to imagine the shapes on my own and confirm my understanding of lightning on a rock.</p>
 <figure>
 <a href="/images/digital_painting2/exercises/Rocks.png"><img src="/images/digital_painting2/exercises/Rocks.png" alt="Rocks drawings" style="width:65.0%" /></a>
@@ -1210,7 +1381,7 @@ Exercise/notes about lightning a cube.
 Exercises in drawing a rock.
 </figcaption>
 </figure>
-<h2 id="glowing-stuff">Glowing stuff</h2>
+<h3 id="glowing-stuff">Glowing stuff</h3>
 <p>Then, I tried to learn how to draw glowing things, as I find them to look cool. I decided to draw a picture of a turtle in a dark forest with some symbols glowing on its shell.</p>
 <figure>
 <a href="/images/digital_painting2/exercises/Turtle.png"><img src="/images/digital_painting2/exercises/Turtle.png" alt="Turtle painting" style="width:80.0%" /></a>
@@ -1223,7 +1394,7 @@ Painting of a turtle.
 <p>I didn’t plan the composition/focal point/values upfront. The initial idea was to have a bigger view with a horizon line and fancy lights, but I decided to cut the complexity and concentrate on the turtle.</p>
 <p>Even with a reduced view, I think there is too much area on the picture where nothing happens. I should have tried to put more contrasting elements around.</p>
 <p>Apart from this, it seems I took Mikko’s example too much to heart and used saturated colors too little. I tried to fix it in the post-process, which only helped to some extent.</p>
-<h1 id="summary">Summary</h1>
+<h2 id="summary">Summary</h2>
 <p>I did a few exercises to improve my use of colors and ability to draw people. While I still envy colorful landscapes and would like to learn how to paint them, I think that I like more the style of strong lines and simple, close to flat colors (more <em>drawing</em> than <em>painting</em>).</p>
 <p><a href="/images/digital_painting2/people/sketches/B.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/C.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/D.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/E.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/F.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/G.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/H.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/I.png" target="_blank"><img data-bilderrahmen="sketches"/></a><a href="/images/digital_painting2/people/sketches/J.png" target="_blank"><img data-bilderrahmen="sketches"/></a></p>
 <p><a href="/images/digital_painting2/people/final/B.png" target="_blank"><img data-bilderrahmen="people"/></a><a href="/images/digital_painting2/people/final/C.png" target="_blank"><img data-bilderrahmen="people"/></a><a href="/images/digital_painting2/people/final/D.png" target="_blank"><img data-bilderrahmen="people"/></a></p>
@@ -1241,20 +1412,20 @@ Painting of a turtle.
 </div>
 <h1>Choosing game engine</h1>
 <p>The idea of telling stories interactively through video games is appealing to me. Some time ago, I started writing a scenario for a first, test game. In this post, I write down my experience of choosing a game engine.</p>
-<h1 id="motivation">Motivation</h1>
+<h2 id="motivation">Motivation</h2>
 <p>Between grade 6 and entering the workforce at around 25 years old, I haven’t played many games. Growing up playing Super Mario Bros, FIFA, or Ages of Empires II, I associated computer games more with cheap adrenaline rushes than discovering new worlds.</p>
 <p>It changed dramatically after playing <a href="https://store.steampowered.com/app/582500/We_Were_Here/">We Were Here</a> and <a href="https://store.steampowered.com/app/230230/Divinity_Original_Sin_Classic/">Divinity Original Sin</a> with my girlfriend. These are cooperative games with no reflex elements and are more about exploring the game world than defeating opponents.</p>
 <p>At the same time, we were a bit disappointed with We Were Here, as, even though we liked the walkie-talkie coop mechanic, the gameplay was centered around solving abstract puzzles: there’s a little story to discover there<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
 <p>I decided to fix this and try to make a game similar to We Were Here with a stronger focus on the story and learn some game development in the process.</p>
-<h1 id="what-is-a-game-engine">What is a game engine</h1>
+<h2 id="what-is-a-game-engine">What is a game engine</h2>
 <p>Making a game involves a lot of complex elements: checking if game objects collide, networking, playing sounds, etc. Many of these can be done once and reused in many games: one doesn’t need to reinvent from scratch how the light bounces from objects or how to communicate player actions in a multi-player game.</p>
 <p>The ability to separate some reusable solutions caused the birth of a concept of a <em>game engine</em>: a program made to simplify the process of game creation by providing common patterns, allowing the game designers to concentrate on the game’s content instead of low-level details.</p>
 <p>The fixed solutions provided by the game engine may not always be appropriate for a given game. Bigger game studios producing AAA titles will effectively implement proprietary game engines on their own, which will allow them to optimize hardware usage and production workflow for their games.</p>
 <p>For the smaller, independent game creators, game engines available on the market are a godsend, as they allow to start making games without investing thousands of manhours in solving ray-tracing issues or creating animation pipelines.</p>
 <p>For my first game, I obviously want to reuse known solutions as much as possible, so I was trying out various game engines to see what they offer.</p>
-<h1 id="choosing-game-engine">Choosing game engine</h1>
+<h2 id="choosing-game-engine">Choosing game engine</h2>
 <p>When searching for the game engine over the internet, two popular choices come up often: Unity and Unreal.</p>
-<h2 id="unreal">Unreal</h2>
+<h3 id="unreal">Unreal</h3>
 <p>As I hope the mechanics in my game will be relatively simple (to concentrate on the story), the first feature of the game engine I was looking at was: the code language used to write the game. In the case of Unreal, it is C++, which I like, so I decided to try it out first.</p>
 <p>For a start, I decided to create a 3D scene with a small city, a lake, a mountain, etc. While I learned lots of both Unreal and general 3D-modelling concepts, creating a 3D scene felt quite overwhelming and more effort than I’d like to put on the visuals alone. It would be exarberated if I needed to make some assets for the game: for the test scene I was taking them from the internet, which wouldn’t look good/wouldn’t be permitted by the license in a game.</p>
 <p>A nice thing that I didn’t expect was the option to export the game to HTML5. When thinking about it, I’d certainly like to be able to embed the game on a website: it’ll be much easier to show the result of my work if one doesn’t need to install anything nor have any particular OS to do so.</p>
@@ -1263,27 +1434,27 @@ Painting of a turtle.
 <figure>
 <img src="../images/game_engines/unreal_blueprint.png" alt="Blueprint" style="width:70.0%" />
 <figcaption>
-Blueprint in Unity.
+Blueprint in Unreal Engine.
 </figcaption>
 </figure>
 <p>Overall, I liked Unreal a lot for what it is: a professional-grade 3D game engine. At the same time, I realized that making a proper 3D game is a big undertaking, and I shouldn’t try it for the first game I ever made.</p>
-<h2 id="unity">Unity</h2>
+<h3 id="unity">Unity</h3>
 <p>After Unreal, I spent a couple of hours playing with its main competitor: Unity.</p>
 <p>While it has better support for 2D, it had enough pain points to scare me off quickly.</p>
 <p>For a start, while formally supported under Linux, the UI seemed to not look great under Cinnamon, and I remember having some problems with the installation. Linux is clearly not a prime target for Unity.</p>
 <p>As the engine is as packed as Unreal, is it loaded slowly and took a lot of disk space. The scenes took a long time to build which would be a hinder to the debugging speed.</p>
 <p>Furthermore, the game development language is C#, which I haven’t used so far. While it seems similar to Java, and I could learn it, I’d prefer it if I didn’t have to.</p>
 <p>Finally, the business model of the engine put me off. While Unreal is open-source with a fee to pay when your sales exceed 100k USD/year (which won’t happen for me), Unity has a separate “pro” engine available for people who pay for it. While I certainly don’t need all the features of a full-fledged game engine, the feeling that further down the line, there may be things I’ll not be able to do because I didn’t pay was not a good first encounter.</p>
-<h2 id="evennia">Evennia</h2>
+<h3 id="evennia">Evennia</h3>
 <p>When limiting the scope after getting overwhelmed with 3D in Unreal, I played with the other end of the art-complexity spectrum and tried to make the game purely text-based. I discovered an old, unpopular “in my times” genre of games: <a href="https://en.wikipedia.org/wiki/MUD">multi-user dungeons (MUDs)</a>.</p>
 <p>MUDs are similar to Roguelikes in being purely text-based, but MUDs are multi-player by definition, and the available commands are text-based, like <code>look around</code> or <code>go through the door</code> as opposed to the grid-based movement.</p>
 <p>For MUDs, there are also game engines to simplify their building process, which, for example, take care of all the network-related stuff. The one I was playing with is called <a href="https://www.evennia.com">Evennia</a>. It’s written in (and uses as the game language) Python what is a plus for me.</p>
 <p>As MUDs are inherently simpler (programming-wise) than fancy 3D games, the engine itself doesn’t have a lot of code, and I was able to find my way around it pretty quickly. I managed to add a way to display pictures, as I thought an occasional image here and there will make the puzzles more interesting.</p>
 <p>In the end, I decided to try 2D graphics again, but as I liked the experience with Evennia I may go back to it some time (for a second game :).</p>
-<h2 id="godot">Godot</h2>
+<h3 id="godot">Godot</h3>
 <p>After my mixed experience with leading game engines, I looked around the internet more and found <a href="godotengine.org/">Godot</a>. It’s a free and open-source game engine that supports both 2D and 3D games. Despite being a powerful game engine, the editor is light (&lt;100 MB) and quick: building a scene takes &lt;1 s, and many changes are hot-reloaded while the game is running. It is important for me, as I left my desktop in London for the pandemic and I’m left with only a laptop with no graphic card now.</p>
 <p>I was surprised that even though the engine developers and not able to sponsor the content, there is a lot of tutorials and guides online for using Godot. At the same time, the majority of these tutorials are targeted at beginner programmers/kids; finding higher-level design guides for building big games wasn’t easy.</p>
-<h3 id="scene-tree">Scene tree</h3>
+<h4 id="scene-tree">Scene tree</h4>
 <p>The philosophy of game design in Godot revolves around building a <em>Scene</em> (which is vaguely equivalent to a <em>class</em> in Object-Oriented Programming) with a tree of <em>Nodes</em> (like fields, but you can arrange them hierarchically).</p>
 <figure>
 <img src="../images/game_engines/godot_tree.png" alt="Tree scene" style="width:60.0%" />
@@ -1295,12 +1466,12 @@ Example Scene tree in Godot.
 <p>This feature is available not only for the built-in classes but also for any other field marked <code>export</code> by the programmer. Thanks to that and the extensibility of the engine, I was able to make a plugin that sets a <code>horizon_line</code> field in a background image based on a click position. It will make it easy to scale the sprite for the character with the rules of the perspective.</p>
 <p>While I like the nodes system overall, I also have a complaint about it. As the <code>script</code> (code) is just a text file that can be attached to any number of nodes (not only scenes but also its elements). Because of that, there are many ways to achieve inheritance (sharing of code in a more specific object): you can either use <em>inherited scenes</em> or <em>extend</em> the script itself.</p>
 <p>As a result, it’s not clear which entities should be nodes and which should be scenes, and one needs to spend time making decisions that wouldn’t be needed if there was only one class-like concept, owning its code as in the OOP principles. To some extent, this problem can be solved by establishing conventions on when to use scenes vs nodes.</p>
-<h3 id="language">Language</h3>
+<h4 id="language">Language</h4>
 <p>Godot engine is written in C++, but the default game development language is GDScript, a custom language built for Godot. While writing a whole language for the game engine feels too idiosyncratic to me (seriously, is there not enough unpopular languages?), I somewhat buy <a href="https://docs.godotengine.org/en/stable/about/faq.html#what-were-the-motivations-behind-creating-gdscript">the arguments of developers</a>: they wanted to have a dynamically-typed language but struggled with GIL in Python.</p>
 <p>As there is, technically, a way to integrate Godot with Python, I was initially planning to use it, but in the end, GDScript ended up being close enough to Python that I couldn’t care enough to spend time changing it.</p>
 <p>Of course, it misses some syntactic-sugar features like f-strings or list comprehensions, but I didn’t find anything too painful for me language-wise.</p>
 <p>For completeness’ sake, I should mention that Godot also offers a custom visual programming language (like Unreal’s blueprints), and the integration with C# and C++ seems to be easier than the one with python.</p>
-<h1 id="final-words">Final words</h1>
+<h2 id="final-words">Final words</h2>
 <p>Game development is hard. I tried a couple of game engines which make the process much easier and ended up with Godot. My initial plans of making a story-rich online coop will probably be replaced with making a small point-and-click adventure game.</p>
 <p>As of now, I have most of the story-independent code written and will move on to describe game scenes in more detail, likely followed by creating the assets. You can play the debug scene <a href="../data/game_engines/maduka.html">here</a>.</p>
 <div class="footnotes">
@@ -1416,23 +1587,23 @@ I used a simple scene here but will try with more complex one next.
 <p>Ever since I got T.I.M.E stories for Christmas a couple of years ago, I was planning to make a fan scenario. I have finally found some time to develop the expansion recently.</p>
 <p>T.I.M.E stories is a decksploration board game, about which I wrote a bit <a href="https://sygnowski.ml/posts/2020-06-19-time-stories.html">here</a>. The game itself defines mechanics (somewhat similarly to e.g. RPGs) and sells different scenarios (stories) as expansions. There’s a <a href="https://boardgamegeek.com/geeklist/225429/time-stories-print-and-play-scenarios-available-bg">long list</a> of fan-made scenarios, many of which are really high-quality<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
 <p>The high-level idea for the story (mild spoilers ahead) is the daring <a href="https://en.wikipedia.org/wiki/Kazimierz_Piechowski">escape</a> of Kazimierz Piechowski and his fellows from Auschwitz concentration camp.</p>
-<h1 id="preparations">Preparations</h1>
+<h2 id="preparations">Preparations</h2>
 <p>Initially, the story was meant to be about the escape of <a href="https://en.wikipedia.org/wiki/Witold_Pilecki">Witold Pilecki</a>, but after reading the details of his story I felt that the escape alone was not a worthy enough element of his biography. The escape of Piechowski seemed to fit the mechanics of time stories better.</p>
 <p>To better understand the living conditions in the camp, I read <a href="https://en.wikipedia.org/wiki/Pilecki&#39;s_Report">Pilecki’s Report</a>: a document written by Pilecki and smuggled out by Stanisław Jaster.</p>
 <p>I chose that obtaining this report will be the main topic of my scenario.</p>
 <p>I also collected maps of Auschwitz I and, with the help of a historian friend, found <a href="http://lekcja.auschwitz.org/en_15_ucieczki/">the details of this particular escape</a>. I tried keeping the scenario close to the real event, although I made small changes to drive the story.</p>
-<h1 id="technical">Technical</h1>
+<h2 id="technical">Technical</h2>
 <p>I kept notes on the game setting in a markdown note. In there, I wrote there decisions on puzzles, the mechanism to leave and enter the inner camp, locations, the meaning of state tokens, and the like.</p>
 <p>As the details of each location started to grow with the actual card texts, I moved them to a separate markdown file. I then wrote a short program that converted this file to a filetree with directories corresponding to locations and png files of each card with the rendered texts.</p>
-<h1 id="inkscape">Inkscape</h1>
+<h2 id="inkscape">Inkscape</h2>
 <p>After the list of locations and their contents was more or less decided, I started creating the actual cards. I was (still am) planning to create custom graphics for the locations, so I left the backs of the cards blank (apart from location names) and worked mostly on the fronts.</p>
 <p>I made the cards in <a href="https://inkscape.org">Inkscape</a>: it was a relatively nice experience. For one type of cards (front, backs, A-cards, etc.) I pasted the background texture and locked it and was adding things on top of it. When I was adding new elements like shields, tokens, but also choosing the design of text boxes, I was saving a new copy of the “template” card with the additional elements placed outside of the page. This way, I had a file with dozens of tokens, shields, and others ready to be drag and drop to the card page in the default svg template.</p>
 <p>One particularly useful thing was the ability to create a card from a given subset of the image file, so I was able to create a couple of cards laying next to each other and easily cut them into separate cards. It was useful in creating the map and a multi-card puzzle.</p>
-<h1 id="graphic-design">Graphic design</h1>
+<h2 id="graphic-design">Graphic design</h2>
 <p>All of the graphic elements I used so far weren’t created by me. I was surprised I was able to find free fonts (with a license allowing me to use them) on <a href="https://www.1001fonts.com">1001fonts.com</a>, and paper-like textures on <a href="https://www.myfreetextures.com">www.myfreetextures.com</a>. I used a small number of images for item cards <a href="https://www.pixabay.com">pixabay.com</a>.</p>
 <p>I made a couple of smaller graphic-design decisions like adding the semi-transparent text boxes below texts to improve readability.</p>
 <p>I also chose a font and size for every type of text, with most typical texts written with Lato 15. 15 was quite big, which made it necessary to cut some texts, but I think having less text made the cards better.</p>
-<h1 id="playtests">Playtests</h1>
+<h2 id="playtests">Playtests</h2>
 <p>I ran two playtests with friends. They discovered many important problems, e.g.:</p>
 <ul>
 <li>initially, I made a camp border a solid line, even around the camp gate and people didn’t try to go there because they assumed it wasn’t available</li>
@@ -1440,15 +1611,15 @@ I used a simple scene here but will try with more complex one next.
 <li>story was too linear</li>
 </ul>
 <p>I hopefully was able to fix those to a large degree.</p>
-<h1 id="compiling">Compiling</h1>
+<h2 id="compiling">Compiling</h2>
 <p>Once the cards were ready to play, I wrote a script that copied them in the correct order, as I was developing them in the directory tree based on the location name as above.</p>
 <p>Then, I used a small subset of <a href="http://heresy.mrtrashcan.com/home/the-tools/">heresy tools</a> to join the cards together in a print-and-play pdf.</p>
-<h1 id="remaining-problems">Remaining problems</h1>
+<h2 id="remaining-problems">Remaining problems</h2>
 <p>I think my workflow was ok-ish, but definitely could be improved.</p>
 <p>In particular, the compiling phase for me included many steps: running the reordering script, moving the cards, substituting alpha with a light-grey (so that empty cards are visible in a pdf), and running heresy tools. This felt like unnecessary manual labor. Using heresy tools in full promise to help with it, but the need to manually enter the sizes and shapes is a no-deal for me. Having a single-step compilation could also allow me to generate a pdf with texts as vector graphics without converting to pngs first as I do now.</p>
 <p>Apart from this, my handling of card texts could be improved. Currently, I stored them both in the markdown file and the final svg. Because of this, whenever something needed to be changed, I had to make the change in both places. Also, manually copying the texts to svg caused them to not be positioned in the same way.</p>
 <p>Finally, when I figured out how to properly justify text in Inkscape, I already had the texts placed everywhere, so I didn’t bother to change them.</p>
-<h1 id="final-words">Final words</h1>
+<h2 id="final-words">Final words</h2>
 <p>Without further ado, this is <a href="https://drive.google.com/file/d/1MzdS5eCEafiefC1Lmfx_WlrzFDWUweAh/view?usp=sharing">a link to the scenario</a> and its <a href="https://rpggeek.com/geeklist/206708/item/8006732#item8006732">BGG item page</a>.</p>
 <p>I believe the whole game is finished, except for the custom graphics, which are not necessary for playing and will take a while to finish (it’s around 50 images to draw).</p>
 <p>If you end up playing it, I’ll greatly appreciate <a href="https://forms.gle/Pf5pVWJfm1gusz4D6">your feedback</a>.</p>

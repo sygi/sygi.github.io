@@ -30,20 +30,20 @@
 </div>
 <h1>Choosing game engine</h1>
 <p>The idea of telling stories interactively through video games is appealing to me. Some time ago, I started writing a scenario for a first, test game. In this post, I write down my experience of choosing a game engine.</p>
-<h1 id="motivation">Motivation</h1>
+<h2 id="motivation">Motivation</h2>
 <p>Between grade 6 and entering the workforce at around 25 years old, I haven’t played many games. Growing up playing Super Mario Bros, FIFA, or Ages of Empires II, I associated computer games more with cheap adrenaline rushes than discovering new worlds.</p>
 <p>It changed dramatically after playing <a href="https://store.steampowered.com/app/582500/We_Were_Here/">We Were Here</a> and <a href="https://store.steampowered.com/app/230230/Divinity_Original_Sin_Classic/">Divinity Original Sin</a> with my girlfriend. These are cooperative games with no reflex elements and are more about exploring the game world than defeating opponents.</p>
 <p>At the same time, we were a bit disappointed with We Were Here, as, even though we liked the walkie-talkie coop mechanic, the gameplay was centered around solving abstract puzzles: there’s a little story to discover there<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
 <p>I decided to fix this and try to make a game similar to We Were Here with a stronger focus on the story and learn some game development in the process.</p>
-<h1 id="what-is-a-game-engine">What is a game engine</h1>
+<h2 id="what-is-a-game-engine">What is a game engine</h2>
 <p>Making a game involves a lot of complex elements: checking if game objects collide, networking, playing sounds, etc. Many of these can be done once and reused in many games: one doesn’t need to reinvent from scratch how the light bounces from objects or how to communicate player actions in a multi-player game.</p>
 <p>The ability to separate some reusable solutions caused the birth of a concept of a <em>game engine</em>: a program made to simplify the process of game creation by providing common patterns, allowing the game designers to concentrate on the game’s content instead of low-level details.</p>
 <p>The fixed solutions provided by the game engine may not always be appropriate for a given game. Bigger game studios producing AAA titles will effectively implement proprietary game engines on their own, which will allow them to optimize hardware usage and production workflow for their games.</p>
 <p>For the smaller, independent game creators, game engines available on the market are a godsend, as they allow to start making games without investing thousands of manhours in solving ray-tracing issues or creating animation pipelines.</p>
 <p>For my first game, I obviously want to reuse known solutions as much as possible, so I was trying out various game engines to see what they offer.</p>
-<h1 id="choosing-game-engine">Choosing game engine</h1>
+<h2 id="choosing-game-engine">Choosing game engine</h2>
 <p>When searching for the game engine over the internet, two popular choices come up often: Unity and Unreal.</p>
-<h2 id="unreal">Unreal</h2>
+<h3 id="unreal">Unreal</h3>
 <p>As I hope the mechanics in my game will be relatively simple (to concentrate on the story), the first feature of the game engine I was looking at was: the code language used to write the game. In the case of Unreal, it is C++, which I like, so I decided to try it out first.</p>
 <p>For a start, I decided to create a 3D scene with a small city, a lake, a mountain, etc. While I learned lots of both Unreal and general 3D-modelling concepts, creating a 3D scene felt quite overwhelming and more effort than I’d like to put on the visuals alone. It would be exarberated if I needed to make some assets for the game: for the test scene I was taking them from the internet, which wouldn’t look good/wouldn’t be permitted by the license in a game.</p>
 <p>A nice thing that I didn’t expect was the option to export the game to HTML5. When thinking about it, I’d certainly like to be able to embed the game on a website: it’ll be much easier to show the result of my work if one doesn’t need to install anything nor have any particular OS to do so.</p>
@@ -52,27 +52,27 @@
 <figure>
 <img src="../images/game_engines/unreal_blueprint.png" alt="Blueprint" style="width:70.0%" />
 <figcaption>
-Blueprint in Unity.
+Blueprint in Unreal Engine.
 </figcaption>
 </figure>
 <p>Overall, I liked Unreal a lot for what it is: a professional-grade 3D game engine. At the same time, I realized that making a proper 3D game is a big undertaking, and I shouldn’t try it for the first game I ever made.</p>
-<h2 id="unity">Unity</h2>
+<h3 id="unity">Unity</h3>
 <p>After Unreal, I spent a couple of hours playing with its main competitor: Unity.</p>
 <p>While it has better support for 2D, it had enough pain points to scare me off quickly.</p>
 <p>For a start, while formally supported under Linux, the UI seemed to not look great under Cinnamon, and I remember having some problems with the installation. Linux is clearly not a prime target for Unity.</p>
 <p>As the engine is as packed as Unreal, is it loaded slowly and took a lot of disk space. The scenes took a long time to build which would be a hinder to the debugging speed.</p>
 <p>Furthermore, the game development language is C#, which I haven’t used so far. While it seems similar to Java, and I could learn it, I’d prefer it if I didn’t have to.</p>
 <p>Finally, the business model of the engine put me off. While Unreal is open-source with a fee to pay when your sales exceed 100k USD/year (which won’t happen for me), Unity has a separate “pro” engine available for people who pay for it. While I certainly don’t need all the features of a full-fledged game engine, the feeling that further down the line, there may be things I’ll not be able to do because I didn’t pay was not a good first encounter.</p>
-<h2 id="evennia">Evennia</h2>
+<h3 id="evennia">Evennia</h3>
 <p>When limiting the scope after getting overwhelmed with 3D in Unreal, I played with the other end of the art-complexity spectrum and tried to make the game purely text-based. I discovered an old, unpopular “in my times” genre of games: <a href="https://en.wikipedia.org/wiki/MUD">multi-user dungeons (MUDs)</a>.</p>
 <p>MUDs are similar to Roguelikes in being purely text-based, but MUDs are multi-player by definition, and the available commands are text-based, like <code>look around</code> or <code>go through the door</code> as opposed to the grid-based movement.</p>
 <p>For MUDs, there are also game engines to simplify their building process, which, for example, take care of all the network-related stuff. The one I was playing with is called <a href="https://www.evennia.com">Evennia</a>. It’s written in (and uses as the game language) Python what is a plus for me.</p>
 <p>As MUDs are inherently simpler (programming-wise) than fancy 3D games, the engine itself doesn’t have a lot of code, and I was able to find my way around it pretty quickly. I managed to add a way to display pictures, as I thought an occasional image here and there will make the puzzles more interesting.</p>
 <p>In the end, I decided to try 2D graphics again, but as I liked the experience with Evennia I may go back to it some time (for a second game :).</p>
-<h2 id="godot">Godot</h2>
+<h3 id="godot">Godot</h3>
 <p>After my mixed experience with leading game engines, I looked around the internet more and found <a href="godotengine.org/">Godot</a>. It’s a free and open-source game engine that supports both 2D and 3D games. Despite being a powerful game engine, the editor is light (&lt;100 MB) and quick: building a scene takes &lt;1 s, and many changes are hot-reloaded while the game is running. It is important for me, as I left my desktop in London for the pandemic and I’m left with only a laptop with no graphic card now.</p>
 <p>I was surprised that even though the engine developers and not able to sponsor the content, there is a lot of tutorials and guides online for using Godot. At the same time, the majority of these tutorials are targeted at beginner programmers/kids; finding higher-level design guides for building big games wasn’t easy.</p>
-<h3 id="scene-tree">Scene tree</h3>
+<h4 id="scene-tree">Scene tree</h4>
 <p>The philosophy of game design in Godot revolves around building a <em>Scene</em> (which is vaguely equivalent to a <em>class</em> in Object-Oriented Programming) with a tree of <em>Nodes</em> (like fields, but you can arrange them hierarchically).</p>
 <figure>
 <img src="../images/game_engines/godot_tree.png" alt="Tree scene" style="width:60.0%" />
@@ -84,12 +84,12 @@ Example Scene tree in Godot.
 <p>This feature is available not only for the built-in classes but also for any other field marked <code>export</code> by the programmer. Thanks to that and the extensibility of the engine, I was able to make a plugin that sets a <code>horizon_line</code> field in a background image based on a click position. It will make it easy to scale the sprite for the character with the rules of the perspective.</p>
 <p>While I like the nodes system overall, I also have a complaint about it. As the <code>script</code> (code) is just a text file that can be attached to any number of nodes (not only scenes but also its elements). Because of that, there are many ways to achieve inheritance (sharing of code in a more specific object): you can either use <em>inherited scenes</em> or <em>extend</em> the script itself.</p>
 <p>As a result, it’s not clear which entities should be nodes and which should be scenes, and one needs to spend time making decisions that wouldn’t be needed if there was only one class-like concept, owning its code as in the OOP principles. To some extent, this problem can be solved by establishing conventions on when to use scenes vs nodes.</p>
-<h3 id="language">Language</h3>
+<h4 id="language">Language</h4>
 <p>Godot engine is written in C++, but the default game development language is GDScript, a custom language built for Godot. While writing a whole language for the game engine feels too idiosyncratic to me (seriously, is there not enough unpopular languages?), I somewhat buy <a href="https://docs.godotengine.org/en/stable/about/faq.html#what-were-the-motivations-behind-creating-gdscript">the arguments of developers</a>: they wanted to have a dynamically-typed language but struggled with GIL in Python.</p>
 <p>As there is, technically, a way to integrate Godot with Python, I was initially planning to use it, but in the end, GDScript ended up being close enough to Python that I couldn’t care enough to spend time changing it.</p>
 <p>Of course, it misses some syntactic-sugar features like f-strings or list comprehensions, but I didn’t find anything too painful for me language-wise.</p>
 <p>For completeness’ sake, I should mention that Godot also offers a custom visual programming language (like Unreal’s blueprints), and the integration with C# and C++ seems to be easier than the one with python.</p>
-<h1 id="final-words">Final words</h1>
+<h2 id="final-words">Final words</h2>
 <p>Game development is hard. I tried a couple of game engines which make the process much easier and ended up with Godot. My initial plans of making a story-rich online coop will probably be replaced with making a small point-and-click adventure game.</p>
 <p>As of now, I have most of the story-independent code written and will move on to describe game scenes in more detail, likely followed by creating the assets. You can play the debug scene <a href="../data/game_engines/maduka.html">here</a>.</p>
 <div class="footnotes">

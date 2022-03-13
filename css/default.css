@@ -5,6 +5,10 @@ body{background-color:#D3D3D3;background-image:url("../../images/grey_wash_wall.
 }
 }
 
+ul,ol{
+ padding-inline-start:20px;
+}
+
 input#cookie{
  vertical-align:middle;
 }

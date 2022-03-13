@@ -31,8 +31,17 @@
 <h1>Easy-to-use text-to-speech</h1>
 <p>Adventure games, the genre I like, tend to contain a lot of talking. Apart from writing the character statements on the screen, bigger game studios hire voice actors to record them and play the recordings. It is a lengthy and costly process. I decided to see how far text-to-speech is from being able to substitute human actors for indie adventure games.</p>
 <h2 id="problem-definition">Problem definition</h2>
-<p>I define the text-to-speech problem as: - take as input a short English text prepared by the game writer and one of a couple of identities of the game characters - produce an audio wave where a character speaks the text.</p>
-<p>Text-to-speech is an active research domain, and one could easily spend weeks (or a whole career) looking for the best solution. I chose to limit myself to methods that: 1. are available for free, 2. don’t require me to do further research to make it work, 3. are easily available on the internet; in particular require no training neural networks on a high-end GPU for days.</p>
+<p>I define the text-to-speech problem as:</p>
+<ul>
+<li>take as input a short English text prepared by the game writer and one of a couple of identities of the game characters</li>
+<li>produce an audio wave where a character speaks the text.</li>
+</ul>
+<p>Text-to-speech is an active research domain, and one could easily spend weeks (or a whole career) looking for the best solution. I chose to limit myself to methods that:</p>
+<ol style="list-style-type: decimal">
+<li>are available for free,</li>
+<li>don’t require me to do further research to make it work,</li>
+<li>are easily available on the internet; in particular require no training neural networks on a high-end GPU for days.</li>
+</ol>
 <h2 id="high-level-state-of-research">High-level state of research</h2>
 <p>To explain how the current models work, one needs to first define what a <em>mel-spectrogram</em> is.</p>
 <p>According to <a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Wikipedia</a>:</p>
@@ -49,7 +58,11 @@ An example mel-spectrogram. Note a region of lower energy after around 130 time 
 </figure>
 <p>An important property of mel-spectrograms is that they contain less information than the initial sound wave, i.e. there are multiple waves with the same mel-spectrogram.</p>
 <h3 id="current-models">Current models</h3>
-<p>To generate a single sound wave from a sentence of text, people currently apply two models sequentially: 1. An acoustic model, which transforms text to a mel-spectrogram, e.g. <a href="https://arxiv.org/abs/1712.05884">Tacotron 2</a>, <a href="https://arxiv.org/abs/2005.11129">Glow-TTS</a>, or <a href="https://arxiv.org/abs/2006.04558">FastSpeech 2</a>. 2. A vocoder, which maps the mel-spetrogram to the actual sound wave. The most popular vocoder is <a href="https://arxiv.org/abs/2010.05646">HiFi-GAN</a>, with other examples being <a href="https://arxiv.org/abs/1910.06711">MelGAN</a> and <a href="https://arxiv.org/abs/1811.00002">WaveGlow</a>.</p>
+<p>To generate a single sound wave from a sentence of text, people currently apply two models sequentially:</p>
+<ol style="list-style-type: decimal">
+<li>An acoustic model, which transforms text to a mel-spectrogram, e.g. <a href="https://arxiv.org/abs/1712.05884">Tacotron 2</a>, <a href="https://arxiv.org/abs/2005.11129">Glow-TTS</a>, or <a href="https://arxiv.org/abs/2006.04558">FastSpeech 2</a>.</li>
+<li>A vocoder, which maps the mel-spetrogram to the actual sound wave. The most popular vocoder is <a href="https://arxiv.org/abs/2010.05646">HiFi-GAN</a>, with other examples being <a href="https://arxiv.org/abs/1910.06711">MelGAN</a> and <a href="https://arxiv.org/abs/1811.00002">WaveGlow</a>.</li>
+</ol>
 <figure>
 <img src="../images/tts/diagram.jpg" alt="alttext" style="width:90.0%" />
 <figcaption>
@@ -58,7 +71,12 @@ A high-level diagram describing architecture of the text-to-speech models.
 </figure>
 <p>There are some end-to-end models, like <a href="https://arxiv.org/abs/1609.03499">WaveNet</a> or <a href="https://arxiv.org/pdf/2006.04558.pdf">FastSpeech 2s</a> which are able to generate waves directly from text (without intermediate mel-spectrograms), but they don’t seem to be as popular these days.</p>
 <h2 id="datasets">Datasets</h2>
-<p>There are dozens of <a href="https://github.com/jim-schwoebel/voice_datasets">datasets</a> of varying quality containing recorded voice and the corresponding text. After skimming the papers above, I think these are the most popular ones: - <a href="https://keithito.com/LJ-Speech-Dataset/">LJ Speech</a>: a dataset with one female English speaker, reading 13100 short audio clips from 7 non-fiction books, consisting of approximately 24 hours in total. - <a href="https://research.google/tools/datasets/libri-tts/">LibriTTS</a>: a multi-speaker English dataset containing 585 hours of speech by 2456 speakers (around 15min/speaker), reading Project Gutenberg books. - <a href="https://datashare.ed.ac.uk/handle/10283/2950">VCTK</a>: 44 hours of mostly newspaper passages, read by 109 English speakers with different accents<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, so 0.5h of speech/speaker.</p>
+<p>There are dozens of <a href="https://github.com/jim-schwoebel/voice_datasets">datasets</a> of varying quality containing recorded voice and the corresponding text. After skimming the papers above, I think these are the most popular ones:</p>
+<ul>
+<li><a href="https://keithito.com/LJ-Speech-Dataset/">LJ Speech</a>: a dataset with one female English speaker, reading 13100 short audio clips from 7 non-fiction books, consisting of approximately 24 hours in total.</li>
+<li><a href="https://research.google/tools/datasets/libri-tts/">LibriTTS</a>: a multi-speaker English dataset containing 585 hours of speech by 2456 speakers (around 15min/speaker), reading Project Gutenberg books.</li>
+<li><a href="https://datashare.ed.ac.uk/handle/10283/2950">VCTK</a>: 44 hours of mostly newspaper passages, read by 109 English speakers with different accents<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, so 0.5h of speech/speaker.</li>
+</ul>
 <h2 id="analysis-of-the-models">Analysis of the models</h2>
 <p>For the sake of this post, I tried out the three acoustic models mentioned above: <a href="https://github.com/NVIDIA/tacotron2">Tacotron 2</a>, <a href="https://github.com/jaywalnut310/glow-tts">Glow-TTS</a>, <a href="https://ming024.github.io/FastSpeech2/">FastSpeech 2</a>, whose implementations are available on Github. I combined them with a <a href="https://github.com/jik876/hifi-gan">Hifi-GAN</a> vocoder.</p>
 <h3 id="using-pretrained-models">Using pretrained models</h3>
@@ -163,7 +181,11 @@ Sample of the finetuned (after 2000 steps) Tacotron, using a pretrained (left) a
 <h4 id="compute">Compute</h4>
 <p>Apart from learning the details of text-to-speech technology, this experiment was also an exercise in getting free access to the computing power.</p>
 <p>Everyone knows that training the models on a CPU takes a long time. Furthermore, the code is written in a way that you need to modify the code to not use a GPU, which isn’t always easy.</p>
-<p>I tried out two venues that offer free GPU for training deep learning models: 1. <a href="https://colab.research.google.com">Google Colab</a> 2. <a href="https://gradient.run/free-gpu">Paperspace notebooks</a></p>
+<p>I tried out two venues that offer free GPU for training deep learning models:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://colab.research.google.com">Google Colab</a></li>
+<li><a href="https://gradient.run/free-gpu">Paperspace notebooks</a></li>
+</ol>
 <p>I found Colab easier to use overall: it was quicker to connect to a runtime, and the integration with Google Drive made moving data and the code between the local machine and the Colab easy.</p>
 <p>Another benefit of Colab is that it’s more popular, so there are lots of instructions online on how to do even complex things<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>.</p>
 <p>The top selling point of Paperspace is that they give a guaranteed uptime of up to 6h.</p>
