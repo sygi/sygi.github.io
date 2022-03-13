@@ -29,9 +29,9 @@ To get better coverage of the subjects, I decided to prepare a survey among the 
 
 The survey accepted responses from 17th to 21st July. It asked questions about the salary and about other criteria like gender, size of the city where one was living in, or the number of hours one worked weekly.
 
-# Problems with the analysis
+## Problems with the analysis
 
-## Measuring salaries
+### Measuring salaries
 The biggest problem I encountered while analyzing the data was how to compare the salaries earned in different countries.
 
 The survey asked about the gross salary in the local currency of the country where the person lives. While converting it to a common currency isn't that big of an issue, averaging the salaries between different countries may give an incomplete view due to varying living costs between countries.
@@ -48,7 +48,7 @@ The exchange rates of national currencies with PPP are [available from Eurostat]
 
 As with any economic model, PPP comes with assumptions. In our case, when we use PPP to help us average salaries, we assume that the worker spends the money in the same country as the one he earns it in. If a person earns in a high-income country but spends in a low-cost one (as is common with immigrants returning to Poland from Western countries), looking at the earned salary via the lens of goods available in the high-cost country doesn't make sense, as the worker will be buying these goods cheaper than PPP would estimate.
 
-## Monthly salary
+### Monthly salary
 
 In Poland, it's common to express salary per month. As some of the salaries reported in the survey were significantly below the minimum salary, I suspect these were indeed monthly and not annual salaries.
 
@@ -61,7 +61,7 @@ b) when I set the limit for a short time, some people who don't work still wante
 
 In the end, I allowed any numbers and filtered out the ones lower than the minimum salary.
 
-## Year 2019
+### Year 2019
 
 As I was afraid that the results for the year 2020 would be skewed due to the pandemic (and people, like myself, moving to a different country or getting to work from home), I asked about the salary information from 2019.
 
@@ -74,13 +74,13 @@ Apart from the salary, the survey asked many other statistical questions, like h
 
 Overall, the decision to use 2019 seems a reasonable one. I'm afraid though that people who finished a degree between 2019 and now answered with their salary from before graduation, which would confuse the aggregates a bit.
 
-## Distributing the survey
+### Distributing the survey
 
 I sent the survey to the student group on Facebook and an alumni email group on 17th July. While people started filling it using the Facebook link immediately, it turned out that the alumni group is censored, and the censor doesn't work on the weekends, so the email reached the group only on Monday.
 
 I decided to close the survey a couple of days later as I didn't get as many responses anymore. Because of that, I got a complaint that the survey closed too soon and would be biased towards people who don't have a life outside of the internet ;)
 
-# Final words
+## Final words
 
 I was positively surprised by the number of responses I got: the survey recorded 203 entries.
 I prepared the analysis of the results (in Polish) and made it available [here](https://sygnowski.ml/data/alma/writeup.pdf). The code I used to analyze the data is [here](https://github.com/sygi/alma).

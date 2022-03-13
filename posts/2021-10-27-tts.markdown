@@ -6,10 +6,12 @@ Adventure games, the genre I like, tend to contain a lot of talking. Apart from 
 
 ## Problem definition
 I define the text-to-speech problem as:
+
 - take as input a short English text prepared by the game writer and one of a couple of identities of the game characters
 - produce an audio wave where a character speaks the text.
 
 Text-to-speech is an active research domain, and one could easily spend weeks (or a whole career) looking for the best solution. I chose to limit myself to methods that:
+
 1. are available for free,
 2. don't require me to do further research to make it work,
 3. are easily available on the internet; in particular require no training neural networks on a high-end GPU for days.
@@ -38,6 +40,7 @@ An important property of mel-spectrograms is that they contain less information 
 ### Current models
 
 To generate a single sound wave from a sentence of text, people currently apply two models sequentially:
+
 1. An acoustic model, which transforms text to a mel-spectrogram, e.g. [Tacotron 2](https://arxiv.org/abs/1712.05884), [Glow-TTS](https://arxiv.org/abs/2005.11129), or [FastSpeech 2](https://arxiv.org/abs/2006.04558).
 2. A vocoder, which maps the mel-spetrogram to the actual sound wave. The most popular vocoder is [HiFi-GAN](https://arxiv.org/abs/2010.05646), with other examples being [MelGAN](https://arxiv.org/abs/1910.06711) and [WaveGlow](https://arxiv.org/abs/1811.00002).
 
@@ -51,6 +54,7 @@ There are some end-to-end models, like [WaveNet](https://arxiv.org/abs/1609.0349
 ## Datasets
 
 There are dozens of [datasets](https://github.com/jim-schwoebel/voice_datasets) of varying quality containing recorded voice and the corresponding text. After skimming the papers above, I think these are the most popular ones:
+
 - [LJ Speech](https://keithito.com/LJ-Speech-Dataset/): a dataset with one female English speaker, reading 13100 short audio clips from 7 non-fiction books, consisting of approximately 24 hours in total.
 - [LibriTTS](https://research.google/tools/datasets/libri-tts/): a multi-speaker English dataset containing 585 hours of speech by 2456 speakers (around 15min/speaker), reading Project Gutenberg books.
 - [VCTK](https://datashare.ed.ac.uk/handle/10283/2950): 44 hours of mostly newspaper passages, read by 109 English speakers with different accents[^1], so 0.5h of speech/speaker.
@@ -187,6 +191,7 @@ Apart from learning the details of text-to-speech technology, this experiment wa
 Everyone knows that training the models on a CPU takes a long time. Furthermore, the code is written in a way that you need to modify the code to not use a GPU, which isn't always easy.
 
 I tried out two venues that offer free GPU for training deep learning models:
+
 1. [Google Colab](https://colab.research.google.com)
 2. [Paperspace notebooks](https://gradient.run/free-gpu)
 

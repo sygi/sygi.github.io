@@ -4,10 +4,10 @@ title: "Digital painting exercises"
 
 I think I am learning the quickest when doing a sequence of well-defined challenges of appropriate difficulty. As I didn't find a course of digital drawing I'd like to follow, I was compiling separate exercises from various sources. They helped me to make small steps of progress in improving my digital painting skills.
 
-# Drawing people
+## Drawing people
 For a start, I decided to revisit Proko lessons and learn to better draw people on a tablet.
 
-## Line of Action, developing workflow
+### Line of Action, developing workflow
 A popular exercise when learning to draw people is the timed drawing, where students draw a model in a short, predefined period of time. The goal is to be able to concentrate on capturing general gesture as opposed to details.
 
 Many websites help to run a similar exercise online, where the student is drawing from a prepared picture which changes every couple of minutes.
@@ -41,7 +41,7 @@ Before moving on to the next thing, I made a couple of drawings following the wo
 <figcaption>Final drawings made using this workflow.</figcaption>
 </figure>
 
-## Portrait painting
+### Portrait painting
 
 In the poses drawings, I omitted hands, feet, and faces, as they are harder than the overall shape of the body and a topic on their own. I decided to spend a bit of time learning to draw heads, though.
 
@@ -73,11 +73,11 @@ Your browser does not support the video tag.
 <figcaption>Recording of the painting.</figcaption>
 </figure>
 
-# Art studies
+## Art studies
 
 I found online a suggestion for improving one's art: to analyze the paintings of others or movie frames. I decided to try two methods: a value and a color study.
 
-## Value studies
+### Value studies
 
 Value (lightness) is a primary tool for creating a contrast in a picture. To think about how others use values in their art, I followed an exercise to draw using only three colors: white, black, and grey. Initially, the areas that light reaches are covered with white, then the half-tone ones are getting changed to grey. Arguably, this exercise helps to understand the shape of the objects in the pictures.
 
@@ -86,7 +86,7 @@ Value (lightness) is a primary tool for creating a contrast in a picture. To thi
 <figcaption>Value study of a couple of paintings and movie frames.</figcaption>
 </figure>
 
-## Color studies
+### Color studies
 
 The other exercise I tried was a more holistic analysis of the pictures of others. I looked over a couple of them and tried to understand the techniques used and reproduce them in a simplified form.
 
@@ -108,11 +108,11 @@ The main observation from Mikko was that, although his pictures feel colorful, h
 
 On the other hand, Marco uses more highly-saturated areas. He also uses a bunch of different brushes compared to Mikko. It seems that, as the character was the main focus, its high value/saturation looks good even though it should be more in shadow behind the tree.
 
-# Exercises
+## Exercises
 
 Apart from studying others' work, I also did a couple of custom exercises.
 
-## Lightning a cube
+### Lightning a cube
 
 First, after watching a couple of tutorials about color theory ([Light and shadow](https://www.youtube.com/watch?v=xcCJ2CU-bFw), [Understanding shadow colors](https://www.youtube.com/watch?v=gwLQ0cDb4cE), [Cavemen color theory](https://www.youtube.com/watch?v=botKNa3YGsI)), I decided to summarize the general ideas behind natural colors of areas in light and shadow.
 
@@ -121,7 +121,7 @@ First, after watching a couple of tutorials about color theory ([Light and shado
 <figcaption>Exercise/notes about lightning a cube.</figcaption>
 </figure>
 
-## Rocks
+### Rocks
 
 Then, I decided to put it into practice a bit more and tried drawing rocks. I partially followed the tutorials ([1](https://www.youtube.com/watch?v=b-7XzBg1wPM), [2](https://www.youtube.com/watch?v=puTpnQRKzUQ), [3](https://www.youtube.com/watch?v=bFB9FE18POY&t=252s&ab_channel=WalidFeghali)), and partially tried to imagine the shapes on my own and confirm my understanding of lightning on a rock.
 
@@ -131,7 +131,7 @@ Then, I decided to put it into practice a bit more and tried drawing rocks. I pa
 <figcaption>Exercises in drawing a rock.</figcaption>
 </figure>
 
-## Glowing stuff
+### Glowing stuff
 
 Then, I tried to learn how to draw glowing things, as I find them to look cool. I decided to draw a picture of a turtle in a dark forest with some symbols glowing on its shell.
 
@@ -150,7 +150,7 @@ Even with a reduced view, I think there is too much area on the picture where no
 
 Apart from this, it seems I took Mikko's example too much to heart and used saturated colors too little. I tried to fix it in the post-process, which only helped to some extent.
 
-# Summary
+## Summary
 
 I did a few exercises to improve my use of colors and ability to draw people. While I still envy colorful landscapes and would like to learn how to paint them, I think that I like more the style of strong lines and simple, close to flat colors (more *drawing* than *painting*).
 

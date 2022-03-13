@@ -4,15 +4,16 @@ title: "Tax residency for fun and profit"
 
 Tax rules, which describe what portion of one's profit needs to pay to the government, are famously complex. If they involve multiple countries, they are even more confusing. Having moved to a different country for the 2020 pandemic, I studied the regulations in detail and decided to write down my observations for the future.
 
-# Rule of law 101
+## Rule of law 101
 One can summarize the general process of setting up tax law in a simple way (even though the rules themselves may be complex):
+
 1. Parliament votes on legislative acts which decide on details of who, when, and how much tax should pay.
 2. The act is published ("promulgated") in an official bulletin and becomes law.
 3. Courts resolve the disagreement between the taxpayer and tax authorities, and civil officers (bailiffs, police, etc.) enforce compliance.
 
 [Sovereignity](https://en.wikipedia.org/wiki/Sovereign_state) of the country guarantees that the law enacted in this way usually applies only on its territory. For example, it's not possible for folks in Bundestag to decide on what taxes should residents of Sydney pay.
 
-# Double taxation agreements
+## Double taxation agreements
 
 Limiting the taxes to the territory of a state doesn't solve all the international taxation issues.
 
@@ -22,7 +23,7 @@ As taxation systems (and the political power) differ significantly between count
 
 Instead of that, countries opt for bilateral treaties where pairs of countries (e.g. Germany and France) agree on which country has the right to tax different types of income. Such a treaty is called a *Double Taxation Agreement* (DTA).
 
-# OECD model tax convention
+## OECD model tax convention
 
 Even though getting all countries to agree on a common set of rules in a binding treaty feels like a lost cause, there are some general rules that countries want from their DTAs.
 
@@ -37,7 +38,7 @@ The tax convention tries to formalize the idea of a person being liable for tax 
 
 [^1]: Organisation for Economic Co-operation and Development, [OECD](https://en.wikipedia.org/wiki/OECD).
 
-## Tax residency
+### Tax residency
 
 The crucial concept defined in the model tax convention is *tax residency*. It's meant to be a unique country where a given person generally pays taxes for their worldwide income.
 
@@ -60,14 +61,14 @@ Article 4: Residence
 
 In simple words, if both signatories of the treaty want a given person to pay tax on its worldwide income, there is a set of criteria to review to determine in which (single) country the person will be considered a tax resident (likely giving it the right to tax their worldwide income).
 
-### Country-specific tax residency criteria
+#### Country-specific tax residency criteria
 Thanks to the criteria overriding national laws on tax residency, countries can set the rules freely in their local legislation. Even if the country-specific rules would overlap, making a single person "tax resident" in multiple countries based on their national law, the DTA will describe how to choose a single country for tax residency.
 
 A commonly used criterium for tax residency says that a person who resides in a given country for more than 183 days in a given tax year is tax resident there. If every country used only this provision, there wouldn't be any issues with multiple countries claiming overlapping tax residency. It's often the case though that, apart from 183 days, there is an additional criterium saying that a person who has a house, family, or a "center of vital interests" in a country, would be considered tax resident there, even if they spent most of the year abroad.
 
 There are also some countries where even a short stay triggers tax residency; for example, in Switzerland, a working individual becomes tax resident after 30 days of stay. The overlapping tax residency may thus happen, and the use of DTA criteria may be necessary to establish a single country of tax residency.
 
-### No tax residency
+#### No tax residency
 
 As countries decide on their tax residency rules without much regard to other countries' regulations[^2], it may as well happen that a given person is not considered a tax resident in any particular country based on its laws.
 
@@ -77,14 +78,14 @@ Does it mean such a person doesn't have to pay any taxes? Of course not :) The c
 
 [^2]: Taking into account every other country's constantly changing laws would be a lot of headache!
 
-### Changes within the (tax) year
+#### Changes within the (tax) year
 The country-specific rules for tax residency are often expressed in terms of the whole tax year, e.g. "a person is tax resident for the whole tax year if they spend at least 183 days during that year".
 
 What happens when someone's situation changes in the middle of a year, by buying a home or permanently moving to another country in June?
 
 The DTA solution is simple: it is not concerned about tax years at all (which may run differently in the two countries, e.g. in the UK the tax year starts April 6th). Instead, all of its provisions apply at any given moment; if someone's circumstances change on June 15th, they may be considered a tax resident of one country until June 14th and the resident of another from June 15th onwards. It would give each country the right to tax only the portion of the income earned in the corresponding part of the year. Then, the countries typically apply their regular tax brackets only to the "home" part of the tax year.
 
-## Income from employment
+### Income from employment
 Most articles of the model tax convention explain which country possesses the taxation right for a particular type of income. Let's take a look at article 15, describing income from employment.
 
 <details>
@@ -106,7 +107,7 @@ It also adds an exception that even if the work happens in a country where the w
 
 This exception is important for people spending short amounts of time in other countries, for example attending conferences or business meetings: without it, every short-term visit to a different country would give taxation rights to the income earned while in the other country.
 
-## Methods of eliminating double taxation
+### Methods of eliminating double taxation
 What happens when this exception cannot be applied, and the salary can be taxed by both countries? It may occur when the employer sends the worker to supervise a project abroad for a year.
 
 As allowing both countries to tax the same income would be harmful to the worker and discourage international collaboration, countries agree in a DTA a method for exempting the income taxed in the other country from taxation to some level.
@@ -117,7 +118,7 @@ It can be realized in a couple of different ways: using tax credits, exemption w
 
 Let's assume the residence country taxes has two tax brackets: 10% for the income until 100 units and 20% afterward, and the non-residence country taxes everything at 15%, and see an example of how the different methods work out in practice.
 
-### Tax credits
+#### Tax credits
 With tax credits, the residence country decreases the tax due by the amount of tax the worker pays in the other country.
 
 <div class="table-wrapper">
@@ -130,7 +131,7 @@ With tax credits, the residence country decreases the tax due by the amount of t
 
 The residence country taxes the worldwide income (120), with the first 100 taxed 10% (10), and the next 20 at 20% (4), and decreases the tax by the amount paid in non-residence country (3).
 
-### Exemption with progression
+#### Exemption with progression
 When the country allows exemption with progression, instead of decreasing the tax directly, they only tax the income earned in the residence country, but the tax brackets take into account the income earned abroad. Let's see the same example:
 
 <div class="table-wrapper">
@@ -142,7 +143,7 @@ When the country allows exemption with progression, instead of decreasing the ta
 
 The residence country taxes the first 80 in the first (10%) bracket (as 20 of the first-bracket allowance was used up by the foreign income). The remaining 20 is taxed in the second bracket (20%, 4).
 
-### Proportional exemption
+#### Proportional exemption
 The proportional exemption has some elements of the previous two methods of eliminating double taxation. Here, we first calculate the total tax and exemption as in the tax credit example. Then, we calculate the proportion of the paid tax that corresponds to the income earned abroad. If this proportion is higher than the tax credit, only that proportion is allowed as a credit.
 
 <div class="table-wrapper">
@@ -157,13 +158,13 @@ Proportion of the tax for the income abroad: 20/120 * 14 = 2.33. In this case, t
 
 One needs to remember that these three kinds of exemptions are just examples, and the countries are free to agree on any exemption method they find appropriate in their DTAs.
 
-## Commentary
+### Commentary
 The model tax convention (and any particular DTA) is relatively short: it has 20-something articles, around 1 A4 page each. It cannot possibly describe any possible situation in detail. As a complement to this document, OECD published a much lengthier, 380-page long, [Commentaries on the articles of the model tax convention](https://www.oecd.org/berlin/publikationen/43324465.pdf). It describes the tax convention articles and the reasoning behind them in more detail, giving practical examples. While it's non-binding (as only the particular DTA is binding), various courts use it to help them interpret the articles of the DTAs.
 
-# Enforcing the agreement
+## Enforcing the agreement
 We know what to do when we think a country-specific law is violated: we go to the court, and it makes a judgment. But what to do if the two countries' institutions have different interpretations of the DTA, e.g. when both countries claim "you are considered a tax resident of our country"?
 
-## Mutual agreement procedure
+### Mutual agreement procedure
 As we said earlier, referring an issue to a court in any particular country may not work, as their jurisdiction won't cover the other state (after all, the other country's courts may disagree!).
 
 To give the taxpayer a mechanism to get a binding interpretation of the DTA, the countries agree to a special legal process, called Mutual Agreement Procedure (MAP).
@@ -172,10 +173,10 @@ It is initiated by the taxpayer who claims that the resolutions of the DTA are n
 
 Given that MAP requires engaging both countries' legal teams, it looks like a slow process one would prefer to avoid.
 
-# Final words
+## Final words
 The international tax rules are complex, and the countries' tax authorities often want you to pay all of the tax to their country. It's worth knowing under what conditions you have to do so and when to claim taxation is not appropriate. 
 
 Understanding the rules may help you to pay less tax, as sometimes changing your decision (e.g. buying a house, selling stock, moving countries at a different time) may lead to your income being taxed in another country that has a lower tax rate.
 
-## Disclaimer
+### Disclaimer
 As I am not a tax professional, you should take the information above as a grain of salt.

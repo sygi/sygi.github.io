@@ -79,6 +79,10 @@ div#archive {
   }
 }
 
+ul, ol {
+  padding-inline-start: 20px;
+}
+
 input#cookie {
   vertical-align: middle;
 }
