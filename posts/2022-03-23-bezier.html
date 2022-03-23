@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        
+        <meta name="author" content="Jakub Sygnowski" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <title>Bézier curves and 3D modelling</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on March 23, 2022
+    
+</div>
+<h1>Bézier curves and 3D modelling</h1>
+<p>To improve my 3d modeling skills in Blender, I made models for a set of chess pieces. Given their rotational symmetry, I constructed them as traces that Bézier curves leave when they are rotated around an axis.</p>
+<h2 id="chess-pieces-and-rotational-symmetry">Chess pieces and rotational symmetry</h2>
+<p>I chose to make the chess pieces despite not being a great chess fan. They seem to be of an appropriate difficulty level: posing a number of challenges, but well-defined and not too hard.</p>
+<p>As the pieces are mostly rotationally symmetric (i.e. look the same when you rotate them by an angle around some axis), I planned to construct them as a curve that’s rotated around an axis. I hoped that repeating this workflow a couple of times with different pieces with an increasing amount of additional work will be a good learning experience.</p>
+<p>I started by looking for how people create a rotationally symmetric mesh out of a curve. I found a number of tutorials (<a href="https://www.youtube.com/watch?v=a81YWJEy5Vk">1</a>, <a href="https://www.youtube.com/watch?v=gCt-RJY2pRg">2</a>, <a href="https://www.youtube.com/watch?v=-GdiOhqi_XY">3</a>), all of which did only a partial symmetry, i.e. rotated a given mesh by a fixed angle a couple of times.</p>
+<p>While technically, as the final model has a fixed number of vertices, its mesh could be created by rotating something by a fixed angle and merging everything, it isn’t the most convenient way to construct it. For example, to change the number of vertices on the circle, I would need to both modify the number of repetitions and the rotation angle.</p>
+<p>In the end, I found the <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/screw.html">screw modifier</a>, which, when set up correctly, was accomplishing exactly what I wanted.</p>
+<h2 id="bezier-curves">Bezier curves</h2>
+<p>Once I knew how to rotate a curve to transform it into a surface, I had to learn how to create the curves in the first place.</p>
+<p>I used a <a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve">Bézier curve</a> as a mathematical model for the curve. It is a popular way to express smooth curves in computer graphics.</p>
+<h3 id="in-theory">In theory</h3>
+<p>A Bezier curve consists of several segments. A single segment is constructed using a number of (at least two) control points. The first and the last control point lie at the ends of the curve, while the remaining ones describe the path the curve takes between them.</p>
+<p>Let’s consider a quadratic Bezier curve, i.e. having three (one, apart from the starting and ending ones) control points: <span class="math inline">\(P_A\)</span>, <span class="math inline">\(P_B\)</span>, <span class="math inline">\(P_C\)</span>.</p>
+<figure>
+<img src="../images/bezier/bezier.png" style="width:90.0%" alt="Construction of a quadratic Bezier curve." />
+<figcaption aria-hidden="true">Construction of a quadratic Bezier curve.</figcaption>
+</figure>
+<p>It is natural to express a Bezier curve using a function <span class="math inline">\(Bez(t)\)</span>, which maps <span class="math inline">\(t \in [0, 1]\)</span> to a point on the curve. It explains how the curve is continuously drawn, starting from the first control point at <span class="math inline">\(Bez(0) = P_A\)</span> and ending at the last one for <span class="math inline">\(Bez(1) = P_B\)</span>.</p>
+<p>The intermediate points are defined as follows:</p>
+<ol type="1">
+<li>Let’s take a point <span class="math inline">\(P_{AB}\)</span>, which lies after <span class="math inline">\(t\)</span> portion of the way from <span class="math inline">\(P_A\)</span> to <span class="math inline">\(P_B\)</span>, i.e. <span class="math inline">\(P_{AB} = tP_A + (1-t)P_B\)</span>.</li>
+<li>Analogously, define <span class="math inline">\(P_{BC}\)</span> on between <span class="math inline">\(P_B\)</span> and <span class="math inline">\(P_C\)</span> as: <span class="math inline">\(P_{BC} = tP_B + (1-t)P_C\)</span>.</li>
+<li>Let the point on the curve, <span class="math inline">\(Bez(t)\)</span> be after <span class="math inline">\(t\)</span> portion of way between <span class="math inline">\(P_{AB}\)</span> and <span class="math inline">\(P_{BC}\)</span>, i.e. <span class="math inline">\(Bez(t) = tP_{AB} + (1-t)P_{BC}\)</span>.</li>
+</ol>
+<p>If one substituted the definitions of the intermediate points <span class="math inline">\(P_{AB}\)</span> and <span class="math inline">\(P_{BC}\)</span>, it would become clear that the Bezier curve with three control points is indeed a quadratic polynomial, explaining its name.</p>
+<p>The most popular Bezier curves are the cubic ones, that is having four control points. They are constructed iteratively, by first placing points <span class="math inline">\(P_{AB}\)</span>, <span class="math inline">\(P_{BC}\)</span>, and <span class="math inline">\(P_{CD}\)</span> on the corresponding segments, and then repeating the construction above with the new three points as the control points.</p>
+<figure>
+<img src="../images/bezier/cubic_bezier.png" style="width:80.0%" alt="Construction of the cubic Bezier curve." />
+<figcaption aria-hidden="true">Construction of the cubic Bezier curve.</figcaption>
+</figure>
+<p>For a deeper (and more interactive) introduction to Bezier curves, I recommend <a href="https://ciechanow.ski/curves-and-surfaces/">this article</a> by Bartosz Ciechanowski, from where the visualizations above are taken.</p>
+<h3 id="in-practice">In practice</h3>
+<p>The mathematical formulas above give little intuition on how to place the control points to get a given curve.</p>
+<p>To grow this intuition, I played a <a href="https://bezier.method.ac">bezier curve game</a>. One is asked there to create a Bezier curve with as few points as possible to draw more and more complex shapes.</p>
+<p>Once back in Blender, after a recommendation <a href="https://www.youtube.com/watch?v=YI8vXzbtehg">from a video</a>, I tried using an add-on for drawing Bezier curves. As I didn’t like its interface, I went back to <a href="https://docs.blender.org/manual/en/2.79/modeling/curves/introduction.html">the default curve-drawing tool</a>.</p>
+<h2 id="process">Process</h2>
+<p>As a reference for modeling the chess pieces, I used this photo of a standard chess set used at tournaments:</p>
+<figure>
+<img src="../images/bezier/JaquesCookStaunton.jpg" style="width:70.0%" alt="Photo made by Frank A. Camaratta, Jr.; The House of Staunton, Inc." />
+<figcaption aria-hidden="true">Photo made by Frank A. Camaratta, Jr.; The House of Staunton, Inc.</figcaption>
+</figure>
+<p>The process for designing various pieces was largely similar:</p>
+<ol type="1">
+<li>I drew the outline of the piece as a Bezier curve. While doing so, <code>ctrl-RMB</code> was a useful shortcut for placing new points and <code>vf</code> for making non-smooth connections.</li>
+<li>I increased the width of the line to make it more visible at <a href="https://docs.blender.org/manual/en/latest/modeling/curves/properties/geometry.html#bevel"><code>Object properties &gt; bevel &gt; depth</code></a>.</li>
+<li>I placed an empty on the future rotational axis and parented it to the curve to make moving around easier.</li>
+<li>I used the screw modifier around the empty to create the surface.</li>
+<li>By choosing <code>overlays &gt; face orientation</code> I checked whether the normals are pointing outwards (blue), and chose <code>normals &gt; flip</code> if not.</li>
+<li>I chose <code>Object &gt; convert &gt; mesh</code>, as I couldn’t use <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html">boolean modifiers</a> otherwise.</li>
+<li>I set the bevel depth back to zero</li>
+<li>I cut all the necessary pieces with the boolean modifiers.</li>
+<li>In the end, I checked the geometry for duplicate nodes to merge and applied a subdivision modifier for a more smooth look.</li>
+</ol>
+<h3 id="pawn">Pawn</h3>
+<p>I started with the simplest piece to model, a pawn. While making it was just the matter of drawing the curve and rotating it, I was also establishing the process I mentioned above.</p>
+<figure>
+<a href="../images/bezier/pawn.png"><img src="../images/bezier/pawn-small.png" style="width:40.0%" alt="pawn model" /></a>
+<figcaption>
+Final model of the pawn.
+</figcaption>
+</figure>
+<h3 id="bishop">Bishop</h3>
+<p>The next piece I made was a bishop. After doing the rotationally symmetric part, I needed to cut out the hole using a boolean modifier.</p>
+<p>Initially, I struggled a little with that, as having the normals the wrong way made the boolean modifier go crazy.</p>
+<figure>
+<a href="../images/bezier/bishop.png"><img src="../images/bezier/bishop-small.png" style="width:40.0%" alt="bishop model" /></a>
+<figcaption>
+Final model of the bishop.
+</figcaption>
+</figure>
+<p>In the final model, you can see edges around the hole that have been smoothed too much. This is an effect of applying the subdivision modifier too early. As I have learned too late, it should be used at the very end, and one should mark the edges which should stay sharp as <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html">creases</a>.</p>
+<h3 id="rook">Rook</h3>
+<p>When I got to the rook, I could use the knowledge from the “partial symmetry with a fixed angle” tutorials I mentioned above: it was easy to make the “holes in the wall”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<figure>
+<a href="../images/bezier/rook.png"><img src="../images/bezier/rook-small.png" style="width:40.0%" alt="rook model" /></a>
+<figcaption>
+Final model of the rook.
+</figcaption>
+</figure>
+<h4 id="object-offset-in-array-modifier">Object offset in Array modifier</h4>
+<p>One can use the <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/array.html#object-offset">array modifier</a> to do the partial symmetry.
+To know how to use it with the object offset setting, one needs to understand two types of transformations: in the object mode and in the edit mode.</p>
+<p>In the object mode, we are moving/rotating/scaling objects as a whole; every change is reflected in the origin of the object. The transformations are represented (for the whole object) in the <code>Transform</code> panel (and can be later applied to bake in the changes).</p>
+<p>In the edit mode, the transformations are performed at the level of vertices, not objects. While it is possible to perform the same transformations as in the object mode, the <code>Transform</code> panel only shows the effect of the location transformation, as, at the vertex level, rotation and scale don’t make sense.</p>
+<p>As the transformations are only applied to the particular vertices
+(and not the whole object), the origin of the object stays put when vertices are edited<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>The transformation that is repeatedly applied to the copied object in the array modifier is the difference between the (object-level) transformation of the offset object and the one being copied.</p>
+<p>So, to perform the partial symmetry with the hole in the wall and the empty describing the rotation axis, their transformations need to satisfy:</p>
+<ol type="1">
+<li>location (of the origin) should be the same, as there shouldn’t be any translation between consecutive copies,</li>
+<li>scale should be the same (ideally: 1) too,</li>
+<li>rotation needs to differ by 360 degrees/number of holes (60 degrees, in my case).</li>
+</ol>
+<p>On one hand, I wanted the rotation axis to be outside of the box which represents the hole, to avoid intersecting different holes. On the other, the location of the box needs to be the same as the axis for the consecutive boxes to not move relative to each other.</p>
+<p>This is the point where I used the two transformation modes: I kept the box <em>object</em> in the same location as the axis but moved (in edit mode) all the boxes’ <em>vertices</em> away from the axis, to avoid intersections.</p>
+<figure>
+<a href="../images/bezier/rook-holes.png"><img src="../images/bezier/rook-holes.png" style="width:50.0%" alt="rook with wall holes" /></a>
+<figcaption>
+The rook model with the boxes representing the holes in the wall to be cut out.
+</figcaption>
+</figure>
+<h3 id="queen">Queen</h3>
+<p>The queen was more complex than the previous pieces but didn’t involve any new method.</p>
+<figure>
+<a href="../images/bezier/queen.png"><img src="../images/bezier/queen-small.png" style="width:40.0%" alt="queen model" /></a>
+<figcaption>
+Final model of the queen.
+</figcaption>
+</figure>
+<h3 id="king">King</h3>
+<p>For the king, the novel part was the cross on top of its “crown”.</p>
+<p>To make it, I drew a separate Bezier curve for its outline, but instead of rotating it, I only mirrored it across the Z-axis.</p>
+<p>Then, I converted the curve to a mesh, filled it, and extruded it in the Y direction.</p>
+<figure>
+<a href="../images/bezier/king.png"><img src="../images/bezier/king-small.png" style="width:40.0%" alt="king model" /></a>
+<figcaption>
+Final model of the king.
+</figcaption>
+</figure>
+<h3 id="knight">Knight</h3>
+<p>To make the knight, I needed to follow a completely different process. As it isn’t possible to create it through unions and differences of simple shapes, I borrowed a drawing tablet from my girlfriend and decided to give sculpting a go.</p>
+<figure>
+<a href="../images/bezier/knight1.png"><img src="../images/bezier/knight1-small.png" style="width:40.0%" alt="first knight model" /></a>
+<a href="../images/bezier/knight2.png"><img src="../images/bezier/knight2-small.png" style="width:40.0%" alt="second knight model" /></a>
+<figcaption>
+First two models of the knight.
+</figcaption>
+</figure>
+<p>As the first attempt, as you see, was not very successful, I went through a follow-along tutorial on youtube before trying again. The second model was visibly better but still left much to be desired.</p>
+<h4 id="new-knight-reference">New knight reference</h4>
+<p>As trying to reproduce that original Stanton knight proved to be prohibitively difficult, I decided to make a different, simpler knight.</p>
+<figure>
+<img src="../images/bezier/knight-ref.jpg" style="width:30.0%" alt="New, simpler, knight reference." />
+<figcaption aria-hidden="true">New, simpler, knight reference.</figcaption>
+</figure>
+<p>I started with making a shape that would smoothly transition from a circle (bottom) to a square (top) with <a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bridge_edge_loops.html">bridge edge loops</a>.</p>
+<p>Then, I squished the top to a thin rectangle, while making a <a href="https://docs.blender.org/manual/en/latest/editors/3dview/controls/proportional_editing.html">proportional edit</a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> in a non-uniform way, to give the knight the smooth shape of something to be picked by the fingers.</p>
+<p>I then proceeded to draw the outline of the knight with a Bezier curve. Similarly to the cross of the king’s crown, I filled and extruded the outline and intersected this horse-like shape with the pawn structure.</p>
+<p>Given the number of sharp edges that the final piece has, I made heavy use of creases to avoid them being smoothed out while subdividing.</p>
+<p>I then proceeded to cut the holes in the side of the knight. For the eye, I used yet another Bezier curve (now with a bigger bevel) and a boolean modifier.</p>
+<p>For the barely-visible cuts marking the horse’s mane, I wanted the curves to taper at their ends. There is <a href="https://docs.blender.org/manual/en/latest/modeling/curves/properties/geometry.html">a setting</a> for that, which requires passing another object which controls the amount of tapering.</p>
+<p>After some trial and error, I established that one needs to draw a graph describing the width of the taper as a taper object. To do that, it was convenient to visualize the local axis of the taper curve by choosing <code>object properties &gt; viewport display &gt; axis</code>.</p>
+<figure>
+<a href="../images/bezier/knight3.png"><img src="../images/bezier/knight3-small.png" style="width:50.0%" alt="final knight model" /></a>
+<figcaption>
+Final model of the knight.
+</figcaption>
+</figure>
+<h2 id="board">Board</h2>
+<p>As a final element to the scene, I made a board to place the pieces on.</p>
+<p>I generated the checkerboard pattern with <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/checker.html">checker texture</a>. To apply it to a part of the model, I made a UV map covering the inner part of the board and applied this texture only there using <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">Texture Coordinate node</a>.</p>
+<h2 id="final-render">Final render</h2>
+<figure>
+<a href="../images/bezier/full.png"><img src="../images/bezier/full-small.png" style="width:80.0%" alt="final full render" /></a>
+</figure>
+<p>3D scenes consist of objects, each of which has a shape and a material. The shape is defined through a mesh: a collection of vertices, edges, and faces living in a 3D world. The material describes the color of the object and how it reflects and transmits light. In this post, I inspect a popular way of expressing the material: a principled BSDF to see how its numerous parameters influence the look of an object.</p>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Which, as I’ve learned now, are called <code>crenel</code>s.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Of course, it can later be reset to the center of geometry.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>not a great name here<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+
+  <!-- nonheader -->
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+<!-- <script>
+  (function () {
+    'use strict';
+    anchors.options.placement = 'right';
+    anchors.add('h2, h3');
+  })();
+</script> -->
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    <script defer>
+    require.config({
+      paths: {
+        'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
+        'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
+        'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min' <!-- for footnotes -->
+      }
+    });
+
+    require(['bilderrahmen'], function(module) {
+        new module.Bilderrahmen({ closeOnOutsideClick: true });
+    });
+    require(['anchorjs'], function(module){
+      const anchors = new module();
+      console.log(anchors);
+      anchors.add();
+    });
+    require(['mathjax']);
+    require(['jquery'], function(jQuery){
+      jQuery.ajax({
+        url: '../../js/footnotes.js',
+        async: false
+      });
+    });
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', gaProperty, 'auto');
+    ga('send', 'pageview');
+    </script>
+  </body>
+</html>
