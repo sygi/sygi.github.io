@@ -29,10 +29,7 @@ Putting it in English, mel-spectrogram describes how much energy the part of the
 It's a three-dimensional plot: the color conveys the amount of energy (lighter color: more energy), the Y-axis corresponds to frequency, and the X-axis to time.
 
 <figure>
-![alttext](../images/tts/mel-spectrogram.jpg){width=30%}
-    <figcaption>
-An example mel-spectrogram. Note a region of lower energy after around 130 time units, which corresponds to a pause in the sound wave.
-</figcaption>
+![An example mel-spectrogram. Note a region of lower energy after around 130 time units, which corresponds to a pause in the sound wave.](../images/tts/mel-spectrogram.jpg){width=30%}
 </figure>
 
 An important property of mel-spectrograms is that they contain less information than the initial sound wave, i.e. there are multiple waves with the same mel-spectrogram.
@@ -45,8 +42,7 @@ To generate a single sound wave from a sentence of text, people currently apply 
 2. A vocoder, which maps the mel-spetrogram to the actual sound wave. The most popular vocoder is [HiFi-GAN](https://arxiv.org/abs/2010.05646), with other examples being [MelGAN](https://arxiv.org/abs/1910.06711) and [WaveGlow](https://arxiv.org/abs/1811.00002).
 
 <figure>
-![alttext](../images/tts/diagram.jpg){width=90%}
-<figcaption>A high-level diagram describing architecture of the text-to-speech models.</figcaption>
+![A high-level diagram describing architecture of the text-to-speech models.](../images/tts/diagram.jpg){width=90%}
 </figure>
 
 There are some end-to-end models, like [WaveNet](https://arxiv.org/abs/1609.03499) or [FastSpeech 2s](https://arxiv.org/pdf/2006.04558.pdf) which are able to generate waves directly from text (without intermediate mel-spectrograms), but they don't seem to be as popular these days.

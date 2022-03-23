@@ -11,8 +11,7 @@ We decided to make the box by cutting it from plywood with a laser cutter.
 To get started, we generated a generic box design using a [Box Designer website](https://boxdesigner.connectionlab.org) (another generator is available at [makebox.io](https://makeabox.io)).
 
 <figure>
-![Generic box](/images/bg_inserts/blank_box.png){ width=60% }
-<figcaption>This is how a typical box looks like.</figcaption>
+![This is how a typical box looks like.](/images/bg_inserts/blank_box.png){ width=60% }
 </figure>
 
 ### Inkscape workflow
@@ -49,8 +48,7 @@ The overall process was the same as with the smaller boxes: measuring elements, 
 Here, I decided to put numbers next to the holes: they can be kept barely visible, yet they are very convenient when assembling a complex box with multiple inner compartments.
 
 <figure>
-![Numbers on the box](/images/bg_inserts/ts_numbers.png){ width=40% }
-<figcaption>A part of the design with holes numbered.</figcaption>
+![A part of the design with holes numbered.](/images/bg_inserts/ts_numbers.png){ width=40% }
 </figure>
 
 When kerf is chosen correctly, the notches are keeping together surprisingly sturdily. Because of that, I didn't want to use the notches for the cover: it's going to be opened and closed often, and disassembling the notched connection took a bit of effort. Instead, I decided to go for the sliding cover and a small engraving in the walls to fit the cover.
@@ -74,8 +72,7 @@ but to do so, we had to evict the codex cards outside the board, leaving on a bo
 Michalina designed the functional elements in Inkscape and finished the look in (raster) Krita. She drew the background in Krita and traced the vector lines with a brush using a neat Krita feature (`Edit->Stroke selected shapes`).
 
 <figure>
-![Rasterized line](/images/bg_inserts/ts_rasterized.png){ width=60% }
-<figcaption>Fancy raster lines generated from a vector-graphics, straight line.</figcaption>
+![Fancy raster lines generated from a vector-graphics, straight line.](/images/bg_inserts/ts_rasterized.png){ width=60% }
 </figure>
 
 We printed the board on two A3 sheets of good quality and nicely covered it with a transparent film... and then forgot to take it with us on holiday, so we printed it again on regular A4 paper.

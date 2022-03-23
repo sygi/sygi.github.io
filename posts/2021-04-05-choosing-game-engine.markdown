@@ -43,8 +43,7 @@ One idea that I quite liked in Unreal is [blueprints](https://docs.unrealengine.
 
 
 <figure>
-![Blueprint](../images/game_engines/unreal_blueprint.png){width=70%}
-<figcaption>Blueprint in Unreal Engine.</figcaption>
+![Blueprint in Unreal Engine.](../images/game_engines/unreal_blueprint.png){width=70%}
 </figure>
 
 Overall, I liked Unreal a lot for what it is: a professional-grade 3D game engine. At the same time, I realized that making a proper 3D game is a big undertaking, and I shouldn't try it for the first game I ever made.
@@ -86,8 +85,7 @@ I was surprised that even though the engine developers and not able to sponsor t
 The philosophy of game design in Godot revolves around building a *Scene* (which is vaguely equivalent to a *class* in Object-Oriented Programming) with a tree of *Nodes* (like fields, but you can arrange them hierarchically).
 
 <figure>
-![Tree scene](../images/game_engines/godot_tree.png){width=60%}
-<figcaption>Example Scene tree in Godot.</figcaption>
+![Example Scene tree in Godot.](../images/game_engines/godot_tree.png){width=60%}
 </figure>
 
 Being able to combine various elements not only in code but also using the editor UI is surprisingly natural for someone who typically only writes code. It particularly helps for visual things like images, as dragging the image to a correct place is simpler than guessing the correct position in code.

@@ -12,10 +12,7 @@ At the heart of physically-based rendering is the ray tracing algorithm. It desc
 3. it hits the camera, in front of which there is a canvas on which the image will appear.
 
 <figure>
-![Ray tracing diagram](../images/pbr/ray_tracing.png){width=70%}
-    <figcaption>
-Figure representing ray tracing, from “Predicting acoustic emission attenuation in solids using ray-tracing within a 3D solid model” by Mohamed El-Shaib.
-</figcaption>
+![Figure representing ray tracing, from “Predicting acoustic emission attenuation in solids using ray-tracing within a 3D solid model” by Mohamed El-Shaib.](../images/pbr/ray_tracing.png){width=70%}
 </figure>
 
 ## Specular reflection model
@@ -25,10 +22,7 @@ To formalize the above algorithm, one needs to define a model deciding in which 
 One simple reflection model is the specular reflection. It assumes the reflected ray angle to the normal of the surface is the same as the angle between the shining ray and the normal.
 
 <figure>
-![Specular reflection model](../images/pbr/specular_reflection_back.png){width=70%}
-    <figcaption>
-Specular reflection model. Angle MNP is the same as PNO.
-</figcaption>
+![Specular reflection model. Angle MNP is the same as PNO.](../images/pbr/specular_reflection_back.png){width=70%}
 </figure>
 
 If one knows the shapes and locations of objects, lights, and the camera and assumes the reflections follow the specular model, it is easy to calculate the paths of light rays in the scene.
@@ -66,10 +60,7 @@ The sum of these functions, describing the two effects together, is called a Bid
 $$f(p, \omega_i, \omega_o) = f_r(p, \omega_i, \omega_o) + f_t(p, \omega_i, \omega_o)$$
 
 <figure>
-![BSDF](../images/pbr/bsdf.png){width=70%}
-    <figcaption>
-A diagram showing the split of BSDF into transmittance and reflectance parts.
-</figcaption>
+![A diagram showing the split of BSDF into transmittance and reflectance parts.](../images/pbr/bsdf.png){width=70%}
 </figure>
 
 #### Color
@@ -81,10 +72,7 @@ It doesn’t mean that the objects themselves don’t have color, but as handlin
 [^1]: I plan to do another blog post dealing specifically with various properties of materials, including color.
 
 <figure>
-![Dispersion effect in the prism](../images/pbr/prism_crop.jpg){width=50%}
-    <figcaption>
-A dispersion effect which requires different BSDFs for different colors. [A photo made by Zátonyi Sándor](https://commons.wikimedia.org/wiki/File:Színszóródás_prizmán2.jpg) shared on CC-SA license.
-</figcaption>
+![A dispersion effect which requires different BSDFs for different colors. [A photo made by Zátonyi Sándor](https://commons.wikimedia.org/wiki/File:Színszóródás_prizmán2.jpg) shared on CC-SA license.](../images/pbr/prism_crop.jpg){width=50%}
 </figure>
 
 ## Rendering equation
@@ -94,10 +82,7 @@ How do we use the information about how the light is scattered on various surfac
 Under [a standard camera model](https://en.wikipedia.org/wiki/Pinhole_camera)[^2], the camera is a point, in front of which there is a canvas where the image will appear. The energy of a light ray determines the intensity of the pixel on the canvas that the light ray passed through before reaching the camera.
 
 <figure>
-![Camera model](../images/pbr/pinhole_background.png){width=70%}
-    <figcaption>
-Diagram showing the canvas spread in front of the camera.
-</figcaption>
+![Diagram showing the canvas spread in front of the camera.](../images/pbr/pinhole_background.png){width=70%}
 </figure>
 
 [^2]: Ignoring camera lenses and inversion of the image caused by the pinhole.
@@ -112,10 +97,7 @@ Note that we can calculate $L_i$ recursively: to get the amount of light incomin
 $$L_i(p, \omega_i) = L_i(p, \overrightarrow{qp}) = L_o(q, \overrightarrow{pq})$$
 
 <figure>
-![Diagram showing how to calculate incoming light from outgoing light](../images/pbr/pq_rendering_background.png){width=40%}
-    <figcaption>
-Diagram illustrating how to calculate the light incoming to point $p$ based on the light outgoing from $q$.
-</figcaption>
+![Diagram illustrating how to calculate the light incoming to point $p$ based on the light outgoing from $q$.](../images/pbr/pq_rendering_background.png){width=40%}
 </figure>
 
 

@@ -75,6 +75,5 @@ If you end up playing it, I'll greatly appreciate [your feedback](https://forms.
 Apart from the images, I plan to do a Polish translation soon.
 
 <figure>
-![Cover](../images/auschwitz/cover.png){ width=50% }
-<figcaption>Game "cover".</figcaption>
+![Game "cover".](../images/auschwitz/cover.png){ width=50% }
 </figure>

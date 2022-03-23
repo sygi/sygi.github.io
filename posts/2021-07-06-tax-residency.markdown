@@ -30,8 +30,7 @@ Even though getting all countries to agree on a common set of rules in a binding
 To simplify the process of writing the tax agreements with others, several Western countries, grouped in an intergovernmental organization OECD[^1], prepared a [model tax convention](https://www.oecd.org/tax/treaties/1914467.pdf) which forms a common ground, helping them to start drafting the treaties.
 
 <figure>
-![OECD countries](../images/tax_residency/oecd.png){width=80%}
-<figcaption>Map of OECD countries.</figcaption>
+![Map of OECD countries.](../images/tax_residency/oecd.png){width=80%}
 </figure>
 
 The tax convention tries to formalize the idea of a person being liable for tax only in one country: the one where they live. While the details on the rates, procedures, or exemption methods differ between DTAs, the principles are the same in the DTAs of OECD countries. Let's review them below.

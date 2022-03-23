@@ -43,7 +43,6 @@ In either of these, each card has a small number at the bottom, to be able to so
 
 <figure>
 ![Back of an item card. Note the small number 20 in bottom-left corner.](../images/ts/card.png){ width=50% }
-<figcaption>Back of an item card. Note the small number 20 in bottom-left corner.</figcaption>
 </figure>
 
 
@@ -57,7 +56,6 @@ Most pdf-based scenarios followed the same ordering of cards withing the scenari
 
 <figure>
 ![An example page to be cut into single cards.](../images/ts/page.png){width=90%}
-<figcaption>An example page to be cut into single cards.</figcaption>
 </figure>
 
 We went for the human-in-the-loop approach for detecting the size of margins, where the user was choosing an appropriate margin for the first page of the scenario and we assumed that the margins don't change within one file.
@@ -161,7 +159,6 @@ We opted for Angular Material's [Drag and Drop](https://material.angular.io/cdk/
 
 <figure>
 ![Moving card from one holder to another.](../images/ts/moving-card.gif){width=100%}
-<figcaption>Moving card from one holder to another.</figcaption>
 </figure>
 
 ### Rotating cards
@@ -192,7 +189,6 @@ However, this wasn't working perfectly from the UI perspective; the die could ge
 
 <figure>
 ![Animation when rerolling challenge dice.](../images/ts/dice.gif){width=70%}
-<figcaption>Animation when rerolling challenge dice.</figcaption>
 </figure>
 
 Another problem with the interface was that every time the agents leave a location one of the players should throw the Time Unit die to spend TU. In the physical game, everyone sees whether the die has been thrown and the score subtracted from the tracker. In the digital version, players don't see whether others have thrown the die if they don't track the available TU closely.
@@ -207,7 +203,6 @@ To make it easier to keep of track the number of rounds each player did, we adde
 
 <figure>
 ![The mark on the pawn after the player did the action.](../images/ts/pawn-mark.png)
-<figcaption>The mark on the pawn after the player did the action.</figcaption>
 </figure>
 
 One facilitation we tried introducing to the gameplay was to automate the throwing of the TU die whenever players leave a location. We thought that leaving the location can be recorded whenever the first location card is removed, and we could throw the die without their action.

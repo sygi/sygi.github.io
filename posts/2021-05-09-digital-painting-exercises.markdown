@@ -48,15 +48,13 @@ In the poses drawings, I omitted hands, feet, and faces, as they are harder than
 Initially, I did two sketches using the same reference page as before:
 
 <figure>
-![Heads](/images/digital_painting2/people/Heads.png){ width=70% }
-<figcaption>Sketches of a head.</figcaption>
+![Sketches of a head.](/images/digital_painting2/people/Heads.png){ width=70% }
 </figure>
 
 I then moved to digital painting. I started by following [the walkthrough](www.youtube.com/watch?v=0CDd22s3jec) on a Sam Does Arts youtube channel:
 
 <figure>
-![Tutorial painting](/images/digital_painting2/people/Sam.png){ width=45% }
-<figcaption>Portrait painting based on a tutorial.</figcaption>
+![Portrait painting based on a tutorial.](/images/digital_painting2/people/Sam.png){ width=45% }
 </figure>
 
 While not everything here looks great, I think the overall shapes and colors went fine.
@@ -82,8 +80,7 @@ I found online a suggestion for improving one's art: to analyze the paintings of
 Value (lightness) is a primary tool for creating a contrast in a picture. To think about how others use values in their art, I followed an exercise to draw using only three colors: white, black, and grey. Initially, the areas that light reaches are covered with white, then the half-tone ones are getting changed to grey. Arguably, this exercise helps to understand the shape of the objects in the pictures.
 
 <figure>
-![Value study](/images/digital_painting2/analysis/values.png){ width=70% }
-<figcaption>Value study of a couple of paintings and movie frames.</figcaption>
+![Value study of a couple of paintings and movie frames.](/images/digital_painting2/analysis/values.png){ width=70% }
 </figure>
 
 ### Color studies

@@ -44,7 +44,6 @@ On the other hand, even after doing that many boxes, there were still some issue
 
 <figure>
 ![Drawabox logo: if we see the front face straight, the side should be hidden!](https://d15v304a6xpq4b.cloudfront.net/assets/images/drawabox-logo.png){ width=40% }
-<figcaption>Drawabox logo: if we see the front face straight, the side should be hidden!</figcaption>
 </figure>
 
 In retrospect, after doing a couple (tens of?) boxes, it would have been more useful to follow up with the following exercises:

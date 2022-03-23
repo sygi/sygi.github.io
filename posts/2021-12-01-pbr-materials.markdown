@@ -13,10 +13,7 @@ That representation is not natural for people: it's based on the interpretation 
 [^1]: a program for drawing pixels on a screen
 
 <figure>
-![Principled BSDF Blender node](https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_shader_principled_node.png){width=35%}
-    <figcaption>
-A node containing all the settings to describe a material using Principled BSDF in Blender.
-</figcaption>
+![A node containing all the settings to describe a material using Principled BSDF in Blender.](https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_shader_principled_node.png){width=35%}
 </figure>
 
 Principled BSDF has become the industry standard for describing materials. Despite its principle to be as intuitive as possible, it has a lot of parameters one can change, whose meaning is not always obvious, making using the shader overwhelming at first.
@@ -37,10 +34,7 @@ Let's consider the ray going in the direction from the sun to the camera:
 4. The ray hits the camera where it's averaged with other incoming rays, creating an (RGB) pixel.
 
 <figure>
-![Change of light ray color diagram](../images/pbr_materials/color.png){width=70%}
-    <figcaption>
-Diagram showing a change in the light ray color when being reflected from colorful surfaces.
-</figcaption>
+![Diagram showing a change in the light ray color when being reflected from colorful surfaces.](../images/pbr_materials/color.png){width=70%}
 </figure>
 
 ## Specular vs diffuse reflections
@@ -58,10 +52,7 @@ The physical mechanism behind the diffuse reflection is like this:
 3. When the ray hits a particle, it gets reflected in a random direction. 
 
 <figure>
-![Diagram with a diffuse and specular reflections](../images/pbr_materials/diffuse.gif){width=70%}
-    <figcaption>
-Comparison of specular and diffuse reflection by GianniG46 ([link](https://commons.wikimedia.org/wiki/File:Lambert2.gif)).
-</figcaption>
+![Comparison of specular and diffuse reflection by GianniG46 ([link](https://commons.wikimedia.org/wiki/File:Lambert2.gif)).](../images/pbr_materials/diffuse.gif){width=70%}
 </figure>
 
 Principled BSDF handles these two reflection models by first calculating the light intensity corresponding to each of them separately, and then simply summing them up.
@@ -116,10 +107,7 @@ For the light that enters the material, a part of it randomly hits the material 
 The color of the light ray is still multiplied by the base color of the object, allowing the creation of materials like colored glass, which transmit some colors but absorb others.
 
 <figure>
-![Render of a transmissive material](../images/pbr_materials/transmission.png){width=40%}
-    <figcaption>
-Fully transmissive (glass-like) material, with a red base color.
-</figcaption>
+![Fully transmissive (glass-like) material, with a red base color.](../images/pbr_materials/transmission.png){width=40%}
 </figure>
 
 ## Index of refraction
@@ -180,10 +168,7 @@ One can divide the reflected light can into:
 The surface of the materials is rarely perfectly flat: it often has some general surface and a lot of microscopic variations to it, called microfacets. When a ray of light shines onto a surface with these bumps, it often hits an area whose normal is not the same as the global normal of the surface.
 
 <figure>
-![Figure explaining microfacets](https://google.github.io/filament/images/diagram_macrosurface.png){width=80%}
-    <figcaption>
-A figure (from [Filament documentation](https://google.github.io/filament/Filament.html#figure_microfacets)) explaining the idea of microfacets.
-</figcaption>
+![A figure (from [Filament documentation](https://google.github.io/filament/Filament.html#figure_microfacets)) explaining the idea of microfacets.](https://google.github.io/filament/images/diagram_macrosurface.png){width=80%}
 </figure>
 
 Because of that, the light reflected through a specular reflection doesn't take a single direction but rather a range of angles around it.
@@ -195,10 +180,7 @@ Instead of modeling the actual microscopic structure of the material (which woul
 The shader has a parameter called *roughness*, controlling how wide the distribution of reflected rays will be. Materials with lower roughness will appear shinier as more highlights will appear on their surface.
 
 <figure>
-![Illustration of effect of roughness parameter on the BSDF](https://google.github.io/filament/images/diagram_roughness.png){width=95%}
-    <figcaption>
-Illustration of the roughness parameter: higher roughness (left), corresponding to a more bumpy surface, causes a wider range of directions of reflected rays. Comes from [Filament docs](https://google.github.io/filament/Filament.html#figure_roughness).
-</figcaption>
+![Illustration of the roughness parameter: higher roughness (left), corresponding to a more bumpy surface, causes a wider range of directions of reflected rays. Comes from [Filament docs](https://google.github.io/filament/Filament.html#figure_roughness).](https://google.github.io/filament/images/diagram_roughness.png){width=95%}
 </figure>
 
 ## Anisotropic
