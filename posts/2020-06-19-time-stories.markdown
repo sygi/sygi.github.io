@@ -172,6 +172,7 @@ We fixed it with [Renderer2](https://angular.io/api/core/Renderer2), which is ab
 ## Rolling dice
 
 One part of the mechanics of the game is the use of dice to:
+
 1. Measure the passage of time which the agents have left
 1. Resolve the results of the challenges.
 
