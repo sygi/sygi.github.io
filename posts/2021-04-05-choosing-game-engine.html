@@ -33,7 +33,7 @@
 <h2 id="motivation">Motivation</h2>
 <p>Between grade 6 and entering the workforce at around 25 years old, I haven’t played many games. Growing up playing Super Mario Bros, FIFA, or Ages of Empires II, I associated computer games more with cheap adrenaline rushes than discovering new worlds.</p>
 <p>It changed dramatically after playing <a href="https://store.steampowered.com/app/582500/We_Were_Here/">We Were Here</a> and <a href="https://store.steampowered.com/app/230230/Divinity_Original_Sin_Classic/">Divinity Original Sin</a> with my girlfriend. These are cooperative games with no reflex elements and are more about exploring the game world than defeating opponents.</p>
-<p>At the same time, we were a bit disappointed with We Were Here, as, even though we liked the walkie-talkie coop mechanic, the gameplay was centered around solving abstract puzzles: there’s a little story to discover there<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<p>At the same time, we were a bit disappointed with We Were Here, as, even though we liked the walkie-talkie coop mechanic, the gameplay was centered around solving abstract puzzles: there’s a little story to discover there<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>I decided to fix this and try to make a game similar to We Were Here with a stronger focus on the story and learn some game development in the process.</p>
 <h2 id="what-is-a-game-engine">What is a game engine</h2>
 <p>Making a game involves a lot of complex elements: checking if game objects collide, networking, playing sounds, etc. Many of these can be done once and reused in many games: one doesn’t need to reinvent from scratch how the light bounces from objects or how to communicate player actions in a multi-player game.</p>
@@ -50,10 +50,8 @@
 <p>Unfortunately, due to all the blows and whistles that Unreal comes with, the final export file was over 100MB, despite my attempts to make it as small as possible. Because of it, I wasn’t able to serve it on Github pages, and put it on S3 instead (<a href="https://sygi-blog.s3.eu-central-1.amazonaws.com/unreal/MovingUnrealPackaged-HTML5-Shipping.html">link</a>).</p>
 <p>One idea that I quite liked in Unreal is <a href="https://docs.unrealengine.com/en-US/ProgrammingAndScripting/Blueprints/index.html">blueprints</a>. They are a visual programming language that allows people to connect various object properties without writing code. While writing code feels natural to me, the nicely rendered diagrams showing how the properties are changing look appealing.</p>
 <figure>
-<img src="../images/game_engines/unreal_blueprint.png" alt="Blueprint" style="width:70.0%" />
-<figcaption>
-Blueprint in Unreal Engine.
-</figcaption>
+<img src="../images/game_engines/unreal_blueprint.png" style="width:70.0%" alt="Blueprint in Unreal Engine." />
+<figcaption aria-hidden="true">Blueprint in Unreal Engine.</figcaption>
 </figure>
 <p>Overall, I liked Unreal a lot for what it is: a professional-grade 3D game engine. At the same time, I realized that making a proper 3D game is a big undertaking, and I shouldn’t try it for the first game I ever made.</p>
 <h3 id="unity">Unity</h3>
@@ -75,10 +73,8 @@ Blueprint in Unreal Engine.
 <h4 id="scene-tree">Scene tree</h4>
 <p>The philosophy of game design in Godot revolves around building a <em>Scene</em> (which is vaguely equivalent to a <em>class</em> in Object-Oriented Programming) with a tree of <em>Nodes</em> (like fields, but you can arrange them hierarchically).</p>
 <figure>
-<img src="../images/game_engines/godot_tree.png" alt="Tree scene" style="width:60.0%" />
-<figcaption>
-Example Scene tree in Godot.
-</figcaption>
+<img src="../images/game_engines/godot_tree.png" style="width:60.0%" alt="Example Scene tree in Godot." />
+<figcaption aria-hidden="true">Example Scene tree in Godot.</figcaption>
 </figure>
 <p>Being able to combine various elements not only in code but also using the editor UI is surprisingly natural for someone who typically only writes code. It particularly helps for visual things like images, as dragging the image to a correct place is simpler than guessing the correct position in code.</p>
 <p>This feature is available not only for the built-in classes but also for any other field marked <code>export</code> by the programmer. Thanks to that and the extensibility of the engine, I was able to make a plugin that sets a <code>horizon_line</code> field in a background image based on a click position. It will make it easy to scale the sprite for the character with the rules of the perspective.</p>
@@ -92,12 +88,12 @@ Example Scene tree in Godot.
 <h2 id="final-words">Final words</h2>
 <p>Game development is hard. I tried a couple of game engines which make the process much easier and ended up with Godot. My initial plans of making a story-rich online coop will probably be replaced with making a small point-and-click adventure game.</p>
 <p>As of now, I have most of the story-independent code written and will move on to describe game scenes in more detail, likely followed by creating the assets. You can play the debug scene <a href="../data/game_engines/maduka.html">here</a>.</p>
-<div class="footnotes">
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>I read that the sequel, <a href="https://store.steampowered.com/app/865360/We_Were_Here_Together/">We Were Here Together</a>, has more story.<a href="#fnref1">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p>I read that the sequel, <a href="https://store.steampowered.com/app/865360/We_Were_Here_Together/">We Were Here Together</a>, has more story.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</div>
+</section>
 
 
   <!-- nonheader -->

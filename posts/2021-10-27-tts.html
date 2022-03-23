@@ -37,7 +37,7 @@
 <li>produce an audio wave where a character speaks the text.</li>
 </ul>
 <p>Text-to-speech is an active research domain, and one could easily spend weeks (or a whole career) looking for the best solution. I chose to limit myself to methods that:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>are available for free,</li>
 <li>don’t require me to do further research to make it work,</li>
 <li>are easily available on the internet; in particular require no training neural networks on a high-end GPU for days.</li>
@@ -51,23 +51,19 @@
 <p>Putting it in English, mel-spectrogram describes how much energy the part of the sound wave of a given frequency transports in time.</p>
 <p>It’s a three-dimensional plot: the color conveys the amount of energy (lighter color: more energy), the Y-axis corresponds to frequency, and the X-axis to time.</p>
 <figure>
-<img src="../images/tts/mel-spectrogram.jpg" alt="alttext" style="width:30.0%" />
-<figcaption>
-An example mel-spectrogram. Note a region of lower energy after around 130 time units, which corresponds to a pause in the sound wave.
-</figcaption>
+<img src="../images/tts/mel-spectrogram.jpg" style="width:30.0%" alt="An example mel-spectrogram. Note a region of lower energy after around 130 time units, which corresponds to a pause in the sound wave." />
+<figcaption aria-hidden="true">An example mel-spectrogram. Note a region of lower energy after around 130 time units, which corresponds to a pause in the sound wave.</figcaption>
 </figure>
 <p>An important property of mel-spectrograms is that they contain less information than the initial sound wave, i.e. there are multiple waves with the same mel-spectrogram.</p>
 <h3 id="current-models">Current models</h3>
 <p>To generate a single sound wave from a sentence of text, people currently apply two models sequentially:</p>
-<ol style="list-style-type: decimal">
-<li>An acoustic model, which transforms text to a mel-spectrogram, e.g. <a href="https://arxiv.org/abs/1712.05884">Tacotron 2</a>, <a href="https://arxiv.org/abs/2005.11129">Glow-TTS</a>, or <a href="https://arxiv.org/abs/2006.04558">FastSpeech 2</a>.</li>
+<ol type="1">
+<li>An acoustic model, which transforms text to a mel-spectrogram, e.g. <a href="https://arxiv.org/abs/1712.05884">Tacotron 2</a>, <a href="https://arxiv.org/abs/2005.11129">Glow-TTS</a>, or <a href="https://arxiv.org/abs/2006.04558">FastSpeech 2</a>.</li>
 <li>A vocoder, which maps the mel-spetrogram to the actual sound wave. The most popular vocoder is <a href="https://arxiv.org/abs/2010.05646">HiFi-GAN</a>, with other examples being <a href="https://arxiv.org/abs/1910.06711">MelGAN</a> and <a href="https://arxiv.org/abs/1811.00002">WaveGlow</a>.</li>
 </ol>
 <figure>
-<img src="../images/tts/diagram.jpg" alt="alttext" style="width:90.0%" />
-<figcaption>
-A high-level diagram describing architecture of the text-to-speech models.
-</figcaption>
+<img src="../images/tts/diagram.jpg" style="width:90.0%" alt="A high-level diagram describing architecture of the text-to-speech models." />
+<figcaption aria-hidden="true">A high-level diagram describing architecture of the text-to-speech models.</figcaption>
 </figure>
 <p>There are some end-to-end models, like <a href="https://arxiv.org/abs/1609.03499">WaveNet</a> or <a href="https://arxiv.org/pdf/2006.04558.pdf">FastSpeech 2s</a> which are able to generate waves directly from text (without intermediate mel-spectrograms), but they don’t seem to be as popular these days.</p>
 <h2 id="datasets">Datasets</h2>
@@ -75,7 +71,7 @@ A high-level diagram describing architecture of the text-to-speech models.
 <ul>
 <li><a href="https://keithito.com/LJ-Speech-Dataset/">LJ Speech</a>: a dataset with one female English speaker, reading 13100 short audio clips from 7 non-fiction books, consisting of approximately 24 hours in total.</li>
 <li><a href="https://research.google/tools/datasets/libri-tts/">LibriTTS</a>: a multi-speaker English dataset containing 585 hours of speech by 2456 speakers (around 15min/speaker), reading Project Gutenberg books.</li>
-<li><a href="https://datashare.ed.ac.uk/handle/10283/2950">VCTK</a>: 44 hours of mostly newspaper passages, read by 109 English speakers with different accents<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, so 0.5h of speech/speaker.</li>
+<li><a href="https://datashare.ed.ac.uk/handle/10283/2950">VCTK</a>: 44 hours of mostly newspaper passages, read by 109 English speakers with different accents<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, so 0.5h of speech/speaker.</li>
 </ul>
 <h2 id="analysis-of-the-models">Analysis of the models</h2>
 <p>For the sake of this post, I tried out the three acoustic models mentioned above: <a href="https://github.com/NVIDIA/tacotron2">Tacotron 2</a>, <a href="https://github.com/jaywalnut310/glow-tts">Glow-TTS</a>, <a href="https://ming024.github.io/FastSpeech2/">FastSpeech 2</a>, whose implementations are available on Github. I combined them with a <a href="https://github.com/jik876/hifi-gan">Hifi-GAN</a> vocoder.</p>
@@ -110,11 +106,11 @@ Your browser does not support the <code>audio</code> element.
 Samples from FastSpeech2 trained on VCTK, conditioned on speakers 270 and 277.
 </figcaption>
 </figure>
-<p>Not surprisingly, the voice is even more robotic<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> (VCTK has more data overall, but less per speaker), but at least the model is easily accessible.</p>
+<p>Not surprisingly, the voice is even more robotic<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (VCTK has more data overall, but less per speaker), but at least the model is easily accessible.</p>
 <h4 id="modifying-the-vocoder">Modifying the vocoder</h4>
 <p>I mentioned on which datasets the acoustic models above were trained, but what about the vocoder (HiFi-GAN)?</p>
 <p>In <a href="https://github.com/jik876/hifi-gan">its repo</a>, authors provide checkpoints of HiFi-GAN trained on either: LJSpeech (in a version finetuned to the mel-spectrograms provided by Tacotron or not), VCTK, or LJSpeech, VCTK, and LibriTTS together. The last one (called universal model) was provided for easy finetuning to a particular acoustic model/another dataset.</p>
-<p>To generate the previous samples, I used the vocoder model trained on the same dataset as acoustic model used (using the Tacotron-finetuned version for LJSpeech)<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
+<p>To generate the previous samples, I used the vocoder model trained on the same dataset as acoustic model used (using the Tacotron-finetuned version for LJSpeech)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <p>One may wonder: to what extent the choice of the dataset the vocoder was trained on is important? In other words: can we train a single vocoder and use it with different datasets?</p>
 <p>Technically, the vocoder needs to choose one sound wave out of many that have the same mel-spectrogram as its input. However, it’s possible that the mel-spectrogram contains all the important information about the sound, and there is only one “reasonable” sound wave to choose, and the vocoder only needs to learn how to find it.</p>
 <p>As the vocoder’s input is only the mel-spetrogram (no separate text), it has to include the information about <em>what</em> is said. Is the speaker’s identity encoded there too? If not (and it’s the vocoder that injects this information into the sound wave), we will be able to change the speaker by using a different HiFi-GAN checkpoint.</p>
@@ -133,7 +129,7 @@ Sample of the Glow-TTS model trained on LJ Speech, using Hifi-GAN vocoder traine
 <p>For the extra data to finetune the models on, I used all data available for speaker 270 in VCTK. It is a male voice (so easy to distinguish from the LJ Speech one, even for an amateur like me), and there is around half an hour of it available.</p>
 <p>Out of the models I tested above, finetuning is easily possible only for Tacotron and HiFi-GAN, as:</p>
 <ul>
-<li>Fastspeech2 comes already trained on VCTK, so I can’t expect to get anything better than what’s already there <a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</li>
+<li>Fastspeech2 comes already trained on VCTK, so I can’t expect to get anything better than what’s already there <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</li>
 <li>the authors of the Glow-TTS repo provide a pretrained model for inference, but they don’t publish a part of the training model (one handling Data-dependent initialization) that is necessary for finetuning.</li>
 </ul>
 <h4 id="tacotron">Tacotron</h4>
@@ -151,7 +147,7 @@ Sample of Tacotron finetuned after 2000 steps, and one after 6000 steps. Sound t
 </figcaption>
 </figure>
 <h4 id="hifi-gan">HiFi-GAN</h4>
-<p>When Tacotron generates mel-spectrograms, it does so one timestep at a time, passing whatever was generated at the previous steps as an input for the current-step generation<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</p>
+<p>When Tacotron generates mel-spectrograms, it does so one timestep at a time, passing whatever was generated at the previous steps as an input for the current-step generation<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
 <p>It means if a model makes a mistake mid-sentence, it’s hard for it to get back on track. One can hear it easily early in the training when the model starts the sentence correctly but then breaks down into mumbling:</p>
 <figure>
 <audio controls src="../data/tts/tacotron_vctk_600.wav">
@@ -182,12 +178,12 @@ Sample of the finetuned (after 2000 steps) Tacotron, using a pretrained (left) a
 <p>Apart from learning the details of text-to-speech technology, this experiment was also an exercise in getting free access to the computing power.</p>
 <p>Everyone knows that training the models on a CPU takes a long time. Furthermore, the code is written in a way that you need to modify the code to not use a GPU, which isn’t always easy.</p>
 <p>I tried out two venues that offer free GPU for training deep learning models:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><a href="https://colab.research.google.com">Google Colab</a></li>
 <li><a href="https://gradient.run/free-gpu">Paperspace notebooks</a></li>
 </ol>
 <p>I found Colab easier to use overall: it was quicker to connect to a runtime, and the integration with Google Drive made moving data and the code between the local machine and the Colab easy.</p>
-<p>Another benefit of Colab is that it’s more popular, so there are lots of instructions online on how to do even complex things<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>.</p>
+<p>Another benefit of Colab is that it’s more popular, so there are lots of instructions online on how to do even complex things<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
 <p>The top selling point of Paperspace is that they give a guaranteed uptime of up to 6h.</p>
 <p>In the Colab, Google sends a pop-up to check whether you’re still there every couple of hours and disconnects you after some time anyway. In Paperspace, when you request a machine you may be asked to wait, but once you get it reserved, it’s yours for the period you requested it for.</p>
 <p>Even more, you can close the browser window/turn off the computer and still expect the GPU to be crunching the matrices for you in the background, while the Colab disconnects you from the accelerator the moment you close the tab.</p>
@@ -198,17 +194,17 @@ Sample of the finetuned (after 2000 steps) Tacotron, using a pretrained (left) a
 <p>If you hear a couple of sample sentences generated by these models, you’ll likely find them correctly pronounced but lifeless. The intonation, accent, and rhythm that conveys emotions (called <a href="https://en.wikipedia.org/wiki/Prosody_(linguistics)">prosody</a> by the linguists) are not there.</p>
 <p>One could claim that understanding the text enough to express prosody is an insanely difficult problem, but I don’t think it’s crazy to expect it to be solved anytime soon. It sounds easier than the type of things <a href="https://openai.com/blog/openai-api/">GPT-3</a> does, although GPT-3 is an effort bigger by orders of magnitude (in terms of parameters, people, compute, etc.) than any of the models described above.</p>
 <p>I haven’t seen TTS expressing emotion yet, though. I found <a href="https://apple.github.io/neural-tts-with-prosody-control/">one paper</a> that goes in the direction of controlling the prosody with some good samples, but unfortunately without available code.</p>
-<div class="footnotes">
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>The significant majority of the speakers come from the British Isles.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>quite appropriately to be fair, given that it’s generated by a machine<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>For LibriTTS, even though the HiFi-GAN repo doesn’t contain the model trained only on LibriTTS, the FastSpeech2 code authors included a LibriTTS checkpoint directly in theirs.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>Technically, multi-speaker training could be more difficult than finetuning on a single (new) voice. I still don’t expect anything better than the poor quality of LJ Speech, for which a lot of data is available.<a href="#fnref4">↩</a></p></li>
-<li id="fn5"><p>the models that have this property are called <em>autoregressive</em><a href="#fnref5">↩</a></p></li>
-<li id="fn6"><p>For example, for another project, it was easy to get Colab to record video from the webcam and play it back.<a href="#fnref6">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p>The significant majority of the speakers come from the British Isles.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>quite appropriately to be fair, given that it’s generated by a machine<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>For LibriTTS, even though the HiFi-GAN repo doesn’t contain the model trained only on LibriTTS, the FastSpeech2 code authors included a LibriTTS checkpoint directly in theirs.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Technically, multi-speaker training could be more difficult than finetuning on a single (new) voice. I still don’t expect anything better than the poor quality of LJ Speech, for which a lot of data is available.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>the models that have this property are called <em>autoregressive</em><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>For example, for another project, it was easy to get Colab to record video from the webcam and play it back.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</div>
+</section>
 
 
   <!-- nonheader -->

@@ -34,7 +34,7 @@
 <h3 id="first-plans">First plans</h3>
 <p>Initially, I planned to do a simple lineart drawing + flat colors to make it easy to create a lot of images. The first image I created used this technique and took around 8h to draw (+an hour or two for adding people on top).</p>
 <figure>
-<a href="../images/graphic_workflow/generic_gate.png"><img src="../images/graphic_workflow/generic_gate.png" alt="Drawing of the gate camp" style="width:30.0%" /></a>
+<a href="../images/graphic_workflow/generic_gate.png"><img src="../images/graphic_workflow/generic_gate.png" style="width:30.0%" alt="Drawing of the gate camp" /></a>
 <figcaption>
 The image of the gate camp used in the game. Despite being simple, it still took a while to finish.
 </figcaption>
@@ -43,18 +43,19 @@ The image of the gate camp used in the game. Despite being simple, it still took
 <p>Then, I decided to see how close I could get to being photorealistic. I planned to make the first location (Appellplatz) through a collage of drawing, applying textures, and manipulating other images from the internet. I hoped to spend more time on this location to get it really nice and choose a final workflow for other pictures based on how long different parts of this process took and how much they contributed to the final look.</p>
 <p>I ended up using many images from <a href="collections.ushmm.org">United State Holocaust Museum</a> who have photos of concentration camp clothing available online, some textures from <a href="https://polyhaven.com">Poly Haven</a>, and lots of photo manipulation in Procreate. Initially, I was planning to apply <a href="https://en.wikipedia.org/wiki/Neural_Style_Transfer">style transfer</a> on top of the image to give it a more painterly look and hide the anatomy/perspective problems that I created (what ended up to be an overly optimistic goal).</p>
 <figure>
-<a href="../images/graphic_workflow/appellplatz_full.png"><img src="../images/graphic_workflow/appellplatz_full.png" alt="Full panorama of the first location" style="width:95.0%" /></a>
+<a href="../images/graphic_workflow/appellplatz_full.png"><img src="../images/graphic_workflow/appellplatz_full.png" style="width:95.0%" alt="Full panorama of the first location" /></a>
 <figcaption>
 As you can see, the results (before applying style transfer) aren’t great, despite taking 28h on this image alone.
 </figcaption>
 </figure>
 <h3 id="style-transfer">Style transfer</h3>
-<p>I played a bit with various methods for doing style transfer to fix the image that I created. As I didn’t want the stylization to spin into a 5-year research project,<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> I looked only at the tools that are easy to use (in particular don’t require training a neural network).</p>
+<p>I played a bit with various methods for doing style transfer to fix the image that I created. As I didn’t want the stylization to spin into a 5-year research project,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> I looked only at the tools that are easy to use (in particular don’t require training a neural network).</p>
 <h4 id="neural-style-transfer">Neural Style Transfer</h4>
-<p>The classic<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> method for doing style transfer involves optimizing a (content) image using gradient descent to keep late activations of some CNN the same while changing the early ones to match the ones of another (style) image.</p>
+<p>The classic<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> method for doing style transfer involves optimizing a (content) image using gradient descent to keep late activations of some CNN the same while changing the early ones to match the ones of another (style) image.</p>
 <p>The results were not great: I tried <a href="https://deepart.io">deepart.io</a> and <a href="https://reiinakano.com/arbitrary-image-stylization-tfjs/">Arbitrary Style Transfer in the Browser</a>, but the style application was too strong (even on the lowest setting), making it too hard to read the details of the images.</p>
 <figure>
-<img src="../images/graphic_workflow/style_transfer1.png" alt="Result of applying neural style transfer" style="width:95.0%" /> <img src="../images/graphic_workflow/style_transfer2.jpg" alt="Another result of applying neural style transfer" style="width:95.0%" />
+<img src="../images/graphic_workflow/style_transfer1.png" style="width:95.0%" alt="Result of applying neural style transfer" />
+<img src="../images/graphic_workflow/style_transfer2.jpg" style="width:95.0%" alt="Another result of applying neural style transfer" />
 <figcaption>
 Results of applying style transfer.
 </figcaption>
@@ -62,12 +63,13 @@ Results of applying style transfer.
 <p>Another problem with them (and all the other browser-based tools that I tried) was that they support only small images, while I wanted to keep everything in high pixel density.</p>
 <h4 id="nvidia-tools">NVIDIA tools</h4>
 <p>NVIDIA has <a href="https://www.nvidia.com/en-us/research/ai-demos/">some of their research</a> available interactively through the browser. I tried two tools that could be useful for style manipulation:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><a href="http://nvidia-research-mingyuliu.com/gaugan/">GauGAN</a>, where the user draws a rough segmentation map with different colors corresponding to different textures (eg. you can paint “trees” or “rock”), and the model generates an image based on this map and a reference landscape image. Low details, not the workflow I wanted, no people.</li>
 <li><a href="https://www.nvidia.com/research/inpainting">Inpainting</a>, where the user deletes parts of the image, and the model tries to fill the gaps. I tried deleting parts of the image with broken anatomy, but the inpainted results blended to the background more than fixing the details.</li>
 </ol>
 <figure>
-<img src="../images/graphic_workflow/inpainting_mask2.png" alt="Mask to inpaint" style="width:40.0%" /> <img src="../images/graphic_workflow/inpainting_result.png" alt="Result of the inpainting" style="width:40.0%" />
+<img src="../images/graphic_workflow/inpainting_mask2.png" style="width:40.0%" alt="Mask to inpaint" />
+<img src="../images/graphic_workflow/inpainting_result.png" style="width:40.0%" alt="Result of the inpainting" />
 <figcaption>
 An inpainted picture with hands masked out. The model doesn’t draw new hands but rather tries to smooth the surrounding background.
 </figcaption>
@@ -76,10 +78,8 @@ An inpainted picture with hands masked out. The model doesn’t draw new hands b
 <p><a href="https://gmic.eu">G’MIC</a> is an extensive, open-source library for processing images. It is included in many popular graphics software (eg. GIMP, photoshop, Krita) as a plugin and also has <a href="https://gmicol.greyc.fr">an online version</a>.</p>
 <p>Among others, it has many filters available for postprocessing of the images. I tried a couple of them.</p>
 <figure>
-<img src="../images/graphic_workflow/appellplatz_illustration.png" alt="Result of the g’mic transform" style="width:95.0%" />
-<figcaption>
-First panorama after applying an “illustration look” filter.
-</figcaption>
+<img src="../images/graphic_workflow/appellplatz_illustration.png" style="width:95.0%" alt="First panorama after applying an “illustration look” filter." />
+<figcaption aria-hidden="true">First panorama after applying an “illustration look” filter.</figcaption>
 </figure>
 <p>The G’MIC filters deliver on their promise: they change the style of the images, with some of them making them more painterly. At the same time, as they are hard-coded (not learned) they can’t focus on fixing the places where the geometry was wrong.</p>
 <h4 id="style-transfer-results">Style transfer results</h4>
@@ -87,7 +87,7 @@ First panorama after applying an “illustration look” filter.
 <p>I believe that the necessary research for this to happen has already been done: it should be possible to take a loss <span class="math inline">\(L(x)\)</span> describing “how likely a given image <span class="math inline">\(x\)</span> comes from a dataset <span class="math inline">\(D\)</span>” (taken from a GAN discriminator or a density estimation model) and update a given image using gradients <span class="math inline">\(\frac{\text{d}L}{\text{d}x}\)</span>.</p>
 <p>A technique that is closest to this that I know of is <a href="https://en.wikipedia.org/wiki/DeepDream">DeepDream</a>. It optimizes the features of the image to facilitate classifying it with one of the classes instead of “matching the dataset” though, which causes a trippy, overly-objectified effect.</p>
 <figure>
-<a href="../images/graphic_workflow/deep_dream.jpg"><img src="../images/graphic_workflow/deep_dream.jpg" alt="Result of the deep dream transform" style="width:95.0%" /></a>
+<a href="../images/graphic_workflow/deep_dream.jpg"><img src="../images/graphic_workflow/deep_dream.jpg" style="width:95.0%" alt="Result of the deep dream transform" /></a>
 <figcaption>
 An effect of applying DeepDream to my image.
 </figcaption>
@@ -95,10 +95,11 @@ An effect of applying DeepDream to my image.
 <p>As I couldn’t find a successful style transfer tool, I went with the raw images in the end.</p>
 <h3 id="going-3d">Going 3D</h3>
 <p>After spending way too long on the Appellplatz image despite the results not being great, I made a step back and looked for different options. I decided to try to use Blender (a 3D-modelling tool) to aid with the image creation. I would be modeling the backgrounds in Blender, rendering them, and then drawing the people on top of the renders.</p>
-<p>After learning the basics of Blender<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> with <a href="https://www.youtube.com/watch?v=TPrnSACiTJ4&amp;ab_channel=BlenderGuru">the donut tutorial</a>, it was relatively quick to prepare models that are good enough.</p>
+<p>After learning the basics of Blender<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> with <a href="https://www.youtube.com/watch?v=TPrnSACiTJ4&amp;ab_channel=BlenderGuru">the donut tutorial</a>, it was relatively quick to prepare models that are good enough.</p>
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 <figure>
-<model-viewer style="width: 80%; height: 300px; margin-left: auto; margin-right: auto;" field-of-view="20deg" camera-controls interaction-prompt="when-focused" alt="A 3D model of a barrack." src="../data/graphic_workflow/barrack.gltf"> </model-viewer>
+<model-viewer style="width: 80%; height: 300px; margin-left: auto; margin-right: auto;" field-of-view="20deg" camera-controls interaction-prompt="when-focused" alt="A 3D model of a barrack." src="../data/graphic_workflow/barrack.gltf">
+</model-viewer>
 <figcaption>
 The 3D model of a camp barrack that I created with Blender (using some free assets).
 </figcaption>
@@ -107,10 +108,8 @@ The 3D model of a camp barrack that I created with Blender (using some free asse
 <p>A great feature of the 3D workflow was that I didn’t need to fix the shot/perspective at the very beginning of a drawing. Instead, after the model was mostly done, I moved the camera/changed its focal length to put the characters in the correct part of the image.</p>
 <p>While making the first barrack (and learning Blender) took some time, I could then make the next scene in only a couple of hours, which was a significant improvement over the hand-drawn/photo-manipulation workflows.</p>
 <figure>
-<img src="../images/graphic_workflow/exit.png" alt="Render of exit" style="width:70.0%" />
-<figcaption>
-Creating this scene (using pre-made assets) took me only an hour or two!
-</figcaption>
+<img src="../images/graphic_workflow/exit.png" style="width:70.0%" alt="Creating this scene (using pre-made assets) took me only an hour or two!" />
+<figcaption aria-hidden="true">Creating this scene (using pre-made assets) took me only an hour or two!</figcaption>
 </figure>
 <h2 id="graphics-workflow">Graphics workflow</h2>
 <p>Apart from creating the graphics themselves, I needed a mechanism for adding them to the cards. Initially, I had each card available as an svg, which I manually exported to png via Inkscape’s UI. Then, I would use a script to order the cards and generate a pdf.</p>
@@ -118,12 +117,12 @@ Creating this scene (using pre-made assets) took me only an hour or two!
 <p>What I ended up doing is, frankly, what I should have started with: keeping only a single svg file for a location and exporting it card by card using Inkscape’s command-line interface.</p>
 <h3 id="export-script">Export script</h3>
 <p>Here is a piece of the script that I ended up using:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># bash numbers tables starting from 0, but seq starts with 1</span>
-<span class="kw">for</span> <span class="ex">i</span> in <span class="kw">`</span><span class="fu">seq</span> <span class="va">$((${#CARDS[@]}</span> - 1<span class="va">))</span><span class="kw">`;</span> <span class="kw">do</span>
-  <span class="ex">inkscape</span> --export-filename=<span class="va">${CARDS[i]}</span>.png \
-  --export-area=<span class="va">$(($WIDTH</span>*(<span class="va">$i</span>-1)<span class="va">))</span>:0:<span class="va">$(($WIDTH</span>*<span class="va">$i))</span>:<span class="va">$HEIGHT</span> \
-  --export-dpi=60 full.svg
-<span class="kw">done</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bash numbers tables starting from 0, but seq starts with 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="kw">`</span><span class="fu">seq</span> <span class="va">$((${</span><span class="op">#</span><span class="va">CARDS</span><span class="op">[@]</span><span class="va">}</span> <span class="op">-</span> <span class="dv">1</span><span class="va">))</span><span class="kw">`;</span> <span class="cf">do</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">inkscape</span> <span class="at">--export-filename</span><span class="op">=</span><span class="va">${CARDS</span><span class="op">[</span>i<span class="op">]</span><span class="va">}</span>.png <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--export-area</span><span class="op">=</span><span class="va">$(($WIDTH</span><span class="op">*</span>(<span class="va">$i</span><span class="op">-</span><span class="dv">1</span>)<span class="va">))</span>:0:<span class="va">$(($WIDTH</span><span class="op">*</span><span class="va">$i))</span>:<span class="va">$HEIGHT</span> <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--export-dpi</span><span class="op">=</span>60 full.svg</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
 <p>One problem with that was setting the correct <code>$WIDTH</code>: as my svg file unit was a millimeter, but the command-line interface uses “user unit” (which, as I learned later, corresponds to one pixel under 96dpi, independently of the chosen export-dpi), I eyeballed/binary searched the conversion rate.</p>
 <h3 id="guides">Guides</h3>
 <p>Guides are the axis-aligned lines that help to arrange the objects on the canvas. In Inkscape, after double-clicking a guide, one can set its position (including the origin, which is a point on the line) numerically.</p>
@@ -131,7 +130,7 @@ Creating this scene (using pre-made assets) took me only an hour or two!
 <h3 id="arranging-objects-on-the-cards">Arranging objects on the cards</h3>
 <p>Another issue with multi-card Inkscape files I encountered was centering a text/object on each card separately.</p>
 <figure>
-<a href="../images/graphic_workflow/appellplatz_full.png"><img src="../images/graphic_workflow/appellplatz_full.png" alt="Full panorama of the first location" style="width:95.0%" /></a>
+<a href="../images/graphic_workflow/appellplatz_full.png"><img src="../images/graphic_workflow/appellplatz_full.png" style="width:95.0%" alt="Full panorama of the first location" /></a>
 <figcaption>
 I wanted each title (eg. “Appellplatz - C”) to be on the center of the respective card.
 </figcaption>
@@ -142,14 +141,14 @@ I wanted each title (eg. “Appellplatz - C”) to be on the center of the respe
 <li>Distribute all objects equidistantly (in some sense) among themselves.</li>
 </ul>
 <p>As it isn’t possible to express the centering I wanted directly, I had to get creative. What I ended up doing is:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>I created a thin line at both ends of the page. Guides helped with placing them precisely.</li>
 <li>I placed the objects to be centered on each card on separate cards (inaccurately)</li>
 <li>I added a thin line somewhere between each card.</li>
 <li>I selected all lines and objects and turned on “Distribute centers equidistantly horizontally”.</li>
 </ol>
 <figure>
-<a href="../images/graphic_workflow/inkscape_full.png"><img src="../images/graphic_workflow/inkscape_full.png" alt="Screenshot from Inkscape" style="width:70.0%" /></a>
+<a href="../images/graphic_workflow/inkscape_full.png"><img src="../images/graphic_workflow/inkscape_full.png" style="width:70.0%" alt="Screenshot from Inkscape" /></a>
 <figcaption>
 All objects are selected before distributing them.
 </figcaption>
@@ -163,7 +162,7 @@ All objects are selected before distributing them.
 </ul>
 <p>Flowed text, apart from paths describing the letters, contains a blue “bounding box” with the area that the text should fit into. It is more convenient to work with, as you don’t need to change newlines every time you modify the text.</p>
 <p>I found two ways of getting a flowed text in Inkscape:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>To select an area that will become the bounding box after choosing the text tool (as opposed to clicking on the canvas once, what creates regular text).</li>
 <li>To select a (regular) text object and then another object with shift, and choose Text &gt; Flow into frame.</li>
 </ol>
@@ -172,29 +171,29 @@ All objects are selected before distributing them.
 <h3 id="simple-card-generation">Simple card generation</h3>
 <p>There are many similar cards in a Time stories deck: item cards (differ only by the number), all “A” cards look basically the same, etc. Instead of creating them manually, one can create a template and generate multiple svgs from it, filling the template with the data.</p>
 <p>There is a small library to do this: <a href="https://github.com/mbr/svglue">svglue</a>. To create a template, one adds a <code>template-id</code> attribute to a <code>tspan</code> element in xml editor in Inkscape where the text will be substituted. Then, it’s possible to do the following:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">template <span class="op">=</span> svglue.load(<span class="bu">file</span><span class="op">=</span><span class="st">&quot;template.svg&quot;</span>)
-template.set_text(<span class="st">&quot;my_template_id&quot;</span>, <span class="st">&quot;new text&quot;</span>)
-content <span class="op">=</span> template.<span class="fu">__str__</span>().decode(<span class="st">'utf8'</span>)
-
-<span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;output.svg&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> f:
-    f.write(content)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> svglue.load(<span class="bu">file</span><span class="op">=</span><span class="st">&quot;template.svg&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>template.set_text(<span class="st">&quot;my_template_id&quot;</span>, <span class="st">&quot;new text&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> template.<span class="fu">__str__</span>().decode(<span class="st">'utf8'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;output.svg&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    f.write(content)</span></code></pre></div>
 <p>The magic with <code>__str__()</code> is needed as the library is quite unsupported and doesn’t handle python3 strings well. Other than that (and finding a separate <code>set_flowtext</code> for flowed text), it worked really well and saved me lots of time.</p>
 <figure>
-<a href="../images/graphic_workflow/a.png"><img src="../images/graphic_workflow/a.png" alt="Example A card" style="width:30.0%" /></a>
+<a href="../images/graphic_workflow/a.png"><img src="../images/graphic_workflow/a.png" style="width:30.0%" alt="Example A card" /></a>
 <figcaption>
 Example card generated using the template: other cards would only change the location name and the list of cards at the bottom.
 </figcaption>
 </figure>
 <h1 id="final-words">Final words</h1>
 <p>Using the workflow above, I did graphics for the back cards of all but two locations of the game. Michalina agreed to draw the remaining two. I then generated a “final” version of the cards and created a <a href="https://boardgamegeek.com/boardgameexpansion/348281/escape-auschwitz-fan-expansion-time-stories">BGG page for the expansion</a>. Ideally, I would cut pieces of the graphics (or even draw new ones) to put on the front sides as well, but after spending so much time on this, I’ll leave it be.</p>
-<div class="footnotes">
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Obligatory reference to <a href="https://xkcd.com/1425/">the “Tasks” xkcd</a>.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Created in 2015, so fairly old for the contemporary standards.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>which deserves another blog post.<a href="#fnref3">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Obligatory reference to <a href="https://xkcd.com/1425/">the “Tasks” xkcd</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Created in 2015, so fairly old for the contemporary standards.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>which deserves another blog post.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</div>
+</section>
 
 
   <!-- nonheader -->

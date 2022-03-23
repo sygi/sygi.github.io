@@ -57,7 +57,7 @@
 <p>In Poland, it’s common to express salary per month. As some of the salaries reported in the survey were significantly below the minimum salary, I suspect these were indeed monthly and not annual salaries.</p>
 <p>On the other hand, some of the entries included even lower numbers, below a thousand PLN, suggesting that the salary was given in the thousands, not nominally.</p>
 <p>Initially, I planned to allow only numbers &gt;= 10000 in the form to avoid these problems. It turned out, though, that:</p>
-<ol style="list-style-type: lower-alpha">
+<ol type="a">
 <li>it’s hard to make it work with any currency</li>
 <li>when I set the limit for a short time, some people who don’t work still wanted to put a number here (even though the question was optional). To do so, they were putting the lowest possible number (10000). Using it in the analysis would introduce a bias.</li>
 </ol>
@@ -66,17 +66,16 @@
 <p>As I was afraid that the results for the year 2020 would be skewed due to the pandemic (and people, like myself, moving to a different country or getting to work from home), I asked about the salary information from 2019.</p>
 <p>Apart from the salary, the survey asked many other statistical questions, like highest degree finished, which I later used to aggregate data.</p>
 <figure>
-<img src="../images/alma/education_comp.png" alt="Education_vs_salary" style="width:80.0%" />
-<figcaption>
-Aggregation of salary based on the highest degree received.
-</figcaption>
+<img src="../images/alma/education_comp.png" style="width:80.0%" alt="Aggregation of salary based on the highest degree received." />
+<figcaption aria-hidden="true">Aggregation of salary based on the highest degree received.</figcaption>
 </figure>
 <p>Overall, the decision to use 2019 seems a reasonable one. I’m afraid though that people who finished a degree between 2019 and now answered with their salary from before graduation, which would confuse the aggregates a bit.</p>
 <h3 id="distributing-the-survey">Distributing the survey</h3>
 <p>I sent the survey to the student group on Facebook and an alumni email group on 17th July. While people started filling it using the Facebook link immediately, it turned out that the alumni group is censored, and the censor doesn’t work on the weekends, so the email reached the group only on Monday.</p>
 <p>I decided to close the survey a couple of days later as I didn’t get as many responses anymore. Because of that, I got a complaint that the survey closed too soon and would be biased towards people who don’t have a life outside of the internet ;)</p>
 <h2 id="final-words">Final words</h2>
-<p>I was positively surprised by the number of responses I got: the survey recorded 203 entries. I prepared the analysis of the results (in Polish) and made it available <a href="https://sygnowski.ml/data/alma/writeup.pdf">here</a>. The code I used to analyze the data is <a href="https://github.com/sygi/alma">here</a>.</p>
+<p>I was positively surprised by the number of responses I got: the survey recorded 203 entries.
+I prepared the analysis of the results (in Polish) and made it available <a href="https://sygnowski.ml/data/alma/writeup.pdf">here</a>. The code I used to analyze the data is <a href="https://github.com/sygi/alma">here</a>.</p>
 <p>Unsurprisingly, the data I gathered presented the view of the MIM UW alumni that’s somewhere in-between my biased anecdata (where most of the people move abroad and earn a lot) and the data from ELA. Overall, the data looks reasonable.</p>
 <p>It may be worthwhile to repeat the survey in a couple of years.</p>
 
