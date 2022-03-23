@@ -2089,9 +2089,11 @@ Moving cards to holders with a different orientation: before and after.
 </figure>
 <p>We fixed it with <a href="https://angular.io/api/core/Renderer2">Renderer2</a>, which is able to read and change the CSS class of any html element. We called it when processing the <a href="https://material.angular.io/cdk/drag-drop/api#CdkDropList">cdkDropListEntered</a> event, which is called whenever we hover an item above a container.</p>
 <h2 id="rolling-dice">Rolling dice</h2>
-<p>One part of the mechanics of the game is the use of dice to:
-1. Measure the passage of time which the agents have left
-1. Resolve the results of the challenges.</p>
+<p>One part of the mechanics of the game is the use of dice to:</p>
+<ol type="1">
+<li>Measure the passage of time which the agents have left</li>
+<li>Resolve the results of the challenges.</li>
+</ol>
 <p>In the second case, the players throw a number of dice equal to the value of their statistic (like strength or eloquence) and count the number of “hits” which help the player succeed in the test and “skulls” which hurt the player.</p>
 <p>Initially, we just made a panel where the player chose the number of players and received the total results, but while playtesting one of the scenarios, we stumbled upon a practice of re-rolling a die (e.g. one character was allowed to choose one of the dice after a throw and roll it once more, hoping for a better result). It wasn’t possible to do with our dice, as the player didn’t get the division of the total result into particular dice (was this score of 4 a 2 + 2 + 0 + 0 or 1 + 1 + 1 + 1?). Because of that, we decided to show separate dice with results (apart from the total) and allowed the user to click on any die to reroll it.</p>
 <p>However, this wasn’t working perfectly from the UI perspective; the die could get the same result as the previous one after the reroll, and if this happened, the user doesn’t get any feedback that the system indeed registered the reroll. Because of that, we added an animation based on <a href="https://material.io/develop/web/components/animation/">material</a> where the previous die fades away and the new one slowly appears, so that the users see the change.</p>
