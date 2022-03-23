@@ -1,11 +1,9 @@
 # Install
-sudo apt-get install cabal-install
-cabal update
+wget -qO- https://get.haskellstack.org/ | sh
 stack install hakyll
-stack ghc site.hs
 
 # Build
-ghc site.hs
+stack ghc site.hs
 
 # Run
 ./site watch
