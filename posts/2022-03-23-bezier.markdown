@@ -29,7 +29,12 @@ A Bezier curve consists of several segments. A single segment is constructed usi
 
 Let's consider a quadratic Bezier curve, i.e. having three (one, apart from the starting and ending ones) control points: $P_A$, $P_B$, $P_C$.
 
-TODO: Construction of a quadratic Bezier curve.
+<figure>
+![quadratic Bezier curve](../images/bezier/bezier.png){width=90%}
+<figcaption>
+Construction of a quadratic Bezier curve.
+</figcaption>
+</figure>
 
 It is natural to express a Bezier curve using a function $Bez(t)$, which maps $t \in [0, 1]$ to a point on the curve. It explains how the curve is continuously drawn, starting from the first control point at $Bez(0) = P_A$ and ending at the last one for $Bez(1) = P_B$.
 
@@ -43,7 +48,12 @@ If one substituted the definitions of the intermediate points $P_{AB}$ and $P_{B
 
 The most popular Bezier curves are the cubic ones, that is having four control points. They are constructed iteratively, by first placing points $P_{AB}$, $P_{BC}$, and $P_{CD}$ on the corresponding segments, and then repeating the construction above with the new three points as the control points.
 
-TODO: cubic_bezier. Construction of the cubic Bezier curve.
+<figure>
+![cubic Bezier curve](../images/bezier/cubic_bezier.png){width=80%}
+<figcaption>
+Construction of the cubic Bezier curve.
+</figcaption>
+</figure>
 
 For a deeper (and more interactive) introduction to Bezier curves, I recommend [this article](https://ciechanow.ski/curves-and-surfaces/) by Bartosz Ciechanowski, from where the visualizations above are taken.
 
@@ -59,8 +69,12 @@ Once back in Blender, after a recommendation [from a video](https://www.youtube.
 
 As a reference for modeling the chess pieces, I used this photo of a standard chess set used at tournaments:
 
-https://commons.wikimedia.org/wiki/File:JaquesCookStaunton.jpg
+<figure>
+![chess set](../images/bezier/JaquesCookStaunton.jpg){width=70%}
+<figcaption>
 Photo made by Frank A. Camaratta, Jr.; The House of Staunton, Inc.
+</figcaption>
+</figure>
 
 The process for designing various pieces was largely similar:
 
@@ -69,7 +83,7 @@ The process for designing various pieces was largely similar:
 3. I placed an empty on the future rotational axis and parented it to the curve to make moving around easier.
 4. I used the screw modifier around the empty to create the surface.
 5. By choosing `overlays > face orientation` I checked whether the normals are pointing outwards (blue), and chose `normals > flip` if not.
-6. I chose `Object > convert > mesh`, as I couldn't use [Boolean Modifiers](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html) otherwise.
+6. I chose `Object > convert > mesh`, as I couldn't use [boolean modifiers](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html) otherwise.
 7. I set the bevel depth back to zero
 8. I cut all the necessary pieces with the boolean modifiers.
 9. In the end, I checked the geometry for duplicate nodes to merge and applied a subdivision modifier for a more smooth look.
@@ -79,7 +93,7 @@ The process for designing various pieces was largely similar:
 I started with the simplest piece to model, a pawn. While making it was just the matter of drawing the curve and rotating it, I was also establishing the process I mentioned above.
 
 <figure>
-[![pawn model](../images/bezier/pawn-small.png){width=50%}](../images/bezier/pawn.png)
+[![pawn model](../images/bezier/pawn-small.png){width=40%}](../images/bezier/pawn.png)
 <figcaption>
 Final model of the pawn.
 </figcaption>
@@ -92,7 +106,7 @@ The next piece I made was a bishop. After doing the rotationally symmetric part,
 Initially, I struggled a little with that, as having the normals the wrong way made the boolean modifier go crazy.
 
 <figure>
-[![bishop model](../images/bezier/bishop-small.png){width=50%}](../images/bezier/bishop.png)
+[![bishop model](../images/bezier/bishop-small.png){width=40%}](../images/bezier/bishop.png)
 <figcaption>
 Final model of the bishop.
 </figcaption>
@@ -107,7 +121,7 @@ When I got to the rook, I could use the knowledge from the "partial symmetry wit
 [^1]: Which, as I've learned now, are called `crenel`s.
 
 <figure>
-[![rook model](../images/bezier/rook-small.png){width=50%}](../images/bezier/rook.png)
+[![rook model](../images/bezier/rook-small.png){width=40%}](../images/bezier/rook.png)
 <figcaption>
 Final model of the rook.
 </figcaption>
@@ -150,7 +164,7 @@ The rook model with the boxes representing the holes in the wall to be cut out.
 The queen was more complex than the previous pieces but didn't involve any new method.
 
 <figure>
-[![queen model](../images/bezier/queen-small.png){width=50%}](../images/bezier/queen.png)
+[![queen model](../images/bezier/queen-small.png){width=40%}](../images/bezier/queen.png)
 <figcaption>
 Final model of the queen.
 </figcaption>
@@ -165,7 +179,7 @@ To make it, I drew a separate Bezier curve for its outline, but instead of rotat
 Then, I converted the curve to a mesh, filled it, and extruded it in the Y direction.
 
 <figure>
-[![king model](../images/bezier/king-small.png){width=50%}](../images/bezier/king.png)
+[![king model](../images/bezier/king-small.png){width=40%}](../images/bezier/king.png)
 <figcaption>
 Final model of the king.
 </figcaption>
@@ -190,7 +204,7 @@ As the first attempt, as you see, was not very successful, I went through a foll
 As trying to reproduce that original Stanton knight proved to be prohibitively difficult, I decided to make a different, simpler knight.
 
 <figure>
-![second knight reference](../images/bezier/knight-ref.jpg){width=50%}
+![second knight reference](../images/bezier/knight-ref.jpg){width=30%}
 <figcaption>
 New, simpler, knight reference.
 </figcaption>
@@ -227,6 +241,8 @@ I generated the checkerboard pattern with [checker texture](https://docs.blender
 
 ## Final render
 
-[![final knight model](../images/bezier/full-small.png){width=50%}](../images/bezier/full.png)
+<figure>
+[![final full render](../images/bezier/full-small.png){width=80%}](../images/bezier/full.png)
+</figure>
 
 3D scenes consist of objects, each of which has a shape and a material. The shape is defined through a mesh: a collection of vertices, edges, and faces living in a 3D world. The material describes the color of the object and how it reflects and transmits light. In this post, I inspect a popular way of expressing the material: a principled BSDF to see how its numerous parameters influence the look of an object.
