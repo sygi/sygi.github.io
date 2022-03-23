@@ -1,7 +1,3 @@
-$(document).ready(function() {
-	Footnotes.setup();
-});
-
 var Footnotes = {
 	footnotetimeout: false,
 	iOS: function() {
@@ -17,7 +13,7 @@ var Footnotes = {
 		);
 	},
 	setup: function() {
-		var footnotelinks = $(".footnoteRef")
+		var footnotelinks = $(".footnote-ref")
 		
 		footnotelinks.unbind('mouseover',Footnotes.footnoteover);
 		footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
@@ -94,3 +90,8 @@ var Footnotes = {
 		});
 	}
 }
+
+$(document).ready(function() {
+	Footnotes.setup();
+});
+

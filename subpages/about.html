@@ -56,7 +56,8 @@
         'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
         'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
         'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
-        'jquery': 'https://code.jquery.com/jquery-2.2.2.min' <!-- for footnotes -->
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min', <!-- for footnotes -->
+        'footnotes': '../../js/footnotes'
       }
     });
 
@@ -70,10 +71,7 @@
     });
     require(['mathjax']);
     require(['jquery'], function(jQuery){
-      jQuery.ajax({
-        url: '../../js/footnotes.js',
-        async: false
-      });
+      require(['footnotes']);
     });
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
