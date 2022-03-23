@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
@@ -181,15 +181,15 @@ untilFirstParagraph x = fst $ foldl (\(acc, fin) b ->
 -- Anchors Disabled here: they are added automatically by anchorjs
 addAnchors (Pandoc meta blocks) = Pandoc meta blocks --(addAnchorsInside blocks)
 
-anchorImage level = Image ("", [], [("width", show size), ("height", show size)]) [] 
+anchorImage level = Image ("", [], [("width", T.pack (show size)), ("height", T.pack (show size))]) [] 
   ("../images/anchor.png", "") where size = 17 - 1 * level
 
-anchorLink name lvl = Link ("", [], []) [anchorImage lvl] ("#" ++ name, "")
+anchorLink name lvl = Link ("", [], []) [anchorImage lvl] (T.pack ("#" ++ name), "")
 
 -- T.pack maps from [Char] to T.Text in case there are problems with it.
 -- reverse: T.unpack
 getIdenFromAttr :: Attr -> T.Text
-getIdenFromAttr (iden, _, _) = T.pack iden
+getIdenFromAttr (iden, _, _) = iden
 addAnchorToContent :: T.Text -> Int -> [Inline] -> [Inline]
 addAnchorToContent iden level content = content ++ [Str " ", anchorLink (T.unpack iden) level]
 
