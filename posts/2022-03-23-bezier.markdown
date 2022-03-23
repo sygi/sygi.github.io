@@ -1,0 +1,248 @@
+---
+title: 'Bézier curves and 3D modelling'
+---
+
+To improve my 3d modeling skills in Blender, I made models for a set of chess pieces. Given their rotational symmetry, I constructed them as traces that Bézier curves leave when they are rotated around an axis.
+
+## Chess pieces and rotational symmetry
+
+I chose to make the chess pieces despite not being a great chess fan. They seem to be of an appropriate difficulty level: posing a number of challenges, but well-defined and not too hard.
+
+As the pieces are mostly rotationally symmetric (i.e. look the same when you rotate them by an angle around some axis), I planned to construct them as a curve that's rotated around an axis. I hoped that repeating this workflow a couple of times with different pieces with an increasing amount of additional work will be a good learning experience.
+
+I started by looking for how people create a rotationally symmetric mesh out of a curve. I found a number of tutorials ([1](https://www.youtube.com/watch?v=a81YWJEy5Vk), [2](https://www.youtube.com/watch?v=gCt-RJY2pRg), [3](https://www.youtube.com/watch?v=-GdiOhqi_XY)), all of which did only a partial symmetry, i.e. rotated a given mesh by a fixed angle a couple of times.
+
+While technically, as the final model has a fixed number of vertices, its mesh could be created by rotating something by a fixed angle and merging everything, it isn't the most convenient way to construct it. For example, to change the number of vertices on the circle, I would need to both modify the number of repetitions and the rotation angle.
+
+In the end, I found the [screw modifier](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/screw.html), which, when set up correctly, was accomplishing exactly what I wanted.
+
+
+## Bezier curves
+
+Once I knew how to rotate a curve to transform it into a surface, I had to learn how to create the curves in the first place.
+
+I used a [Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) as a mathematical model for the curve. It is a popular way to express smooth curves in computer graphics.
+
+### In theory
+
+A Bezier curve consists of several segments. A single segment is constructed using a number of (at least two) control points. The first and the last control point lie at the ends of the curve, while the remaining ones describe the path the curve takes between them.
+
+Let's consider a quadratic Bezier curve, i.e. having three (one, apart from the starting and ending ones) control points: $P_A$, $P_B$, $P_C$.
+
+<figure>
+![quadratic Bezier curve](../images/bezier/bezier.png){width=90%}
+<figcaption>
+Construction of a quadratic Bezier curve.
+</figcaption>
+</figure>
+
+It is natural to express a Bezier curve using a function $Bez(t)$, which maps $t \in [0, 1]$ to a point on the curve. It explains how the curve is continuously drawn, starting from the first control point at $Bez(0) = P_A$ and ending at the last one for $Bez(1) = P_B$.
+
+The intermediate points are defined as follows:
+
+1. Let's take a point $P_{AB}$, which lies after $t$ portion of the way from $P_A$ to $P_B$, i.e. $P_{AB} = tP_A + (1-t)P_B$.
+2. Analogously, define $P_{BC}$ on between $P_B$ and $P_C$ as: $P_{BC} = tP_B + (1-t)P_C$.
+3. Let the point on the curve, $Bez(t)$ be after $t$ portion of way between $P_{AB}$ and $P_{BC}$, i.e. $Bez(t) = tP_{AB} + (1-t)P_{BC}$.
+
+If one substituted the definitions of the intermediate points $P_{AB}$ and $P_{BC}$, it would become clear that the Bezier curve with three control points is indeed a quadratic polynomial, explaining its name.
+
+The most popular Bezier curves are the cubic ones, that is having four control points. They are constructed iteratively, by first placing points $P_{AB}$, $P_{BC}$, and $P_{CD}$ on the corresponding segments, and then repeating the construction above with the new three points as the control points.
+
+<figure>
+![cubic Bezier curve](../images/bezier/cubic_bezier.png){width=80%}
+<figcaption>
+Construction of the cubic Bezier curve.
+</figcaption>
+</figure>
+
+For a deeper (and more interactive) introduction to Bezier curves, I recommend [this article](https://ciechanow.ski/curves-and-surfaces/) by Bartosz Ciechanowski, from where the visualizations above are taken.
+
+### In practice
+
+The mathematical formulas above give little intuition on how to place the control points to get a given curve.
+
+To grow this intuition, I played a [bezier curve game](https://bezier.method.ac). One is asked there to create a Bezier curve with as few points as possible to draw more and more complex shapes.
+
+Once back in Blender, after a recommendation [from a video](https://www.youtube.com/watch?v=YI8vXzbtehg), I tried using an add-on for drawing Bezier curves. As I didn't like its interface, I went back to [the default curve-drawing tool](https://docs.blender.org/manual/en/2.79/modeling/curves/introduction.html).
+
+## Process
+
+As a reference for modeling the chess pieces, I used this photo of a standard chess set used at tournaments:
+
+<figure>
+![chess set](../images/bezier/JaquesCookStaunton.jpg){width=70%}
+<figcaption>
+Photo made by Frank A. Camaratta, Jr.; The House of Staunton, Inc.
+</figcaption>
+</figure>
+
+The process for designing various pieces was largely similar:
+
+1. I drew the outline of the piece as a Bezier curve. While doing so, `ctrl-RMB` was a useful shortcut for placing new points and `vf` for making non-smooth connections.
+2. I increased the width of the line to make it more visible at [`Object properties > bevel > depth`](https://docs.blender.org/manual/en/latest/modeling/curves/properties/geometry.html#bevel).
+3. I placed an empty on the future rotational axis and parented it to the curve to make moving around easier.
+4. I used the screw modifier around the empty to create the surface.
+5. By choosing `overlays > face orientation` I checked whether the normals are pointing outwards (blue), and chose `normals > flip` if not.
+6. I chose `Object > convert > mesh`, as I couldn't use [boolean modifiers](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html) otherwise.
+7. I set the bevel depth back to zero
+8. I cut all the necessary pieces with the boolean modifiers.
+9. In the end, I checked the geometry for duplicate nodes to merge and applied a subdivision modifier for a more smooth look.
+
+### Pawn
+
+I started with the simplest piece to model, a pawn. While making it was just the matter of drawing the curve and rotating it, I was also establishing the process I mentioned above.
+
+<figure>
+[![pawn model](../images/bezier/pawn-small.png){width=40%}](../images/bezier/pawn.png)
+<figcaption>
+Final model of the pawn.
+</figcaption>
+</figure>
+
+### Bishop
+
+The next piece I made was a bishop. After doing the rotationally symmetric part, I needed to cut out the hole using a boolean modifier.
+
+Initially, I struggled a little with that, as having the normals the wrong way made the boolean modifier go crazy.
+
+<figure>
+[![bishop model](../images/bezier/bishop-small.png){width=40%}](../images/bezier/bishop.png)
+<figcaption>
+Final model of the bishop.
+</figcaption>
+</figure>
+
+In the final model, you can see edges around the hole that have been smoothed too much. This is an effect of applying the subdivision modifier too early. As I have learned too late, it should be used at the very end, and one should mark the edges which should stay sharp as [creases](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html).
+
+### Rook
+
+When I got to the rook, I could use the knowledge from the "partial symmetry with a fixed angle" tutorials I mentioned above: it was easy to make the "holes in the wall"[^1].
+
+[^1]: Which, as I've learned now, are called `crenel`s.
+
+<figure>
+[![rook model](../images/bezier/rook-small.png){width=40%}](../images/bezier/rook.png)
+<figcaption>
+Final model of the rook.
+</figcaption>
+</figure>
+
+#### Object offset in Array modifier
+
+One can use the [array modifier](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/array.html#object-offset) to do the partial symmetry.
+To know how to use it with the object offset setting, one needs to understand two types of transformations: in the object mode and in the edit mode.
+
+In the object mode, we are moving/rotating/scaling objects as a whole; every change is reflected in the origin of the object. The transformations are represented (for the whole object) in the `Transform` panel (and can be later applied to bake in the changes).
+
+In the edit mode, the transformations are performed at the level of vertices, not objects. While it is possible to perform the same transformations as in the object mode, the `Transform` panel only shows the effect of the location transformation, as, at the vertex level, rotation and scale don't make sense.
+
+As the transformations are only applied to the particular vertices
+(and not the whole object), the origin of the object stays put when vertices are edited[^2].
+
+[^2]: Of course, it can later be reset to the center of geometry.
+
+The transformation that is repeatedly applied to the copied object in the array modifier is the difference between the (object-level) transformation of the offset object and the one being copied.
+
+So, to perform the partial symmetry with the hole in the wall and the empty describing the rotation axis, their transformations need to satisfy:
+
+1. location (of the origin) should be the same, as there shouldn't be any translation between consecutive copies,
+2. scale should be the same (ideally: 1) too,
+3. rotation needs to differ by 360 degrees/number of holes (60 degrees, in my case).
+
+On one hand, I wanted the rotation axis to be outside of the box which represents the hole, to avoid intersecting different holes. On the other, the location of the box needs to be the same as the axis for the consecutive boxes to not move relative to each other.
+
+This is the point where I used the two transformation modes: I kept the box *object* in the same location as the axis but moved (in edit mode) all the boxes' *vertices* away from the axis, to avoid intersections.
+
+<figure>
+[![rook with wall holes](../images/bezier/rook-holes.png){width=50%}](../images/bezier/rook-holes.png)
+<figcaption>
+The rook model with the boxes representing the holes in the wall to be cut out.
+</figcaption>
+</figure>
+
+### Queen
+The queen was more complex than the previous pieces but didn't involve any new method.
+
+<figure>
+[![queen model](../images/bezier/queen-small.png){width=40%}](../images/bezier/queen.png)
+<figcaption>
+Final model of the queen.
+</figcaption>
+</figure>
+
+### King
+
+For the king, the novel part was the cross on top of its "crown".
+
+To make it, I drew a separate Bezier curve for its outline, but instead of rotating it, I only mirrored it across the Z-axis.
+
+Then, I converted the curve to a mesh, filled it, and extruded it in the Y direction.
+
+<figure>
+[![king model](../images/bezier/king-small.png){width=40%}](../images/bezier/king.png)
+<figcaption>
+Final model of the king.
+</figcaption>
+</figure>
+
+### Knight
+
+To make the knight, I needed to follow a completely different process. As it isn't possible to create it through unions and differences of simple shapes, I borrowed a drawing tablet from my girlfriend and decided to give sculpting a go.
+
+<figure>
+[![first knight model](../images/bezier/knight1-small.png){width=40%}](../images/bezier/knight1.png)
+[![second knight model](../images/bezier/knight2-small.png){width=40%}](../images/bezier/knight2.png)
+<figcaption>
+First two models of the knight.
+</figcaption>
+</figure>
+
+As the first attempt, as you see, was not very successful, I went through a follow-along tutorial on youtube before trying again. The second model was visibly better but still left much to be desired.
+
+#### New knight reference
+
+As trying to reproduce that original Stanton knight proved to be prohibitively difficult, I decided to make a different, simpler knight.
+
+<figure>
+![second knight reference](../images/bezier/knight-ref.jpg){width=30%}
+<figcaption>
+New, simpler, knight reference.
+</figcaption>
+</figure>
+
+I started with making a shape that would smoothly transition from a circle (bottom) to a square (top) with [bridge edge loops](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bridge_edge_loops.html).
+
+Then, I squished the top to a thin rectangle, while making a [proportional edit](https://docs.blender.org/manual/en/latest/editors/3dview/controls/proportional_editing.html)[^3] in a non-uniform way, to give the knight the smooth shape of something to be picked by the fingers.
+
+[^3]: not a great name here
+
+I then proceeded to draw the outline of the knight with a Bezier curve. Similarly to the cross of the king's crown, I filled and extruded the outline and intersected this horse-like shape with the pawn structure.
+
+Given the number of sharp edges that the final piece has, I made heavy use of creases to avoid them being smoothed out while subdividing.
+
+I then proceeded to cut the holes in the side of the knight. For the eye, I used yet another Bezier curve (now with a bigger bevel) and a boolean modifier.
+
+For the barely-visible cuts marking the horse's mane, I wanted the curves to taper at their ends. There is [a setting](https://docs.blender.org/manual/en/latest/modeling/curves/properties/geometry.html) for that, which requires passing another object which controls the amount of tapering.
+
+After some trial and error, I established that one needs to draw a graph describing the width of the taper as a taper object. To do that, it was convenient to visualize the local axis of the taper curve by choosing `object properties > viewport display > axis`.
+
+<figure>
+[![final knight model](../images/bezier/knight3-small.png){width=50%}](../images/bezier/knight3.png)
+<figcaption>
+Final model of the knight.
+</figcaption>
+</figure>
+
+## Board
+
+As a final element to the scene, I made a board to place the pieces on.
+
+I generated the checkerboard pattern with [checker texture](https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/checker.html). To apply it to a part of the model, I made a UV map covering the inner part of the board and applied this texture only there using [Texture Coordinate node](https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html).
+
+## Final render
+
+<figure>
+[![final full render](../images/bezier/full-small.png){width=80%}](../images/bezier/full.png)
+</figure>
+
+3D scenes consist of objects, each of which has a shape and a material. The shape is defined through a mesh: a collection of vertices, edges, and faces living in a 3D world. The material describes the color of the object and how it reflects and transmits light. In this post, I inspect a popular way of expressing the material: a principled BSDF to see how its numerous parameters influence the look of an object.

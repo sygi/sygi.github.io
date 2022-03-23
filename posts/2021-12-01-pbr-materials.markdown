@@ -1,5 +1,5 @@
 ---
-title: 'Physically based rendering: materials'
+title: 'Physically-based rendering: materials'
 ---
 
 3D scenes consist of objects, each of which has a shape and a material. The shape is defined through a mesh: a collection of vertices, edges, and faces living in a 3D world. The material describes the color of the object and how it reflects and transmits light. In this post, I inspect a popular way of expressing the material: a principled BSDF to see how its numerous parameters influence the look of an object.
