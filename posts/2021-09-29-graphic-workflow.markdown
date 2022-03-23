@@ -66,9 +66,7 @@ NVIDIA has [some of their research](https://www.nvidia.com/en-us/research/ai-dem
 
 Among others, it has many filters available for postprocessing of the images. I tried a couple of them.
 
-<figure>
 ![First panorama after applying an "illustration look" filter.](../images/graphic_workflow/appellplatz_illustration.png){ width=95% }
-</figure>
 
 The G'MIC filters deliver on their promise: they change the style of the images, with some of them making them more painterly. At the same time, as they are hard-coded (not learned) they can't focus on fixing the places where the geometry was wrong.
 
@@ -114,9 +112,7 @@ A great feature of the 3D workflow was that I didn't need to fix the shot/perspe
 
 While making the first barrack (and learning Blender) took some time, I could then make the next scene in only a couple of hours, which was a significant improvement over the hand-drawn/photo-manipulation workflows.
 
-<figure>
 ![Creating this scene (using pre-made assets) took me only an hour or two! ](../images/graphic_workflow/exit.png){ width=70% }
-</figure>
 
 ## Graphics workflow
 

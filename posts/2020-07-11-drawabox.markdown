@@ -42,9 +42,7 @@ On the other hand, even after doing that many boxes, there were still some issue
 1. not all of the boxes drawn with the proposed "Y method" correspond to a real box. For example, the box in the Drawabox logo is not :P
 2. Not all of the boxes can be drawn with the method: if the line of the horizon is cutting the front face, all of the "Y"s will have the shape of an arrow instead
 
-<figure>
 ![Drawabox logo: if we see the front face straight, the side should be hidden!](https://d15v304a6xpq4b.cloudfront.net/assets/images/drawabox-logo.png){ width=40% }
-</figure>
 
 In retrospect, after doing a couple (tens of?) boxes, it would have been more useful to follow up with the following exercises:
 

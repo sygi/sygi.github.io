@@ -17,9 +17,7 @@ Po 3 dniach podróży paczki wewnątrz Szwajcarii, ślad po niej zaginął. Kilk
 
 Dzień później paczka przeniosła się do Działu Obsługi Zagranicznej (dalej: DOZ) w Lublinie, a Poczta przysłała zawiadomienie wnioskujące o podanie informacji na temat zawartości paczki, żeby móc złożyć zeznanie celne.
 
-<figure>
 ![Nie wnikajmy, czemu paczka została przeniesiona do Lublina skoro docelowy adres jest bliżej Warszawy, w mazowieckim.](../images/customs/map_ann.png){width=80%}
-</figure>
 
 ## Zawiadomienie
 
@@ -71,9 +69,7 @@ Poczta realizuje obowiązek odbierana reklamacji przez [stronę](https://ereklam
 
 Dodatkowo, przy składaniu reklamacji, aby załączyć skan maila od poczty, musiałem złożyć oświadczenie, że "wszystkie załączone dokumenty są prawdziwe i nie zawierają wirusów". Mam nadzieję, że nie okaże się, że pdf emaila nie spełnia założenia "prawdziwości" dokumentu.
 
-<figure>
 ![Oświadczenie, które trzeba kliknąć przed wysłaniem reklamacji do Poczty Polskiej.](../images/customs/oswiadczenie_reklamacja.png){width=100%}
-</figure>
 
 Odpowiedź na reklamację otrzymałem już po 27 dniach. W odpowiedzi (która sugeruje, że złożyłem "skargę" a nie "reklamację") pracownik podsumowuje zasady składania deklaracji celnych i stwierdza:
 
@@ -124,9 +120,7 @@ W międzyczasie, na stronie PUESC, trafiłem na [dokumentację](https://www-2.pu
 
 Na szczęście, nie musiałem tego robić, bo w międzyczasie znalazłem [specyfikację XML](https://www-2.puesc.gov.pl/documents/10180/111161805/AIS_IMP_SXML_PL_w_3_14.pdf/84481207-b5c9-4904-9689-8f14020c55a3) opisującą które pola są obowiązkowe w których komunikatach i co one znaczą w języku naturalnym.
 
-<figure>
 ![Sposób opisu listy parametów w oficjalnej specyfikacji XML.](../images/customs/itemizowanie.png){width=35%}
-</figure>
 
 Pliki XSD wciąż się przydały, bo pozwalają na automatyczną walidację, czy komunikat zgadza się ze schemą. Pythonowa biblioteka [xmlschema](https://pypi.org/project/xmlschema/) robiła to bardzo wygodnie, pokazując, których elementów i atrybutów gdzie brakuje.
 
@@ -190,6 +184,4 @@ Dostałem później (tym razem po 22 dniach) jeszcze odpowiedź na drugą rekla
 
 Jak można się domyślać, postępowanie poczty nie przysparza im zbyt dobrych ocen, w szczególności na Google Maps. Na koniec chcę się podzielić jedną z niewielu pozytywnych opinii, które DOZ w Lublinie tam dostał:
 
-<figure>
 ![Komentarz do opinii o poczcie.](../images/customs/komentarz_pp.png){width=60%}
-</figure>

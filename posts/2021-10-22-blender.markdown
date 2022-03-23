@@ -39,9 +39,7 @@ After the Donut tutorial, I watched the [Lightning for Beginners](https://www.yo
 Afterward, I went to model the barrack for the time stories expansion. I took a photo from an online museum, imported it to Blender, and tried to reconstruct the model based on it.
 While making the whole building required some work, the modeling techniques presented in the donut tutorial were enough to create a reasonable shape.
 
-<figure>
 ![Final render of the barrack used in the T.I.M.E stories expansion.](../images/blender/barrack.png){ width=60% }
-</figure>
 
 The nice part about creating the graphics in 3D was that I could reuse the single building in multiple places, creating various shots from inside, outside, between two buildings, etc. In the end, I used it in the creation of 5 scenes.
 
@@ -89,9 +87,7 @@ The good characters that you can find online come “rigged”, i.e. with the ri
 Using bones is not trivial in the context of rigid bodies. As they are attached to a mesh but are not a proper body on their own, you cannot make a bone a rigid body to be affected by gravity.
 To overcome this problem, at first, I tried using the [rigid bones](https://github.com/Pauan/blender-rigid-body-bones) blender add-on. It allows you to easily transform a set of bones into rigid bodies.
 
-<figure>
 ![The effect of applying rigid bones to the skeleton character I used.](../images/blender/broken.gif){ width=30% }
-</figure>
 
 I encountered lots of problems when using this setup, with the character spinning with increasing velocity, the bones moving away in random directions, or passing through the ground.
 

@@ -67,9 +67,7 @@ As I was afraid that the results for the year 2020 would be skewed due to the pa
 
 Apart from the salary, the survey asked many other statistical questions, like highest degree finished, which I later used to aggregate data.
 
-<figure>
 ![Aggregation of salary based on the highest degree received.](../images/alma/education_comp.png){width=80%}
-</figure>
 
 Overall, the decision to use 2019 seems a reasonable one. I'm afraid though that people who finished a degree between 2019 and now answered with their salary from before graduation, which would confuse the aggregates a bit.
 

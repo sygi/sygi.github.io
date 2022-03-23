@@ -41,9 +41,7 @@ The original game has many extensions to buy, containing different scenarios. Th
 
 In either of these, each card has a small number at the bottom, to be able to sort the cards and match fronts with backs.
 
-<figure>
 ![Back of an item card. Note the small number 20 in bottom-left corner.](../images/ts/card.png){ width=50% }
-</figure>
 
 
 To be able to use a scenario, we need to divide the cards into separate files. Ideally, the filename/directory structure would describe which card it is (eg. location X), but that is not possible without looking at the cards, so we decided to store the files under `scenario/card_number` with the file names `(front|back).webp`. We used webp as an image format because it offered great compression rates (and is supported by nearly all browsers).
@@ -54,9 +52,7 @@ We made two separate tools for cutting pdf- and png-based scenarios.
 
 Most pdf-based scenarios followed the same ordering of cards withing the scenario, so we were able to hard-code. A bigger problem here were different sizes of margins in different files. 
 
-<figure>
 ![An example page to be cut into single cards.](../images/ts/page.png){width=90%}
-</figure>
 
 We went for the human-in-the-loop approach for detecting the size of margins, where the user was choosing an appropriate margin for the first page of the scenario and we assumed that the margins don't change within one file.
 
@@ -157,9 +153,7 @@ In the beginning, we implemented moving cards between holders as clicking one ho
 
 We opted for Angular Material's [Drag and Drop](https://material.angular.io/cdk/drag-drop/overview) module. While the terminology suggests it's made to move _items_ between _lists_, we find it fine to consider a single card a `cdkDrag` and one holder to be a single-element `cdkDropList`.
 
-<figure>
 ![Moving card from one holder to another.](../images/ts/moving-card.gif){width=100%}
-</figure>
 
 ### Rotating cards
 
@@ -187,9 +181,7 @@ Initially, we just made a panel where the player chose the number of players and
 
 However, this wasn't working perfectly from the UI perspective; the die could get the same result as the previous one after the reroll, and if this happened, the user doesn't get any feedback that the system indeed registered the reroll. Because of that, we added an animation based on [material](https://material.io/develop/web/components/animation/) where the previous die fades away and the new one slowly appears, so that the users see the change.
 
-<figure>
 ![Animation when rerolling challenge dice.](../images/ts/dice.gif){width=70%}
-</figure>
 
 Another problem with the interface was that every time the agents leave a location one of the players should throw the Time Unit die to spend TU. In the physical game, everyone sees whether the die has been thrown and the score subtracted from the tracker. In the digital version, players don't see whether others have thrown the die if they don't track the available TU closely.
 
@@ -201,9 +193,7 @@ In the physical version of the game, every round every player puts their pawn ab
 
 To make it easier to keep of track the number of rounds each player did, we added a small mark that we put next to a player token whenever that player moves to another location or throws a die (each of which constitutes an action).
 
-<figure>
 ![The mark on the pawn after the player did the action.](../images/ts/pawn-mark.png)
-</figure>
 
 One facilitation we tried introducing to the gameplay was to automate the throwing of the TU die whenever players leave a location. We thought that leaving the location can be recorded whenever the first location card is removed, and we could throw the die without their action.
 

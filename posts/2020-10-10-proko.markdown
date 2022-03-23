@@ -56,9 +56,7 @@ When I played with shading I was having two problems:
 - shading big areas in the picture were taking a lot of time
 - when shading, the lines I was making were creating a lined pattern as opposed to a nice gradient (ie. it was clear in which direction I put the lines and it wasn't in any way related to the underlying 3d objects).
 
-<figure>
 ![Picture with straight-line effect visible.](../images/proko/shading.jpg){ width=40% }
-</figure>
 
 For the first problem, I was able to reduce it a bit by sharpening the pencil in a similar way to the one described in [this video](https://www.proko.com/drawing-supplies-i-use-in-my-videos/#.X2cYsXWYVTY). Even though I was using a graphite pencil, it still was relatively easy to do this.
 
@@ -66,9 +64,7 @@ For the lined pattern, I tried putting shading in a little bit more circular fas
 
 I thought using charcoal would also help here, so I bought a charcoal (and another carbon one, which apparently feels like something between charcoal and graphite) pencil. 
 
-<figure>
 ![Nose picture drawn with charcoal.](../images/proko/shading.jpg){ width=40% }
-</figure>
 
 As you can see in the picture above, the effects were not so great. I had problems controlling the value I put on the paper when using charcoal much more than with graphite. The texture of the paper was also creeping through the picture, leaving weird traces of white. I suspect this may go away with practice (and potentially softer charcoal), but I decided to go back to graphite.
 

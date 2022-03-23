@@ -29,9 +29,7 @@ A Bezier curve consists of several segments. A single segment is constructed usi
 
 Let's consider a quadratic Bezier curve, i.e. having three (one, apart from the starting and ending ones) control points: $P_A$, $P_B$, $P_C$.
 
-<figure>
 ![Construction of a quadratic Bezier curve.](../images/bezier/bezier.png){width=90%}
-</figure>
 
 It is natural to express a Bezier curve using a function $Bez(t)$, which maps $t \in [0, 1]$ to a point on the curve. It explains how the curve is continuously drawn, starting from the first control point at $Bez(0) = P_A$ and ending at the last one for $Bez(1) = P_B$.
 
@@ -45,9 +43,7 @@ If one substituted the definitions of the intermediate points $P_{AB}$ and $P_{B
 
 The most popular Bezier curves are the cubic ones, that is having four control points. They are constructed iteratively, by first placing points $P_{AB}$, $P_{BC}$, and $P_{CD}$ on the corresponding segments, and then repeating the construction above with the new three points as the control points.
 
-<figure>
 ![Construction of the cubic Bezier curve.](../images/bezier/cubic_bezier.png){width=80%}
-</figure>
 
 For a deeper (and more interactive) introduction to Bezier curves, I recommend [this article](https://ciechanow.ski/curves-and-surfaces/) by Bartosz Ciechanowski, from where the visualizations above are taken.
 
@@ -63,9 +59,7 @@ Once back in Blender, after a recommendation [from a video](https://www.youtube.
 
 As a reference for modeling the chess pieces, I used this photo of a standard chess set used at tournaments:
 
-<figure>
 ![Photo made by Frank A. Camaratta, Jr.; The House of Staunton, Inc.](../images/bezier/JaquesCookStaunton.jpg){width=70%}
-</figure>
 
 The process for designing various pieces was largely similar:
 
@@ -194,9 +188,7 @@ As the first attempt, as you see, was not very successful, I went through a foll
 
 As trying to reproduce that original Stanton knight proved to be prohibitively difficult, I decided to make a different, simpler knight.
 
-<figure>
 ![New, simpler, knight reference.](../images/bezier/knight-ref.jpg){width=30%}
-</figure>
 
 I started with making a shape that would smoothly transition from a circle (bottom) to a square (top) with [bridge edge loops](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bridge_edge_loops.html).
 
