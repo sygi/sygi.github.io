@@ -171,7 +171,6 @@ Final model of the knight.
 <figure>
 <a href="../images/bezier/full.png"><img src="../images/bezier/full-small.png" style="width:80.0%" alt="final full render" /></a>
 </figure>
-<p>3D scenes consist of objects, each of which has a shape and a material. The shape is defined through a mesh: a collection of vertices, edges, and faces living in a 3D world. The material describes the color of the object and how it reflects and transmits light. In this post, I inspect a popular way of expressing the material: a principled BSDF to see how its numerous parameters influence the look of an object.</p>
 <section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
@@ -1852,7 +1851,7 @@ Explained example shading (left) vs expectation for the next drawing (right).
 <p>For the lined pattern, I tried putting shading in a little bit more circular fashion which helped a bit. I think having a softer pencil (eg. 6B) would help more.</p>
 <p>I thought using charcoal would also help here, so I bought a charcoal (and another carbon one, which apparently feels like something between charcoal and graphite) pencil.</p>
 <figure>
-<img src="../images/proko/shading.jpg" style="width:40.0%" alt="Nose picture drawn with charcoal." />
+<img src="../images/proko/charcoal.jpg" style="width:40.0%" alt="Nose picture drawn with charcoal." />
 <figcaption aria-hidden="true">Nose picture drawn with charcoal.</figcaption>
 </figure>
 <p>As you can see in the picture above, the effects were not so great. I had problems controlling the value I put on the paper when using charcoal much more than with graphite. The texture of the paper was also creeping through the picture, leaving weird traces of white. I suspect this may go away with practice (and potentially softer charcoal), but I decided to go back to graphite.</p>
