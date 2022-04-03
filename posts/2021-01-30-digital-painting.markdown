@@ -1,5 +1,6 @@
 ---
 title: "Starting with digital painting"
+bilderrahmen: true
 ---
 Having drawn a lot of black-and-white ink sketches, I have now moved to draw digitally. Last summer, I got an iPad Pro, and I'm learning the basics of digital painting now. It has unlocked a myriad (literally) of colors and new techniques to acquire, so I felt like wandering in the fog again.
 

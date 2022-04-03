@@ -1,5 +1,6 @@
 ---
 title: "Rushing through Proko courses"
+bilderrahmen: true
 ---
 After finishing Drawabox, I tried to learn drawing the human figure with the [Proko](https://proko.com) courses. I went through the free videos of the Figure and Head drawing courses and did a lot of exercises.
 

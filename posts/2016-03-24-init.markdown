@@ -1,5 +1,6 @@
 ---
 title: --init
+addthreejs: true
 ---
 
 In this post I am just testing various features of the blog. There is nothing interesting here.

@@ -1,5 +1,6 @@
 ---
 title: "Digital painting exercises"
+bilderrahmen: true
 ---
 
 I think I am learning the quickest when doing a sequence of well-defined challenges of appropriate difficulty. As I didn't find a course of digital drawing I'd like to follow, I was compiling separate exercises from various sources. They helped me to make small steps of progress in improving my digital painting skills.

@@ -126,19 +126,20 @@ main = hakyll $ do
 
 --------------------------------------------------------------------------------
 root :: String
-root = "https://sygnowski.ml"
+root = "https://sygi.github.io"
 postCtx :: Context String
 postCtx =
     constField "root" root `mappend`
     constField "default_author" "Jakub Sygnowski" `mappend`
     modificationTimeField "modified" "%Y-%m-%d" `mappend`
     dateField "date" "%B %e, %Y" `mappend`
+    boolField "is_post" (\_ -> True) `mappend`
     defaultContext
 
 headCtx :: Context String
 headCtx =
-  field "post_url" (return . flip replaceExtension "html" . toFilePath . itemIdentifier)
-    `mappend` postCtx
+  field "post_url" (return . flip replaceExtension "html" . toFilePath . itemIdentifier) `mappend`
+  postCtx
 
 readerPostOptions :: ReaderOptions
 readerPostOptions = defaultHakyllReaderOptions

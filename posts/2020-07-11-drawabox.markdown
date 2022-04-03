@@ -1,5 +1,6 @@
 ---
 title: "Drawabox: 14 months later"
+bilderrahmen: true
 ---
 In May 2019, I decided to learn how to draw. To structure my learning, I was following a free online drawing course: [Drawabox](https://drawabox.com). 14 months later, I finished it and I am writing down my experience.
 

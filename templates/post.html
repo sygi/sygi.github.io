@@ -1,7 +1,6 @@
 $body$
 
-$if(post_url)$
-$else$  <!-- nonheader -->
+$if(is_post)$
 <div id="disqus_thread"></div>
 <script>
     var gaProperty = 'UA-85187126-1';
@@ -19,11 +18,4 @@ $else$  <!-- nonheader -->
       })();
     }
 </script>
-<!-- <script>
-  (function () {
-    'use strict';
-    anchors.options.placement = 'right';
-    anchors.add('h2, h3');
-  })();
-</script> -->
 $endif$
