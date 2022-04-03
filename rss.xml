@@ -10,7 +10,7 @@
         <lastBuildDate>Wed, 23 Mar 2022 00:00:00 UT</lastBuildDate>
         <item>
     <title>Bézier curves and 3D modelling</title>
-    <link>https://sygnowski.ml/posts/2022-03-23-bezier.html</link>
+    <link>https://sygi.github.io/posts/2022-03-23-bezier.html</link>
     <description><![CDATA[<div class="info">
     Posted on March 23, 2022
     
@@ -181,12 +181,12 @@ Final model of the knight.
 </section>
 ]]></description>
     <pubDate>Wed, 23 Mar 2022 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2022-03-23-bezier.html</guid>
+    <guid>https://sygi.github.io/posts/2022-03-23-bezier.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Historia jednej paczki</title>
-    <link>https://sygnowski.ml/posts/2022-03-13-customs.html</link>
+    <link>https://sygi.github.io/posts/2022-03-13-customs.html</link>
     <description><![CDATA[<div class="info">
     Posted on March 13, 2022
     
@@ -317,12 +317,12 @@ Adres nadawcy i odbiorcy na liście przewozowym.
 </section>
 ]]></description>
     <pubDate>Sun, 13 Mar 2022 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2022-03-13-customs.html</guid>
+    <guid>https://sygi.github.io/posts/2022-03-13-customs.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Physically-based rendering: materials</title>
-    <link>https://sygnowski.ml/posts/2021-12-01-pbr-materials.html</link>
+    <link>https://sygi.github.io/posts/2021-12-01-pbr-materials.html</link>
     <description><![CDATA[<div class="info">
     Posted on December  1, 2021
     
@@ -488,12 +488,12 @@ so the understanding of these parameters is useful independent of the actual ren
 </section>
 ]]></description>
     <pubDate>Wed, 01 Dec 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-12-01-pbr-materials.html</guid>
+    <guid>https://sygi.github.io/posts/2021-12-01-pbr-materials.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Physically-based rendering 101</title>
-    <link>https://sygnowski.ml/posts/2021-11-28-pbr-101.html</link>
+    <link>https://sygi.github.io/posts/2021-11-28-pbr-101.html</link>
     <description><![CDATA[<div class="info">
     Posted on November 28, 2021
     
@@ -604,12 +604,12 @@ so the understanding of these parameters is useful independent of the actual ren
 </section>
 ]]></description>
     <pubDate>Sun, 28 Nov 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-11-28-pbr-101.html</guid>
+    <guid>https://sygi.github.io/posts/2021-11-28-pbr-101.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Easy-to-use text-to-speech</title>
-    <link>https://sygnowski.ml/posts/2021-10-27-tts.html</link>
+    <link>https://sygi.github.io/posts/2021-10-27-tts.html</link>
     <description><![CDATA[<div class="info">
     Posted on October 27, 2021
     
@@ -793,12 +793,12 @@ Sample of the finetuned (after 2000 steps) Tacotron, using a pretrained (left) a
 </section>
 ]]></description>
     <pubDate>Wed, 27 Oct 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-10-27-tts.html</guid>
+    <guid>https://sygi.github.io/posts/2021-10-27-tts.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Learning Blender</title>
-    <link>https://sygnowski.ml/posts/2021-10-22-blender.html</link>
+    <link>https://sygi.github.io/posts/2021-10-22-blender.html</link>
     <description><![CDATA[<div class="info">
     Posted on October 22, 2021
     
@@ -902,12 +902,12 @@ Even when the final product is a 2D image, the 3D model is a natural “intermed
 </section>
 ]]></description>
     <pubDate>Fri, 22 Oct 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-10-22-blender.html</guid>
+    <guid>https://sygi.github.io/posts/2021-10-22-blender.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>T.I.M.E stories expansion graphic workflow</title>
-    <link>https://sygnowski.ml/posts/2021-09-29-graphic-workflow.html</link>
+    <link>https://sygi.github.io/posts/2021-09-29-graphic-workflow.html</link>
     <description><![CDATA[<div class="info">
     Posted on September 29, 2021
     
@@ -1083,12 +1083,12 @@ Example card generated using the template: other cards would only change the loc
 </section>
 ]]></description>
     <pubDate>Wed, 29 Sep 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-09-29-graphic-workflow.html</guid>
+    <guid>https://sygi.github.io/posts/2021-09-29-graphic-workflow.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Life after MIM UW analysis: making of</title>
-    <link>https://sygnowski.ml/posts/2021-09-06-alma-survey.html</link>
+    <link>https://sygi.github.io/posts/2021-09-06-alma-survey.html</link>
     <description><![CDATA[<div class="info">
     Posted on September  6, 2021
     
@@ -1145,12 +1145,12 @@ I prepared the analysis of the results (in Polish) and made it available <a href
 <p>It may be worthwhile to repeat the survey in a couple of years.</p>
 ]]></description>
     <pubDate>Mon, 06 Sep 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-09-06-alma-survey.html</guid>
+    <guid>https://sygi.github.io/posts/2021-09-06-alma-survey.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Tax residency for fun and profit</title>
-    <link>https://sygnowski.ml/posts/2021-07-06-tax-residency.html</link>
+    <link>https://sygi.github.io/posts/2021-07-06-tax-residency.html</link>
     <description><![CDATA[<div class="info">
     Posted on July  6, 2021
     
@@ -1348,12 +1348,12 @@ Article 15: Income from employment
 </section>
 ]]></description>
     <pubDate>Tue, 06 Jul 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-07-06-tax-residency.html</guid>
+    <guid>https://sygi.github.io/posts/2021-07-06-tax-residency.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Compressed inserts for board games</title>
-    <link>https://sygnowski.ml/posts/2021-06-20-board-game-inserts.html</link>
+    <link>https://sygi.github.io/posts/2021-06-20-board-game-inserts.html</link>
     <description><![CDATA[<div class="info">
     Posted on June 20, 2021
     
@@ -1427,12 +1427,12 @@ Design of the board by Michalina.
 <p>The files to cut the box and print the board are available <a href="../data/bg_inserts/ts_box.zip">here</a>. Overall, this project was a lot of fun and we’ll likely do more of these in the future.</p>
 ]]></description>
     <pubDate>Sun, 20 Jun 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-06-20-board-game-inserts.html</guid>
+    <guid>https://sygi.github.io/posts/2021-06-20-board-game-inserts.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Digital painting exercises</title>
-    <link>https://sygnowski.ml/posts/2021-05-09-digital-painting-exercises.html</link>
+    <link>https://sygi.github.io/posts/2021-05-09-digital-painting-exercises.html</link>
     <description><![CDATA[<div class="info">
     Posted on May  9, 2021
     
@@ -1560,12 +1560,12 @@ Painting of a turtle.
 <p><a href="/images/digital_painting2/people/final/B.png" target="_blank"><img data-bilderrahmen="people"/></a><a href="/images/digital_painting2/people/final/C.png" target="_blank"><img data-bilderrahmen="people"/></a><a href="/images/digital_painting2/people/final/D.png" target="_blank"><img data-bilderrahmen="people"/></a></p>
 ]]></description>
     <pubDate>Sun, 09 May 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-05-09-digital-painting-exercises.html</guid>
+    <guid>https://sygi.github.io/posts/2021-05-09-digital-painting-exercises.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Choosing game engine</title>
-    <link>https://sygnowski.ml/posts/2021-04-05-choosing-game-engine.html</link>
+    <link>https://sygi.github.io/posts/2021-04-05-choosing-game-engine.html</link>
     <description><![CDATA[<div class="info">
     Posted on April  5, 2021
     
@@ -1638,12 +1638,12 @@ Painting of a turtle.
 </section>
 ]]></description>
     <pubDate>Mon, 05 Apr 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-04-05-choosing-game-engine.html</guid>
+    <guid>https://sygi.github.io/posts/2021-04-05-choosing-game-engine.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Starting with digital painting</title>
-    <link>https://sygnowski.ml/posts/2021-01-30-digital-painting.html</link>
+    <link>https://sygi.github.io/posts/2021-01-30-digital-painting.html</link>
     <description><![CDATA[<div class="info">
     Posted on January 30, 2021
     
@@ -1733,12 +1733,12 @@ I used a simple scene here but will try with more complex one next.
 <p>With all of these lessons, tutorials, and exercises I have a lot of things to try. I’ll likely make a new post after I put them into practice some more.</p>
 ]]></description>
     <pubDate>Sat, 30 Jan 2021 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2021-01-30-digital-painting.html</guid>
+    <guid>https://sygi.github.io/posts/2021-01-30-digital-painting.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Escape from Auschwitz: a fan T.I.M.E stories scenario</title>
-    <link>https://sygnowski.ml/posts/2020-12-07-auschwitz.html</link>
+    <link>https://sygi.github.io/posts/2020-12-07-auschwitz.html</link>
     <description><![CDATA[<div class="info">
     Posted on December  7, 2020
     
@@ -1797,12 +1797,12 @@ When I was adding new elements like shields, tokens, but also choosing the desig
 </section>
 ]]></description>
     <pubDate>Mon, 07 Dec 2020 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2020-12-07-auschwitz.html</guid>
+    <guid>https://sygi.github.io/posts/2020-12-07-auschwitz.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Rushing through Proko courses</title>
-    <link>https://sygnowski.ml/posts/2020-10-10-proko.html</link>
+    <link>https://sygi.github.io/posts/2020-10-10-proko.html</link>
     <description><![CDATA[<div class="info">
     Posted on October 10, 2020
     
@@ -1867,12 +1867,12 @@ Explained example shading (left) vs expectation for the next drawing (right).
 <p><a href="../images/proko/head/B.jpg" target="_blank"><img data-bilderrahmen="head"/></a><a href="../images/proko/head/C.jpg" target="_blank"><img data-bilderrahmen="head"/></a><a href="../images/proko/head/D.jpg" target="_blank"><img data-bilderrahmen="head"/></a><a href="../images/proko/head/E.jpg" target="_blank"><img data-bilderrahmen="head"/></a></p>
 ]]></description>
     <pubDate>Sat, 10 Oct 2020 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2020-10-10-proko.html</guid>
+    <guid>https://sygi.github.io/posts/2020-10-10-proko.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Drawabox: 14 months later</title>
-    <link>https://sygnowski.ml/posts/2020-07-11-drawabox.html</link>
+    <link>https://sygi.github.io/posts/2020-07-11-drawabox.html</link>
     <description><![CDATA[<div class="info">
     Posted on July 11, 2020
     
@@ -1956,12 +1956,12 @@ Explained example shading (left) vs expectation for the next drawing (right).
 <a href="../images/drawabox/lesson7/Areal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Areal2.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Areal3.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/B.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Breal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Breal2.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/C.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Creal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/D.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Dreal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/E.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Ereal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/F.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/G.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/H.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/I.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Ireal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/J.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Jreal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/K.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/L.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Lreal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/M.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a><a href="../images/drawabox/lesson7/Mreal.jpg" target="_blank"><img data-bilderrahmen="lesson7"/></a></p>
 ]]></description>
     <pubDate>Sat, 11 Jul 2020 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2020-07-11-drawabox.html</guid>
+    <guid>https://sygi.github.io/posts/2020-07-11-drawabox.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Digital version of T.I.M.E stories</title>
-    <link>https://sygnowski.ml/posts/2020-06-19-time-stories.html</link>
+    <link>https://sygi.github.io/posts/2020-06-19-time-stories.html</link>
     <description><![CDATA[<div class="info">
     Posted on June 19, 2020
     
@@ -2131,12 +2131,12 @@ Moving cards to holders with a different orientation: before and after.
 <a href="../images/ts/all.png"><img src="../images/ts/all.png" style="width:100.0%" alt="Full view of the final app." /></a></p>
 ]]></description>
     <pubDate>Fri, 19 Jun 2020 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2020-06-19-time-stories.html</guid>
+    <guid>https://sygi.github.io/posts/2020-06-19-time-stories.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>--init</title>
-    <link>https://sygnowski.ml/posts/2016-03-24-init.html</link>
+    <link>https://sygi.github.io/posts/2016-03-24-init.html</link>
     <description><![CDATA[<div class="info">
     Posted on March 24, 2016
     
@@ -2209,7 +2209,7 @@ Integer ante velit, congue id dictum et, adipiscing a tortor.</p>
 </section>
 ]]></description>
     <pubDate>Thu, 24 Mar 2016 00:00:00 UT</pubDate>
-    <guid>https://sygnowski.ml/posts/2016-03-24-init.html</guid>
+    <guid>https://sygi.github.io/posts/2016-03-24-init.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 

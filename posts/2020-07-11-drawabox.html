@@ -106,7 +106,7 @@
 <a href="../images/drawabox/lesson7/Areal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Areal2.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Areal3.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/B.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Breal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Breal2.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/C.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Creal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/D.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Dreal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/E.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Ereal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/F.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/G.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/H.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/I.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Ireal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/J.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Jreal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/K.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/L.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Lreal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/M.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a><a href="../images/drawabox/lesson7/Mreal.jpg" target="_blank"><img data-bilderrahmen="lesson7" /></a></p>
 
 
-  <!-- nonheader -->
+
 <div id="disqus_thread"></div>
 <script>
     var gaProperty = 'UA-85187126-1';
@@ -124,13 +124,6 @@
       })();
     }
 </script>
-<!-- <script>
-  (function () {
-    'use strict';
-    anchors.options.placement = 'right';
-    anchors.add('h2, h3');
-  })();
-</script> -->
 
 
         </div>
@@ -156,6 +149,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
     <script defer>
+      
     require.config({
       paths: {
         'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
@@ -166,18 +160,21 @@
       }
     });
 
+    
+    
     require(['bilderrahmen'], function(module) {
         new module.Bilderrahmen({ closeOnOutsideClick: true });
     });
+    
     require(['anchorjs'], function(module){
       const anchors = new module();
-      console.log(anchors);
       anchors.add();
     });
     require(['mathjax']);
     require(['jquery'], function(jQuery){
       require(['footnotes']);
     });
+    
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
     const cookie = document.getElementById("cookie");

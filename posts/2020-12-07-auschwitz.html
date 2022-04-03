@@ -82,7 +82,7 @@ When I was adding new elements like shields, tokens, but also choosing the desig
 </section>
 
 
-  <!-- nonheader -->
+
 <div id="disqus_thread"></div>
 <script>
     var gaProperty = 'UA-85187126-1';
@@ -100,13 +100,6 @@ When I was adding new elements like shields, tokens, but also choosing the desig
       })();
     }
 </script>
-<!-- <script>
-  (function () {
-    'use strict';
-    anchors.options.placement = 'right';
-    anchors.add('h2, h3');
-  })();
-</script> -->
 
 
         </div>
@@ -132,6 +125,7 @@ When I was adding new elements like shields, tokens, but also choosing the desig
     <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
     <script defer>
+      
     require.config({
       paths: {
         'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
@@ -142,18 +136,17 @@ When I was adding new elements like shields, tokens, but also choosing the desig
       }
     });
 
-    require(['bilderrahmen'], function(module) {
-        new module.Bilderrahmen({ closeOnOutsideClick: true });
-    });
+    
+    
     require(['anchorjs'], function(module){
       const anchors = new module();
-      console.log(anchors);
       anchors.add();
     });
     require(['mathjax']);
     require(['jquery'], function(jQuery){
       require(['footnotes']);
     });
+    
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
     const cookie = document.getElementById("cookie");

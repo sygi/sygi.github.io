@@ -151,7 +151,7 @@ Painting of a turtle.
 <p><a href="../images/digital_painting2/people/final/B.png" target="_blank"><img data-bilderrahmen="people" /></a><a href="../images/digital_painting2/people/final/C.png" target="_blank"><img data-bilderrahmen="people" /></a><a href="../images/digital_painting2/people/final/D.png" target="_blank"><img data-bilderrahmen="people" /></a></p>
 
 
-  <!-- nonheader -->
+
 <div id="disqus_thread"></div>
 <script>
     var gaProperty = 'UA-85187126-1';
@@ -169,13 +169,6 @@ Painting of a turtle.
       })();
     }
 </script>
-<!-- <script>
-  (function () {
-    'use strict';
-    anchors.options.placement = 'right';
-    anchors.add('h2, h3');
-  })();
-</script> -->
 
 
         </div>
@@ -201,6 +194,7 @@ Painting of a turtle.
     <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
     <script defer>
+      
     require.config({
       paths: {
         'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
@@ -211,18 +205,21 @@ Painting of a turtle.
       }
     });
 
+    
+    
     require(['bilderrahmen'], function(module) {
         new module.Bilderrahmen({ closeOnOutsideClick: true });
     });
+    
     require(['anchorjs'], function(module){
       const anchors = new module();
-      console.log(anchors);
       anchors.add();
     });
     require(['mathjax']);
     require(['jquery'], function(jQuery){
       require(['footnotes']);
     });
+    
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
     const cookie = document.getElementById("cookie");

@@ -96,7 +96,7 @@ Integer ante velit, congue id dictum et, adipiscing a tortor.</p>
 </section>
 
 
-  <!-- nonheader -->
+
 <div id="disqus_thread"></div>
 <script>
     var gaProperty = 'UA-85187126-1';
@@ -114,13 +114,6 @@ Integer ante velit, congue id dictum et, adipiscing a tortor.</p>
       })();
     }
 </script>
-<!-- <script>
-  (function () {
-    'use strict';
-    anchors.options.placement = 'right';
-    anchors.add('h2, h3');
-  })();
-</script> -->
 
 
         </div>
@@ -146,6 +139,7 @@ Integer ante velit, congue id dictum et, adipiscing a tortor.</p>
     <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
     <script defer>
+      
     require.config({
       paths: {
         'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
@@ -156,18 +150,19 @@ Integer ante velit, congue id dictum et, adipiscing a tortor.</p>
       }
     });
 
-    require(['bilderrahmen'], function(module) {
-        new module.Bilderrahmen({ closeOnOutsideClick: true });
-    });
+    
+    console.log("addthreejs")
+    
+    
     require(['anchorjs'], function(module){
       const anchors = new module();
-      console.log(anchors);
       anchors.add();
     });
     require(['mathjax']);
     require(['jquery'], function(jQuery){
       require(['footnotes']);
     });
+    
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
     const cookie = document.getElementById("cookie");

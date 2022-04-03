@@ -88,7 +88,7 @@ Explained example shading (left) vs expectation for the next drawing (right).
 <p><a href="../images/proko/head/B.jpg" target="_blank"><img data-bilderrahmen="head" /></a><a href="../images/proko/head/C.jpg" target="_blank"><img data-bilderrahmen="head" /></a><a href="../images/proko/head/D.jpg" target="_blank"><img data-bilderrahmen="head" /></a><a href="../images/proko/head/E.jpg" target="_blank"><img data-bilderrahmen="head" /></a></p>
 
 
-  <!-- nonheader -->
+
 <div id="disqus_thread"></div>
 <script>
     var gaProperty = 'UA-85187126-1';
@@ -106,13 +106,6 @@ Explained example shading (left) vs expectation for the next drawing (right).
       })();
     }
 </script>
-<!-- <script>
-  (function () {
-    'use strict';
-    anchors.options.placement = 'right';
-    anchors.add('h2, h3');
-  })();
-</script> -->
 
 
         </div>
@@ -138,6 +131,7 @@ Explained example shading (left) vs expectation for the next drawing (right).
     <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
     <script defer>
+      
     require.config({
       paths: {
         'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
@@ -148,18 +142,21 @@ Explained example shading (left) vs expectation for the next drawing (right).
       }
     });
 
+    
+    
     require(['bilderrahmen'], function(module) {
         new module.Bilderrahmen({ closeOnOutsideClick: true });
     });
+    
     require(['anchorjs'], function(module){
       const anchors = new module();
-      console.log(anchors);
       anchors.add();
     });
     require(['mathjax']);
     require(['jquery'], function(jQuery){
       require(['footnotes']);
     });
+    
     var gaProperty = 'UA-85187126-1';
     var disableStr = 'ga-disable-' + gaProperty;
     const cookie = document.getElementById("cookie");

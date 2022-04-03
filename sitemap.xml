@@ -1,113 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sygnowski.ml</loc>
+    <loc>https://sygi.github.io</loc>
     <changefreq>monthly</changefreq>
     <priority>1.</priority>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2022-03-23-bezier.html</loc>
+    <loc>https://sygi.github.io/posts/2022-03-23-bezier.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2022-03-13-customs.html</loc>
+    <loc>https://sygi.github.io/posts/2022-03-13-customs.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-12-01-pbr-materials.html</loc>
+    <loc>https://sygi.github.io/posts/2021-12-01-pbr-materials.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-11-28-pbr-101.html</loc>
+    <loc>https://sygi.github.io/posts/2021-11-28-pbr-101.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-10-27-tts.html</loc>
+    <loc>https://sygi.github.io/posts/2021-10-27-tts.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-10-22-blender.html</loc>
+    <loc>https://sygi.github.io/posts/2021-10-22-blender.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-09-29-graphic-workflow.html</loc>
+    <loc>https://sygi.github.io/posts/2021-09-29-graphic-workflow.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-09-06-alma-survey.html</loc>
+    <loc>https://sygi.github.io/posts/2021-09-06-alma-survey.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-07-06-tax-residency.html</loc>
+    <loc>https://sygi.github.io/posts/2021-07-06-tax-residency.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-06-20-board-game-inserts.html</loc>
+    <loc>https://sygi.github.io/posts/2021-06-20-board-game-inserts.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-05-09-digital-painting-exercises.html</loc>
+    <loc>https://sygi.github.io/posts/2021-05-09-digital-painting-exercises.html</loc>
+    <lastmod>2022-04-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://sygi.github.io/posts/2021-04-05-choosing-game-engine.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-04-05-choosing-game-engine.html</loc>
+    <loc>https://sygi.github.io/posts/2021-01-30-digital-painting.html</loc>
+    <lastmod>2022-04-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://sygi.github.io/posts/2020-12-07-auschwitz.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2021-01-30-digital-painting.html</loc>
+    <loc>https://sygi.github.io/posts/2020-10-10-proko.html</loc>
+    <lastmod>2022-04-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://sygi.github.io/posts/2020-07-11-drawabox.html</loc>
+    <lastmod>2022-04-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://sygi.github.io/posts/2020-06-19-time-stories.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2020-12-07-auschwitz.html</loc>
+    <loc>https://sygi.github.io/posts/2016-03-24-init.html</loc>
+    <lastmod>2022-04-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://sygi.github.io/index.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2020-10-10-proko.html</loc>
+    <loc>https://sygi.github.io/subpages/about.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
   <url>
-    <loc>https://sygnowski.ml/posts/2020-07-11-drawabox.html</loc>
-    <lastmod>2022-03-24</lastmod>
-  </url>
-
-  <url>
-    <loc>https://sygnowski.ml/posts/2020-06-19-time-stories.html</loc>
-    <lastmod>2022-03-24</lastmod>
-  </url>
-
-  <url>
-    <loc>https://sygnowski.ml/posts/2016-03-24-init.html</loc>
-    <lastmod>2022-03-24</lastmod>
-  </url>
-
-  <url>
-    <loc>https://sygnowski.ml/index.html</loc>
-    <lastmod>2022-03-24</lastmod>
-  </url>
-
-  <url>
-    <loc>https://sygnowski.ml/subpages/about.html</loc>
-    <lastmod>2022-03-24</lastmod>
-  </url>
-
-  <url>
-    <loc>https://sygnowski.ml/subpages/privacy.html</loc>
+    <loc>https://sygi.github.io/subpages/privacy.html</loc>
     <lastmod>2022-03-24</lastmod>
   </url>
 
