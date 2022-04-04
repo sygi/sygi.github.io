@@ -80,7 +80,7 @@ I decided to close the survey a couple of days later as I didn't get as many res
 ## Final words
 
 I was positively surprised by the number of responses I got: the survey recorded 203 entries.
-I prepared the analysis of the results (in Polish) and made it available [here](https://sygnowski.ml/data/alma/writeup.pdf). The code I used to analyze the data is [here](https://github.com/sygi/alma).
+I prepared the analysis of the results (in Polish) and made it available [here](../data/alma/writeup.pdf). The code I used to analyze the data is [here](https://github.com/sygi/alma).
 
 Unsurprisingly, the data I gathered presented the view of the MIM UW alumni that's somewhere in-between my biased anecdata (where most of the people move abroad and earn a lot) and the data from ELA. Overall, the data looks reasonable.
 

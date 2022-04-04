@@ -2,7 +2,7 @@
 title: T.I.M.E stories expansion graphic workflow
 ---
 
-At the end of last year, I made a fan [time stories scenario](https://sygnowski.ml/posts/2020-12-07-auschwitz.html). Concretely, only the "story" part was finished then, with all the graphics missing. This year, together with Michalina, I was working on and off on adding the custom images to the game. Being relatively new to graphic design, I tried a couple of different styles and workflows for creating the content.
+At the end of last year, I made a fan [time stories scenario](../posts/2020-12-07-auschwitz.html). Concretely, only the "story" part was finished then, with all the graphics missing. This year, together with Michalina, I was working on and off on adding the custom images to the game. Being relatively new to graphic design, I tried a couple of different styles and workflows for creating the content.
 
 ## Styles/workflows
 

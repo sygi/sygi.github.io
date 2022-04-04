@@ -126,7 +126,7 @@ main = hakyll $ do
 
 --------------------------------------------------------------------------------
 root :: String
-root = "https://sygi.github.io"
+root = "https://sygi.ml"
 postCtx :: Context String
 postCtx =
     constField "root" root `mappend`
@@ -163,7 +163,7 @@ feedConfiguration = FeedConfiguration
     { feedTitle       = "Jakub Sygnowski blog"
     , feedDescription = "Posts on games, programming, and art."
     , feedAuthorName  = "Jakub Sygnowski"
-    , feedRoot        = "https://sygnowski.ml"
+    , feedRoot        = "https://sygi.ml"
     , feedAuthorEmail = "sygnowski@gmail.com"
     }
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sygnowski.ml/sitemap.xml
+Sitemap: https://sygi.ml/sitemap.xml

@@ -4,7 +4,7 @@ title: "Escape from Auschwitz: a fan T.I.M.E stories scenario"
 
 Ever since I got T.I.M.E stories for Christmas a couple of years ago, I was planning to make a fan scenario. I have finally found some time to develop the expansion recently.
 
-T.I.M.E stories is a decksploration board game, about which I wrote a bit [here](https://sygnowski.ml/posts/2020-06-19-time-stories.html). The game itself defines mechanics (somewhat similarly to e.g. RPGs) and sells different scenarios (stories) as expansions. There's a [long list](https://boardgamegeek.com/geeklist/225429/time-stories-print-and-play-scenarios-available-bg) of fan-made scenarios, many of which are really high-quality[^1].
+T.I.M.E stories is a decksploration board game, about which I wrote a bit [here](../posts/2020-06-19-time-stories.html). The game itself defines mechanics (somewhat similarly to e.g. RPGs) and sells different scenarios (stories) as expansions. There's a [long list](https://boardgamegeek.com/geeklist/225429/time-stories-print-and-play-scenarios-available-bg) of fan-made scenarios, many of which are really high-quality[^1].
 
 [^1]: I played [Switching Gears](https://boardgamegeek.com/boardgame/200443/switching-gears-fan-expansion-time-stories) and [Pariah Missouri](https://boardgamegeek.com/boardgame/205847/pariah-missouri-fan-expansion-time-stories), and [Varsovia 2100](https://repository.rebel.pl/wydawnictwo/timestories/Varsovia_2100.pdf).
 
