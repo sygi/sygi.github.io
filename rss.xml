@@ -36,9 +36,9 @@
 <figcaption aria-hidden="true">One can investigate this representation of a mesh in the <a href="https://docs.blender.org/manual/en/latest/editors/spreadsheet.html">Spreadsheet editor</a>.</figcaption>
 </figure>
 <p>This representation isn’t very convenient to use, as operating on a set of numbers is usually not as intuitive as making changes in the UI.</p>
-<p>With geometry nodes, the changes to the underlying representation can be made more directly than using the standard workflow.</p>
+<p>With geometry nodes, the changes to the underlying representation can be made more directly than using the standard workflow. Apart from modifying the built-in attributes like position, they allow us to define our own (e.g. color), which are then processed using the same operations as for the built-in ones.</p>
 <h2 id="types-of-nodes">Types of nodes</h2>
-<p><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html">Geometry nodes</a> is a modifier of an existing object: it processes the elements (geometry) of an object in more or less sophisticated ways using nodes.</p>
+<p><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html">Geometry nodes</a> is a modifier of an existing object: it processes the elements (vertices, edges, etc.) and the attributes (position and custom attributes) of an object in more or less sophisticated ways using nodes. These elements and attributes together are called a <em>geometry</em>.</p>
 <p>There are three types of nodes:</p>
 <ol type="1">
 <li>data flow nodes</li>
