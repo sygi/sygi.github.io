@@ -7,8 +7,189 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygi.ml/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Wed, 23 Mar 2022 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Mon, 18 Apr 2022 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Geometry nodes</title>
+    <link>https://sygi.ml/posts/2022-04-18-geometry-nodes.html</link>
+    <description><![CDATA[<div class="info">
+    Posted on April 18, 2022
+    
+</div>
+<h1>Geometry nodes</h1>
+<p>Blender recently introduced a new way of manipulating 3D meshes: geometry nodes. It combines a standard node-based UI (similar to the one used for constructing materials) with a script-like expressiveness to control each vertex arbitrarily. I learned the basics of geometry nodes and did a simple project using the new mechanism to try them out.</p>
+<h2 id="attributes-and-domains">Attributes and domains</h2>
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.139.0/build/three.module.js",
+        "OrbitControls": "https://unpkg.com/three@0.139.0/examples/jsm/controls/OrbitControls.js"
+    }
+}
+</script>
+<script type="module" src="../js/three.js"></script>
+<script type="module" src="../js/geometry_nodes/buttons.js"></script>
+<script type="module" src="../js/options.js"></script>
+<p>Internally, Blender represents objects using a couple of matrices. There is a description of a single entity (vertex, edge, face) in each row of such a matrix. Each column corresponds to a single <em>attribute</em>: a property of that entity, e.g., its position.</p>
+<p>There are as many such matrices as there are types of entities (also known as <em>domains</em>): one for vertices, one for faces, etc.</p>
+<figure>
+<img src="https://docs.blender.org/manual/en/latest/_images/editors_spreadsheet_interface.png" style="width:90.0%" alt="One can investigate this representation of a mesh in the Spreadsheet editor." />
+<figcaption aria-hidden="true">One can investigate this representation of a mesh in the <a href="https://docs.blender.org/manual/en/latest/editors/spreadsheet.html">Spreadsheet editor</a>.</figcaption>
+</figure>
+<p>This representation isn’t very convenient to use, as operating on a set of numbers is usually not as intuitive as making changes in the UI.</p>
+<p>With geometry nodes, the changes to the underlying representation can be made more directly than using the standard workflow.</p>
+<h2 id="types-of-nodes">Types of nodes</h2>
+<p><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html">Geometry nodes</a> is a modifier of an existing object: it processes the elements (geometry) of an object in more or less sophisticated ways using nodes.</p>
+<p>There are three types of nodes:</p>
+<ol type="1">
+<li>data flow nodes</li>
+<li>input nodes</li>
+<li>function nodes</li>
+</ol>
+<p>Blender uses a joint name of <em>fields</em> for the functional and input nodes.</p>
+<h3 id="data-flow-nodes">Data flow nodes</h3>
+<p>Data flow nodes, which are marked by a green title bar, modify underlying geometry by performing the typical Blender operations like moving, joining two meshes together, or creating new objects.</p>
+<figure>
+<img src="https://docs.blender.org/manual/en/latest/_images/modeling_geometry-nodes_mesh_subdivide_node.png" style="width:30.0%" alt="Subdivide mesh: an example data flow node." />
+<figcaption aria-hidden="true"><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/subdivide_mesh.html">Subdivide mesh</a>: an example data flow node.</figcaption>
+</figure>
+<h3 id="input-nodes">Input nodes</h3>
+<p>Input nodes, with red title bars, allow getting some piece of information (stored in the geometry or provided by the user in another way) to be later processed.</p>
+<figure>
+<img src="https://docs.blender.org/manual/en/latest/_images/modeling_geometry-nodes_input_position_node.png" style="width:30.0%" alt="Position node is a node that reads the position of the entities in a geometry." />
+<figcaption aria-hidden="true"><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/input/position.html">Position node</a> is a node that reads the position of the entities in a geometry.</figcaption>
+</figure>
+<h3 id="function-nodes">Function nodes</h3>
+<p>Function nodes, having blue title bars, process data that comes in, and return some output.</p>
+<figure>
+<img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_converter_map-range_node.png" style="width:60.0%" alt="Map range node which maps numbers (or vectors) from one range to another using a given transformation." />
+<figcaption aria-hidden="true"><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/utilities/map_range.html">Map range node</a> which maps numbers (or vectors) from one range to another using a given transformation.</figcaption>
+</figure>
+<h2 id="eager-vs-lazy-execution">Eager vs lazy execution</h2>
+<p>An attentive reader will see that the Position node shown above doesn’t get geometry as an input, even though it reads the positions stored on <em>some</em> geometry.</p>
+<p>The incoming geometry is often processed in multiple stages, creating several intermediate geometries before getting the final one. Which one Position node queries for the position of its elements?</p>
+<p>To answer this question, one needs to introduce the concept of lazy execution. When we typically think about programming, we are using a mental model of eager execution: there is a number of steps, an algorithm, which we follow from a to z.</p>
+<p>In geometry nodes, it would correspond to the nodes being evaluated from left to right: from the ones with no inputs (so we can calculate their outputs) to their children, and so on, until the output node.</p>
+<p>For efficiency reasons, geometry nodes don’t work like this. Instead, Blender processing system starts execution from the final output node. It looks for the inputs that need to be calculated to evaluate the node’s output, and so on until it reaches nodes with no inputs. It is called lazy execution.</p>
+<p>This way, if some nodes are not necessary to get the output (e.g. because we added them to the system but didn’t use them in the end), they won’t be calculated, saving precious milliseconds at the cost of a less intuitive computation model.</p>
+<p>Note that a similar graph-based, lazy execution system was used in TensorFlow 1 to evaluate neural networks.</p>
+<p>Coming back to the question of choosing the geometry for the Position node: the geometry used will be the last geometry encountered while lazily-processing the execution; in other words, the one closest to the Position node.</p>
+<p>In particular, if we connect a single Position node to multiple geometries, it will provide different outputs for them.</p>
+<figure>
+<a href="../images/geometry_nodes/context.png"><img src="../images/geometry_nodes/context.png" style="width:90.0%" alt="Using input node with multiple geometries" /></a>
+<figcaption>
+Using multiple geometries with an input node. The cube is subdivided first, then the points with <span class="math inline">\(Z&lt;0\)</span> are selected and removed from the subdivided cube, and then the resulting half-cube is rotated.
+</figcaption>
+</figure>
+<h3 id="transferring-attributes">Transferring attributes</h3>
+<p>Sometimes, we want to combine attributes living on multiple geometries, e.g. when we select a piece of geometry based on some attribute, transform it, and then do another transformation using the original selection (and not based on a new geometry).</p>
+<p>There are two ways to use attributes on a different geometry than the one they were originally defined on: transfer and capture attribute.</p>
+<h4 id="transfer-attribute">Transfer attribute</h4>
+<p>When using transfer attribute, we take one geometry and an attribute that lies on another geometry, and we copy the attribute to the target geometry to use it there.</p>
+<figure>
+<a href="../images/geometry_nodes/transfer_example.png"><img src="../images/geometry_nodes/transfer_example.png" style="width:90.0%" alt="transfer attribute example" /></a>
+<figcaption>
+An example of using <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/attribute/transfer_attribute.html">transfer attribute</a>: we select a piece of geometry based on their position (<span class="math inline">\(Z&gt;0\)</span>). Then, we transform the geometry to move it up, but we want to base the selection on the original, not the translated position.
+</figcaption>
+</figure>
+<p>How to “copy the attribute” when the number of elements in the geometries differs? It is resolved by matching the target geometry with the nearest entities of the source geometry and copying the attribute values from them.</p>
+<h4 id="capture-attribute">Capture attribute</h4>
+<p>An alternative, capture attribute, is used when we don’t pass the attribute to another geometry but merely request for the attribute on the current geometry to be preserved for later use.</p>
+<p>The capture attribute node takes and returns a geometry to lock the value of an attribute value in place, preventing its re-evaluation on a different geometry further down the chain.</p>
+<p>How does the “preservation” work here, when the geometry where we captured the attribute and the one where we use it contain different elements?</p>
+<p>Here, as opposed to transfer attribute, we don’t evade doing the transformations to the captured attribute. Whenever the geometry is changed by some functions, the same transformations are applied to the captured attribute as to the other attributes (e.g. position), potentially creating new geometry elements with an appropriate value of the captured attribute.</p>
+<p>Capture attribute is particularly useful before transformations that drop some attributes, like <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/curve_to_mesh.html">Curve to mesh</a> that drops <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/spline_parameter.html">Curve parameter</a> input attribute. With capture attribute, we can lock this attribute to live on the geometry, despite the transformations that are happening to it.</p>
+<h4 id="comparison">Comparison</h4>
+<p>The behavior of transfer and capture attribute can be confusing. To give an example of a situation where their behaviors differ, imagine a scene where we select the top half of a cube, mirror the cube horizontally, then paint the selected part.</p>
+<p>With no transfer or capture attributes, the bottom part will be painted: the selection has been reversed and painted afterward.</p>
+<p>If we used capture attribute after the selection, the behavior won’t change: the bottom part will be painted. The selection, stored in capture attribute, doesn’t affect the position attribute, which is changed as usual in the mirror reflection.</p>
+<p>On the other hand, if transfer attribute is used, the paint will invert. When choosing the selection to paint, Blender will search for the values of the selection in the original geometry, before the mirror reflection. The reflection will cause the vertices to reorder, but their associated values of the selection won’t change, as they are assigned from the nearest vertex in the original geometry. This will make the mirror reflection to not affect the painted part, so only the top will be painted.</p>
+<figure>
+<div class="three_canvas">
+
+</div>
+<div class="capture_transfer_nodes">
+
+</div>
+<figcaption>
+<div id="capture_transfer_option" class="options">
+
+</div>
+</figcaption>
+</figure>
+<h2 id="nodes-sockets">Nodes’ sockets</h2>
+<p>The sockets of the nodes have various colors and shapes.</p>
+The color marks the type of the data coming in:
+<p style="color:#5657bf;display:inline">
+<strong>purple</strong>
+</p>
+for 3D vectors,
+<p style="color:#8f8f8f;display:inline">
+<strong>grey</strong>
+</p>
+for scalar floats,
+<p style="color:#bd7dc7;display:inline">
+<strong>pink</strong>
+</p>
+<p>for booleans, and others.</p>
+<figure>
+<img src="https://docs.blender.org/manual/en/latest/_images/modeling_geometry-nodes_vector_separate-xyz_node.png" style="width:30.0%" alt="Separate XYZ node, which splits a 3-dimensional vector to its coordinates." />
+<figcaption aria-hidden="true"><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/vector/separate_xyz.html">Separate XYZ</a> node, which splits a 3-dimensional vector to its coordinates.</figcaption>
+</figure>
+<p>The shapes of the sockets correspond to whether the incoming/outgoing data is provided per geometry element (one value per vertex, edge, etc.) or per the whole geometry (e.g. object origin).</p>
+<p>The first one (data varying per geometry element) is marked by a diamond, and the socket accepting single data has a shape of a circle.</p>
+<figure>
+<img src="../images/geometry_nodes/socket_type.png" style="width:70.0%" alt="It’s still possible to inject “single” (circle) data to a diamond “per element” input: in that case, every element of the geometry gets passed the same data, and the accepting diamond socket gets a dot drawn on it, to mark the inputs are uniform across the geometry." />
+<figcaption aria-hidden="true">It’s still possible to inject “single” (circle) data to a diamond “per element” input: in that case, every element of the geometry gets passed the same data, and the accepting diamond socket gets a dot drawn on it, to mark the inputs are uniform across the geometry.</figcaption>
+</figure>
+<figure>
+<img src="../images/geometry_nodes/sockets2.png" style="width:70.0%" alt="Passing “diamond” outputs to a “circle” input is not allowed, though: Blender needs a global (one per geometry) input, but it’s not clear which one of the per-element outputs it should use." />
+<figcaption aria-hidden="true">Passing “diamond” outputs to a “circle” input is not allowed, though: Blender needs a global (one per geometry) input, but it’s not clear which one of the per-element outputs it should use.</figcaption>
+</figure>
+<h2 id="instances">Instances</h2>
+<p>Apart from geometry domains of vertices, edges, and faces, geometry nodes handle <em>instances</em>.</p>
+<p>They are useful to speed up the processing of multiple identical objects at once: instead of constructing a lot of independent vertices and edges, Blender creates a given instance once and then copies the resulting geometry when needed, similarly to when creating “duplicates” in the UI.</p>
+<p>One way to add an instance to the geometry nodes is using an <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/input/object_info.html">Object info</a> node. It takes an object present in the scene and adds its geometry to geometry nodes.</p>
+<figure>
+<img src="https://docs.blender.org/manual/en/latest/_images/modeling_geometry-nodes_input_object-info_node.png" style="width:30.0%" alt="Object info node, allowing to bring a geometry from a different object to geometry nodes." />
+<figcaption aria-hidden="true">Object info node, allowing to bring a geometry from a different object to geometry nodes.</figcaption>
+</figure>
+<p>We can choose whether the geometry should be added “as an instance” or not, in which case the object will be added as separate vertices, edges, etc.</p>
+<p>The placement of the new object can be controlled via the Original/Relative setting.</p>
+<p>When using Original, the object’s origin (and rotation and scale) is put in the same place as the origin of the object which has the geometry nodes modifier.</p>
+<p>When using the Relative setting, the new object is placed such that its location / rotation / scale is the same as it had as a standalone object.</p>
+<p>Another node that brings instances into geometry nodes is a <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/input/collection_info.html">Collection info</a>. It works similarly to the Object info one but accepts collections instead of single objects.</p>
+<p>It has two settings:</p>
+<ol type="1">
+<li>Separate children, which changes whether to add the whole collection as a single instance or to have one instance per object in the collection, and</li>
+<li>Reset children, which sets to 0 all the local transformations that the objects in the collection have.</li>
+</ol>
+<h2 id="project-assembling-a-chess-pawn">Project: assembling a chess pawn</h2>
+<p>To experiment with the geometry nodes, I did a small project animating the assembly of a chess pawn from parts.</p>
+<p>To divide a pawn (which I modeled in <a href="https://sygi.ml/posts/2022-03-23-bezier.html">a previous project</a>) into pieces, I used a <a href="https://blender-addons.org/cell-fracture-addon/">cell fracture</a> add-on.</p>
+<p>Then, I added a geometry nodes modifier to a dummy geometry, loaded pieces from a given collection as instances, and created an empty, which will be driving the animation.</p>
+<p>Concretely, the pieces which are significantly above the empty will be spread out and rotated randomly, the ones below will be on their final positions, and the ones close to the Z position of the empty, will be in the process of being assembled.</p>
+<p>To create the move, I used a couple of standard nodes, and a capture attribute node to capture the stage of the move of every instance to synchronize the rotation with the move.</p>
+<figure>
+<a href="../images/geometry_nodes/assembly_animation.png"><img src="../images/geometry_nodes/assembly_animation.png" style="width:100.0%" alt="Geometry nodes system for the assembly animation" /></a>
+<figcaption>
+Final geometry nodes used for the animation.
+</figcaption>
+</figure>
+<figure>
+<video width="360" height="640" controls="">
+<source src="../images/geometry_nodes/animation.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<figcaption>
+Final animation.
+</figcaption>
+</figure>
+]]></description>
+    <pubDate>Mon, 18 Apr 2022 00:00:00 UT</pubDate>
+    <guid>https://sygi.ml/posts/2022-04-18-geometry-nodes.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Bézier curves and 3D modelling</title>
     <link>https://sygi.ml/posts/2022-03-23-bezier.html</link>
     <description><![CDATA[<div class="info">
