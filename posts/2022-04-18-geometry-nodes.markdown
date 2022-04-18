@@ -27,10 +27,10 @@ There are as many such matrices as there are types of entities (also known as _d
 
 This representation isn't very convenient to use, as operating on a set of numbers is usually not as intuitive as making changes in the UI.
 
-With geometry nodes, the changes to the underlying representation can be made more directly than using the standard workflow.
+With geometry nodes, the changes to the underlying representation can be made more directly than using the standard workflow. Apart from modifying the built-in attributes like position, they allow us to define our own (e.g. color), which are then processed using the same operations as for the built-in ones.
 
 ## Types of nodes
-[Geometry nodes](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html) is a modifier of an existing object: it processes the elements (geometry) of an object in more or less sophisticated ways using nodes.
+[Geometry nodes](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html) is a modifier of an existing object: it processes the elements (vertices, edges, etc.) and the attributes (position and custom attributes) of an object in more or less sophisticated ways using nodes. These elements and attributes together are called a _geometry_.
 
 There are three types of nodes:
 
