@@ -46,7 +46,8 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
-    match "posts/*" $ version "header" $
+    match "posts/*" $ version "header" $ do
+        route $ setExtension "html"
         compile $ do
             let getHeaders (Pandoc meta blocks) = Pandoc meta (untilFirstParagraph blocks)
             pandocCompilerWithTransform readerPostOptions writerHeaderOptions getHeaders
