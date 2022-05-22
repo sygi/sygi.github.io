@@ -51,8 +51,8 @@ main = hakyll $ do
         compile $ do
             let getHeaders (Pandoc meta blocks) = Pandoc meta (untilFirstParagraph blocks)
             pandocCompilerWithTransform readerPostOptions writerHeaderOptions getHeaders
-            >>= loadAndApplyTemplate "templates/post-body.html" headCtx
             >>= saveSnapshot "header"
+            >>= loadAndApplyTemplate "templates/post-body.html" headCtx
             >>= relativizeUrls
 
     match "posts/*" $ version "only_title" $
