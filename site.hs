@@ -51,6 +51,7 @@ main = hakyll $ do
             let getHeaders (Pandoc meta blocks) = Pandoc meta (untilFirstParagraph blocks)
             pandocCompilerWithTransform readerPostOptions writerHeaderOptions getHeaders
             >>= loadAndApplyTemplate "templates/post-body.html" headCtx
+            >>= saveSnapshot "header"
             >>= relativizeUrls
 
     match "posts/*" $ version "only_title" $
@@ -86,7 +87,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             let feedCtx = postCtx `mappend` bodyField "description"
-            posts <- recentFirst =<< loadAllSnapshots ("posts/*" .&&. hasNoVersion) "content"
+            posts <- recentFirst =<< loadAllSnapshots ("posts/*" .&&. hasVersion "header") "header"
             renderRss feedConfiguration feedCtx posts
 
     create ["archive.html"] $ do
