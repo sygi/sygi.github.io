@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        
+        <meta name="author" content="Jakub Sygnowski" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <title>Cloud computing</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on May 22, 2022
+    
+</div>
+<h1>Cloud computing</h1>
+<p>In recent years, cloud computing became very popular: it is both used on single pages with CVs and governments’ apps worth hundreds of millions. As I wanted to publish online a couple of smaller projects, I played with a number of cloud-based services to see how easy to use and costly are they for a hobby project.</p>
+<h2 id="the-cloud">The cloud</h2>
+<p>One needs a lot of infrastructure to host a modern website. To exploit the economies of scale, big internet companies (Amazon, Google, Microsoft) offer to store other people’s websites and to show them to their users. It is a win-win situation: big companies earn money while sharing their excessive storage and compute, and their customers don’t have to manage dedicated hardware and worry about scaling issues.</p>
+<p>The range of services related to website hosting is wide. Apart from the obvious: storing and sending the actual assets (HTML/JS/CSS files and images), to keep a website up one needs:</p>
+<ol type="1">
+<li>a database to store the users and their data (e.g. previous orders in an online shop),</li>
+<li>registration of a domain for the website and an SSL certificate to allow for the encrypted traffic,</li>
+<li>a DNS setup, so that the domain name gets redirected to the correct servers,</li>
+<li>a mail server to handle a newsletter and keep mail accounts for the employees or contact the website owner,</li>
+<li>load balancing, so that a given server doesn’t get more traffic than it can handle,</li>
+<li>a content distribution network: a network of servers placed in different parts of the world, so that the distance to the user (and thus their latency of loading the website) is minimized.</li>
+</ol>
+<p>The cloud companies offer all of these and many more, allowing even the most demanding clients to set up their website as they wish, for an appropriate fee. Each company names these products differently: in this article I’ll be using the Amazon nomenclature which I used the most.</p>
+<h2 id="idea-behind-ec2">Idea behind EC2</h2>
+<p>The most basic service offered by the cloud providers is shaing a virtual machine, called <a href="https://en.wikipedia.org/wiki/Amazon_Elastic_Compute_Cloud">Elastic Cloud Compute (EC2)</a> in AWS. It works like any other computer, with dedicated storage, RAM, and CPU, and a operating system, isolated from other users on a given server machine.</p>
+<p>When such a VM is accessed with <code>ssh</code>, using it doesn’t differ much from using a machine owned by the client: they can install programs, start http servers, run compute in the background, etc.</p>
+<p>EC2 usage is flexibly billed accordint to the time the machine is on, plus some charges for persistent (non-expiring on shutdown of the VM system) storage.</p>
+<p>This type of services allowing low-level control over a server’s infrastructure are called Infrastructure-as-a-Service (IaaS).</p>
+<h2 id="idea-behind-paas">Idea behind PaaS</h2>
+<p>EC2 is very flexible: it allows users to do everything they can imagine with the rented machine<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. This flexibility comes with a cost: setting everything up can be a lot of work. If someone wants to have a database, they’ll have to install and manage it themselves; same with http server, port forwarding, etc.</p>
+<p>One particularly painful issue with using EC2 is the problem of scaling: when your website starts to get more requests, you likely want to request more compute resources to spread the additional load. On the other hand, if your EC2 is not being fully utilized, you may want to temporarily shut it down to avoid paying for the compute that you’re not using.</p>
+<p>Doing this manually is a lot of work, and one of the value propositions behind cloud services is to automate that work.</p>
+<p>One answer to the scalability issue is provided through Platform-as-a-Service, with <a href="https://www.heroku.com/home">heroku</a> and <a href="https://aws.amazon.com/elasticbeanstalk/">AWS Elastic Beanstalk</a> being popular examples of such services.</p>
+<p>Their offer consists of taking care of managing the servers at the level of applications in the operating system: the client is uploading the code, requests whether they need a database, etc. and the platform sets up the actual (virtual) machine, its OS, and takes care of deploying client’s code.</p>
+<p>Under the hood, it’s possible that the lower-level cloud-based services (e.g. EC2, mentioned above) are used to provide the platform’s services, but these are hidden to the user.</p>
+<p>As the compute infrastructure can be shared across many users of the platform, it is easier to scale the resources: Heroku can request a pool of, say, a thousand EC2, and divide it between its hundreds of users depending on how much resources they need at any given time. Requesting and turning down the actual machines is handled by the platform.</p>
+<h2 id="idea-behind-serverless">Idea behind serverless</h2>
+<p>Another way allowing cloud solutions to offer auto-scaling is through <a href="https://en.wikipedia.org/wiki/Serverless_computing">serverless computing</a>. In that model, the cloud provider pre-allocates some amount of resources and gives the user an ability to execute short requests in already-running applications for a small fee.</p>
+<p>The most popular resources shared this way is database and compute.</p>
+<h3 id="serverless-database">Serverless database</h3>
+<p>For a database, Amazon offers a NoSQL database: <a href="https://aws.amazon.com/dynamodb/">DynamoDB</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. They start thousands of instances of the database on their servers, which are able to handle enormous amounts of traffic. When the user uses the database, they create a table and immediately start to make put/get/query requests through the public (encrypted) network.</p>
+<p>The pricing consists mostly of the amount of storage (on the order of $1 per couple of GB-months), and the number of requests to the database (around $1 per a million requests).</p>
+<h3 id="serverless-compute">Serverless compute</h3>
+<p><a href="https://aws.amazon.com/lambda/">AWS Lambda</a> allows users to execute an arbitrary code for a short time. There is a number of ways that the execution of a lambda can be triggered, e.g. via javascript when a user clicks something on a website.</p>
+<p>As Amazon keeps a lot of threads waiting for the execution of the code on their servers, the latency for handling a request is much lower compared to starting up an EC2 from scratch. At the same time, as there is no virtual machine which is reserved for a particular user, the costs will be very small if there is little incoming traffic<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<h2 id="a-couple-of-examples">A couple of examples</h2>
+<p>Over the last year or two I wrote some web-based applications which I needed to serve somewhere. I used a couple of different methods to see how they work (and how much they cost) in practice.</p>
+<h3 id="time-stories">Time Stories</h3>
+<p>The website to play Time Stories (which I described <a href="https://sygi.ml/posts/2020-06-19-time-stories.html">here</a>) was initially served from an EC2. Whenever friends wanted to play, I needed to start a server, which was a bit annoying, as it was taking ~10min.</p>
+<p>Apart from that, even if we didn’t play, there were storage costs for the VM’s filesystem. While these were free for the first year (due to <a href="https://aws.amazon.com/free/">AWS Free Tier</a>), I estimate the storage would costs around $2/month for 20GB I needed for the system and the website. This doesn’t include game assets which are stored in (cheaper) <a href="https://aws.amazon.com/s3/">Simple Storage Service</a>.</p>
+<p>When the free tier ended, I decided to migrate the website to heroku and <a href="https://www.mongodb.com/atlas/database">MongoDB Atlas</a>, which is a provider of serverless MongoDB databases. Both of them have a forever free tier, which was enough to cover my modest usage.</p>
+<p>The two problems I encountered with Heroku were: 1) that it doesn’t support encrypted traffic (ie. https) in the free tier, and 2) that starting the service was problematic without installing <a href="https://devcenter.heroku.com/articles/heroku-cli">heroku cli</a> which I didn’t want to do on a work laptop.</p>
+<h3 id="th-continent">7th continent</h3>
+<p>After Time Stories, I wrote an app to play 7th continent through a browser. The code for the app evolved from a more general project of an <a href="https://angular.io/">angular</a> framework for handling cards in a board game.</p>
+<p>As it was not initially planned for the use with a particular board game, and I didn’t have a lot of energy to write the server-side parts specific for a new game, I decided to go for the serverless solution.</p>
+<p>Instead of having a centralized database which would store the state of the game, each client connects to a websocket exposed from <a href="https://aws.amazon.com/api-gateway/">Amazon API Gateway</a>. There, it is connected with a small lambda, which relays messages sent from any client to all the other ones.</p>
+<p>As the lambda doesn’t store any state, it cannot remember which other clients are connected to the websocket. I store this information in a very small DynamoDB.</p>
+<p>In practice, whenever any client moves a card, the website sends the move<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> through the websocket to all the other clients. Occasionally, multiple players making moves at the same time can cause synchronization problems, but overall, this solution was playable and very quick to implement.</p>
+<p>The only price to pay here is the execution cost for lambdas (dynamodb usage is well within Amazon’s always free tier). As a single lambda executes for around 500ms, and uses the lowest possible memory band of 128MB, a million executions (corresponding to a million card moves, and thousands of hours of gameplay) costs around $1.25.</p>
+<figure>
+<img src="../images/cloud_computing/7th_continent.png" style="width:70.0%" alt="Screenshot from the website with the game set up. As it is played on an infinite grid, users can increase the grid size using the arrows." />
+<figcaption aria-hidden="true">Screenshot from the website with the game set up. As it is played on an infinite grid, users can increase the grid size using the arrows.</figcaption>
+</figure>
+<h3 id="rss-email-reader">RSS-&gt;email reader</h3>
+<p>Another project related to serverless computing which I did recently is an RSS to email relayer.</p>
+<p>RSS, or <a href="https://en.wikipedia.org/wiki/RSS">Really Simple Sindication</a> is a web format for announcing updates on a website in a program-readable way. If a website has an RSS feed<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, there is a page where all (or the recent) content is automatically summarized in an XML.</p>
+<p>The users can enter the address of the feed in their RSS reader and updates from all the websites they subscribed to will appear in the reader.</p>
+<p>I wanted to get a notification whenever of one the blogs I regularly read<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> has an update, but I didn’t want to install special software and use it every day like it was 2010. Instead, I wanted the updates to show as an email, which I read regularly.</p>
+<p>To do this, I set up a lambda to trigger every day, read a list of websites from a dynamodb, and send an email if there was any change to the RSS feed.</p>
+<figure>
+<img src="../images/cloud_computing/dynamodb.png" style="width:70.0%" alt="List of the entries in the RSS database." />
+<figcaption aria-hidden="true">List of the entries in the RSS database.</figcaption>
+</figure>
+<p>The RSS parsing was done using a python library <a href="https://feedparser.readthedocs.io/en/latest/">feedparser</a>, which could be easily deployed as a <code>zip</code> archive to the lambda, together with some custom code and other dependencies that I used.</p>
+<p>To reduce the bandwidth (and labmda compute time), the library allows to use <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since">If-Modified-Since</a> HTTP request header. When sent together with the HTTP request, it tells the server to send the full response only if it changed since last time we asked for it. As the lambda doesn’t have storage, the time of last request is stored in the database.</p>
+<p>For sending the emails, I used Amazon’s <a href="https://aws.amazon.com/sns/">SNS</a> service. It only allows to send emails to addresses that I control (i.e. my addresses) without verification, to avoid people using it to send spam, but that worked fine for me.</p>
+<h2 id="last-words">Last words</h2>
+<p>When making a big, commercial product, it may make sense to hire a network administrator or a DevOps, rent a server room, and manage the hardware on one’s own. It allows the most control over the servers and is likely the cheapest option over the long-term.</p>
+<p>For very simple web-based services that I am playing with as weekend projects, it doesn’t make sense to spend much (any) money on the hardware and time on setting it up. Cloud-based services, in particular serverless compute, allow one to quickly deploy such small, personal projects on the web with a negligible cost, thanks to the economy of scale through sharing hardware resources with thousands of other users.</p>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>except for things requiring physically touching it<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>among many other options<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>at the moment of writing, an execution requiring 1GB of memory and taking an hour costs $0.06, and a million requests cost $0.20.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>or the whole new state? I don’t remember anymore.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>you can see the feed of this blog after clicking the RSS button at the top right.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>most notably, <a href="https://ciechanow.ski">ciechanow.ski</a> with interactive explanations of stuff<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    <script defer>
+      
+    require.config({
+      paths: {
+        'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
+        'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
+        'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min', <!-- for footnotes -->
+        'footnotes': '../../js/footnotes'
+      }
+    });
+
+    
+    
+    require(['anchorjs'], function(module){
+      const anchors = new module();
+      anchors.add();
+    });
+    require(['mathjax']);
+    require(['jquery'], function(jQuery){
+      require(['footnotes']);
+    });
+    
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', gaProperty, 'auto');
+    ga('send', 'pageview');
+    </script>
+  </body>
+</html>
