@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        
+        <meta name="author" content="Jakub Sygnowski" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <title>Environment design in Blender</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on July 17, 2022
+    
+</div>
+<h1>Environment design in Blender</h1>
+<p>Recently, I got into creating 3D environments in Blender. While it involves a lot of artistic elements, there are some rules and workflows that make the process easier. I watched dozens of youtube tutorials about the topic and wrote down the lessons I learned in this post. Warning: this is a long read.</p>
+<h2 id="idea">Idea</h2>
+<p>Environment creation starts with an idea. To develop the workflow for building the landscapes, I came up with two environments: a desert and a mountain.</p>
+<p>For the desert one, I was initially planning to have an animation with a person hiding and shooting a bow in the direction of another character. For the mountainous area, it was meant to be an animation of a character in <a href="https://en.wikipedia.org/wiki/Wingsuit_flying">a wingsuit</a> starting to fly down a road.</p>
+<p>I wrote down the elements in the scene, what mood it would have, etc. It helps in focusing and acts as a reference point for later. Of course, the final landscape may differ from the initial idea based on how it goes.</p>
+<p>I looked at some options for storing the idea in the blender file. One of them was a Blender plugin that allows extra “note properties” on an object, but I ended up making a “Text” object and setting it as not-to-render. It wasn’t very convenient, but it was the best thing I tried.</p>
+<figure>
+<img src="../images/3d_landscapes/idea_description.png" style="width:60.0%" alt="Short summary of the idea for the mountain scene." />
+<figcaption aria-hidden="true">Short summary of the idea for the mountain scene.</figcaption>
+</figure>
+<h2 id="workflow">Workflow</h2>
+<p>Converting an idea to the final environment involves a lot of steps. While making the two landscapes, I divided the process into a couple of stages:</p>
+<ol type="1">
+<li>collecting references</li>
+<li>drawing a map of the terrain</li>
+<li>modelling a mesh of the landscape</li>
+<li>texturing the mesh</li>
+<li>adding repeating elements: trees, grass, rocks</li>
+<li>lighting the scene</li>
+<li>adding a character</li>
+<li>choosing the camera settings</li>
+<li>adding atmospheric effects and clouds</li>
+<li>bringing some assets close to the camera: tree branches, weapons, dice, etc.</li>
+</ol>
+<p>Each of them is a separate topic to explore. In the following sections, I detail what I learned about them.</p>
+<h2 id="references">References</h2>
+<p>When designing a landscape (or anything visual), it’s useful to collect references on how similar objects look in the real world. Humans’ visual memory tends to be vague and forgets the details quickly.</p>
+<p><a href="https://www.pureref.com/">PureRef</a> is a popular tool for storing references. It stores photos that one finds on the internet and allows one to move the board around. It doesn’t have a lot of options, but it serves its purpose well.</p>
+<figure>
+<img src="../images/3d_landscapes/references.png" style="width:80.0%" alt="References I collected before creating the desert environment." />
+<figcaption aria-hidden="true">References I collected before creating the desert environment.</figcaption>
+</figure>
+<h2 id="map">Map</h2>
+<p>I started creating a landscape by drawing a rough sketch of a map of the terrain to mark where there will be a mountain, a river, etc.</p>
+<p>To do that, I used Blender’s <a href="https://docs.blender.org/manual/en/latest/interface/annotate_tool.html">annotate tool</a>. It didn’t work as well as I’d like to: once drawn, it was difficult to turn the annotations on and off, and I also had some problems making sure that I’m drawing on the right plane, but it was good enough for a rough sketch.</p>
+<p>Drawing a map with a mouse would be painful, so instead, I connected my ipad as a graphic screen using <a href="https://github.com/H-M-H/Weylus">weylus</a> and used the apple pencil to create the map in Blender.</p>
+<h2 id="creating-mesh-of-the-landscape">Creating mesh of the landscape</h2>
+<p>Mesh is the set of vertices and connecting them edges used to describe a shape of a 3D object. For creating landscapes (in particular mountains), creating the mesh manually by simulating clay sculpting would be tedious: a lot of detail is needed for the model to look plausible.</p>
+<p>Fortunately, there are mathematical tools that procedurally generate useful landscape meshes out of random noise. The most popular of them is <a href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a>, which puts random values, defining the height of the landscape, smoothly on a 2D surface. The noise consists of a number of noise <em>octaves</em>: the lower-frequency ones define the general shape of the terrain, whereas the higher-frequency ones express smaller bumps.</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/PerlinNoise2d.png" style="width:50.0%" alt="Texture generated using 2D Perlin noise." />
+<figcaption aria-hidden="true">Texture generated using 2D Perlin noise.</figcaption>
+</figure>
+<h3 id="generating-landscape-in-blender">Generating landscape in Blender</h3>
+<p>There are two ways to create a landscape using Perlin noise in Blender:
+directly through <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/noise.html">noise texture node</a>, and using <a href="https://docs.blender.org/manual/en/latest/addons/add_mesh/ant_landscape.html">Another Noise Tool</a> add-on.</p>
+<h4 id="displacement">Displacement</h4>
+<p>When using the noise texture node, we are given a plane with the noise and pass it as a <a href="https://docs.blender.org/manual/en/latest/render/materials/components/displacement.html">displacement</a> in the shader, telling the renderer to modify the mesh using the (generated) texture.</p>
+<p>This setting gives the artist a lot of control over how the final mesh looks but requires some knowledge and tinkering to create anything beyond a generic mountain.</p>
+<p>For the displacement to actually modify the mesh (as opposed to only altering how the light bounces off of the original surface), one needs to use the Cycles rendering engine and set <code>Displacement only</code> in <code>Material &gt; Settings &gt; Displacement</code>.</p>
+<h4 id="another-noise-tool">Another Noise Tool</h4>
+<p>The <a href="https://docs.blender.org/manual/en/latest/addons/add_mesh/ant_landscape.html">A.N.T. add-on</a> simplifies the process of landscape generation by storing several randomness settings corresponding to various terrains. After choosing a default to base the environment on, one can further alter the settings to change the random seed or increase the height or water level of the landscape.</p>
+<p>Generally, the A.N.T. tool is easy to use and allows to create landscapes more quickly than using the texture noise directly. I have encountered two problems when using it, though:</p>
+<ol type="1">
+<li>As one chooses the noise settings from the operator box<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the landscape has to be finished in a single step. Clicking outside of the box will close it, and bringing it back (with F9) is only possible before making any other operations (even if they are unrelated to the landscape).</li>
+<li>Scaling up the landscape requires changing multiple parameters: to be able to change the size of the whole object, one needs to modify the size of the mesh, the size of the “random noise”, as well as alter the height of the terrain. While it makes sense for these settings to be separate (one may want to increase the X-Y size of the mesh without changing the height), a single slider for scaling the landscape up would be more convenient. It is particularly painful given the previous point, as it isn’t possible to scale the landscape up by the standard means and continue modifying the noise parameters.</li>
+</ol>
+<p>Whether using the noise texture or the add-on, one needs to be careful with the number of vertices of the created mesh. While more detailed meshes look better, I observed that anything beyond 256x256 slows down the whole workflow significantly.</p>
+<p>In the case of the mountainous terrain, to preserve high detail at the peaks (where I also placed snow, which made the lack of details very apparent) I subdivided only parts of the meshes corresponding to the more visible areas near the peaks. This way, I had more vertices where needed without significantly increasing the overall number.</p>
+<h3 id="water">Water</h3>
+<p>Some form of water (ocean, river, lake) is a frequent guest on a landscape. Blender has a built-in modifier that deforms a plane to simulate water waves. It has many settings; I haven’t played with them a lot<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> but was able to get a convincing-looking mesh after a bit of tinkering.</p>
+<p>One problem I had with the water was that the water looked nice and reflective while using the material preview but completely dark during rendering.</p>
+<p>After watching some tutorials on the matter, I saw that to make water more glossy, people mark it as highly metallic in the Principled BSDF<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, even though it doesn’t make physical sense.</p>
+<h2 id="texturing">Texturing</h2>
+<p>Once the mesh is finished, one needs to put a texture with colors on top of it. For standard materials, like wood, brick, gravel, or snow, many websites allow downloading textures for free, e.g.</p>
+<ul>
+<li><a href="https://ambientcg.com/">ambientCG</a></li>
+<li><a href="https://polyhaven.com/">Poly Haven</a></li>
+</ul>
+<p>As the texture is two-dimensional, but the mesh vertices are three-dimensional objects, one needs to map each vertex to the corresponding place on the texture in the process of <a href="https://en.wikipedia.org/wiki/UV_mapping">UV unwrapping</a>.</p>
+<p>In Blender, there are two mechanisms for modifying this mapping:</p>
+<ol type="1">
+<li>By modifying the UV map itself, changing how parts of the texture are stretched and expanded to fit the mesh. In the case of the landscape, the automatically generated UV map worked just fine, as with the texture containing generic materials it doesn’t matter where different parts of it get applied (as opposed to unwrapping a texture of a human model, where we don’t want the leg texture to appear on the head).</li>
+<li>By making changes to the material’s shader (function mapping vertices to colors), allowing to apply mathematical transformations to the textures, combining multiple textures, etc. I used this part extensively.</li>
+</ol>
+<h3 id="modifying-the-uv-mapping-in-the-shader">Modifying the UV mapping in the shader</h3>
+<p>While the textures one can get for free are usually high quality (4 or 8K<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>), in a sense they are both too small and too big. They are too small, as they aren’t able to cover a large mountain in full: unwrapping the texture once (with no repetitions) over the mesh will cause the smaller elements of the material (like grass, or rocks) to look too big in proportion:</p>
+<figure>
+<img src="../images/3d_landscapes/unwrap_too_small_texture.png" style="width:60.0%" alt="When the texture is too small, the individual rocks appear too big." />
+<figcaption aria-hidden="true">When the texture is too small, the individual rocks appear too big.</figcaption>
+</figure>
+<p>At the same time, the high-density textures are resource-heavy, causing the rendering process to use more memory and become slower.</p>
+<p>The common solution to this problem is to use a given texture image multiple times in different places of the mesh: as the texture is of a material, it doesn’t matter where exactly a given part of the texture is being placed, and whether all parts of the material are unique, as long as the repetitions are not blatant.</p>
+<p>To achieve that, Blender’s image texture node, which is part of the shader, receives a location input. Using it, one can arbitrarily change the mapping between the vertices in the mesh and the positions on the texture.</p>
+<p>To repeat the texture multiple times, one needs to scale the location input by a number bigger than 1: for example, if it is scaled by 2, the 0-1 coordinates in the UV map will correspond to 0-2 on the texture, repeating the texture twice along each axis.</p>
+<h4 id="texture-coordinate-node">Texture Coordinate node</h4>
+<p>The shader is a mapping from the mesh vertices to the colors. In our case, the vertices are mapped to a position on the texture<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p>By default, the location used for a given vertex is expressed as its two-dimensional coordinates on the UV map: the 3D vertex is mapped to 2D by the UV map, and the further operations: modifying colors or scaling, are applied in two dimensions only.</p>
+<p>One may want to use a different coordinate system for representing the vertices in the shader: for example, if one doesn’t have a UV map, and wants to use the actual, 3D coordinates of the vertices in the world, process them, and pass them as the input to the image texture node.</p>
+<p>To change the coordinate system of vertices’ in the shader, Blender has a <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">Texture Coordinate</a> node.</p>
+<figure>
+<img src="../images/3d_landscapes/texture_coordinate_setup.png" style="width:85.0%" alt="A typical way of connecting the Texture Coordinate node in a shader." />
+<figcaption aria-hidden="true">A typical way of connecting the Texture Coordinate node in a shader.</figcaption>
+</figure>
+<p>Typical shader setup, where the UV coordinates of the vertices are transformed by a vector mapping before being used to choose a place in a texture.</p>
+<p>Various outputs of the Texture Coordinate node correspond to different coordinate systems in which vertices can be expressed. The more useful ones are defined as follows:</p>
+<ul>
+<li>UV: the default system, where the vertices are represented as their (2D) coordinates on the UV map.</li>
+<li>Generated: the coordinate system of the smallest bounding box of the object. For each vertex, it will output (three-dimensional, each from 0 to 1) coordinates describing where in the bounding box the vertex lies<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</li>
+<li>Object: the coordinates of the vertices relative to the position of another object.</li>
+<li>Normal: outputs the direction of the normal in a given place (i.e. the vector perpendicular to the surface). It’s useful for example to correctly rotate objects placed on top of another object (particles).</li>
+</ul>
+<h3 id="seamless-textures">Seamless textures</h3>
+<p>Using Texture Coordinate and mapping nodes allows us to repeat a given texture a couple of times to reuse it in different places without stretching it too much. It may lead to a problematic repeating pattern of the texture:</p>
+<figure>
+<img src="../images/3d_landscapes/unwrap_repeating.png" style="width:60.0%" alt="Repeated texture creating an unwanted, grid-like pattern." />
+<figcaption aria-hidden="true">Repeated texture creating an unwanted, grid-like pattern.</figcaption>
+</figure>
+<p>One way to solve this problem would be to use a procedurally-generated material instead of a fixed-size texture. Lacking this (and most of the materials you can download online are based on textures), the next best try is to make sure that the repeating parts of the texture are difficult to notice. We call a texture where one cannot distinguish the repeats “seamless”.</p>
+<p>One popular way to achieve this is to use the <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoy texture</a>, which is a procedurally-generated texture with a number of polygonal cells with different colors.</p>
+<figure>
+<img src="../images/3d_landscapes/voronoy.png" style="width:40.0%" alt="An example Voronoy texture." />
+<figcaption aria-hidden="true">An example Voronoy texture.</figcaption>
+</figure>
+<p>For each pixel in the texture, we are given the (random) color of the current cell and the position of the center of the cell.</p>
+<p>To use it for making seamless textures, one needs to put the texture independently in each cell, and apply a random rotation and translation to each of the cells, so that the seams between cells are harder to notice than in a regular grid pattern.</p>
+<p>We can achieve it by mapping the UV coordinates to the difference between the UV coordinates and the center of the given cell. This way, the (0, 0) pixel of the texture lies at the center of each cell, and the rest of the cells contain the texture around it<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>, unscaled.</p>
+<figure>
+<a href="../images/3d_landscapes/voronoy_setup.png"><img src="../images/3d_landscapes/voronoy_setup.png" style="width:55.0%" alt="Simple shader setup with Voronoy texture" /></a>
+<img src="../images/3d_landscapes/voronoy_my_texture.png" style="width:35.0%" alt="Resulting texture" />
+<figcaption>
+A simple setup for repeating a texture using a Voronoy texture and the resulting rock texture.
+</figcaption>
+</figure>
+<p>To apply random translation and rotation to each of the cells independently, we can use the random color of the cell, linearly mapped to an appropriate range.</p>
+<p>Furthermore, we can add some random noise to the location input of the voronoy texture, making the edges of the cells move around randomly, blurring the edges between the neighboring cells.</p>
+<figure>
+<a href="../images/3d_landscapes/voronoy_setup2.png"><img src="../images/3d_landscapes/voronoy_setup2.png" style="width:90.0%" alt="More complex shader setup with Voronoy texture" /></a>
+<a href="../images/3d_landscapes/voronoy_seamless.png"><img src="../images/3d_landscapes/voronoy_seamless.png" style="width:30.0%" alt="Resulting seamless texture" /></a>
+<figcaption>
+A more sophisticated seamless setup with Voronoy texture, random translation and rotation of each Voronoy cell, and blurring the boundaries between cells (top), and the resulting texture (bottom).
+</figcaption>
+</figure>
+<p>More ideas about making seamless textures can be found in <a href="https://www.youtube.com/watch?v=xKnSgH8zVuA">this youtube tutorial</a>.</p>
+<h3 id="different-textures-vertex-groups">Different textures: vertex groups</h3>
+<p>So far we discussed applying a single texture to a given mesh. When making a landscape, we often want to use multiple textures, though: there may be a part of the mountain with the forest ground, a part with the rocks, a part with a snowy peak, and so on.</p>
+<p>The mechanism that allows us to do this in Blender is called <em>vertex groups</em>. These are 0-1 (continuous!) weights that are assigned to the vertices of a given mesh. This way, we can define which part of the mesh is, say, the forest, and apply the forest texture only there.</p>
+<p>As the weights are continuous, we can nicely blend multiple textures. However, it’s generally not possible to mix full materials in Blender, one has to define a single material that combines different shaders based on the vertex group.</p>
+<p>Unfortunately, the vertex groups are not directly usable in the shader editor. Instead, one has to make a simple pass-through transformation of the vertex group using geometry nodes, to save the vertex group as a generic <em>attribute</em> which the shader editor can access<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. The attribute has to have a different name from the vertex group.</p>
+<h4 id="creating-vertex-groups">Creating vertex groups</h4>
+<p>Most of the time, I was drawing the vertex groups manually, roughly marking where different types of terrain would be: as the transitions were mostly smooth, and there are often other elements placed on top of the terrain, the exact placement of the vertex groups doesn’t matter.</p>
+<p>One exception to this was the water texture: it would make sense to place the water more in the terrain depressions, but drawing that manually would take a lot of effort.</p>
+<p>To avoid that, I used the A.N.T. generator again. Apart from generating the mesh, it also has a “Landscape eroder” functionality, where you can choose some parameters of erosion to apply to your terrain mesh.</p>
+<p>The erosion itself wasn’t useful for me, but while generating it the add-on simulates the flow of rainwater in the ecosystem. While doing this, it creates several vertex groups describing where the rain would fall, how the water would flow, and so on. I added the smallest erosion possible to not affect the mesh too much, which generated the vertex groups for the textures as the side-effect.</p>
+<h2 id="particle-systems">Particle systems</h2>
+<p>When creating the landscape mesh, I wasn’t moving each vertex/edge separately, but rather edited it on a higher level of abstraction, changing properties like height, or slope degree in the add-on. Similarly, when I was placing some similar objects in the landscape, like rocks, strands of grass, or trees, I didn’t want to be deciding where to put each of them separately but rather wanted to choose some settings like density, or particular object frequency.</p>
+<p>Blender has a modifier, called a <a href="https://docs.blender.org/manual/en/latest/physics/particles/introduction.html">Particle system</a> that can be used for randomly placing some objects (particles) on top of a different mesh (emitter).</p>
+<p>The particle system modifier is a somewhat old (pre-3.0) way of placing particles. The current Blender version has <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/introduction.html">Geometry nodes</a><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> that allow for expressing emitting particles, as well as many ways for modifying the mesh programmatically, under a common, node-based interface.</p>
+<p>However, as geometry nodes are more general than a particle system, setting up a particle system in geometry nodes requires a bit of work, and many settings that are easily accessible from the particle system UI are harder to do in Geometry nodes.</p>
+<p>I initially thought that all of the things that I wanted to do related to particles could be expressed using the old-style system, so I decided to use that as opposed to geometry nodes.</p>
+<h3 id="trees">Trees</h3>
+<p>The old modifier worked fine for most of the things: I successfully placed grass, flowers, and rocks. Adding trees ended up being much more time-consuming, though.</p>
+<p>I explored some ways of adding individual trees for the particles:</p>
+<ol type="1">
+<li>bringing them as assets from the internet,</li>
+<li>using a popular <a href="https://blender-addons.org/modular-tree-addon/">modular tree add-on</a>,</li>
+<li>making a custom tree generator with geometry nodes.</li>
+</ol>
+<h4 id="trees-generator-in-geometry-nodes">Trees Generator in Geometry Nodes</h4>
+<p>I started by trying to make a custom tree generator using Geometry nodes. I followed two youtube tutorials (<a href="https://www.youtube.com/watch?v=URWuNhg5ZNk">1</a>, <a href="https://www.youtube.com/watch?v=XSkaM-8Vgz8">2</a>), which explained the topic well.</p>
+<p>While I have learned a lot about how geometry nodes work in the process, the trees that I generated weren’t looking great and were not of the type I was going for.</p>
+<figure>
+<img src="../images/3d_landscapes/tree_gn.png" style="width:40.0%" alt="An example tree trunk I generated with geometry nodes." />
+<figcaption aria-hidden="true">An example tree trunk I generated with geometry nodes.</figcaption>
+</figure>
+<p>Because of that (and the fact that making the generator was taking a lot of effort), I decided to not progress to adding the leaves but rather explore other ways of adding trees to the scene.</p>
+<figure>
+<a href="../images/3d_landscapes/gn_for_trees.png"><img src="../images/3d_landscapes/gn_for_trees.png" style="width:95.0%" alt="Geometry nodes setup for generating trees." /></a>
+<figcaption>
+The final geometry nodes setup for generating trees.
+</figcaption>
+</figure>
+<p>Having said that, after trying other methods I think the idea of using geometry nodes is worth re-exploring, especially by using someone else’s ready-to-use generator from the internet, like <a href="https://github.com/IRCSS/Trees-With-Geometry-Nodes-Blender">this one</a>.</p>
+<h4 id="modular-tree-add-on">Modular tree add-on</h4>
+<p>Next, I tried using the <a href="https://blender-addons.org/modular-tree-addon/">modular tree add-on</a>. It’s an old, automatic generator that can make trees of different types. It has a lot of parameters to play with.</p>
+<figure>
+<img src="../images/3d_landscapes/modular_tree_settings.png" style="width:85.0%" alt="Parameters one can change in a typical tree setup with two levels of branching and no leaves." />
+<figcaption aria-hidden="true">Parameters one can change in a typical tree setup with two levels of branching and no leaves.</figcaption>
+</figure>
+<p>For leaves, the add-on uses the particle system itself: it takes any object as a leaf (actually, <a href="https://en.wikipedia.org/wiki/Twig">twig</a>), and generates settings that use it as a particle to populate around the branches.</p>
+<h4 id="using-the-trees-as-particles">Using the trees as particles</h4>
+<p>Once I had a couple of good-looking trees generated with the modular tree add-on, I tried to use them in a particle system to generate a forest.</p>
+<p>This turned out to cause a lot of problems: the particle system modifier doesn’t work well with particles that use a particle system themselves: by default, it will only duplicate the “emitter” (in the case of trees: branches), but not the child particles (leaves).</p>
+<p>To fix it, I tried to “apply” the particle system modifier. By default, this only creates the points on which the leaves were meant to be duplicated, but not the leaves themselves.</p>
+<figure>
+<video width="480" controls>
+<source src="../images/3d_landscapes/particle_applying.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<figcaption>
+Applying the particle system modifier causes the leaves to disappear.
+</figcaption>
+</figure>
+<p>To get full leaves, one needs to “make particles real” first. This creates a separate copy for each of the particles, which, in the case of leaves, creates thousands of new objects and crashes Blender for me. Ideally, I would be able to ask Blender to make the particles real, but decimate them on the fly, so that I would get a lower-quality version of the mesh without ever creating one with millions of vertices. I didn’t find an option like this.</p>
+<p>My next attempt for making the forest was to use geometry nodes, which support <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/instances.html#nested-instancing">up to 8 levels</a> of nested instancing. The problem here was that the nested instancing only works when the outer “instance” (tree) is itself based on the geometry nodes. In the case of the trees generated via the add-on, they were using the old-style particle system, so the nested instancing within geometry nodes didn’t work.</p>
+<h5 id="reproducing-particle-system-in-geometry-nodes">Reproducing particle system in Geometry Nodes</h5>
+<p>At this point, I decided to try to reimplement the tree particle system in geometry nodes to benefit from nested instances.</p>
+<p>Many of the particle system’s settings (e.g. changing density and using a vertex group to mark where to emit the particles) were directly available within one of the geometry nodes.</p>
+<p>One problem I observed was that in the particle system when we choose the particles to point towards the normal of the emitter, it will align the local Y axis of the particles with the normal<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>, whereas for the geometry nodes’ <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/instances/instance_on_points.html">Instance on Points node</a> uses the Z axis.</p>
+<p>As the trees were generated for later use in a particle system, one needed to adjust for that. While I could rotate the leaves (and later the trees themselves, as the root was also pointing in the Y, not the Z direction), I tried to force the geometry nodes system to use the same coordinate axes as the particle system one.</p>
+<p>After some <a href="https://blender.stackexchange.com/questions/266963/reproduce-particle-system-settings-in-geometry-nodes">investigation</a> on the awesome blender stackexchange forum, I learned about the <a href="https://docs.blender.org/manual/en/3.1/modeling/geometry_nodes/utilities/align_euler_to_vector.html">align euler to vector node</a> that allows creating a rotation to point particles to the emitter’s normal along any given axis.</p>
+<p>This still wasn’t enough to fully reproduce the particle system’s rotations. While the particles’ Y axes were now pointing along the normal, their rotation along their Y axes wasn’t matching the one in the particle system.</p>
+<p>After playing with the two systems a bit more, I realized that the rotation along the normal axis in the particle system is arbitrary (for some of the emitter’s directions) and changes with the rotation of the emitter itself.</p>
+<p>It seems like a bug related to the representation of rotations in the particle system: something not worth fixing now that geometry nodes are becoming a new standard<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</p>
+<figure>
+<video width="402" controls>
+<source src="../images/3d_landscapes/broken_particle_system_cut.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<figcaption>
+Rotating the emitter causes the particles to rotate in surprising directions.
+</figcaption>
+</figure>
+<p>Once I was confident that the rotation in geometry nodes was good, I <em>think</em> I would be able to reproduce different features of the particle system modifier there.</p>
+<p>However, it turned out that the resulting trees would simply have too many vertices to use as particles: a typical generated tree has around 10 million vertices (even more for a conifer, as you need a lot of needles to cover the tree), whereas to make it work with hundreds of thousands of particles, the most Blender can handle is on the order of 10 thousand vertices per particle.</p>
+<figure>
+<a href="../images/3d_landscapes/pine_tree.png"><img src="../images/3d_landscapes/pine_tree.png" style="width:80.0%" alt="Pine tree with needles as particles." /></a>
+<figcaption>
+A particle system setup with a pine tree with 500000 needles. An order of magnitude more is required for the tree to look healthy.
+</figcaption>
+</figure>
+<p>One needs to find a way to decrease the density of the mesh while ensuring it still looks good. We could achieve it with a <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/decimate.html">Decimate modifier</a>, but it’s <a href="https://developer.blender.org/T89051">not available as a geometry nodes’ node</a>, so we would still have to apply the geometry nodes first, which was too expensive to do before.</p>
+<p>Even if the decimation worked, there is a risk that the decimated tree will not look good anymore. So, after spending a lot of effort trying to use generated trees, I decided to use low-poly versions of the trees from the internet, instead of relying on a generator.</p>
+<h4 id="bringing-trees-as-an-asset">Bringing trees as an asset</h4>
+<p>There are lots of free tree assets available online. They are of varying quality; many of them are generated by the modular add-on itself, so still have the problem with using the particle system and would create too many objects if instantiated.</p>
+<p>One can model the tree oneself, but it requires a bit of work (but there are a lot of good tutorials).</p>
+<p>What I ended up doing is to try a lot of assets until I found some which are both low-poly and not using the particle systems inside<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>.</p>
+<p>One workflow for creating low poly assets which I didn’t try is to reduce the tree objects from high to low poly (explained e.g. in <a href="https://www.youtube.com/watch?v=Yx9TvvnxCAM">this tutorial</a>).</p>
+<h4 id="object-hiding-in-a-particle-system">Object hiding in a particle system</h4>
+<p>When using the assets from the internet, I learned about how people implement hiding the base objects in the particle system setup.</p>
+<p>When using some object A as a particle in a particle system setting, there are two types of hiding one may want to use:</p>
+<ol type="1">
+<li>to hide the “base” object from rendering in a scene. When we use some object as a particle, its original version doesn’t disappear from the scene; it is still rendered. Unless that’s what we want (and I never wanted that), rendering the base object will waste resources and potentially create some additional reflections of the object.</li>
+<li>To not show the emitted particles in the viewport, to avoid their expensive rendering outside of the final render.</li>
+</ol>
+<p>It was easy to find a lot of incorrect advice regarding object hiding (<a href="https://blender.stackexchange.com/questions/160413/cant-hide-object-which-particles-are-based-on-without-losing-particles">1</a>, <a href="https://blender.stackexchange.com/questions/198994/how-can-i-disable-a-particle-base-object-from-render">2</a>). What ended up working was:</p>
+<ol type="1">
+<li>to disable the collection with the base object(s). It still appears in the viewport, but not in the renders.</li>
+<li>In the object settings choose: <code>Object &gt; viewport display &gt; as bounding box</code>.</li>
+</ol>
+<h3 id="wind">Wind</h3>
+<p>Once I added grass, I wanted it to move together with the wind. Blender has a <a href="https://docs.blender.org/manual/en/latest/physics/forces/force_fields/types/wind.html">wind force</a>, which is meant to apply some pressure in a particular direction.</p>
+<p>When used with the grass and flowers, it didn’t work as well as expected: the movement of the objects was very non-smooth: they would be in a given position for multiple frames, then jump to another position for one frame, then jump back.</p>
+<p>It looked like some form of instability in a physics simulation system. I tried to search for it online but wasn’t able to figure out the reason. In the end, I decreased the strength of the wind to very small values which made the effect barely visible.</p>
+<h4 id="wind-on-the-trees">Wind on the trees</h4>
+<p>Apart from animating the moving blades of grass, I wanted to animate the tree leaves. For that, I followed <a href="https://www.youtube.com/watch?v=EsCQxUJCLB0">this tutorial</a>.</p>
+<p>I added a displacement to the leaves’ vertices based on a color in a randomly-generated texture. The position on the texture was controlled by the world-space position of a separate empty object, which can be keyframed as usual.</p>
+<h2 id="lighting">Lighting</h2>
+<p>The most physically accurate way for lighting an outdoor scene is to put a single, strong, light source simulating the sun.</p>
+<p>Unfortunately, the technical limitations of physics simulation make the light scattering from a single direction not cover the landscape well enough. To make the lighting resemble real scenes more, people use environment maps in a form of <a href="https://en.wikipedia.org/wiki/High_dynamic_range">High dynamic range images (HDRIs)</a>. These are images spanning a half-sphere with an outdoor image, acting both as a background and the source of light.</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Afterglow_of_a_sunset.jpg" style="width:90.0%" alt="A sunset HDRI by Masato OHTA." />
+<figcaption aria-hidden="true">A sunset HDRI by <a href="https://commons.wikimedia.org/wiki/File:Afterglow_of_a_sunset.jpg">Masato OHTA</a>.</figcaption>
+</figure>
+<p>HDRIs are largely available for free on the same websites that give away the textures with the materials.</p>
+<p>Apart from the main light source, artists often add additional, smaller ones, with a varying degree of physical correctness. The main motivation here is to guide the viewer’s eye toward the main character/objects of the scene, separate them from the background, and create the right mood.</p>
+<p>I haven’t used the extra lights extensively; I only brought one light to focus the character in the mountain render. <a href="https://youtu.be/W07u4S8xJXs?t=995">Here</a> is a tutorial on lighting that I found useful.</p>
+<h2 id="volumetric-effects">Volumetric effects</h2>
+<p>The role of the light sources is to generate new light rays that scatter from different objects.</p>
+<p>Depending on the type of the atmosphere (i.e. a clear-sky mid-day, or a foggy morning), these light rays will move differently. Furthermore, the way that light travels in an atmosphere with a lot of humidity makes further-away objects appear more blue-ish (<a href="https://en.wikipedia.org/wiki/Aerial_perspective">atmospheric perspective</a>).</p>
+<p>We can simulate similar effects in Blender.</p>
+<p>To achieve atmospheric perspective, one can use a simple compositor effect by rendering a separate “distance from the camera” layer and adding it, multiplied by the atmosphere color, to the final render. I used it to achieve an impression of dirt hanging in the air in the desert scene.</p>
+<p>A more physically accurate way of simulating this effect can be achieved by using a <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/volume_absorption.html">Volume Absorption</a> shader. It takes a form of a material one can apply to a simple box that encompasses the whole scene, which absorbs the light of a given color which leads to the effect of further-away objects having their colors tinted.</p>
+<p><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/volume_scatter.html">Volume Scatter</a> is a related node that scatters the rays, allowing to simulate an effect like fog or <a href="https://en.wikipedia.org/wiki/Sunbeam">god rays</a>.</p>
+<h3 id="clouds">Clouds</h3>
+<p>Apart from the clouds being present on an HDRI, one may want to have clouds inside of the scene.</p>
+<p>I saw it being done in three different ways:</p>
+<ol type="1">
+<li>By adding an animated image of the cloud as a flat plane. As long as the camera is not moving too much, it looks surprisingly good (on the tutorials on youtube), but I had a problem finding nice, alpha-transparent gifs of the clouds on the internet.</li>
+<li>By procedurally generating a cloud using a <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/volume_principled.html">Principled Volume node</a>. I used it for one of the clouds in the mountain scene. On its own, the cloud looked good, but I wasn’t able to change the type of the cloud well enough for it to match the background.</li>
+<li>By bringing a random, animated texture on a plane between a light source and the landscape to simulate the shadow of moving clouds. This required adding another light source and balancing the total amount of light, but overall was a relatively simple process with a nice final effect.</li>
+</ol>
+<figure>
+<a href="../images/3d_landscapes/cloud_node.png"><img src="../images/3d_landscapes/cloud_node.png" style="width:50.0%" alt="The shader setup for generating the cloud." /></a>
+<img src="../images/3d_landscapes/generated_cloud.png" style="width:40.0%" alt="A generated cloud." />
+<figcaption>
+A shader setup based on a Principled Volume node for generating a cloud.
+</figcaption>
+</figure>
+<h3 id="moving-the-clouds-in-the-sky">Moving the clouds in the sky</h3>
+<p>Initially, I added the wind to the grass and the tree leaves but kept the HDRI with clouds fixed in place. It created an effect where something feels wrong, but it’s not clear what it is.</p>
+<p>When a friend<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> pointed the problem out to me, I tried to rotate the HDRI to move the clouds in the sky. Unfortunately, this also moved the background mountains, which looks <em>totally</em> wrong.</p>
+<p>Initially, I thought that I’ll have to edit the HRDI image to split it into the sky and the rest to be able to rotate only a part of it. Luckily, it turns out that the blue channel of the HDRI is significantly stronger for the sky than for the mountains and one can select the sky based on that instead.</p>
+<p>In the end, I created two copies of the HDRI texture node and combined them in a <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/color/mix_rgb.html">Mix Shader</a> using the blue channel as the factor. This way, I could rotate (and animate) only the sky part of the HDRI (which corresponded to one of the texture node copies).</p>
+<figure>
+<img src="../images/3d_landscapes/sky_selection_setup.png" style="width:80.0%" alt="The sky selection setup in the shader." />
+<img src="../images/3d_landscapes/sky_selection.png" style="width:80.0%" alt="The selected sky." />
+<figcaption>
+The setup for selecting the sky in the shader and the resulting selection (in black).
+</figcaption>
+</figure>
+<p>In the image, there was a small bit of an overlap between the “sky” part and the “mountain” part, which caused a thin outline of the mountains to be rotated together with the sky. To avoid this effect, I moved the sky texture a little bit down to hide it behind the mountain part so that the visible part of the sky could be freely moved.</p>
+<h2 id="character">Character</h2>
+<p>Modeling characters, especially their faces, is very hard: people have thousands of years’ worth of evolutionary experience recognizing other people’s faces and silhouettes, which makes them hard to fake.</p>
+<p>Fortunately, there is a website: <a href="https://www.mixamo.com/">Mixamo</a> that not only provides reasonable-quality human models for free but also gives many animations for them.</p>
+<p>The models are using a common <a href="https://en.wikipedia.org/wiki/Skeletal_animation">rig system</a>, and the animations are defined using that rig. This way, one can combine any animation with any model and Mixamo will generate the correct animated model. I think it’s even possible to bring one’s own 3d model (assuming that it has the rig attached correctly) to use their animations, but I haven’t tried it yet.</p>
+<p>In the two scenes that I made, I took the characters from Mixamo. As the faces of the models were not as good as I would like and the main goal was to show the landscape, I made the characters in the shots face away from the camera.</p>
+<h2 id="camera-settings">Camera settings</h2>
+<p>Camera objects in Blender simulate how a real-life camera/video recorder works. There are several <a href="https://docs.blender.org/manual/en/latest/render/cameras.html">camera settings</a> one can change; two of them that make the most significant effect are focal length and depth of field.</p>
+<h3 id="focal-length">Focal length</h3>
+<p><a href="https://en.wikipedia.org/wiki/Focal_length">Focal length</a> of a lens is a distance from it where the parallel light rays converge, after being refracted by the lens.</p>
+<p>The effect on the final image is the amount of perspective distortion: a smaller focal length makes the lines which are parallel in reality converge quicker (i.e. with a smaller angle between them) compared to higher focal lengths that cause the further away objects to seem to have a more identical size.</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Focal_length.jpg" style="width:35.0%" alt="Photographs of the same scene with different focal lengths, by Jcbrooks (link)." />
+<figcaption aria-hidden="true">Photographs of the same scene with different focal lengths, by Jcbrooks (<a href="https://commons.wikimedia.org/w/index.php?curid=3600442">link</a>).</figcaption>
+</figure>
+<p>Due to the relative lack of perspective distortion, the images rendered with higher focal lengths tend to appear more flat / less 3D. This effect is more visible when rendering smaller scenes where there would be multiple objects or buildings with parallel lines than in landscapes, though.</p>
+<p>The standard focal length used in photography is 35mm. In the two scenes I rendered, I used 35mm focal length for the mountain one and 65mm for the desert one.</p>
+<h3 id="depth-of-field">Depth of field</h3>
+<p>The “hole” through which the light travels in a camera is called an <a href="https://en.wikipedia.org/wiki/Aperture">aperture</a>. Choosing the size of the aperture is a tradeoff between the amount of light that enters the camera (less light makes it harder to expose the film), and the sharpness of the image (big apertures cause the image to become blurry). You can observe the latter effect in <a href="https://ciechanow.ski/cameras-and-lenses/#recording-light">this blog post</a> (at the bottom of the linked section).</p>
+<p>With a simulated camera, we don’t have the exposure problems: we can generate as many light rays as we need and make them go through an infinitesimally small aperture. The produced images will look wrong, though, as humans are used to partially-blurry images.</p>
+<p>The amount of blurriness is formalized through a notion of <a href="https://en.wikipedia.org/wiki/Depth_of_field">depth of field</a>.</p>
+<p>In Blender, one can control it through aperture’s <a href="https://docs.blender.org/manual/en/latest/render/cameras.html#aperture">F-stop</a>. To choose which object should be in focus, there is a convenient setting that makes a given object (e.g. an empty) define the focal point of the image.</p>
+<p>For making animations, one often wants to move the camera to change the focused object or create a particular feeling. There are a lot of good tutorials related to cinematography on this topic (e.g. <a href="https://www.youtube.com/watch?v=IiyBo-qLDeM">this one</a>). On the technical level, moving the camera in Blender is easy, as you can <a href="https://docs.blender.org/manual/en/latest/animation/keyframes/introduction.html">keyframe</a> its positions and rotations like for any other object.</p>
+<h2 id="assets">Assets</h2>
+<p>As a final touch, adding high-quality assets close to the camera can help to make the scene more realistic.</p>
+<p>One can laboriously model them oneself, but there are lots of websites where the assets are available for free:</p>
+<ul>
+<li><a href="https://sketchfab.com">Sketchfab</a>: probably the biggest website with free assets. Some of them are paid, but most of them are available on the CC BY-SA license which requires only to attribute the author in derived work.</li>
+<li><a href="https://blendswap.com/">Blend Swap</a>: a website with fewer models but provided as .blend files which can be directly imported to Blender. Non-blender formats like .obj or .fbx sometimes require a bit of work to import them correctly.</li>
+<li><a href="https://www.blenderkit.com/">BlenderKit</a> has even fewer models than Blend Swap, but on the other hand provides a very convenient add-on, that allows browsing the assets directly in Blender and importing them via drag-and-drop. It significantly speeds up the asset workflow. Unfortunately, the add-on is not supported very well, and I encountered bugs that crashed it on one of the scenes.</li>
+<li><a href="https://quixel.com/megascans">Megascans</a>. In theory, this is mostly a paid website made by a company called Quixel, which created lots of high-quality models using <a href="https://en.wikipedia.org/wiki/Photogrammetry">photogrammetry</a>: automatic generation of 3D models from pictures. Quixel has recently signed a deal with Unreal Engine to allow usage of their models in that engine for free. Theoretically, using the models in Blender wouldn’t follow the license rules, but it’s technically possible. The models come in various “Levels of detail” allowing one to choose higher-density models when placing them close to the camera and lower-density ones when used as particles for further-away areas.</li>
+</ul>
+<p>One problem with using the ready assets from the internet is that they limit creative freedom: one won’t be able to do everything they would like because of the lack of the assets.</p>
+<p>It’s a skill to know when to let it go and change the vision versus keep searching for the assets that would match the original idea. The reason I didn’t do a wingsuit jump in the mountain landscape, as I initially planned, was that I couldn’t find the right assets.</p>
+<h2 id="other-tips">Other tips</h2>
+<p>Each of the previous sections has concentrated on a single topic related to building a 3D landscape in Blender. Here, I gathered a few random thoughts that didn’t fit into any particular section.</p>
+<p>There are two landscape tutorials, both from CG Boost that I found very useful for a general overview of the whole workflow: <a href="https://www.youtube.com/watch?v=ZcAIonkvpfE">Large-Scale Environments in Blender</a> and its newer version: <a href="https://www.youtube.com/watch?v=ILPex8f-CYM">Environments with Geometry Nodes in Blender</a>. Each of them was meant to form a table of contents for a full, hours-long environment tutorial that the author is selling, but they covered everything in enough detail for me, and I don’t think the full course would give me much more.</p>
+<p>Apart from these, the same author<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> has two more tutorials that I liked: <a href="https://www.youtube.com/watch?v=bIZrTXtyQkY">Intro to Compositor</a>, which discusses Blender compositor for combining multiple partial renders and adding post-processing effects, and <a href="https://www.youtube.com/watch?v=J-zfEqMQS88">6 Tips to Make Your Renders Instantly Cooler</a>.</p>
+<p>The tips that the latter tutorial was advertising were to add:</p>
+<ol type="1">
+<li>a blurred foreground element near the borders of the image to add depth to the scene.</li>
+<li>cloud shadows. I explained this in <a href="#clouds">the previous section</a>.</li>
+<li>god rays. I mentioned this in <a href="#clouds">the same section</a>. When I was trying them out, I didn’t manage to make them work well enough when using the shader. Here, the author said to make them as a 2D image, but I didn’t want to be creating new assets for this project.</li>
+<li>falling leaves. I think it would be useful to learn how to use particle systems (or, even better, geometry nodes) to create animated objects, and affect them by the wind, but this didn’t fit my scenes well.</li>
+<li>birds. I saw this advice in multiple places; having flying birds in the scene makes it more lively and adds to the sense of scale.</li>
+<li>atmosphere. I was doing this with volumetric scatter above.</li>
+</ol>
+<p>Another tip that I learned when doing these projects was that Blender’s rendering system doesn’t fully ignore data even when it’s unused for rendering. I had Blender crashing or being much slower after adding some heavy objects or materials even when they were turned off. The lesson is to clean up the scene tree from time to time.</p>
+<h2 id="showoff">Showoff</h2>
+<p>Here are the two final renders I created:</p>
+<h3 id="desert">Desert</h3>
+<figure>
+<a href="../images/3d_landscapes/desert.png"><img src="../images/3d_landscapes/desert.png" style="width:80.0%" alt="The final render of the desert scene." /></a>
+<figcaption>
+The final render of the desert scene.
+</figcaption>
+</figure>
+<p>Initially, this was meant to be an animation with an arrow flying, but after doing the single frame the Blender file was messed up so much that I decided to finish it here.</p>
+<h3 id="mountain">Mountain</h3>
+<figure>
+<video controls>
+<source src="../images/3d_landscapes/mountain.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<figcaption>
+The animation for the moutain scene.
+</figcaption>
+</figure>
+<p>Apart from going away from the squirrel guy, originally I was planning that the shot will look at the mountains more from the top. However, when I tried this out, I realized that I would need many smaller mountains to cover the background if I decided on such an angle, so I changed my mind.</p>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>The (usually) small box with the parameters of the recently-finished operation, allowing to modify them.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://www.youtube.com/watch?v=n8PSS5HqC-Q">this youtube tutorial</a> explores wave generation in depth<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>see <a href="https://sygi.ml/posts/2021-12-01-pbr-materials.html#metallic">my previous post</a> on how the metallic material property works<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>i.e. 4096x4096 or 8192x8192 pixels.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>an alternative would be to create a function that defines color using a mathematical function<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>Note that as the coordinates are 3D, the last dimension is ignored if passed to an image texture. One can use these coordinates for other purposes, though.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>the textures are typically wrapped around (0, 0), such that negative “coordinates” correspond to the positions at the other end of a rectangular texture.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>see a question I asked <a href="https://blender.stackexchange.com/questions/264241/map-smooth-vertex-group-to-a-vertex-color-in-geometry-nodes">here</a>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p>which I discussed in <a href="https://sygi.ml/posts/2022-04-18-geometry-nodes.html">this blog post</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p>each object in Blender has its own, local coordinate system<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>it would still be interesting to understand better the Blender’s rotation coordinates system, but it’s a topic for another post<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>the set I ended up using is <a href="https://blendswap.com/blend/14644">here</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13" role="doc-endnote"><p><a href="https://tizianzeltner.com/">Tizian Zeltner</a><a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14" role="doc-endnote"><p><a href="https://www.youtube.com/channel/UCgUXNKRLilvorphztVi2DvA">Martin Klekner</a><a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    <script defer>
+      
+    require.config({
+      paths: {
+        'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
+        'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
+        'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min', <!-- for footnotes -->
+        'footnotes': '../../js/footnotes'
+      }
+    });
+
+    
+    
+    require(['anchorjs'], function(module){
+      const anchors = new module();
+      anchors.add();
+    });
+    require(['mathjax']);
+    require(['jquery'], function(jQuery){
+      require(['footnotes']);
+    });
+    
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', gaProperty, 'auto');
+    ga('send', 'pageview');
+    </script>
+  </body>
+</html>

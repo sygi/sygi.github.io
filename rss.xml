@@ -7,8 +7,16 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygi.ml/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sun, 22 May 2022 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 17 Jul 2022 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Environment design in Blender</title>
+    <link>https://sygi.ml/posts/2022-07-17-3d-landscapes.html</link>
+    <description><![CDATA[<p>Recently, I got into creating 3D environments in Blender. While it involves a lot of artistic elements, there are some rules and workflows that make the process easier. I watched dozens of youtube tutorials about the topic and wrote down the lessons I learned in this post. Warning: this is a long read.</p>]]></description>
+    <pubDate>Sun, 17 Jul 2022 00:00:00 UT</pubDate>
+    <guid>https://sygi.ml/posts/2022-07-17-3d-landscapes.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Cloud computing</title>
     <link>https://sygi.ml/posts/2022-05-22-cloud-computing.html</link>
     <description><![CDATA[<p>In recent years, cloud computing became very popular: it is both used on single pages with CVs and governments’ apps worth hundreds of millions. As I wanted to publish online a couple of smaller projects, I played with a number of cloud-based services to see how easy to use and costly are they for a hobby project.</p>]]></description>
