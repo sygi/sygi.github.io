@@ -50,6 +50,7 @@ I wasn’t doing them on my own.
 
 To my surprise, it’s possible to find lots of re-usable assets for free on the internet.
 I used these two a lot:
+
 - [sketchfab](https://sketchfab.com/) for 3D assets. A lot of ones available there are licensed with CC attribution: one can use them for any reason (including commercial use) but need to attribute the author.
 - [Poly Haven](https://polyhaven.com) for “physically based” textures of various surfaces: grass, wall, brick, etc.
 To make the materials look good, I needed to play with the lightning and the properties of the materials’ [BRDF](https://en.wikipedia.org/wiki/Bidirectional_reflectance_distribution_function)[^1]. I think there is a big room for improvement here, but I accepted the good-enough version of the renders.
