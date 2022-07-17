@@ -1,5 +1,6 @@
 ---
 title: 'Environment design in Blender'
+meta_image: https://sygi.ml/images/3d_landscapes/desert.png
 ---
 
 Recently, I got into creating 3D environments in Blender. While it involves a lot of artistic elements, there are some rules and workflows that make the process easier. I watched dozens of youtube tutorials about the topic and wrote down the lessons I learned in this post. Warning: this is a long read.
