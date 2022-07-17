@@ -189,7 +189,7 @@ Final geometry nodes used for the animation.
 </figure>
 
 <figure>
-<video width="360" height="640" controls="">
+<video width="360" controls="">
 <source src="../images/geometry_nodes/animation.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
