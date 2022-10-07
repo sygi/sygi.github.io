@@ -165,7 +165,7 @@ feedConfiguration = FeedConfiguration
     { feedTitle       = "Jakub Sygnowski blog"
     , feedDescription = "Posts on games, programming, and art."
     , feedAuthorName  = "Jakub Sygnowski"
-    , feedRoot        = "https://sygi.ml"
+    , feedRoot        = "https://sygnowski.ml"
     , feedAuthorEmail = "sygnowski@gmail.com"
     }
 
