@@ -128,7 +128,7 @@ main = hakyll $ do
 
 --------------------------------------------------------------------------------
 root :: String
-root = "https://sygi.ml"
+root = "https://sygnowski.ml"
 postCtx :: Context String
 postCtx =
     constField "root" root `mappend`
