@@ -10,170 +10,170 @@
         <lastBuildDate>Sun, 17 Jul 2022 00:00:00 UT</lastBuildDate>
         <item>
     <title>Environment design in Blender</title>
-    <link>https://sygi.ml/posts/2022-07-17-3d-landscapes.html</link>
+    <link>https://sygnowski.ml/posts/2022-07-17-3d-landscapes.html</link>
     <description><![CDATA[<p>Recently, I got into creating 3D environments in Blender. While it involves a lot of artistic elements, there are some rules and workflows that make the process easier. I watched dozens of youtube tutorials about the topic and wrote down the lessons I learned in this post. Warning: this is a long read.</p>]]></description>
     <pubDate>Sun, 17 Jul 2022 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2022-07-17-3d-landscapes.html</guid>
+    <guid>https://sygnowski.ml/posts/2022-07-17-3d-landscapes.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Cloud computing</title>
-    <link>https://sygi.ml/posts/2022-05-22-cloud-computing.html</link>
+    <link>https://sygnowski.ml/posts/2022-05-22-cloud-computing.html</link>
     <description><![CDATA[<p>In recent years, cloud computing became very popular: it is both used on single pages with CVs and governments’ apps worth hundreds of millions. As I wanted to publish online a couple of smaller projects, I played with a number of cloud-based services to see how easy to use and costly are they for a hobby project.</p>]]></description>
     <pubDate>Sun, 22 May 2022 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2022-05-22-cloud-computing.html</guid>
+    <guid>https://sygnowski.ml/posts/2022-05-22-cloud-computing.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Geometry nodes</title>
-    <link>https://sygi.ml/posts/2022-04-18-geometry-nodes.html</link>
+    <link>https://sygnowski.ml/posts/2022-04-18-geometry-nodes.html</link>
     <description><![CDATA[<p>Blender recently introduced a new way of manipulating 3D meshes: geometry nodes. It combines a standard node-based UI (similar to the one used for constructing materials) with a script-like expressiveness to control each vertex arbitrarily. I learned the basics of geometry nodes and did a simple project using the new mechanism to try them out.</p>]]></description>
     <pubDate>Mon, 18 Apr 2022 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2022-04-18-geometry-nodes.html</guid>
+    <guid>https://sygnowski.ml/posts/2022-04-18-geometry-nodes.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Bézier curves and 3D modelling</title>
-    <link>https://sygi.ml/posts/2022-03-23-bezier.html</link>
+    <link>https://sygnowski.ml/posts/2022-03-23-bezier.html</link>
     <description><![CDATA[<p>To improve my 3d modeling skills in Blender, I made models for a set of chess pieces. Given their rotational symmetry, I constructed them as traces that Bézier curves leave when they are rotated around an axis.</p>]]></description>
     <pubDate>Wed, 23 Mar 2022 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2022-03-23-bezier.html</guid>
+    <guid>https://sygnowski.ml/posts/2022-03-23-bezier.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Historia jednej paczki</title>
-    <link>https://sygi.ml/posts/2022-03-13-customs.html</link>
+    <link>https://sygnowski.ml/posts/2022-03-13-customs.html</link>
     <description><![CDATA[<p>Here goes a story of a package with private items that I sent before moving from Switzerland to Poland. One may be surprised that this mundane topic is granted a blogpost, but the story is filled with absurdities. As I am afraid they would not be understandable if I tried to express the drama in English, this post is exceptionally written in Polish.</p>]]></description>
     <pubDate>Sun, 13 Mar 2022 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2022-03-13-customs.html</guid>
+    <guid>https://sygnowski.ml/posts/2022-03-13-customs.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Physically-based rendering: materials</title>
-    <link>https://sygi.ml/posts/2021-12-01-pbr-materials.html</link>
+    <link>https://sygnowski.ml/posts/2021-12-01-pbr-materials.html</link>
     <description><![CDATA[<p>3D scenes consist of objects, each of which has a shape and a material. The shape is defined through a mesh: a collection of vertices, edges, and faces living in a 3D world. The material describes the color of the object and how it reflects and transmits light. In this post, I inspect a popular way of expressing the material: a principled BSDF to see how its numerous parameters influence the look of an object.</p>]]></description>
     <pubDate>Wed, 01 Dec 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-12-01-pbr-materials.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-12-01-pbr-materials.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Physically-based rendering 101</title>
-    <link>https://sygi.ml/posts/2021-11-28-pbr-101.html</link>
+    <link>https://sygnowski.ml/posts/2021-11-28-pbr-101.html</link>
     <description><![CDATA[<p>After watching one of the <a href="https://www.youtube.com/channel/UCbfYPyITQ-7l4upoX8nvctg">Two minute papers</a> videos: a short video summary of a research paper made by ‪Károly Zsolnai-Fehér‬, YouTube algorithm suggested I should watch <a href="https://users.cg.tuwien.ac.at/zsolnai/gfx/rendering-course/">the rendering course</a> of the same author next. My physically-based rendering knowledge is very fragmented: I was immersed in the lingo without understanding it through friends who are doing PhDs in related areas, and I tried and failed to read <a href="https://pbr-book.org">PBRT</a>. I watched Károly’s course to connect the dots and, hopefully, to understand Blender better.</p>]]></description>
     <pubDate>Sun, 28 Nov 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-11-28-pbr-101.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-11-28-pbr-101.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Easy-to-use text-to-speech</title>
-    <link>https://sygi.ml/posts/2021-10-27-tts.html</link>
+    <link>https://sygnowski.ml/posts/2021-10-27-tts.html</link>
     <description><![CDATA[<p>Adventure games, the genre I like, tend to contain a lot of talking. Apart from writing the character statements on the screen, bigger game studios hire voice actors to record them and play the recordings. It is a lengthy and costly process. I decided to see how far text-to-speech is from being able to substitute human actors for indie adventure games.</p>]]></description>
     <pubDate>Wed, 27 Oct 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-10-27-tts.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-10-27-tts.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Learning Blender</title>
-    <link>https://sygi.ml/posts/2021-10-22-blender.html</link>
+    <link>https://sygnowski.ml/posts/2021-10-22-blender.html</link>
     <description><![CDATA[<p>When I was doing the graphics for the T.I.M.E stories expansion, I tried out various workflows for creating the content. Looking for inspiration on how professionals make art faster, I encountered a GDC talk titled <a href="https://www.youtube.com/watch?v=CYbYvImd7Bw&amp;ab_channel=GDC">Concept Art is Dead</a>. It claimed that no one is drawing things from scratch and everyone uses quick shortcuts like rendering a scene in Blender to get nice shadows or copying the texture from the internet instead. I tried it out to see how learning the basics of Blender may help me in creating 2D graphics.</p>]]></description>
     <pubDate>Fri, 22 Oct 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-10-22-blender.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-10-22-blender.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>T.I.M.E stories expansion graphic workflow</title>
-    <link>https://sygi.ml/posts/2021-09-29-graphic-workflow.html</link>
+    <link>https://sygnowski.ml/posts/2021-09-29-graphic-workflow.html</link>
     <description><![CDATA[<p>At the end of last year, I made a fan <a href="../posts/2020-12-07-auschwitz.html">time stories scenario</a>. Concretely, only the “story” part was finished then, with all the graphics missing. This year, together with Michalina, I was working on and off on adding the custom images to the game. Being relatively new to graphic design, I tried a couple of different styles and workflows for creating the content.</p>]]></description>
     <pubDate>Wed, 29 Sep 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-09-29-graphic-workflow.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-09-29-graphic-workflow.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Life after MIM UW analysis: making of</title>
-    <link>https://sygi.ml/posts/2021-09-06-alma-survey.html</link>
+    <link>https://sygnowski.ml/posts/2021-09-06-alma-survey.html</link>
     <description><![CDATA[<p>I did a Masters in Computer Science at <a href="https://www.mimuw.edu.pl/en">MIM UW</a> in Warsaw, Poland. Many of my fellow alumni have successful careers, both in Poland and abroad. I wanted to know whether this was a statistical phenomenon or just a bias based on the group of my friends. To do so, I ran a survey among MIM graduates to know their fates better.</p>]]></description>
     <pubDate>Mon, 06 Sep 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-09-06-alma-survey.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-09-06-alma-survey.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Tax residency for fun and profit</title>
-    <link>https://sygi.ml/posts/2021-07-06-tax-residency.html</link>
+    <link>https://sygnowski.ml/posts/2021-07-06-tax-residency.html</link>
     <description><![CDATA[<p>Tax rules, which describe what portion of one’s profit needs to pay to the government, are famously complex. If they involve multiple countries, they are even more confusing. Having moved to a different country for the 2020 pandemic, I studied the regulations in detail and decided to write down my observations for the future.</p>]]></description>
     <pubDate>Tue, 06 Jul 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-07-06-tax-residency.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-07-06-tax-residency.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Compressed inserts for board games</title>
-    <link>https://sygi.ml/posts/2021-06-20-board-game-inserts.html</link>
+    <link>https://sygnowski.ml/posts/2021-06-20-board-game-inserts.html</link>
     <description><![CDATA[<p>Board games are often sold in boxes that are bigger than necessary to fit the game elements. It makes sense from a marketing perspective: oversized shiny covers are better at grabbing the attention of buyers in a shop. Once bought, the big boxes are a pain: they are problematic when moving homes and take more shelf-size than needed. For this reason, at the end of 2018, we tried to design new, smaller boxes for board games with my <a href="https://micha7a.github.io">girlfriend</a>.</p>]]></description>
     <pubDate>Sun, 20 Jun 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-06-20-board-game-inserts.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-06-20-board-game-inserts.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Digital painting exercises</title>
-    <link>https://sygi.ml/posts/2021-05-09-digital-painting-exercises.html</link>
+    <link>https://sygnowski.ml/posts/2021-05-09-digital-painting-exercises.html</link>
     <description><![CDATA[<p>I think I am learning the quickest when doing a sequence of well-defined challenges of appropriate difficulty. As I didn’t find a course of digital drawing I’d like to follow, I was compiling separate exercises from various sources. They helped me to make small steps of progress in improving my digital painting skills.</p>]]></description>
     <pubDate>Sun, 09 May 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-05-09-digital-painting-exercises.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-05-09-digital-painting-exercises.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Choosing game engine</title>
-    <link>https://sygi.ml/posts/2021-04-05-choosing-game-engine.html</link>
+    <link>https://sygnowski.ml/posts/2021-04-05-choosing-game-engine.html</link>
     <description><![CDATA[<p>The idea of telling stories interactively through video games is appealing to me. Some time ago, I started writing a scenario for a first, test game. In this post, I write down my experience of choosing a game engine.</p>]]></description>
     <pubDate>Mon, 05 Apr 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-04-05-choosing-game-engine.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-04-05-choosing-game-engine.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Starting with digital painting</title>
-    <link>https://sygi.ml/posts/2021-01-30-digital-painting.html</link>
+    <link>https://sygnowski.ml/posts/2021-01-30-digital-painting.html</link>
     <description><![CDATA[<p>Having drawn a lot of black-and-white ink sketches, I have now moved to draw digitally. Last summer, I got an iPad Pro, and I’m learning the basics of digital painting now. It has unlocked a myriad (literally) of colors and new techniques to acquire, so I felt like wandering in the fog again.</p>]]></description>
     <pubDate>Sat, 30 Jan 2021 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2021-01-30-digital-painting.html</guid>
+    <guid>https://sygnowski.ml/posts/2021-01-30-digital-painting.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Escape from Auschwitz: a fan T.I.M.E stories scenario</title>
-    <link>https://sygi.ml/posts/2020-12-07-auschwitz.html</link>
+    <link>https://sygnowski.ml/posts/2020-12-07-auschwitz.html</link>
     <description><![CDATA[<p>Ever since I got T.I.M.E stories for Christmas a couple of years ago, I was planning to make a fan scenario. I have finally found some time to develop the expansion recently.</p>]]></description>
     <pubDate>Mon, 07 Dec 2020 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2020-12-07-auschwitz.html</guid>
+    <guid>https://sygnowski.ml/posts/2020-12-07-auschwitz.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Rushing through Proko courses</title>
-    <link>https://sygi.ml/posts/2020-10-10-proko.html</link>
+    <link>https://sygnowski.ml/posts/2020-10-10-proko.html</link>
     <description><![CDATA[<p>After finishing Drawabox, I tried to learn drawing the human figure with the <a href="https://proko.com">Proko</a> courses. I went through the free videos of the Figure and Head drawing courses and did a lot of exercises.</p>]]></description>
     <pubDate>Sat, 10 Oct 2020 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2020-10-10-proko.html</guid>
+    <guid>https://sygnowski.ml/posts/2020-10-10-proko.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Drawabox: 14 months later</title>
-    <link>https://sygi.ml/posts/2020-07-11-drawabox.html</link>
+    <link>https://sygnowski.ml/posts/2020-07-11-drawabox.html</link>
     <description><![CDATA[<p>In May 2019, I decided to learn how to draw. To structure my learning, I was following a free online drawing course: <a href="https://drawabox.com">Drawabox</a>. 14 months later, I finished it and I am writing down my experience.</p>]]></description>
     <pubDate>Sat, 11 Jul 2020 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2020-07-11-drawabox.html</guid>
+    <guid>https://sygnowski.ml/posts/2020-07-11-drawabox.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>Digital version of T.I.M.E stories</title>
-    <link>https://sygi.ml/posts/2020-06-19-time-stories.html</link>
+    <link>https://sygnowski.ml/posts/2020-06-19-time-stories.html</link>
     <description><![CDATA[<p><a href="https://boardgamegeek.com/boardgame/146508/time-stories">T.I.M.E stories</a> is a cooperative board game where the players take the role of agents, who remotely control the avatars which are put in some turbulent moment of history to prevent spacetime disintegration due to events not going according to the historical record. Together with my girlfriend: <a href="https://micha7a.github.io">Michalina Pacholska</a> we decided to make a digital version of it.</p>]]></description>
     <pubDate>Fri, 19 Jun 2020 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2020-06-19-time-stories.html</guid>
+    <guid>https://sygnowski.ml/posts/2020-06-19-time-stories.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 <item>
     <title>--init</title>
-    <link>https://sygi.ml/posts/2016-03-24-init.html</link>
+    <link>https://sygnowski.ml/posts/2016-03-24-init.html</link>
     <description><![CDATA[<p>In this post I am just testing various features of the blog. There is nothing interesting here.</p>]]></description>
     <pubDate>Thu, 24 Mar 2016 00:00:00 UT</pubDate>
-    <guid>https://sygi.ml/posts/2016-03-24-init.html</guid>
+    <guid>https://sygnowski.ml/posts/2016-03-24-init.html</guid>
     <dc:creator>Jakub Sygnowski</dc:creator>
 </item>
 
