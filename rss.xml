@@ -3,9 +3,9 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>Jakub Sygnowski blog</title>
-        <link>https://sygi.ml</link>
+        <link>https://sygnowski.ml</link>
         <description><![CDATA[Posts on games, programming, and art.]]></description>
-        <atom:link href="https://sygi.ml/rss.xml" rel="self"
+        <atom:link href="https://sygnowski.ml/rss.xml" rel="self"
                    type="application/rss+xml" />
         <lastBuildDate>Sun, 17 Jul 2022 00:00:00 UT</lastBuildDate>
         <item>
