@@ -75,7 +75,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< post_titles
-            singlePages <- loadAll $ fromList ["index.html", "subpages/about.markdown", "subpages/privacy.markdown"]
+            singlePages <- loadAll $ fromList ["subpages/about.markdown", "subpages/privacy.markdown"]
             let pages = posts `mappend` singlePages
                 sitemapCtx = 
                     constField "root" root `mappend`
