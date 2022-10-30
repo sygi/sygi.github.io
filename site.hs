@@ -116,6 +116,7 @@ main = hakyll $ do
 
             let headerCtx =
                       modificationTimeField "modified" "%Y-%m-%d" `mappend`
+                      constField "canonical" root `mappend`
                       listField "posts" headCtx (return (first_posts ++ last_posts)) `mappend`
                       defaultContext
 
