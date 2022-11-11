@@ -7,8 +7,16 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygnowski.ml/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Tue, 18 Oct 2022 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Fri, 11 Nov 2022 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Android apps</title>
+    <link>https://sygnowski.ml/posts/2022-11-11-android-apps.html</link>
+    <description><![CDATA[<p>Mobile devices currently generate <a href="https://www.statista.com/statistics/277125/share-of-website-traffic-coming-from-mobile-devices/">most of the traffic</a> on the Internet, with Android <a href="https://gs.statcounter.com/os-market-share/mobile/worldwide">being the most popular</a> mobile operating system. I find it amazing that the whole ecosystem is open, and one can write applications for everyone with free tools. While I don’t write mobile apps professionally anymore, I still occasionally create small programs for personal use.</p>]]></description>
+    <pubDate>Fri, 11 Nov 2022 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2022-11-11-android-apps.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Importing 3D characters workflow</title>
     <link>https://sygnowski.ml/posts/2022-10-18-import-3d-characters.html</link>
     <description><![CDATA[<p>In my point-and-click adventure game, I use 3D characters. They are easier to get online than 2D ones, and modifying them or adding animations is also easier. On the other hand, the whole process, from downloading the free assets to getting them into Godot is quite involved, so I decided to document it here.</p>]]></description>

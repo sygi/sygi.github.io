@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XG30NLF042"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XG30NLF042');
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta property="og:title" content="Android apps" />
+        
+        
+        <meta name="author" content="Jakub Sygnowski" />
+        
+        
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <title>Android apps</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on November 11, 2022
+    
+</div>
+<h1>Android apps</h1>
+<p>Mobile devices currently generate <a href="https://www.statista.com/statistics/277125/share-of-website-traffic-coming-from-mobile-devices/">most of the traffic</a> on the Internet, with Android <a href="https://gs.statcounter.com/os-market-share/mobile/worldwide">being the most popular</a> mobile operating system. I find it amazing that the whole ecosystem is open, and one can write applications for everyone with free tools. While I don’t write mobile apps professionally anymore, I still occasionally create small programs for personal use.</p>
+<h2 id="android-ecosystem">Android ecosystem</h2>
+<p>To develop Android apps, one needs to download an <a href="https://en.wikipedia.org/wiki/Android_SDK">Android Software Development Kit (SDK)</a>, which is a set of libraries with all the Android components, debuggers, simulators, and others.</p>
+<p>While they can be used in any editor, Google created a standard editor: <a href="https://developer.android.com/studio">Android Studio</a> to streamline the development process. It is based on a popular <a href="https://www.jetbrains.com/idea/">Intellij IDE</a>, which many developers are familiar with.</p>
+<p>Android Studio supports two languages for writing Android apps: Java (the language the SDKs use) and Kotlin: a more functional language that compiles to JVM. Currently, Java is more popular, and I haven’t tried using Kotlin yet.</p>
+<p>To make downloading libraries, tracking their versions, and compiling the apps easier, Android Studio encourages to use a <a href="https://gradle.org/">Gradle</a> build system.</p>
+<p>Within the IDE, there are several features simplifying creating the apps, e.g. <a href="https://developer.android.com/studio/write/layout-editor">LayoutEditor</a> which allows the users to edit the placement of elements in any screen in a visual tool that translates the changes to underlying XML, or <a href="https://developer.android.com/guide/navigation/navigation-getting-started">NavigationGraph</a> which shows the graph of every screen (fragment) of the app, and their possible connections.</p>
+<h2 id="book-en-route">Book en route</h2>
+<p>The motivation to write my first bigger app was listening to audiobooks. At the time, I was walking daily to work for half an hour. While I enjoy walking more than taking public transport, I felt I could do more with an hour/day commute time.</p>
+<p>I started listening to audiobooks on my way, but when you roam around a busy place, you often get interrupted by the city noise. When it happens, unlocking the phone and rewinding the audiobook is annoying, especially in winter, wearing gloves.</p>
+<p><a href="https://play.google.com/store/apps/details?id=ml.sygnowski.ber&amp;hl=en_GB">Book En Route</a> is based on a simple idea to improve the experience of listening while walking. Apart from the usual features like queueing audio and stop/pause/fast-forward buttons, the app rewinds the audio by a couple of seconds when shaken. This way, you can quickly rewind the audio while walking.</p>
+<p>Here, using the gyroscope library built into the Android system was relatively easy and only required a bit of tuning to get the rewinding sensitivity right. One part that took a bit more time was creating a tutorial screen where the phone would be animated to turn.</p>
+<figure>
+<img src="../images/android/ber_tutorial.png" style="width:40.0%" alt="Screenshot of the tutorial screen. The phone was animating." />
+<figcaption aria-hidden="true">Screenshot of the tutorial screen. The phone was animating.</figcaption>
+</figure>
+<p>In the end, I managed to use a vector graphic image of the phone with the arrow in <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> format. As SVG is a text format (which is basically XML), it was possible to choose a part of the image corresponding to the phone, wrap it into a <code>group</code>, and animate it in code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">static</span><span class="ot"> path</span><span class="er">/&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;group</span> <span class="er">android:name</span><span class="ot">=</span><span class="st">&quot;rotationGroup&quot;</span><span class="ot"> android:pivotX=</span><span class="st">&quot;43&quot;</span><span class="ot"> android:pivotY=</span><span class="st">&quot;58&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">path</span><span class="ot"> to</span> <span class="er">animate/&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;/group&gt;</span></span></code></pre></div>
+<figure>
+<img src="../images/android/ber_main.png" style="width:40.0%" alt="The main screen of the application. The UI is purposedly scarce." />
+<figcaption aria-hidden="true">The main screen of the application. The UI is purposedly scarce.</figcaption>
+</figure>
+<h3 id="experience-publishing-it-on-play-store">Experience publishing it on Play store</h3>
+<p>After I had an application running, I wanted to put it on Play store to make getting it easy (for friends and a future me). Overall, putting the app on the store wasn’t too hard and there were a lot of tools helping to ensure that it works on different phones and Android versions.</p>
+<p>However, after one sets up a developer account in Play, Google starts sending spam messages one cannot turn off along the lines of “Important tax changes in Vietnam”. I understand they may be important to people selling their app in a number of markets, but they are completely irrelevant for a hobby app of mine.</p>
+<p>After setting up the account, I wanted to take a look at how the marketing options look in Play store <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, but it turned out that advertising one’s app is not available to developers without a company account.</p>
+<h2 id="hourglass-timer">Hourglass timer</h2>
+<p>When I was spending time with my family during the pandemic, I bought a <a href="https://boardgamegeek.com/boardgame/209778/magic-maze">Magic Maze</a> board game.</p>
+<p>It’s a cooperative game whose goal is to move the pawns=characters to particular places on a map, with a twist that each player doesn’t own a particular pawn (blue, green, etc.) but rather a type of movement (right, top) which can be applied to any pawn.</p>
+<p>The challenge of the game comes through the passage of time, as each mission must be finished before the time limit, measured by an hourglass, passes.</p>
+<figure>
+<img src="../images/android/magic-maze.png" style="width:90.0%" alt="Components of the game, including the hourglass at the top." />
+<figcaption aria-hidden="true">Components of the game, including the hourglass at the top.</figcaption>
+</figure>
+<p>The hourglass measures around 3 minutes. There are certain situations in the game when the players are allowed to rotate the hourglass. If it happens, the remaining time (until either end of the round, or turning the hourglass again) is however long it takes for the sand to move through the hourglass.</p>
+<p>For example, if the hourglass rotates for the first time after 2 minutes, the next rotation will have to happen within the next 2 minutes, as this is the amount of sand on top of the hourglass after the first rotation.</p>
+<p>As my family is not great with games, I thought it would be difficult for them to finish the game in time if we used the original 3-minute hourglass. To give them more time, without removing the time element (without which the game would be a bit pointless), I made an app that simulates the hourglass behavior: whenever it is clicked, the new remaining time is set as if there was sand moving through the hourglass.</p>
+<p>An additional benefit to using the app instead of a physical hourglass is that if one clicks right after the timer has finished (the last piece of sand moved), the app doesn’t allow it to be reset, whereas an hourglass would start anew without the players knowing that they should have lost already.</p>
+<figure>
+<img src="../images/android/hourglass.png" style="width:40.0%" alt="Screenshot of the hourglass app, with its simple UI. The hourglass is rotated whenever user touches the screen." />
+<figcaption aria-hidden="true">Screenshot of the hourglass app, with its simple UI. The hourglass is rotated whenever user touches the screen.</figcaption>
+</figure>
+<p>In the end, my family managed to handle the original time limits well, and there was no need to use the app.</p>
+<h2 id="quantified-stuff">Quantified stuff</h2>
+<p>During our lives, we buy a lot of products: a tube of toothpaste every month, a pizza every week or two sum up to hundreds of purchases of similar products over a lifetime. When making a decision on which one to purchase, we take into account various factors: price, how colorful the package is, previous experience with the brand, etc.</p>
+<p>With human memory not being perfect, we often make suboptimal decisions: “was this one the great pizza that I ate a year ago, or should I buy all of them to try them one by one?”. Inspired by <a href="https://en.wikipedia.org/wiki/Quantified_self">the Quantified self</a> movement, I decided to make an app where I would be recording my experiences with various products, to be able to recall to them later.</p>
+<p>I didn’t want it to become a long project, so I identified the basic use case and decided to add some extra features only if they would be easy or at least funny to do.</p>
+<p>The main functionality was:</p>
+<ol type="1">
+<li>To make a photo of a product, add some notes, and add a new entry to a database</li>
+<li>search the previous entries in the database for information about a given product.</li>
+</ol>
+<p>As I didn’t want to build a custom front-end solution for showing the database entries, I decided to use a simple <a href="https://www.google.co.uk/sheets/about/">Google Spreadsheet</a>: it’s easy to share between people, to edit manually or search through. There is <a href="https://developers.google.com/sheets/api">an API</a> that allows you to get programmatic access to a spreadsheet.</p>
+<p>Unfortunately, it turned out that inserting an image across a network is <a href="https://stackoverflow.com/a/43665027/1951176">unsupported</a> in the Sheets API, so instead, I decided to make a photo of a barcode and treat the barcode value as a unique ID in the spreadsheet, and potentially get the name of the product from some external API based on that.</p>
+<h3 id="reading-barcodes">Reading barcodes</h3>
+<p>I started the project by implementing barcode scanning. I expected that getting the photo would be easy, whereas reading the barcode may be more involved.</p>
+<p>It was the other way around: the documentation suggests using a library called <a href="https://developer.android.com/training/camerax">CameraX</a> to make a photo. It has a lot of features, in particular, to keep making photos until some predicate (in my case: being able to read a barcode) is satisfied. Unfortunately, the extra options came with the library being harder to use than I hoped for.</p>
+<p>On the other hand, reading the barcodes worked seamlessly. The <a href="https://developers.google.com/ml-kit/vision/barcode-scanning/android">ML kit</a> library had a class where you can choose which codes to try to scan, pass a photo and get the code back as a string.</p>
+<p>Recognizing the name of the product back from the barcode also wasn’t too involved. I found a <a href="https://www.barcodelookup.com/api">Barcode Lookup</a> service, which claims to have 500M products in its database. Normally, one would have to pay for the API access to it (with only a month-long free trial period), but I found an alternative way to access the same API: <a href="https://rapidapi.com/hub">RapidAPI</a>, which allowed ongoing access to 10 queries/month for free, which is enough for my use case.</p>
+<h3 id="spreadsheet-authorization">Spreadsheet authorization</h3>
+<p>Accessing the spreadsheet programmatically became a real struggle. There are <a href="https://developers.google.com/workspace/guides/create-credentials#desktop-app">three ways one can authorize</a> access to a spreadsheet:</p>
+<ol type="1">
+<li>API key, where every request has an extra parameter with a secret (fixed) authorization code</li>
+<li>Service account, where we create a separate Google “account” and share the spreadsheet with it</li>
+<li>OAuth client ID, where the spreadsheet is shared with the regular, “human” account of the phone’s owner, and the user authorizes the app to access their spreadsheets programmatically.</li>
+</ol>
+<p>All of them require setting up a Google cloud project, which would provide the authorization for the app.</p>
+<h4 id="oauth">OAuth</h4>
+<p>Out of the three options, I started with the last one (OAuth), as it was the only one documented in places where I searched at first.</p>
+<p>I found a lot of libraries, either for Android or general Java, many of them deprecated, trying to facilitate the process of getting the user authorization, and read many sites explaining the OAuth authorization lifecycle.</p>
+<p>In the end, <a href="https://stackoverflow.com/questions/74018613/auth-to-sheets-api-with-debug-version-of-android-build">the process</a> looked as:</p>
+<ol type="1">
+<li>Creating a debug keystore to sign the app. To avoid situations where someone is impersonating the application (even though it’s just a debug application and the app will have to store the secret key anyway).</li>
+<li>Sign the application while building it and send it to the phone. I think I managed to do this within AndroidStudio, but it wasn’t possible to easily check whether an application is correctly signed or not.</li>
+<li>Generate an OAuth clientID which is based on the key’s fingerprint and copy it to the app’s source code.</li>
+<li>Add extra permissions to the app to read the clientID. The clientID needed to provide the correct “namespace” of the application, but there wasn’t an easy way to check whether the namespace of the application and the clientID match.</li>
+<li>Use <a href="https://developers.google.com/android/reference/com/google/android/gms/auth/api/signin/GoogleSignInOptions">a Play Services library</a> to request authorization from the user for accessing the spreadsheets.</li>
+<li>Handle the result of the request to check whether the user agreed.</li>
+</ol>
+<p>Unfortunately, even following this long process, I was getting a “Request Cancelled” error at the end and wasn’t able to find out what went wrong.</p>
+<p>After struggling with this authorization method for a while, I found out about other ways and decided to try them.</p>
+<h4 id="api-key">API key</h4>
+<p>I tried using the API key next, which I hoped would be much easier to set up: after requesting the key you only need to hardcode it into an HTTP request. And it was; unfortunately, the API key only supports reading from public spreadsheets, but <a href="https://issuetracker.google.com/issues/36755576#comment3">not updating them</a>.</p>
+<h4 id="service-account">Service account</h4>
+<p>After spending so much time trying to use the other authorization methods, setting up a service account was much easier than expected. After clicking through a series of questions on the project’s page, I got a prepared email account like <code>test-1234@projectname.iam.gserviceaccount.com</code> and a file with a cryptographic secret to plug in the application.</p>
+<p>Afterward, I only had to share the spreadsheet with that email as if it was a regular account and pass the credentials to a <a href="https://github.com/googleapis/google-http-java-client/blob/main/google-http-client/src/main/java/com/google/api/client/http/HttpRequestInitializer.java">HttpRequestInitializer</a> in the app’s code.</p>
+<figure>
+<img src="../images/android/quantified_stuff.png" style="width:40.0%" alt="Screenshot of the Quantified Stuff app." />
+<figcaption aria-hidden="true">Screenshot of the Quantified Stuff app.</figcaption>
+</figure>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>not that I would like to spend money on advertising a hobby project.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    <script defer>
+      
+    require.config({
+      paths: {
+        'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
+        'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
+        'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min', <!-- for footnotes -->
+        'footnotes': '../../js/footnotes'
+      }
+    });
+
+    
+    
+    require(['anchorjs'], function(module){
+      const anchors = new module();
+      anchors.add();
+    });
+    require(['mathjax']);
+    require(['jquery'], function(jQuery){
+      require(['footnotes']);
+    });
+    
+    var gaProperty = 'G-XG30NLF042';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+  </body>
+</html>
