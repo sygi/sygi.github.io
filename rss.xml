@@ -7,8 +7,16 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygnowski.ml/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Fri, 11 Nov 2022 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 04 Dec 2022 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Legal and moral issues of AI creativity</title>
+    <link>https://sygnowski.ml/posts/2022-12-04-creative-ai.html</link>
+    <description><![CDATA[<p>Humanity is making art since the dawn of time. With the improvement in technology, the entry barriers for starting a creative endeavor had been steadily lowering: what used to require lifetime training can now be achieved by hobbyists. Most recently, machine learning models have entered the scene, distilling the experience of generations of artists into a set of weights everyone can download and use.</p>]]></description>
+    <pubDate>Sun, 04 Dec 2022 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2022-12-04-creative-ai.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Android apps</title>
     <link>https://sygnowski.ml/posts/2022-11-11-android-apps.html</link>
     <description><![CDATA[<p>Mobile devices currently generate <a href="https://www.statista.com/statistics/277125/share-of-website-traffic-coming-from-mobile-devices/">most of the traffic</a> on the Internet, with Android <a href="https://gs.statcounter.com/os-market-share/mobile/worldwide">being the most popular</a> mobile operating system. I find it amazing that the whole ecosystem is open, and one can write applications for everyone with free tools. While I don’t write mobile apps professionally anymore, I still occasionally create small programs for personal use.</p>]]></description>
