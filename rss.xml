@@ -7,8 +7,16 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygnowski.ml/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sun, 04 Dec 2022 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Tue, 14 Mar 2023 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Peer-to-peer communication with WebRTC</title>
+    <link>https://sygnowski.ml/posts/2023-03-14-webrtc.html</link>
+    <description><![CDATA[<p>The internet typically relies on a client-server model, where a server hosts websites or applications, and users access them through their devices. However, this model may not be suitable for certain functions, such as file sharing or video calls. That’s where peer-to-peer communication comes in, enabling users to directly connect and communicate without a server. To make building peer-to-peer applications easier, developers created the <a href="https://en.wikipedia.org/wiki/WebRTC">WebRTC</a> protocol.</p>]]></description>
+    <pubDate>Tue, 14 Mar 2023 00:00:00 UT</pubDate>
+    <guid>https://sygnowski.ml/posts/2023-03-14-webrtc.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Legal and moral issues of AI creativity</title>
     <link>https://sygnowski.ml/posts/2022-12-04-creative-ai.html</link>
     <description><![CDATA[<p>Humanity is making art since the dawn of time. With the improvement in technology, the entry barriers for starting a creative endeavor had been steadily lowering: what used to require lifetime training can now be achieved by hobbyists. Most recently, machine learning models have entered the scene, distilling the experience of generations of artists into a set of weights everyone can download and use.</p>]]></description>
