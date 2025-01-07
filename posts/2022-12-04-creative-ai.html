@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+      <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XG30NLF042"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XG30NLF042');
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta property="og:title" content="Legal and moral issues of AI creativity">
+        
+        
+        <meta name="author" content="Jakub Sygnowski">
+        
+        
+        <meta name="robots" content="index,follow">
+        <meta name="googlebot" content="index,follow">
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <title>Legal and moral issues of AI creativity</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on December  4, 2022
+    
+</div>
+<h1>Legal and moral issues of AI creativity</h1>
+<p>Humanity is making art since the dawn of time. With the improvement in technology, the entry barriers for starting a creative endeavor had been steadily lowering: what used to require lifetime training can now be achieved by hobbyists. Most recently, machine learning models have entered the scene, distilling the experience of generations of artists into a set of weights everyone can download and use.</p>
+<p>The AI revolution is a special step on the road of continuously improving tools supporting the creative process, as:</p>
+<ol type="1">
+<li>the progress happened relatively unexpectedly: a year ago no one expected amateurs to be able to <a href="https://impakter.com/art-made-by-ai-wins-fine-arts-competition/">create award-winning art</a> with AI</li>
+<li>to make these models, the mere insight and work of the tool developer are not enough; their training process requires millions of examples of prior art which was created by artists who more often than not didn’t consent to use their work in this way.</li>
+</ol>
+<figure>
+<a href="../images/creative_ai/digital_painting.jpg"><img src="../images/creative_ai/digital_painting.jpg" style="width:40.0%" alt="Digital painting meme from not so long ago." /></a>
+<figcaption>
+Digital painting meme from not so long ago.
+</figcaption>
+</figure>
+<p>It is thus understandable that AI-generated art sparks controversies among artists, who <a href="https://edm.parliament.uk/early-day-motion/59805/artificial-intelligence-in-the-entertainment-industry">call for increased legislation</a> of the area.</p>
+<h2 id="current-regulations">Current regulations</h2>
+<p>Most of the developed countries have some form of <a href="https://en.wikipedia.org/wiki/Copyright">copyright laws</a> to prevent the use of creative works without the agreement of the author.</p>
+<p>Typically<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, it works like this:</p>
+<ol type="1">
+<li>an author creates a new, original piece of work: a poem, a painting, a song, etc.</li>
+<li>upon creation of the material, they are automatically acquiring the exclusive right to take advantage of the work by selling it, making copies, or creating derivative works.</li>
+<li>if the author chooses so, they may sell their rights to a third party, to let it use it in a bigger work (eg. someone creating 3D models for a computer game) or sell it directly so that the author doesn’t have to deal with the publishing and distribution of their work</li>
+<li>in case someone tries to use the work without the creator’s agreement (either directly or by making a derivative work, which includes a significant portion of the original), the author may request the judicial system to enforce their rights and require the infringer to pay damages and stop using their creation.</li>
+</ol>
+<h2 id="how-do-ai-models-work">How do AI models work</h2>
+<p>On a high level, the machine learning art generators all work the same way: they process a big database<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of art pieces of a given type to create a statistical model that maps some description (prompt) of an art piece (and usually a random seed, to allow for diversity) to the piece itself.</p>
+<figure>
+<img src="../images/creative_ai/sd_example2.png" style="width:90.0%" alt="Example of a description that would be an input to an AI model and the resulting image." />
+<figcaption aria-hidden="true">Example of a description that would be an input to an AI model and the resulting image.</figcaption>
+</figure>
+<p>This model doesn’t store the artworks themselves, but rather a big<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> set of numerical parameters which contain the “knowledge” about how to create the pieces of art from the prompts.</p>
+<p>The parameters are found in a (relatively expensive<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>) training process, they are stored on disk and can be shared with people online.</p>
+<p>Having access to the trained model, one doesn’t have to go through the training again; one can immediately start sending the prompts to the model and get the generated pieces of art. Processing of a single prompt still requires <em>some</em> compute<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, but customer hardware is well enough to handle it.</p>
+<h2 id="legal-or-not">Legal or not?</h2>
+<p>So, is creating a tool like Stable Diffusion legal, or does it infringe on the copyrights of authors? What about using the tool itself? Who owns the right to such creations?</p>
+<p>From the legal point of view, the question to consider is whether the generated art pieces are derived works of previous ones, ie. do they contain a significant portion of copyrighted works?</p>
+<p>The decision on where to put the boundary of “significant portion” is a difficult one<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, as the similarity between the two works is a continuous spectrum. Furthermore, even for a single art generator, its different “automated creations” will have a varying resemblance to previous works. On one end of this scale lies an image that is identical to a copyrighted one, where the user added it as a part of the prompt and tried to change as little as possible in an attempt to “launder” the art from its license. On the other end, there will be images with artifacts specific to the generation process which will bear no similarity to any work that the model was trained on.</p>
+<figure>
+<img src="../images/creative_ai/sd_example1.png" style="width:50.0%" alt="A typical (yet not so popular on the internet) example of creepy artifacts created when using an AI art generator." />
+<figcaption aria-hidden="true">A typical (yet not so popular on the internet) example of creepy artifacts created when using an AI art generator.</figcaption>
+</figure>
+<p>Over the last couple of months, there were a number of court cases suing the models’ creators for copyright infringement (e.g. <a href="https://www.theverge.com/2021/9/29/22701167/bev-standing-tiktok-lawsuit-settles-text-to-speech-voice">1</a>, <a href="https://www.siliconrepublic.com/machines/open-source-piracy-matthew-butterick-microsoft-openai-github-copilot-lawsuit">2</a>). There will surely be more to come, with contradictory verdicts, while the courts will hopelessly try to interpret the inherently ambiguous rules one way or another.</p>
+<h3 id="my-opinion">My opinion</h3>
+<p>Current law is clearly not prepared to deal with the current situation where the potential infringement is an effect of an automated process happening during the creation of the art-making tool. Under the <a href="https://en.wikipedia.org/wiki/Everything_which_is_not_forbidden_is_allowed">general power of competence</a>, the potential violation would have to follow the exact wording in the legislation, ie. someone would</p>
+<blockquote>
+<p>prepare derivative works based on copyrighted works</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>distribute the copyrighted works<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+</blockquote>
+<p>Let’s start with the creators of the AI models. They clearly don’t “prepare derivative works”, as they only train a model which, consisting of billions of incomprehensible weights, is not a derivative work on its own. Do the authors distribute the copyrighted works within these weights, though?</p>
+<p>The goal of the training process is to learn the general patterns in the data, and not to encode particular works. With the relative size of the dataset and the checkpoints containing the weights (for Stable Diffusion: billions of images and a checkpoint weighing a couple of gigabytes), it’s unlikely that the checkpoint contains much more than (uncopyrightable) general rules, as the average amount of information stored per image is only a couple of bits.</p>
+<p>However, the statistical argument is not enough to argue that there aren’t <em>some</em> copyrighted works included verbatim in the model’s network.</p>
+<p>Even if this was the case, one needs to consider that the weights themselves are not the same as the catalog of images or videos that anyone can easily read. Even if there is a way to force the model to spit out a copyrighted image, one needs to consider how much effort it requires from the user.</p>
+<p>An extreme example illustrating it is the <a href="https://babelia.libraryofbabel.info/slideshow.html">Library of Babel</a>: a website containing images with every possible sequence of pixels of a certain size, randomly generated and ready to browse. Technically, it’s possible to find copyrighted works (both already created and all future works) in there; this is impossible in practice though, with every image one can realistically get resembling tv static.</p>
+<figure>
+<img src="../images/creative_ai/babel_image.png" style="width:50.0%" alt="An image “stored” in the Library of Babel under index babelia#8469124426285147." />
+<figcaption aria-hidden="true">An image “stored” in the Library of Babel under index <code>babelia#8469124426285147</code>.</figcaption>
+</figure>
+<p>As such, I believe that Stable Diffusions, Github Codexes, etc. creators do not, on their own, violate the copyright of others. The tools they create potentially make it easier for others to break copyright law, but the same could be said about other, clearly legal tools like Photoshop or torrent clients.</p>
+<h4 id="on-watermarks">On watermarks</h4>
+<p>The images generated by Stable Diffusion sometimes have watermarks or signatures added on top of them. This is an artifact of the training process: if a lot of “nice” pictures contain some form of the watermarks, the model will learn to include it whenever it tries to generate a “nice” picture.</p>
+<p>However, the fact that the generated image has a watermark, even a recognizable one, doesn’t on its own prove copyright violation. Unless the watermark itself is a major copyrightable element of the original (which is unlikely given its size and level of detail), if the image under the imprint is novel enough, it doesn’t breach copyright laws<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
+<p>Based on the statistical argument above, it’s most likely that, while the details of any particular image get lost in the network weights, the network remembers the watermarks as they are repeated many times over in the dataset. To prove copyright infringement, finding a watermark is not enough; one would need to show the actual copyrighted image that can be easily extracted from the model.</p>
+<p>It’s quite clear that the model was trained on stock photos websites whose copyright holders didn’t agree to it but so far training a model on the data that’s available for free on the internet doesn’t breach any laws (that I know of).</p>
+<h4 id="user-side">User-side</h4>
+<p>If the people creating the models don’t break the law, what about the users, which enter the prompts and get art for free?</p>
+<p>In principle, it depends on the results: if a user enters a prompt “Oil on canvas painting of Still Life: Vase with Fourteen Sunflowers by Van Gogh” and gets an image that is so similar to an original masterpiece, the user won’t earn the copyright to its creation. If they used it as their own, it would be a breach (if it wasn’t in the public domain anyway).</p>
+<p>However, getting an image close to a previous work is very unlikely, as the network weights contain a very distilled knowledge about past art pieces. While the information on how to reproduce a “Van Gogh style” may well be present in the network, the particular images likely won’t, even for popular works.</p>
+<figure>
+<img src="../images/creative_ai/gogh_original.jpg" style="width:40.0%" alt="Original by Van Gogh" />
+<img src="../images/creative_ai/sd_gogh.png" style="width:50.0%" alt="Stable Diffusion generation based on the prompt with the name of the masterpiece" />
+<figcaption>
+A comparison of the original sunflowers masterpiece by Van Gogh (left) and a Stable diffusion picture generated with the prompt with the name of the original works (right).
+</figcaption>
+</figure>
+<p>The “style” itself is <a href="https://theillustratorsguide.com/copyright-infringement/">not copyrightable</a>, as only a concrete piece of work can be a basis of copyright. The situation when copying the style is not any different when a human author creates a novel image while reproducing a style of others.</p>
+<h2 id="next-steps-for-the-copyright-law">Next steps for the copyright law</h2>
+<p>Given these intricate issues, courts will have a tough nut to crack during the copyright trials. It looks likely that changes in the legislation will be necessary to clarify it.</p>
+<p>How <em>should</em> the law be fixed, though?</p>
+<p>To answer this, one needs to consider the ultimate reason for having the legal system: to define the system of behaviors to encourage and discourage, and to communicate and promote them. So, what is beneficial for the society in terms of creativity regulation of creative endeavors?</p>
+<p>On the surface, AI models are only a new tool simplifying the creation of art in the long history of creative technologies. At the same time, making creativity more accessible changes the delicate balance of power in the industry, making it harder for authors to charge money for “simple” work that now everyone can do. Thus, it’s necessary to analyze if the previous legislation is still appropriate in the new, post-AI reality.</p>
+<h3 id="copyright-history">Copyright history</h3>
+<p>To see how the process of changing the law to suit a dynamic situation may look, one can take a look at the <a href="https://copyrightservice.co.uk/copyright/history-copyright">history of copyright</a>.</p>
+<p>The first copyright law appeared after the invention of the printing press. Before that, the creation of new copies of books (and also other art: paintings, instruments, etc.) was very costly, so the authors weren’t bothered that the replication of their work is taking place: as copying required significant effort, it didn’t happen as often as later.</p>
+<p>The printing machines, by causing literacy to go up, lead to all sorts of societal improvements. Initially, there was no extra regulation, and everyone could make copies of the books as they with, contributing to the further growth of education.</p>
+<p>After a while, legislators observed that the incentives for writers to draft new books started to dry up, as most of the income from such creations would go to the copiers. Becoming an author became little financially beneficial, compared to the benefits that it brought.</p>
+<p>To address the issue, copyrights were born, where the authors were assigned the transferrable right to create copies of their work.</p>
+<p>These laws were revisited multiple times in history, e.g. with rights to patent inventions. More recently, internet and computerization, the effort required to reproduce any past work got effectively reduced to zero, prompting further changes in copyright laws.</p>
+<p>AI is the next step in this process, when not only the past but also potential future works of a given artist can be effortlessly (re?)created. Similarly to the printing press, it decreases the motivation to create new work (which will sell for less).</p>
+<p>It’s worth adding that even before AI-generated art, the wider benefits to society are already considered when assigning copyright. A legal term of <a href="https://en.wikipedia.org/wiki/Fair_use">fair use</a> encompasses situations when someone uses work that otherwise would be copyrighted, but is allowed as the benefits of doing so outweigh the damage.</p>
+<h3 id="on-licenses">On licenses</h3>
+<p>A license is a form of contract, where the author of some work declares in what way it can be used. There are <a href="https://opensource.org/licenses/alphabetical">dozens of types of licenses</a>, clarifying issues like whether the work can be shared, derived work can be created, or whether there is any payment involved for using the work.</p>
+<p>Amongst them, I tried to find a license that would prevent training a machine learning model on the data, but I didn’t find any<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. One reason for the missing licenses is the fact that they would be hard to enforce: as we argued, the model itself is not a derivative work of the art pieces, and even if it was so, proving that a model was trained on a particular piece of art is infeasible.</p>
+<p>Despite that, there is still value in creating a “not for model training” license, especially if it was joined with standards helping the automated scraping tools to find it.</p>
+<p>First, I would like to think that the model authors want to do the right thing and honor the authors’ wishes about how to use their work (and avoid even baseless court proceedings) if it is possible to process these wishes at scale.</p>
+<p>A priori, right now it’s not clear that the inclusion of works of a given artist in the training data of a model is harmful to the artist. While the popular ones may feel like they are being abused, others may gain popularity by their style becoming a popular prompt.</p>
+<p>Furthermore, it’s possible that the future law will change and it will become possible to prosecute model authors (or users) when training data was used without its author’s consent.</p>
+<p>Any licenses or disclaimers will only work for future art pieces, though, and won’t affect authors whose works are already included in the models.</p>
+<h2 id="computer-scientist-perspective">Computer scientist perspective</h2>
+<p>We discussed a legal perspective on copyright which requires a definition of <em>novelty</em>, let’s try to define it with mathematics. One could try to define it as creating something that one else made before, but it’s a poor definition, as even tiny modifications (changing a single pixel in a 3hr long movie) satisfy it.</p>
+<figure>
+<a href="../images/creative_ai/monsterinc.png"><img src="../images/creative_ai/monsterinc.png" style="width:35.0%" alt="The poster of the Monsters, Inc. movie with a single pixel changed." /></a>
+<figcaption>
+The poster of the Monsters, Inc. movie with a single pixel changed.
+</figcaption>
+</figure>
+<p>There is a branch of mathematics: <a href="https://en.wikipedia.org/wiki/Information_theory">information theory</a> which deals with the questions of the information contained in a random process.</p>
+<p>Without getting into too much mathematical detail, it measures how long should a binary number be to uniquely identify a given piece of content. It’s related to how complex the work is and how big is the set of potential “works”.</p>
+<p>For example, if we want to identify a single word among all the words from <a href="https://public.oed.com/about/">Oxford English Dictionary</a>, it can be done using <span class="math inline">\(\log(600\ 000) = 19\)</span> bits. If it’s a single image among all possible <span class="math inline">\(512\times 512\)</span> pixels described by <span class="math inline">\(3\)</span> numbers <span class="math inline">\(0, \ldots, 256\)</span> expressing RGB values, it’ll be <span class="math inline">\(2^{21} \approx 2\ 000\ 000\)</span> bits.</p>
+<p>We could use this concept to define a novel work, saying that “Change of <span class="math inline">\(K\)</span> bits of information is required for novelty” (for some concrete <span class="math inline">\(K\)</span>). This would provide a unified framework for different types of creations, and would capture the element of “how difficult it is to create something”<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
+<p>Note that when using the information for defining copyright, discovering some particular piece among a wide group of potential works is considered a creative process, as it requires providing information amount of which is related to the size of the set.</p>
+<p>Under this notion, one could take an AI model and see how long the prompt would have to be to generate a given piece of work and consider it novel if the contribution of the prompt author in the creation of the work was significant.</p>
+<p>It would also clarify that the authors of the Library of Babel don’t hold the copyright to all the possible images that their website can generate: even though one can get every image somewhere there, without locating it, the generative process cannot be considered creative.</p>
+<p>Of course, in the context of actual copyright law, this is just a fantasy concept, as it would be difficult to implement it in practice. It’s not intuitive for regular people (and probably lawyers either), and checking the level of novelty requires the knowledge of all the available tools: while the tool that the author used to create a given piece of art may require producing a lot of “information” (e.g. drawing a Mona Lisa pixel by pixel), there may be other tools which are able to make it easier (just searching for Mona Lisa online).</p>
+<p>Finally, there are ways (see: <a href="https://en.wikipedia.org/wiki/Steganography">steganography</a>) to add information to a work piece in a way that increases the information content without changing the perception of the piece.</p>
+<h2 id="trademarks">Trademarks</h2>
+<p><a href="https://en.wikipedia.org/wiki/Trademark">Trademark</a> is a legal concept similar to copyright. Instead of protecting an original piece of work, it protects a label that distinguishes the producer of some product. For example, a recipe for a Big Mac may be copyrighted (as writing it required some novelty), while the MacDonald’s logo is a trademark: on its own, it’s just a golden M letter, which likely wouldn’t pass an originality test for copyright, but it is used to distinguish their shops from the competitors.</p>
+<figure>
+<img src="../images/creative_ai/mcdonalds_logo.png" style="width:35.0%" alt="McDonald’s logo. Not the most creative, if you ask me." />
+<figcaption aria-hidden="true">McDonald’s logo. Not the most creative, if you ask me.</figcaption>
+</figure>
+<p>Similarly to copyrighted works, trademarks are protected by law (although often require registration and use, as opposed to the rights automatically granted at the creation of copyrighted works).</p>
+<p>The underlying motivation for the introduction of trademark laws was to allow brand building: if some company produces a product that people tend to like, seeing the same trademark on other products of that company may encourage people to buy it as well. Without it, for every successful product, there’d be dozens of imitations (potentially of lesser quality), which the customers wouldn’t be able to distinguish. It would prevent companies from fully reaping the gains they deserve.</p>
+<p>On the surface level, the concept of a trademark doesn’t apply to the creative AI models discussion, as the generated art pieces (nor the originals) are not signs of any brand, company, or person: they are the “product” themselves. However, the name of the artists, which can be used as a part of the prompt, fulfills the definition of the trademark: it is a unique label that an artist uses to distinguish their art.</p>
+<p>Even if advertising an AI model to “create art in the style of an artist X” (see e.g. <a href="https://huggingface.co/ogkalu/Illustration-Diffusion">3</a>, trained to reproduce the work of a Disney artist) is not illegal<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>, morally it is exactly a trademark infringement: the “brand” of the artist is used to advertise the copycat art of the model, which makes it harder for internet surfers to find the original art.</p>
+<p>In a recent <a href="https://www.technologyreview.com/2022/09/16/1059598/this-artist-is-dominating-ai-generated-art-and-hes-not-happy-about-it/">article</a>, <a href="https://www.artstation.com/rutkowski">Greg Rutkowski</a> (a digital painter behind many Magic the Gathering art pieces) says:</p>
+<blockquote>
+<p>The online search [of my name] brought back work that had the name attached to it but wasn’t mine.</p>
+</blockquote>
+<p>The potential legal problems related to the alleged trademark infringement seem to be one of the reasons that led the people behind Stable Diffusion to release a new <a href="https://stability.ai/blog/stable-diffusion-v2-release">2.0 version</a> of their model. It retrains a part of the model called CLIP from scratch on a <a href="https://laion.ai/blog/laion-5b/">new dataset</a>, which doesn’t contain contemporary artists<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> (the <a href="https://huggingface.co/CompVis/stable-diffusion-v1-4">previous version</a> used a network pretrained by OpenAI on an undisclosed dataset).</p>
+<p>Understandably, the restrictions in the training data made the model to stop responding to the popular prompts based on artists’ names, which caused a <a href="https://www.reddit.com/r/StableDiffusion/comments/z3ferx/xy_plot_comparisons_of_sd_v15_ema_vs_sd_20_x768/">backlash from the users</a>.</p>
+<h2 id="on-incentives">On incentives</h2>
+<p>The creation of new models makes it easier for the masses to create art, which is good for overall creativity, as more art gets created because of them.</p>
+<p>The current (non-AI) artists are not happy about the models, as it goes against their interests: their previous work is used to improve the models, which creates more competition for their art.</p>
+<p>While using the model also requires some knowledge and artistic skills help to get better results from the AI, for many use cases, potential clients will often choose to use AI to get 90% of the effect of a professional artist instead of employing one.</p>
+<p>One could argue this is the same as with human junior painters learning to replicate the style of big authors, but there is a crucial difference that one can do it now without years of study and for free. Using Stable Diffusion to get an image of Beksiński is way simpler and cheaper than ordering a commission, which wouldn’t be the case with paint-alike authors: they may be cheaper, but still cost the same order of magnitude.</p>
+<p>Given all these disincentives, why are the authors share their work at all on the internet?</p>
+<p>First of all, the models that are any good only started to appear recently: most of the art pieces online were uploaded before anyone could think that the models of current proficiency will be created so soon.</p>
+<p>But even now, there is a big incentive for artists to put their work out there: when people visit an artist’s page, the artist builds an audience, which will bring them new clients for commissions or donations. For many (e.g. online comic artists) this is the only source of income.</p>
+<p>With the works being read by a heartless machine and used to train the model of an artist’s style, this balance moves a bit away from encouraging sharing, but overall, I suspect it’ll stay beneficial for artists to keep a wide online presence.</p>
+<h2 id="summary">Summary</h2>
+<p>The novelty is a spectrum and it’s hard to formally define what is novel enough to be copyrighted. The new AI-based models democratize the process of creation while moving the incentives of the current creators a bit away from sharing their content online.</p>
+<p>It’s inevitable for simpler works people will use the models for free instead of paying the artists. The artists will be able to learn to use the new tools better which will help them to create art faster.</p>
+<p>I find it morally and legally acceptable to use the models trained on art pieces, even though artists likely didn’t consent to their work being used this way. I expect in the future artists will mention on their websites the lack of consent for using their art in this way.</p>
+<p>On the other hand, I think finetuning the model to simulate the style of a particular artist and publishing it online is morally vague.</p>
+<p>It’s going to be interesting to see how the law, art practice, and the internet will evolve to adjust to the new reality.</p>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>the rest of the post, I concentrate on the law of the United States, as it’s the biggest market for the creative industry, and on the creation of images, as the image generators like <a href="https://stability.ai/blog/stable-diffusion-public-release">Stable Diffusion</a> seem the most advanced among various mediums. The legal systems in other countries are similar, and it’s clear that other forms of expression like music, video, books, or voice acting will suffer the same fate as images soon.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>these days it’s going to be the whole internet, as it’s the only “database” that is big enough for the models<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>as of 2022, each state-of-the-art image generator has on the order of 1 billion weights.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>training of stable diffusion cost $600,000.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>using my GeForce 1070 GPU, it takes around a minute to generate a 512x512 image with Stable Diffusion<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>described under a legal notion of a <a href="https://en.wikipedia.org/wiki/Threshold_of_originality">threshold of originality</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>there are 4 further exclusive rights protected by copyright, but they don’t seem to lead to AI-specific issues.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>there is a separate matter about trademark infringement, which I discuss below<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p>The closest came <a href="https://www.unrealengine.com/en-US/eula/mhc">Unreal Engine EULA</a> saying that for MetaHuman, one may not “[use it] for the purpose of building or enhancing any database or training or testing any artificial intelligence (…) or similar technology”<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p>Many legal systems reject difficulty (called a doctrine of <a href="https://en.wikipedia.org/wiki/Sweat_of_the_brow">sweat of the brow</a>) in considering copyright issues<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>as to make the trademark protected you often need to explicitly register it<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>or at least I didn’t find them when browsing the dataset<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    <script defer>
+      
+    require.config({
+      paths: {
+        'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
+        'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
+        'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min', <!-- for footnotes -->
+        'footnotes': '../../js/footnotes'
+      }
+    });
+
+    
+    
+    require(['anchorjs'], function(module){
+      const anchors = new module();
+      anchors.add();
+    });
+    require(['mathjax']);
+    require(['jquery'], function(jQuery){
+      require(['footnotes']);
+    });
+    
+
+    var gaProperty = 'G-XG30NLF042';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    </script>
+  </body>
+</html>

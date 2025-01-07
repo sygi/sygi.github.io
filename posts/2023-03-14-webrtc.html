@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+      <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XG30NLF042"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XG30NLF042');
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta property="og:title" content="Peer-to-peer communication with WebRTC">
+        
+        
+        <meta name="author" content="Jakub Sygnowski">
+        
+        
+        <meta name="robots" content="index,follow">
+        <meta name="googlebot" content="index,follow">
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <title>Peer-to-peer communication with WebRTC</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on March 14, 2023
+    
+</div>
+<h1>Peer-to-peer communication with WebRTC</h1>
+<p>The internet typically relies on a client-server model, where a server hosts websites or applications, and users access them through their devices. However, this model may not be suitable for certain functions, such as file sharing or video calls. That’s where peer-to-peer communication comes in, enabling users to directly connect and communicate without a server. To make building peer-to-peer applications easier, developers created the <a href="https://en.wikipedia.org/wiki/WebRTC">WebRTC</a> protocol.</p>
+<h2 id="point-to-point-connections">Point-to-point connections</h2>
+<p>At a fundamental level, all information transmitted over the internet must travel between two machines: whether it be through cables carrying electrons, electromagnetic waves of varying frequency, light signals, or <a href="https://en.wikipedia.org/wiki/IP_over_Avian_Carriers">pigeons</a> transporting the data directly.</p>
+<p>When connecting to a website, there will be various intermediary devices such as routers, load balancers, hubs, and internet exchange points between the originating machine and the final destination.</p>
+<figure>
+<pre class="source"><code>$ tracepath sygnowski.ml -l 60
+ 1:  hyperhub.mynet                          0.933ms 
+ 2:  100.96.79.1                             4.020ms 
+ 3:  172.16.27.166                           4.093ms
+...
+15:  cdn-185-199-108-153.github.com          5.074ms</code></pre>
+<figcaption>
+It takes 15 direct connections (hops) to reach the server where this blog lives from my home computer.
+</figcaption>
+</figure>
+<h2 id="distributed-topologies">Distributed topologies</h2>
+<p>There are more than 10 billion devices connected to the internet, with varying connection patterns.</p>
+<p>For many applications, a single server that controls service’s state and responds to requests from multiple users is a natural connection topology.
+You wouldn’t want your neighbour’s fridge to connect to your smartwatch, or your bank’s computer to request authorization from others before displaying your account statement<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>However, in some cases, a more direct connection between users is desirable, such as when you’re talking on Skype with a friend and want to establish a direct connection to their device without involving Microsoft.</p>
+<p>Besides increasing privacy, a direct connection can also result in smoother comunication, as there is no intermediary and data can potentially travel along a shorter path.</p>
+<h3 id="on-latencies">On latencies</h3>
+<p>In the agent of instantaneous online communication, it may seem like the physical limitations of transferring bits of information are negligible. However, let’s examine the numbers:</p>
+<ol type="1">
+<li>It takes approximately <a href="https://www.grc.nasa.gov/www/k-12/Numbers/Math/Mathematical_Thinking/how_fast_is_the_speed.htm">130ms</a> for light to travel around the Earth. In theory, this means any two points on the planet’s surface can be connected via a path with 65ms of latency, assuming the shortest possible route (i.e., <a href="https://en.wikipedia.org/wiki/Great_circle">a great circle</a>) and no delays caused by intermediary devices.</li>
+<li>Humans are capable of <a href="https://news.mit.edu/2014/in-the-blink-of-an-eye-0116">perceiving changes in their vision occuring every 10-20 milliseconds</a>. While a typical monitor refreshes at a frequency of 60Hz (16ms), 120Hz monitors are also available.</li>
+</ol>
+<p>Together, these facts suggest that routing a call to a friend who lives next door in Prague through Microsoft’s servers in Seattle<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> not only wastes resources but also creates a noticable (and unavoidable) delay in the call.</p>
+<h2 id="ip-address-exhaustion">IP address exhaustion</h2>
+<p>In order to connect two devices over a network, one device needs to know the address of the other. Originally, IP addresses were meant to serve this purpose, with every machine connected to the internet having a unique IP and intermediate routers directing traffic to facilitate any connection. However, it quickly became apparent that the original space of the addresses (of the form of 4 numbers between 0 and 255, like <code>156.513.0.42</code>) was too small to assign a unique IP to every device, with only around 4 billion available IPs.</p>
+<p>To solve this problem, the concept of <a href="https://en.wikipedia.org/wiki/Private_network">a private network</a> was born <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, which is a network of devices belonging to a single entity (e.g., a single household, building, or even an Internet Service Provider) with addresses that only need to be unique within the smaller network, not the whole internet.</p>
+<p>Within a private network, only some of the devices are directly connected to the rest of the internet and have public IP addresses. Let’s call the machines only present in the private network as <em>private devices</em> and the publicly addressable ones <em>routers</em>.</p>
+<h2 id="network-address-translation">Network Address Translation</h2>
+<p>Sending a message from a private device to a machine on the internet is relatively easy. To do so, the device sets the destination address to the known public address<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> and passes it down to the router. The router, connected to the internet, forwards the message to the next machine until it reaches its intended recipient.</p>
+<p>However, it becomes more complicated when an external server needs to send a message back to a private device. Since the device only has a private, non-unique address, standard routing won’t work.</p>
+<p>This is where <a href="https://en.wikipedia.org/wiki/Network_address_translation">Network Address Translation</a> (NAT) comes into play. NAT is a mechanism used by a router to reserve an open port for communication with a specific private device. The external machine sends a message to the router on this port (which is publicly accessible), and the router translates the address to the appropriate private address that it has stored in the part of its memory called a NAT table.</p>
+<p>The port can be opened (and its corresponding NAT table entry created) explicitly by the user in the router settings, but typically it gets created whenever a message from a private device leaves the private network for an external destination.</p>
+<p>This way, NAT also serves a security role by allowing private devices to establish connections with external services, but no the other way around. An external attacker may get to know the IP address of the router, but the connection with the devices behind NAT can only be initiated from the inside.</p>
+<p>In additon, there is an address-dependent version of NAT: only a device with the same external address as the original one contacted by the private device can use the open port. This makes it impossible for a third party to use a port on a router that has been opened when the private device contacted someone else.</p>
+<p>NAT allows a device on a private network to establish contact with a server having a public IP. However, creating a connection between two devices in two separate private networks remains a challenge, and this is something that WebRTC attempts to solve.</p>
+<h2 id="webrtc-general-idea">WebRTC: general idea</h2>
+<p>The networking issues related with establishing a peer-to-peer may seem difficult to solve at first, but once a solution is found, it can be reused for many different use cases, such as video chat, file sharing, and games<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. These use cases all require a direct, two-way connection between peers.</p>
+<p>WebRTC is a protocol that describes how to establish such a connection, allowing developers of real-time peer-to-peer application to use it directly and focus on implementing their specific logic.</p>
+<h3 id="signalling-server">Signalling server</h3>
+<p>Since connections with a device in a private network can only be initiated from within the network, the WebRTC protocol requires access to an external server that is accessible to both ends of the connection.</p>
+<p>This may seem counterintuitive, as the whole point of using WebRTC is to avoid a centralized server that relays traffic between clients. However, the signalling server does not pass all the data between the clients; it merely creates the connection between peers. Once the link is stable, the peers disconnect from the signalling server and continue their exchange directly.</p>
+<p>The signalling server is typically application-agnostic; it only needs to pass a few messages from one client to the other and back.</p>
+<h3 id="stun-servers">STUN servers</h3>
+<p>So, how do we use the signalling server to establish a connection? Let’s imagine that we know the public IP of the router in front of a client, and an open port on that router that redirects to the client. We could pass this information through the signalling client to the other peer, and it would be able to connect directly.</p>
+<p>But how do we open the port and get this address in the first place? This is the role of a <a href="https://en.wikipedia.org/wiki/STUN">STUN</a> server. It is a standalone, publicly accessible server whose only job is to respond to the incoming messages with the IP address of the sender.</p>
+<p>It works as follows:</p>
+<ol type="1">
+<li>The client, behind NAT, sends a message to the STUN server.</li>
+<li>The router, on the way to the server, opens the incoming port to forward the responses back to the client, and changes the sender IP to its own, as is usual with outgoing traffic.</li>
+<li>The STUN server receives the message, copies the sender address to the body of its answer and responds back.</li>
+<li>The router receives the message and forwards it to the client.</li>
+<li>The client receives the message with the body containing the public address and port of the router.</li>
+</ol>
+<figure>
+<a href="../images/webrtc/stun.png"><img src="../images/webrtc/stun.png" style="width:85.0%" alt="STUN algorithm diagram" /></a>
+<figcaption>
+A detailed diagram of the STUN diagram, explaining also the type of NAT between the client and the server. <a href="https://commons.wikimedia.org/wiki/File:STUN_Algorithm3.svg">Work</a> by Christoph Sommer.
+</figcaption>
+</figure>
+<p>As this interface is relatively cheap and doesn’t require a lot of traffic, there are <a href="https://gist.github.com/mondain/b0ec1cf5f60ae726202e">a number of free STUN servers available</a>, e.g. <code>stun.l.google.com:19302</code>.</p>
+<h3 id="turn-servers">TURN servers</h3>
+<p>We mentioned previously that in some versions of NAT (called symmetric NAT or having Address Dependent Mapping), the open port on the router is only accessible by the recipient of the original message from the client (not by any device on the internet).</p>
+<p>This is unfortunate for establishing the connection using a STUN server. In that situation the client will receive an answer from STUN with the address of its router and a port, but it can’t be used by the peer for a direct connection, as NAT will refuse to forward a message coming to this port from anyone else than the original STUN server.</p>
+<p>If both peers are using address-dependent mapping, all hope is lost. However, if only one of the peers is behind a symmetric NAT, the situation can be salvaged, as it can initiate the connection.</p>
+<p>In such a case, people usually resort to using a <a href="https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT">TURN server</a>. It is a fancy name for a very simple relaying server that forwards all traffic from one peer to another. It’s a resolution of last resort, as it doesn’t solve the issues with server-client model that peer-to-peer connection was meant to solve. TURN is still a single server, which needs to be paid for and can increase the latency of communication between peers.</p>
+<p>According to <a href="https://xirsys.com/pricing/">statistics</a>, around 15% of the peer-to-peer connections require the use of a TURN server, and current prices are around $0.50 per 1GB of traffic.</p>
+<h3 id="putting-it-together-interactive-connectivity-establishment">Putting it together: Interactive Connectivity Establishment</h3>
+<p>When peers attempt to establish a connection, they cannot predict whether they will require a TURN server, STUN, or neither (such as when they are in the same private network and can connect directly).</p>
+<p>Interactive Connectivity Establishment (ICE) is the process of negotiating the best possible connection between them. It involves each client independently querying STUN and TURN servers it knows to construct a list of public addresses and an open ports where it can (potentially) be reached.</p>
+<p>These proposals, which typically include answers from both TURN and STUN servers, are referred to as ICE candidates. They are sent (offered) through the signalling server, and then both peers attempt to use the candidates they receive, one after the other<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, to reach the other side.</p>
+<p>If one of these attempts is successful and one peer receives a message from the other, the connection can be established. This means that a peer can be reached using a public address, and a connection from within the second peer’s private network can be initiated. At this point, the candidate is accepted, the connection with the signalling server can be terminated, and the rest of the exchange can occur directly between the peers.</p>
+<h2 id="example-use-case-game-lobby">Example use-case: game lobby</h2>
+<p>Let’s review how WebRTC establishes a peer-to-peer connection in a game lobby example.</p>
+<ol type="1">
+<li>One player connects to the signalling server and creates a new “lobby”</li>
+<li>Another player connects to the signalling server and selects the same lobby, either by passing an ID, password, or choosing a lobby from a list<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</li>
+<li>The clients of both player send requests to the STUN servers they know and collect the answers, along with the addresses of the TURN servers it knows, into a list of ICE candidates.</li>
+<li>The clients exchange candidate offers one after another via the signalling server. Once an offer is received, the receiving client tries to use it; if it works, it is accepted, if it doesn’t, it’s rejected.</li>
+<li>When the offer is accepted, the clients keep the established connection and use it throughout the rest of the session, and then disconnect from the signalling server.</li>
+<li>The signalling server removes the lobby as it’s no longer needed.</li>
+</ol>
+<p>Using WebRTC allows developers to reuse tested implementations and workflows, making it much simpler to establish a peer-to-peer connection.</p>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Right, Bitcoin?<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Of course, Microsoft has servers all around the globe, for that very reason.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>The Internet Protocol standard has since been updated to its <a href="https://en.wikipedia.org/wiki/IPv6">6th version</a> which has a much larger address space, but the use of private networks has continued.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Let’s ignore the matter of <a href="https://en.wikipedia.org/wiki/Domain_Name_System">domain name resolution</a> in this post.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>Note that in some multiplayer games, cheating may be a concern when using a peer-to-peer connection, as it may allow players to alter the game state. For this reason, some games use a client-server architecture.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>Typically, responses from STUN servers would be higher on the list since direct connections are cheaper than relaying everything through a TURN server.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>Lobby implementation is not part of the WebRTC protocol.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    var gaProperty = 'UA-85187126-1';
+    var disableStr = 'ga-disable-' + gaProperty;
+    if (document.cookie.indexOf(disableStr + '=true') == -1) {
+      var disqus_config = function () {
+          this.page.url = "https://sygnowski.ml"
+          this.page.identifier = "sygii"
+      };
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//sygii.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    }
+</script>
+
+
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    <script defer>
+      
+    require.config({
+      paths: {
+        'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
+        'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
+        'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min', <!-- for footnotes -->
+        'footnotes': '../../js/footnotes'
+      }
+    });
+
+    
+    
+    require(['anchorjs'], function(module){
+      const anchors = new module();
+      anchors.add();
+    });
+    require(['mathjax']);
+    require(['jquery'], function(jQuery){
+      require(['footnotes']);
+    });
+    
+
+    var gaProperty = 'G-XG30NLF042';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    </script>
+  </body>
+</html>

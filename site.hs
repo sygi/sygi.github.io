@@ -36,7 +36,17 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match "posts/*" $ do
+-- TODO: clean up once I have access to the sources again.
+    match "posts/*.html" $ do
+        route idRoute
+        compile copyFileCompiler
+
+    match "posts/lost_headers/*.html" $ do
+        compile $ do
+            getResourceBody
+            >>= saveSnapshot "header"
+
+    match "posts/*.markdown" $ do
         route $ setExtension "html"
         compile $
             pandocCompilerWithTransform readerPostOptions writerPostOptions addAnchors
@@ -46,7 +56,7 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
-    match "posts/*" $ version "header" $ do
+    match "posts/*.markdown" $ version "header" $ do
         compile $ do
             let getHeaders (Pandoc meta blocks) = Pandoc meta (untilFirstParagraph blocks)
             pandocCompilerWithTransform readerPostOptions writerHeaderOptions getHeaders
@@ -54,7 +64,7 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/post-body.html" headCtx
             >>= relativizeUrls
 
-    match "posts/*" $ version "only_title" $
+    match "posts/*.markdown" $ version "only_title" $
         compile $ do
             let onlyMetadata (Pandoc meta blocks) = Pandoc meta ([])
             pandocCompilerWithTransform readerPostOptions writerHeaderOptions onlyMetadata
@@ -62,8 +72,7 @@ main = hakyll $ do
             >>= relativizeUrls
 
     let post_contents = loadAll ("posts/*" .&&. hasNoVersion) :: Compiler [Item String]
-    let post_headers = loadAll ("posts/*" .&&. hasVersion "header") :: Compiler [Item String]
-
+    let post_headers = loadAll (("posts/*" .&&. hasVersion "header") .||. "posts/lost_headers/*.html") :: Compiler [Item String]
     let post_titles = loadAll ("posts/*" .&&. hasVersion "only_title") :: Compiler [Item String]
 
     create ["robots.txt"] $ do
@@ -81,7 +90,7 @@ main = hakyll $ do
                     listField "pages" headCtx (return pages)
             makeItem ""
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
--- TODO: make a single version of the list, remove archive, projects, progress.
+-- TODO: make a single version of the list, remove projects, progress.
 
     create ["rss.xml"] $ do
         route idRoute
@@ -89,20 +98,6 @@ main = hakyll $ do
             let feedCtx = postCtx `mappend` bodyField "description"
             posts <- recentFirst =<< loadAllSnapshots ("posts/*" .&&. hasVersion "header") "header"
             renderRss feedConfiguration feedCtx posts
-
-    create ["archive.html"] $ do
-        route idRoute
-        compile $ do
-            posts <- recentFirst =<< post_contents
-            let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
-                    defaultContext
-
-            makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= relativizeUrls
 
     match "index.html" $ do
         route idRoute
