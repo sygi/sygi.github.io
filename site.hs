@@ -123,7 +123,7 @@ main = hakyll $ do
 
 --------------------------------------------------------------------------------
 root :: String
-root = "https://sygi.github.io/"
+root = "https://sygi.github.io"
 postCtx :: Context String
 postCtx =
     constField "root" root `mappend`
@@ -140,7 +140,7 @@ headCtx =
   postCtx
   where
     urlGenerator item = do
-      (return . flip replaceExtension "html" . toFilePath . itemIdentifier) item
+      (return . ("/" ++) . flip replaceExtension "html" . toFilePath . itemIdentifier) item
 
 readerPostOptions :: ReaderOptions
 readerPostOptions = defaultHakyllReaderOptions

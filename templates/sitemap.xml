@@ -7,7 +7,7 @@
   </url>
 $for(pages)$
   <url>
-    <loc>$root$/$post_url$</loc>
+    <loc>$root$$post_url$</loc>
     <lastmod>$if(modified)$$modified$$else$$if(date)$$date$$endif$$endif$</lastmod>
   </url>
 $endfor$
