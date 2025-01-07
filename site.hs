@@ -47,7 +47,6 @@ main = hakyll $ do
             >>= relativizeUrls
 
     match "posts/*" $ version "header" $ do
-        route $ setExtension "html"
         compile $ do
             let getHeaders (Pandoc meta blocks) = Pandoc meta (untilFirstParagraph blocks)
             pandocCompilerWithTransform readerPostOptions writerHeaderOptions getHeaders
@@ -70,17 +69,17 @@ main = hakyll $ do
     create ["robots.txt"] $ do
         route idRoute
         compile $ getResourceBody >>= relativizeUrls
-  
+
     create ["sitemap.xml"] $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< post_titles
             singlePages <- loadAll $ fromList ["subpages/about.markdown", "subpages/privacy.markdown"]
             let pages = posts `mappend` singlePages
-                sitemapCtx = 
+                sitemapCtx =
                     constField "root" root `mappend`
                     listField "pages" headCtx (return pages)
-            makeItem "" 
+            makeItem ""
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 -- TODO: make a single version of the list, remove archive, projects, progress.
 
@@ -103,7 +102,7 @@ main = hakyll $ do
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= relativizeUrls    
+                >>= relativizeUrls
 
     match "index.html" $ do
         route idRoute
@@ -146,7 +145,7 @@ headCtx =
 
 readerPostOptions :: ReaderOptions
 readerPostOptions = defaultHakyllReaderOptions
- 
+
 writerHeaderOptions :: WriterOptions
 writerHeaderOptions = defaultHakyllWriterOptions{
     writerHTMLMathMethod = MathJax "",
@@ -185,7 +184,7 @@ untilFirstParagraph x = fst $ foldl (\(acc, fin) b ->
 -- Anchors Disabled here: they are added automatically by anchorjs
 addAnchors (Pandoc meta blocks) = Pandoc meta blocks --(addAnchorsInside blocks)
 
-anchorImage level = Image ("", [], [("width", T.pack (show size)), ("height", T.pack (show size))]) [] 
+anchorImage level = Image ("", [], [("width", T.pack (show size)), ("height", T.pack (show size))]) []
   ("../images/anchor.png", "") where size = 17 - 1 * level
 
 anchorLink name lvl = Link ("", [], []) [anchorImage lvl] (T.pack ("#" ++ name), "")
@@ -198,7 +197,7 @@ addAnchorToContent :: T.Text -> Int -> [Inline] -> [Inline]
 addAnchorToContent iden level content = content ++ [Str " ", anchorLink (T.unpack iden) level]
 
 addAnchorToHeader :: Block -> Block
-addAnchorToHeader (Header level attr content) = Header level attr 
+addAnchorToHeader (Header level attr content) = Header level attr
   (addAnchorToContent (getIdenFromAttr attr) level content)
 
 addAnchorsInside :: [Block] -> [Block]
