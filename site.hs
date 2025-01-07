@@ -73,7 +73,7 @@ main = hakyll $ do
 
     let post_contents = loadAll ("posts/*" .&&. hasNoVersion) :: Compiler [Item String]
     let post_headers = loadAll (("posts/*" .&&. hasVersion "header") .||. "posts/lost_headers/*.html") :: Compiler [Item String]
-    let post_titles = loadAll ("posts/*" .&&. hasVersion "only_title") :: Compiler [Item String]
+    let post_titles = loadAll (("posts/*" .&&. hasVersion "only_title") .||. "posts/lost_headers/*.html") :: Compiler [Item String]
 
     create ["robots.txt"] $ do
         route idRoute
@@ -104,9 +104,8 @@ main = hakyll $ do
             all_headers <- recentFirst =<< post_headers
             all_titles <- recentFirst =<< post_titles
             let expanded_prefix = 10
-            let hardcoded_headers = 3
             let first_posts = take expanded_prefix all_headers
-            let last_posts = drop (expanded_prefix - hardcoded_headers) all_titles
+            let last_posts = drop expanded_prefix all_titles
 
             let headerCtx =
                       modificationTimeField "modified" "%Y-%m-%d" `mappend`
