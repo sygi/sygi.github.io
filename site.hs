@@ -91,11 +91,10 @@ main = hakyll $ do
             makeItem ""
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 -- TODO: make a single version of the list, remove projects, progress.
-
     create ["rss.xml"] $ do
         route idRoute
         compile $ do
-            let feedCtx = postCtx `mappend` bodyField "description"
+            let feedCtx = headCtx `mappend` bodyField "description" `mappend` urlField "url"
             posts <- recentFirst =<< loadAllSnapshots ("posts/*" .&&. hasVersion "header") "header"
             renderRss feedConfiguration feedCtx posts
 
@@ -105,8 +104,9 @@ main = hakyll $ do
             all_headers <- recentFirst =<< post_headers
             all_titles <- recentFirst =<< post_titles
             let expanded_prefix = 10
+            let hardcoded_headers = 3
             let first_posts = take expanded_prefix all_headers
-            let last_posts = drop expanded_prefix all_titles
+            let last_posts = drop (expanded_prefix - hardcoded_headers) all_titles
 
             let headerCtx =
                       modificationTimeField "modified" "%Y-%m-%d" `mappend`
@@ -135,8 +135,12 @@ postCtx =
 
 headCtx :: Context String
 headCtx =
-  field "post_url" (return . flip replaceExtension "html" . toFilePath . itemIdentifier) `mappend`
+  field "post_url" urlGenerator `mappend`
+  field "url" urlGenerator `mappend`
   postCtx
+  where
+    urlGenerator item = do
+      (return . flip replaceExtension "html" . toFilePath . itemIdentifier) item
 
 readerPostOptions :: ReaderOptions
 readerPostOptions = defaultHakyllReaderOptions
@@ -160,7 +164,7 @@ feedConfiguration = FeedConfiguration
     { feedTitle       = "Jakub Sygnowski blog"
     , feedDescription = "Posts on games, programming, and art."
     , feedAuthorName  = "Jakub Sygnowski"
-    , feedRoot        = "https://sygnowski.ml"
+    , feedRoot        = "https://sygi.xyz"
     , feedAuthorEmail = "sygnowski@gmail.com"
     }
 
