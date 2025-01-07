@@ -41,6 +41,12 @@ main = hakyll $ do
         route idRoute
         compile copyFileCompiler
 
+    match "posts/*.html" $ version "only_title" $ do
+        compile $ do
+            getResourceBody
+            >>= loadAndApplyTemplate "templates/post-body.html" headCtx
+            >>= relativizeUrls
+
     match "posts/lost_headers/*.html" $ do
         compile $ do
             getResourceBody
@@ -73,7 +79,7 @@ main = hakyll $ do
 
     let post_contents = loadAll ("posts/*" .&&. hasNoVersion) :: Compiler [Item String]
     let post_headers = loadAll (("posts/*" .&&. hasVersion "header") .||. "posts/lost_headers/*.html") :: Compiler [Item String]
-    let post_titles = loadAll (("posts/*" .&&. hasVersion "only_title") .||. "posts/lost_headers/*.html") :: Compiler [Item String]
+    let post_titles = loadAll ("posts/*" .&&. hasVersion "only_title") :: Compiler [Item String]
 
     create ["robots.txt"] $ do
         route idRoute
