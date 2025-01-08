@@ -210,28 +210,35 @@ Your browser does not support the video tag.
 Final animation.
 </figcaption>
 </figure>
-
-
-
-<div id="disqus_thread"></div>
+ 
 <script>
-    var gaProperty = 'UA-85187126-1';
-    var disableStr = 'ga-disable-' + gaProperty;
-    if (document.cookie.indexOf(disableStr + '=true') == -1) {
-      var disqus_config = function () {
-          this.page.url = "https://sygnowski.ml"
-          this.page.identifier = "sygii"
-      };
-      (function() {
-          var d = document, s = d.createElement('script');
-          s.src = '//sygii.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-      })();
+    var gaProperty = "UA-85187126-1";
+    var disableStr = "ga-disable-" + gaProperty;
+    if (document.cookie.indexOf(disableStr + "=true") == -1) {
+        const giscusScript = document.createElement("script");
+        giscusScript.src = "https://giscus.app/client.js";
+        giscusScript.setAttribute("data-repo", "sygi/sygi.github.io");
+        giscusScript.setAttribute(
+            "data-repo-id",
+            "MDEwOlJlcG9zaXRvcnk1NDY0MzkzMQ==",
+        );
+        giscusScript.setAttribute("data-category", "Announcements");
+        giscusScript.setAttribute("data-category-id", "DIC_kwDOA0HM284Cl2tu");
+        giscusScript.setAttribute("data-mapping", "title");
+        giscusScript.setAttribute("data-strict", "0");
+        giscusScript.setAttribute("data-reactions-enabled", "1");
+        giscusScript.setAttribute("data-emit-metadata", "0");
+        giscusScript.setAttribute("data-input-position", "top");
+        giscusScript.setAttribute("data-theme", "noborder_light");
+        giscusScript.setAttribute("data-lang", "en");
+        giscusScript.setAttribute("crossorigin", "anonymous");
+        giscusScript.async = true;
+        document.body.appendChild(giscusScript);
     }
 </script>
 
 
+            <div class="giscus"></div>
         </div>
         <div id="footer">
           <span id="privacy">
