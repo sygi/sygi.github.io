@@ -7,8 +7,18 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygi.xyz/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Tue, 18 Oct 2022 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Fri, 10 Jan 2025 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Turing Machine game</title>
+    <link>https://sygi.xyz/posts/2025-01-10-turing-machine.html</link>
+    <description><![CDATA[<p>I recently found a copy of a <a href="https://boardgamegeek.com/boardgame/356123/turing-machine">Turing Machine</a> game under a Christmas tree.
+While not related to the actual <a href="https://en.wikipedia.org/wiki/Turing_machine">Turing machine</a>, it’s a cool game with some interesting mathematical properties.
+In this post, I describe and analyze the game.</p>]]></description>
+    <pubDate>Fri, 10 Jan 2025 00:00:00 UT</pubDate>
+    <guid>https://sygi.xyz/posts/2025-01-10-turing-machine.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Importing 3D characters workflow</title>
     <link>https://sygi.xyz/posts/2022-10-18-import-3d-characters.html</link>
     <description><![CDATA[<p>In my point-and-click adventure game, I use 3D characters. They are easier to get online than 2D ones, and modifying them or adding animations is also easier. On the other hand, the whole process, from downloading the free assets to getting them into Godot is quite involved, so I decided to document it here.</p>]]></description>
