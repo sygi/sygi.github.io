@@ -7,8 +7,18 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygi.xyz/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Fri, 10 Jan 2025 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Thu, 16 Jan 2025 00:00:00 UT</lastBuildDate>
         <item>
+    <title>LLM says buttons</title>
+    <link>https://sygi.xyz/posts/2025-01-16-llm-says-buttons.html</link>
+    <description><![CDATA[<p>The default interaction method used with contemporary Large Language Models (LLMs) is a text chat: user asks a question, LLM gives an answer.
+Inspired by <a href="https://willwhitney.com/computing-inside-ai.html">Will Whitney’s post</a> and conversations with <a href="https://www.varungodbole.com/">Varun Godbole</a>, I propose an alternative
+interface that could be implemented with current technology.</p>]]></description>
+    <pubDate>Thu, 16 Jan 2025 00:00:00 UT</pubDate>
+    <guid>https://sygi.xyz/posts/2025-01-16-llm-says-buttons.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Turing Machine game</title>
     <link>https://sygi.xyz/posts/2025-01-10-turing-machine.html</link>
     <description><![CDATA[<p>I recently found a copy of a <a href="https://boardgamegeek.com/boardgame/356123/turing-machine">Turing Machine</a> game under a Christmas tree.

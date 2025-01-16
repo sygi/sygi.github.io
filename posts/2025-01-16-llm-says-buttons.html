@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+      <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XG30NLF042"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XG30NLF042');
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta property="og:title" content="LLM says buttons">
+        
+        
+        <meta name="author" content="Jakub Sygnowski">
+        
+        
+        <meta name="robots" content="index,follow">
+        <meta name="googlebot" content="index,follow">
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="icon" href="../images/favicon.png" />
+        <title>LLM says buttons</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Cemetery of Forgotten Projects</a>
+            </div>
+            <div id="navigation">
+                <a href="../subpages/about.html">About me</a>
+
+                <a href="../rss.xml"><img src="../images/rss_icon.svg" alt="RSS feed" /></a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="info">
+    Posted on January 16, 2025
+    
+</div>
+<h1>LLM says buttons</h1>
+<p>The default interaction method used with contemporary Large Language Models (LLMs) is a text chat: user asks a question, LLM gives an answer.
+Inspired by <a href="https://willwhitney.com/computing-inside-ai.html">Will Whitney’s post</a> and conversations with <a href="https://www.varungodbole.com/">Varun Godbole</a>, I propose an alternative
+interface that could be implemented with current technology.</p>
+<p>The commonly-used text interface is very expressive: the user can discuss topics from the latest car industry to finding the best place for a honeymoon.
+It also feels natural: it resembles the way humans talk to each other and every user has years of experience in using this form of communication.</p>
+<p>While humans communicate effectively this way, there are many cases when talking to a machine is done more efficiently, e.g.
+- Drawing pictures in Photoshop
+- Creating spreadsheets for financial data
+- Writing code / this document: despite also using the text interface, the text editors have lots of useful features that makes editing drafts easier than prompting LLMs.</p>
+<p>Two key UX challenges when using LLMs are:</p>
+<ol type="1">
+<li>Discoverability: getting the user to understand what features/options exist and what they can use the tool for,</li>
+<li>Accessibility: allowing different users to adjust their experience based on their level of familiarity with a tool.</li>
+</ol>
+<h2 id="user-driven-research">User-driven research</h2>
+<p>Researching a given idea involves scoping the problem right.
+For example, when trying to meet with others in a restaurant, one needs to decide:</p>
+<ol type="1">
+<li>Who to meet with,</li>
+<li>When,</li>
+<li>What type of food,</li>
+<li>What type of budget should be involved.</li>
+</ol>
+<p>When asked to help organize a restaurant visit, an LLM typically either makes assumptions about the user’s preferences (e.g., assuming they want lunch) or asks for clarification, leaving the decision to the user.</p>
+<figure>
+<a href="https://claude.ai/chat/047691a1-c977-403f-98ef-27efd5628219"><img src="../images/llm-buttons/claude-chat.png" style="width:80.0%" alt="A chat with an LLM trying to find a place to eat." /></a>
+<figcaption>
+A chat with an LLM trying to find a place to eat.
+</figcaption>
+</figure>
+<p>One can visualize the research process as a decision tree with nodes as the questions and edges as the potential answers:</p>
+<figure>
+<figure>
+<img src="../images/llm-buttons/binary_background.png" style="width:80.0%" alt="A decision tree showing the research process that can be" />
+<figcaption aria-hidden="true">A decision tree showing the research process that can be</figcaption>
+</figure>
+</figure>
+<h2 id="interface">Interface</h2>
+<p>Traversing this decision tree through lengthy responses interspersed with follow-up questions<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is both inefficient and unnatural.</p>
+<p>Instead, the LLM can analyze whether it has enough information to answer the question. Until it does, it can iterate:</p>
+<ol type="1">
+<li>asking itself about the next piece of information needed and the best widget to gather it (eg. a map for the location, slider for the price, button for cuisine type)</li>
+<li>show the widget to the user to get the answer</li>
+</ol>
+Together with <a href="https://github.com/sherrybai">Sherry Bai</a> and <a href="https://github.com/l-armstrong">Lamone Armstrong</a>,
+we prototyped a verion of this interface, where we only allow the model to display buttons:
+<figure>
+<figure>
+<img src="../images/llm-buttons/prototype.png" style="width:80.0%" alt="Prototype of the idea implemented in an afternoon in Recurse Center." />
+<figcaption aria-hidden="true">Prototype of the idea implemented in an afternoon in <a href="https://www.recurse.com/scout/click?t=2b09e4dea03e120cda347cd253158d00">Recurse Center</a>.</figcaption>
+</figure>
+</figure>
+<h2 id="benefits">Benefits</h2>
+<p>The balance between making assumptions and asking users questions is a difficult one to strike.
+On one hand, we want the LLM to provide as useful and accurate information as it can; on the other, repeatedly asking the user to clarify the request leads to fatigue and discourages users.</p>
+<p>Making it easier for users to express preferences shifts the balance away from guessing, as pressing buttons three times is less cognitively demanding than reading multiple responses and composing text replies.</p>
+<p>Furthermore, expressing the first question/prompt in natural language is not, paradoxically, the most natural way of starting a conversation for humans<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.
+Users’ behavior with Google’s search engine demonstrates this remark: even though it can handle natural language well these days, most of
+us<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> only put keywords, like <code>python type self</code>, as they express the intention clearly enough in most of the cases.</p>
+<p>A structured conversation makes it easier for users to backtrack on their answers and investigate a different continuation: now, if the user wants to provide a different answer to some of the clarifying questions,
+she only needs to press a different button.</p>
+<h3 id="storing-memories">Storing memories</h3>
+<p>Driving the conversations in a more structured way will likely lead to the very same widget being displayed multiple times to the same user
+over the course of their lifes: we go to get food many times over and decide how to do so every time.</p>
+<p>Being able to retrieve the history of user’s answers to the particular question allows the LLM to skip asking it altogether (like it does now),
+while taking the user’s preferences into account.</p>
+<p>Even better, one can envision an entropy-based model, where the uncertainty of the user’s answer is modeled and the question is
+re-asked in intervals that are propotional to the confidence level of the model, letting user to change their preferences every
+now and then.</p>
+<h2 id="concerns">Concerns</h2>
+<p>This idea faces two challenges:</p>
+<p>First, “LLM says buttons” interface requires multiple model calls, what is more expensive than the traditional chat interaction. The cost of sampling is proportional to the number of input and output tokens<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.
+Given that the clarifying discussion happens at the beginning of the conversation, the extra input to handle would be relatively small: apart from the KV-cached user prompt, it would be just a couple of sentences to the LLM asking for clarification question and widget.</p>
+<p>Second, button interface increase latency in two ways:</p>
+<ol type="1">
+<li>Users must complete all widget interactions before receiving results</li>
+<li>Each generation of a button requires a new model inference.</li>
+</ol>
+<p>While the first one is hard to eliminate, the second one could be handled by having a smaller (and thus: faster) network, potentially served closer to the user (as it’s cheaper to run), whose only goal would be generation of the UI elements.</p>
+<h2 id="outro">Outro</h2>
+<p>While text-based chat remains the foundation of LLM interfaces, introducing structured elements like buttons could bridge the gap between natural conversation and efficient tool usage. This hybrid approach might just be the key to making AI assistants both more powerful and more accessible to everyone.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>In the example conversation, Claude shows recommendations for a couple of different areas and then proceeds to ask about cuisine and budget.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Not to mention the unnatural prompting techniques that encourage the LLM to answer like: “You are a senior expert…”<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>a reference to the <a href="https://www.today.com/parents/grandmother-makes-everyone-smile-polite-google-request-t98411">polite grandma story</a> is required here<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>with different coefficients<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+ 
+<script>
+    var gaProperty = "UA-85187126-1";
+    var disableStr = "ga-disable-" + gaProperty;
+    if (document.cookie.indexOf(disableStr + "=true") == -1) {
+        const giscusScript = document.createElement("script");
+        giscusScript.src = "https://giscus.app/client.js";
+        giscusScript.setAttribute("data-repo", "sygi/sygi.github.io");
+        giscusScript.setAttribute(
+            "data-repo-id",
+            "MDEwOlJlcG9zaXRvcnk1NDY0MzkzMQ==",
+        );
+        giscusScript.setAttribute("data-category", "Announcements");
+        giscusScript.setAttribute("data-category-id", "DIC_kwDOA0HM284Cl2tu");
+        giscusScript.setAttribute("data-mapping", "title");
+        giscusScript.setAttribute("data-strict", "0");
+        giscusScript.setAttribute("data-reactions-enabled", "1");
+        giscusScript.setAttribute("data-emit-metadata", "0");
+        giscusScript.setAttribute("data-input-position", "top");
+        giscusScript.setAttribute("data-theme", "noborder_light");
+        giscusScript.setAttribute("data-lang", "en");
+        giscusScript.setAttribute("crossorigin", "anonymous");
+        giscusScript.async = true;
+        document.body.appendChild(giscusScript);
+    }
+</script>
+
+
+            <div class="giscus"></div>
+        </div>
+        <div id="footer">
+          <span id="privacy">
+            <label class="cookie-switch">
+              Cookies
+              <input type="checkbox" id="cookie" checked />
+            </label>
+            <a href="../subpages/privacy.html">Privacy policy</a>
+          </span>
+
+          <span id="acknowledgements">
+            Site built using
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <!--
+            <a href="https://www.mathjax.org/">MathJax</a>,
+            <a href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes.js</a>,
+            and <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>-->
+          </span>
+        </div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    <script defer>
+      
+    require.config({
+      paths: {
+        'bilderrahmen': 'https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5',
+        'anchorjs': 'https://cdn.jsdelivr.net/npm/anchor-js/anchor.min',
+        'mathjax': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        'jquery': 'https://code.jquery.com/jquery-2.2.2.min', <!-- for footnotes -->
+        'footnotes': '../../js/footnotes'
+      }
+    });
+
+    
+    
+    require(['anchorjs'], function(module){
+      const anchors = new module();
+      anchors.add();
+    });
+    require(['mathjax']);
+    require(['jquery'], function(jQuery){
+      require(['footnotes']);
+    });
+    
+
+    var gaProperty = 'G-XG30NLF042';
+    var disableStr = 'ga-disable-' + gaProperty;
+    const cookie = document.getElementById("cookie");
+    cookie.addEventListener('change', (event) => {
+      if(event.target.checked) {
+        console.log("Turn cookies on");
+        window[disableStr] = false;
+        document.cookie = disableStr + '= ; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      } else {
+        console.log("Turn cookies off");
+        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+        window[disableStr] = true;
+      }
+    });
+    if (document.cookie.indexOf(disableStr + '=true') > -1) {
+      const cookie = document.getElementById("cookie");
+      cookie.checked = false;
+      window[disableStr] = true;
+    }
+    </script>
+  </body>
+</html>
