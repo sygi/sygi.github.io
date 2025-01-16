@@ -11,7 +11,10 @@ stack ghc site.hs
 # Deploy
 ./site build
 git checkout master
-cp -a _site/. .
+# TODO: write a copy version that only copies if the file is actually different
+cp _site/* .  # not recursive
+cp -r -n _site/. .  # don't overwrite
 git add <new files>
 git commit
 git push yet master
+
