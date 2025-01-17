@@ -59,6 +59,8 @@ we prototyped a verion of this interface, where we only allow the model to displ
 ![Prototype of the idea implemented in an afternoon in [Recurse Center](https://www.recurse.com/scout/click?t=2b09e4dea03e120cda347cd253158d00).](../images/llm-buttons/prototype.png){width=80%}
 </figure>
 
+Update 17-01: You can try the prototype [here](https://llm-says-buttons.streamlit.app/).
+
 ## Benefits
 The balance between making assumptions and asking users questions is a difficult one to strike.
 On one hand, we want the LLM to provide as useful and accurate information as it can; on the other, repeatedly asking the user to clarify the request leads to fatigue and discourages users.
