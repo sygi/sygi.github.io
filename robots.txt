@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sygi.ml/sitemap.xml
+Sitemap: https://sygi.xyz/sitemap.xml
