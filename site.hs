@@ -114,7 +114,7 @@ main = hakyll $ do
             let last_posts = drop expanded_prefix all_titles
 
             let headerCtx =
-                      modificationTimeField "modified" "%Y-%m-%d" `mappend`
+                      modificationTimeField "modified" "%Y-%m-%dT%H:%M:%S%z" `mappend`
                       constField "canonical" root `mappend`
                       listField "posts" headCtx (return (first_posts ++ last_posts)) `mappend`
                       defaultContext
@@ -133,7 +133,7 @@ postCtx :: Context String
 postCtx =
     constField "root" root `mappend`
     constField "default_author" "Jakub Sygnowski" `mappend`
-    modificationTimeField "modified" "%Y-%m-%d" `mappend`
+    modificationTimeField "modified" "%Y-%m-%dT%H:%M:%S%z" `mappend`
     dateField "date" "%B %e, %Y" `mappend`
     boolField "is_post" (\_ -> True) `mappend`
     defaultContext
