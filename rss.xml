@@ -7,8 +7,17 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygi.xyz/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Thu, 16 Jan 2025 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 09 Feb 2025 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Small Multiagent Vision for Large Language Models</title>
+    <link>https://sygi.xyz/posts/2025-02-09-multiagent-llms.html</link>
+    <description><![CDATA[<p>Multiagent algorithms are not in the mainstream focus nowadays, in particular, LLM development rarely incorporates them.
+This post explains why I think the characteristics of LLMs make them ideal candidates for multiagent algorithms.</p>]]></description>
+    <pubDate>Sun, 09 Feb 2025 00:00:00 UT</pubDate>
+    <guid>https://sygi.xyz/posts/2025-02-09-multiagent-llms.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>LLM says buttons</title>
     <link>https://sygi.xyz/posts/2025-01-16-llm-says-buttons.html</link>
     <description><![CDATA[<p>The default interaction method used with contemporary Large Language Models (LLMs) is a text chat: user asks a question, LLM gives an answer.
