@@ -36,22 +36,6 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
--- TODO: clean up once I have access to the sources again.
-    match "posts/*.html" $ do
-        route idRoute
-        compile copyFileCompiler
-
-    match "posts/*.html" $ version "only_title" $ do
-        compile $ do
-            getResourceBody
-            >>= loadAndApplyTemplate "templates/post-body.html" headCtx
-            >>= relativizeUrls
-
-    match "posts/lost_headers/*.html" $ do
-        compile $ do
-            getResourceBody
-            >>= saveSnapshot "header"
-
     match "posts/*.markdown" $ do
         route $ setExtension "html"
         compile $
@@ -78,7 +62,7 @@ main = hakyll $ do
             >>= relativizeUrls
 
     let post_contents = loadAll ("posts/*" .&&. hasNoVersion) :: Compiler [Item String]
-    let post_headers = loadAll (("posts/*" .&&. hasVersion "header") .||. "posts/lost_headers/*.html") :: Compiler [Item String]
+    let post_headers = loadAll ("posts/*" .&&. hasVersion "header") :: Compiler [Item String]
     let post_titles = loadAll ("posts/*" .&&. hasVersion "only_title") :: Compiler [Item String]
 
     create ["robots.txt"] $ do
