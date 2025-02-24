@@ -247,6 +247,7 @@ pre.sourceCode {
     overflow-x: scroll;
     max-width: 94%;
     display: inline-block;
+    text-align: left;
 }
 
 /* To support code within figure, which is not automatically recognized */
@@ -280,9 +281,11 @@ td.lineNumbers {
 td.sourceCode { padding-left: 5px; }
 .sourceCode span.kw { color: #007020; font-weight: bold; }
 .sourceCode span.dt { color: #902000; }
+.sourceCode span.va { color: #902000; }
 .sourceCode span.dv { color: #40a070; }
 .sourceCode span.bn { color: #40a070; }
 .sourceCode span.fl { color: #40a070; }
+.sourceCode span.cf { color: #40a070; font-weight: bold;}
 .sourceCode span.ch { color: #4070a0; }
 .sourceCode span.st { color: #4070a0; }
 .sourceCode span.co { color: #60a0b0; font-style: italic; }
