@@ -7,8 +7,16 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygi.xyz/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Mon, 24 Feb 2025 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Mon, 31 Mar 2025 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Electronics</title>
+    <link>https://sygi.xyz/posts/2025-03-31-electronics.html</link>
+    <description><![CDATA[<p>The last time I had contact with electric currents was during physics class in high school more than a decade ago. Paradoxically, the contact was a non-physical one: we would calculate answers to some theoretical, closed-form problems without building any real circuits ourselves.</p>]]></description>
+    <pubDate>Mon, 31 Mar 2025 00:00:00 UT</pubDate>
+    <guid>https://sygi.xyz/posts/2025-03-31-electronics.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>ATC game</title>
     <link>https://sygi.xyz/posts/2025-02-24-atc-game.html</link>
     <description><![CDATA[<p>I find the work of air traffic controllers fascinating, scary, and powerful as they can move the planes with the power of their voices. To act on this feeling, I made a simple <a href="https://sygi.xyz/atc">game prototype</a> in which the player is an ATC trying to land the airplanes safely.</p>]]></description>
