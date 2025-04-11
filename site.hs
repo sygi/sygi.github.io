@@ -30,7 +30,7 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateBodyCompiler
 
-    match (fromList ["subpages/about.markdown", "subpages/privacy.markdown", "projects.markdown", "progress.markdown"]) $ do
+    match (fromList ["subpages/about.markdown", "subpages/privacy.markdown", "projects.markdown", "progress.markdown", "subpages/toc.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompilerWith readerPostOptions writerPostOptions
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
@@ -73,7 +73,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< post_titles
-            singlePages <- loadAll $ fromList ["subpages/about.markdown", "subpages/privacy.markdown"]
+            singlePages <- loadAll $ fromList ["subpages/about.markdown", "subpages/privacy.markdown", "subpages/toc.markdown"]
             let pages = posts `mappend` singlePages
                 sitemapCtx =
                     constField "root" root `mappend`
