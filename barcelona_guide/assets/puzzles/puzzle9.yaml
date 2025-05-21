@@ -1,0 +1,26 @@
+id: 09
+title: Casa de les Punxes
+location:
+  lat: 41.39802
+  lon: 2.16406
+introduction: |
+  Look closely at the magnificent façade of Casa de les Punxes, particularly the lower section.
+  Above some of the windows, you will see intricate stained-glass panels, often shaped like crests
+  or shields. One of these panels uniquely features a representation of a heart pierced by a
+  dagger or sword.
+challenge:
+  title:
+  question: |
+    What number is prominently displayed within or next to this specific heart-shaped crest, perhaps
+    signifying a year?
+  answer: 1905
+success_text: |
+  Do not be deceived—though it looks like a medieval castle, Casa de les Punxes was born in 1905.
+  Designed by Josep Puig i Cadafalch, it was commissioned by the Terradas sisters as a modernista
+  apartment block. Its six turrets, or “punxes,” lend the house its name. From the outside, you
+  can admire its red-brick Gothic forms and ceramic panels honoring Saint George, the patron of
+  Catalonia. Look for floral ironwork and stained-glass crests—symbols of family, faith, and
+  patriotism. You might even spot a heart pierced, alongside the very year of its birth, a
+  testament to its enduring spirit. Each turret marks a separate family dwelling, unified under
+  one fairytale façade. This is not nostalgia—it is Catalan identity reborn in brick and light.
+next_puzzles_id: 10

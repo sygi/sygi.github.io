@@ -1,0 +1,25 @@
+id: 10
+title: Casa Vicens
+location:
+  lat: 41.40352
+  lon: 2.15071
+introduction: |
+  Ah, my first breath in stone, Casa Vicens! A symphony of nature and craft, no? Observe closely,
+  my dear seeker, for the answers are always found in the details.
+challenge:
+  title:
+  question: |
+    Look at the entrance gate to this verdant retreat. What specific plant, a gift from the very
+    earth of Catalonia, do you see recreated in the magnificent cast ironwork of the main gate?
+    Its fronds stretch upwards, as if reaching for the sun.
+  answer: Palm
+success_text: |
+  My first true building—Casa Vicens—was born in 1885, a summer house for Manuel Vicens, a tile
+  manufacturer. It is a young architect’s exhalation: Moorish, Gothic, and naturalist forms
+  entwine. I used local stone, brick, cast iron, and, of course, colorful ceramic tiles from Mr.
+  Vicens’ own factory. You see palm fronds carved in relief, even adorning the very gate, their
+  iron grilles like vines, chimneys that sprout like flowering stalks. This was not a city
+  palace—it was a garden retreat, a sanctuary. Every tile sings of the Mediterranean. The house
+  has been restored and now opens to visitors, but even from the street, its floral façade tells
+  you: the architect here followed not history, but nature.
+next_puzzles_id: 11

@@ -1,0 +1,28 @@
+id: 07
+title: Casa Batlló
+location:
+  lat: 41.3915
+  lon: 2.1649
+introduction: |
+  A building that breathes and undulates like a living thing, a testament to the power of
+  organic form. A dragon vanquished, yes, but also so much more! Let us look beyond the
+  obvious and find the hidden music in its bones.
+challenge:
+  title:
+  question: |
+    Stand on Passeig de Gràcia directly facing the main façade of Casa Batlló. On the “noble
+    floor” (the second floor up, with the largest windows), you’ll see balconies shaped like
+    mask‑like skulls or vertebrae. Count how many of these balconies appear on that single level.
+  answer: 4
+success_text: |
+  Ah, Casa Batlló—my ode to Saint George and the dragon, completed in 1906. When you
+  paused before the noble floor and counted those four mask‑like balconies, you spoke the
+  language of the bone‑spine of this façade. I was asked to renovate an uninspiring 1870s
+  building on Passeig de Gràcia for the Batlló family—but I do not renovate. I resurrect. Those
+  four balconies are my vertebrae: each a molded skull through which life and light breathe.
+  The colorful trencadís—shattered tile reborn—mirrors water’s dance around those bones.
+  Inside, wood flows like driftwood, and the staircase coils like a great beast’s tail. This house
+  does not obey straight lines—because nature does not! It breathes with organic ventilation
+  and lets in daylight through a central lightwell like a sunlit cave. A home, yes—but also a
+  dragon slain and sanctified.
+next_puzzles_id: 08

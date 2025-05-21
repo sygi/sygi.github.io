@@ -1,0 +1,29 @@
+id: 13
+title: Hospital de Sant Pau
+location:
+  lat: 41.41168
+  lon: 2.17429
+introduction: |
+  Ah, the Hospital de Sant Pau! A true symphony of healing and beauty, though not of my hand,
+  it certainly speaks a language I understand. Domènech i Montaner, a kindred spirit indeed,
+  understood that light and nature are the truest medicines. Observe the grand entrance, a
+  gateway to well-being.
+challenge:
+  title: The Symbol of Healing
+  question: |
+    Stand before the main administration building of the Hospital de Sant Pau. Look up at the
+    grand entrance. High above the central archway, you will see a prominent sculpture. What
+    specific mythological creature, often associated with medicine and healing, is depicted
+    there, holding a staff entwined by serpents?
+  answer: Dragon
+success_text: |
+  Hospital de Sant Pau. Not mine, but a cousin in spirit—Lluís Domènech i Montaner’s
+  masterwork. Built from 1902 to 1930, this is not a hospital of gray walls, but of healing
+  gardens. Look! Mosaics, ceramic domes, and stained glass bloom like a curative forest. Even
+  at the main entrance, a dragon watches over the threshold, a symbol of the battle against
+  illness. Each pavilion was a separate medical specialty, linked by underground tunnels to
+  keep the gardens quiet. It’s a modernista utopia—medicine joined with art, sunlight, air,
+  and dignity. Domènech believed, as I do, that beauty is part of health. Today, the
+  historical site is open to visitors; the modern hospital functions elsewhere. From the
+  street, admire how brick, tile, and sculpture unite science and soul.
+next_puzzles_id: 14

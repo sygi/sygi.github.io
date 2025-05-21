@@ -1,0 +1,33 @@
+id: puzzle1
+title: Palau Güell
+location:
+  lat: 41.378883
+  lon: 2.17424
+introduction: |
+  My earliest grand work for my esteemed patron. From a sober exterior, it bursts forth with
+  hidden wonders, a testament to what a discerning eye and a willing spirit can achieve. Look
+  closely, for even the guardians of its entrance whisper of myth and purpose.
+challenge:
+  title: The Mythic Gate's Guardian
+  question: |
+    Stand before the main entrance gates of Palau Güell. Observe the elaborate wrought
+    ironwork that forms these majestic gates. Among the swirling patterns and intricate
+    designs, you will see a prominent mythological creature, often associated with strength
+    and guardianship, integrated into the design. What type of mythical beast, often
+    depicted with wings, is sculpted into these gates?
+  answer: Dragon
+success_text: |
+  Just steps from the old city, Palau Güell was my first major commission for my patron,
+  Eusebi Güell, completed in 1888. It may look sober from the outside—stone and iron rising
+  solemnly—but inside, it unfolds like a grand cavern. The parabolic arches support a central
+  hall where light filters down from a lantern dome like sun through the oculus of a seashell.
+  The ironwork on the gates? Wrought dragons and stars, forged with purpose and myth,
+  guarding the very threshold. Even the chimneys, hidden on the roof, are kaleidoscopes of
+  trencadís mosaic—proto-types for La Pedrera. This was not a home. It was a temple of urban
+  nobility, where commerce met craft, and Catalonia’s future found form.
+next_puzzles_id: puzzle2
+audio:
+  introduction: puzzle1/introduction.mp3
+  question: puzzle1/question.mp3
+  success_text: puzzle1/success_text.mp3
+  complete: puzzle1/complete.mp3

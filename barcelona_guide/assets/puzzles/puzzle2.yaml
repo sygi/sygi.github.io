@@ -1,0 +1,32 @@
+id: puzzle2
+title: Plaça Reial
+location:
+  lat: 41.380192
+  lon: 2.175515
+introduction: |
+  A quiet square, yet one that holds the very first whispers of my creative spirit, long before
+  the grand symphonies of stone. Even then, I sought to imbue everyday objects with deeper
+  meaning, to make them sing.
+challenge:
+  title: The Winged Messenger's Helmet
+  question: |
+    Enter Plaça Reial and seek out the distinctive lamp posts I designed. Look at the very top of
+    one of these elegant posts, beneath the actual light fixture. You will see a decorative
+    element: a winged helmet. How many distinct wings can you clearly count on a single one of
+    these helmets?
+  answer: 2
+success_text: |
+  Hidden just off La Rambla lies Plaça Reial—an elegant neoclassical square surrounded by
+  arcades. But look closer, and you’ll find my early fingerprints: the lamp posts I designed in
+  1878, when I was but a young architect fresh from the School of Architecture. These are not
+  mere utilities. Each post bears a crown of serpents and a winged helmet—its two distinct
+  wings soaring upwards—homage to Mercury, god of commerce. They blend wrought iron and
+  stone with classical poise and mythological flourish. Even then, I did not design for function
+  alone. I demanded form speak a language. Today, locals and travelers dine beneath their
+  glow, never suspecting they stand beneath the first flicker of Gaudí’s light.
+next_puzzles_id: 03
+audio:
+  introduction: puzzle2/introduction.mp3
+  question: puzzle2/question.mp3
+  success_text: puzzle2/success_text.mp3
+  complete: puzzle2/complete.mp3

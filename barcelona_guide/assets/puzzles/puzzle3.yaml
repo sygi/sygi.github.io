@@ -1,0 +1,26 @@
+id: 03
+title: Barcelona Cathedral
+location:
+  lat: 41.382742
+  lon: 2.1778771
+introduction: |
+  While not a creature of my hand, her ancient stones whisper tales of faith and form that
+  resonate deeply. She embodies a different kind of natural inspiration, drawn from the very
+  forests themselves, much like my own. Observe her time-worn beauty.
+challenge:
+  title: The Saint's Feathered Guardians
+  question: |
+    Near the cloisters of the Barcelona Cathedral, there is a serene courtyard featuring a pond.
+    According to tradition, a specific number of white birds reside here, symbolizing the age of
+    Saint Eulalia at her martyrdom. How many of these feathered guardians can you count in the
+    cloister's pond?
+  answer: 13
+success_text: |
+  Here is Gothic Barcelona, completed in fits and starts from the 13th to 15th century. The
+  façade you see now was added in the 19th century in neo-Gothic style. This cathedral is
+  dedicated to Saint Eulalia, a young martyr whose tomb rests in the crypt. The cloister, with
+  its thirteen white geese, is visible from the street—a living symbol of her age at death. Its
+  soaring ribbed vaults, flying buttresses, and pinnacled spires are older than my own style,
+  yes, but still I admire them. For they were drawn from the sacred geometry of trees and
+  caves, much like mine.
+next_puzzles_id: 04

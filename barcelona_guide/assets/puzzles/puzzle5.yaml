@@ -1,0 +1,29 @@
+id: 05
+title: Palau de la Música Catalana
+location:
+  lat: 41.38774
+  lon: 2.17532
+introduction: |
+  A symphony in brick and glass, a true testament to the spirit of Catalonia and
+  the power of song. Domènech i Montaner truly created a marvel where every surface
+  sings. Even from the street, its exuberance is undeniable.
+challenge:
+  title: The Floral Capital's Count
+  question: |
+    Stand outside the Palau de la Música Catalana and look at the grand corner facade,
+    where the building curves around. Observe the prominent columns that rise along this
+    curve, crowned with magnificent, ornate capitals overflowing with sculpted floral
+    motifs. How many of these distinct, highly decorative floral capitals can you count
+    on this curved corner facade?
+  answer: 8
+success_text: |
+  This jewel box of sound was built by Domènech i Montaner in just three years
+  (1905–1908). Commissioned by the Orfeó Català, it is a cathedral for music, open
+  to the people. The exterior explodes with floral mosaics, sculpted muses, and a
+  grand columned corner that seems to bloom from the ground, where eight glorious
+  floral capitals crown the columns, each a bouquet in stone. Inside—oh, inside!—the
+  concert hall glows under a stained-glass skylight shaped like the sun. Every surface
+  sings: columns sprout blossoms, arches carry music through the air. Even from outside,
+  you feel it—a structure as lyrical as the songs it holds. This is not mere building.
+  This is harmony made stone.
+next_puzzles_id: 06

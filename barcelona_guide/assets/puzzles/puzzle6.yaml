@@ -1,0 +1,27 @@
+id: 06
+title: Arc de Triomf
+location:
+  lat: 41.3916
+  lon: 2.1804
+introduction: |
+  A gateway to grand visions, a symbol of Barcelona's burgeoning spirit in my own time. Vilaseca
+  understood the power of brick and native forms, a testament to true Catalan innovation, not
+  mere imitation. Observe its proud declaration.
+challenge:
+  title: The City's Royal Crest
+  question: |
+    Stand before the Arc de Triomf and look closely at its front facade, specifically above the main
+    archway. You will see several prominent sculptural reliefs. Locate the large central shield
+    or crest, often associated with royalty, positioned high on the arch. How many distinct
+    towers are depicted on the crown that surmounts this central crest?
+  answer: 8 (This refers to the civic crown, often depicted with eight towers or merlons, signifying a city.)
+success_text: |
+  Not built for war, but for celebration! In 1888, Barcelona hosted the Universal Exposition, and
+  this brick triumphal arch was its grand entrance. Architect Josep Vilaseca blended Moorish
+  influence with Catalan form: red brick, ceramic medallions, and sculptural reliefs that show
+  Barcelona welcoming the world. Look closely at the crown-like crenellations and symbolic
+  carvings: allegories of industry, agriculture, and progress. Even the central crest proudly
+  bears a crown with eight towers, signifying the city's strength. This is not imitation—it is
+  invention. No marble mimicry here! Only modern craftsmanship. The arch leads toward Parc de la
+  Ciutadella and declares: Catalonia is open, radiant, and proudly modern.
+next_puzzles_id: 07

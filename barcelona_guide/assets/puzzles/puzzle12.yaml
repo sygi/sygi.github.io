@@ -1,0 +1,31 @@
+id: 12
+title: Sagrada Familia Passion Façade
+location:
+  lat: 41.40321
+  lon: 2.17384
+introduction: |
+  Ah, the Passion Façade. A different song, isn't it? One of starkness and sacrifice,
+  brought forth by Subirachs's hand. Even in sorrow, there is divine order. Observe
+  closely the tales told in stone.
+challenge:
+  title: The Magic Square's Sum
+  question: |
+    On the Passion Façade, you will find a peculiar "magic square" sculpted into the
+    stone, near the depiction of the Kiss of Judas. This square contains numbers
+    arranged in a grid. Add together the numbers in any row, column, or diagonal.
+    What is the constant sum that you consistently achieve?
+  answer: 33
+success_text: |
+  Behold the austere Passion Façade—my vision tempered by time, brought to life in
+  1987 by Josep Maria Subirachs and his devoted artisans. Carved in rugged stone and
+  cast in bronze, these angular forms evoke a forest of skeletal branches stripped
+  bare by winter, each figure a petrified prayer of sacrifice. Here the catenary
+  arches descend like bowed heads, and the tilted columns lean as if under the weight
+  of sorrow. Even a magic square, whose numbers consistently add up to thirty-three,
+  whispers of the age of Christ at his crucifixion. Completed in 2005, this façade
+  stands in stark contrast to the lush Nativity side, proclaiming the drama of human
+  suffering with pure geometry and shadow. There is no trencadís mosaic here—only
+  raw stone that speaks of bone and earth. Yet even in its severity, it sings of
+  Catalonia’s resilience: a testament that true beauty arises when structure and
+  spirit embrace, and nature’s laws guide every chiselled line.
+next_puzzles_id: 13

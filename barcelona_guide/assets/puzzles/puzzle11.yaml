@@ -1,0 +1,30 @@
+id: 11
+title: Sagrada Familia Nativity Façade
+location:
+  lat: 41.40402
+  lon: 2.17491
+introduction: |
+  Ah, the Sagrada Familia! My greatest work, a testament to God and nature, still breathing
+  and growing even after my departure. You stand before the Nativity Façade, a symphony in
+  stone.
+challenge:
+  title:
+  question: |
+    Focus your gaze on the central portal of the Nativity Façade – the Portal of Charity. Above
+    the archway, among the many figures, you will see a prominent sculpture of an animal,
+    often associated with new beginnings and protection. Which specific animal stands watch
+    over the entrance to this joyful scene?
+  answer: Donkey (or Ass)
+success_text: |
+  This is no mere church—it is my life's cathedral, begun in 1882. I took over a year later
+  and devoted myself to it until my death in 1926. You stand now before the Nativity Façade,
+  the only one completed in my lifetime. It is a song of life, growth, and divine light—brimming
+  with sculpted birds, plants, and joyous scenes of Christ’s birth. See how even the most humble
+  creatures are elevated here: above the central Portal of Charity, a donkey stands as a silent,
+  steadfast witness, a symbol of humility and the peace that came with the Lord's arrival. I
+  designed the columns like trees, branching to support vaults overhead. The forms obey gravity:
+  catenary arches, tilted columns, geometry born from hanging chains and inverted weights. This
+  façade, so ornate and teeming with life, shows the God of creation through nature itself. And
+  yes—it still rises. Future generations carry the work as the Middle Ages did with their
+  cathedrals: a temple of devotion across time.
+next_puzzles_id: 12

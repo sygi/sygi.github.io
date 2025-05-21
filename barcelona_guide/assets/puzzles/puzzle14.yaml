@@ -1,0 +1,28 @@
+id: 14
+title: Park Güell
+location:
+  lat: 41.4137
+  lon: 2.1525
+introduction: |
+  My grand, glorious failure, transformed into a public marvel. A place where even broken
+  shards find new purpose, singing of nature's endless forms. Let your eyes wander, my friend,
+  and find the whimsical guardians of this joyful place.
+challenge:
+  title: The Guard at the Entrance
+  question: |
+    As you ascend the monumental staircase at the main entrance of Park Güell, your eyes will
+    surely be drawn to a vibrant, mosaic-covered creature near the bottom, often mistaken for a
+    dragon. What specific type of amphibian, known for its ability to regenerate, is this
+    iconic creature that greets all visitors?
+  answer: Salamander
+success_text: |
+  In 1900, Count Eusebi Güell asked me to design a private residential garden city atop Carmel
+  Hill. The venture failed—but what a failure! We built only a few homes, but the
+  infrastructure—the real dream—remains. Stone viaducts curl like roots across the slope. A
+  forest of tilted Doric columns holds up the plaza above, their angles based on gravity
+  itself. The serpentine bench? It flows like a river, clad in trencadís mosaic from broken
+  tiles and recycled glass. Even the drainage systems are part of the design. In 1926, the
+  city made it public. Today, you enter through the monumental staircase and see my mosaic
+  salamander—perhaps a dragon, but a salamander nonetheless, guarding the way. Park Güell is a
+  spiritual playground: architecture, nature, and joy fused under the Catalan sun.
+next_puzzles_id: "outro"

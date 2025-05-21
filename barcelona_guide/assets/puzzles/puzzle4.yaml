@@ -1,0 +1,33 @@
+id: 04
+title: Plaça de Catalunya
+location:
+  lat: 41.3870
+  lon: 2.1700
+introduction: |
+  Here, my friend, you stand at the very pulse of Barcelona! A vast expanse, a grand
+  confluence where the arteries of the city converge and diverge. While not adorned by my
+  own hand, this great plaza holds its own natural order, a rhythm of life and light. Let
+  your eyes seek out the subtle harmonies within this public theatre.
+challenge:
+  title: The Goddess's Companions
+  question: |
+    Stand before the central fountain in Plaça de Catalunya, where the graceful "Goddess"
+    sculpture (La Deessa) by Josep Clarà stands in the water. Look carefully at the water
+    within her basin. How many distinct, white, sculpted creatures, resembling large birds,
+    are typically seen gliding or resting around her in the fountain?
+  answer: 3
+success_text: |
+  Ah, Plaça de Catalunya! Not a creation of my own hands, no, but a breathing heart of
+  this magnificent city, born of necessity and ambition as the city itself burst forth from
+  its old walls. It was conceived as the grand nexus, the very lung of Barcelona, and
+  fully unveiled in 1929 to welcome the world to the International Exposition, a testament
+  to our city's soaring dreams. Here, the grand avenues unfurl like rivers, and the air
+  hums with the city's vital force. It is a meeting point, a place for celebration, for quiet
+  contemplation, and for the ceaseless flow of life, connecting the old city to the new
+  Eixample. Even in this more formal, civic arrangement, one finds the essential elements:
+  the sky above, the earth below, and the waters that spring forth, giving life to all. And
+  within the very heart of this urban sea, you will find the tranquil waters of the
+  central fountain, where the Goddess rises, accompanied by three graceful, white
+  companions that glide upon her waters, symbolic of purity and grace. It is a place
+  where man and nature, though in a more ordered form, meet and embrace.
+next_puzzles_id: 05

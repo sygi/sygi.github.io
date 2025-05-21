@@ -1,0 +1,26 @@
+id: 08
+title: Casa Milà (La Pedrera)
+location:
+  lat: 41.3954
+  lon: 2.1623
+introduction: |
+  Casa Milà, my great stone quarry! They mocked it, yes, but could they not see the wind and sea
+  carved into its very soul? It breathes, it flows, a mountain of living stone! Come, let us
+  ascend to its heights, where even utility becomes sculpture.
+challenge:
+  title: Count the Arches
+  question: |
+    Stand on Passeig de Gràcia facing the undulating façade of Casa Milà. At street level, you’ll see
+    a row of grand catenary arches forming the main entrances. Count how many of these large arches
+    support the building on the ground floor.
+  answer: 3
+success_text: |
+  Some mocked it as a ‘stone quarry’ when I unveiled it in 1912—but stone speaks! When you counted
+  those three great catenary arches beneath the façade, you read the language of wind‑eroded cliff
+  and sea‑smoothed stone. Casa Milà, my final private residence commission, was created for Pere
+  Milà and Roser Segimon. I sculpted it from limestone as if wind and sea had worn it into cliffs.
+  No structural walls inside—only columns and curved iron beams, freeing the floor plans. The
+  balconies twist like seaweed, carved stone rolls like dunes. On the rooftop, chimneys become
+  armored guardians, sculptural and functional. I replaced stiff symmetry with a living, breathing
+  organism—a home designed to flow like the air and reflect Catalonia’s bold soul.
+next_puzzles_id: 09
