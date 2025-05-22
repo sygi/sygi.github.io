@@ -1,4 +1,4 @@
-id: puzzle1
+id: 01
 title: Palau Güell
 location:
   lat: 41.378883
@@ -25,7 +25,7 @@ success_text: |
   guarding the very threshold. Even the chimneys, hidden on the roof, are kaleidoscopes of
   trencadís mosaic—proto-types for La Pedrera. This was not a home. It was a temple of urban
   nobility, where commerce met craft, and Catalonia’s future found form.
-next_puzzles_id: puzzle2
+next_puzzles_id: 02
 audio:
   introduction: puzzle1/introduction.mp3
   question: puzzle1/question.mp3
