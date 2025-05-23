@@ -1,30 +1,37 @@
 id: 11
-title: Sagrada Familia Nativity Façade
+title: Sagrada Familia
 location:
   lat: 41.40402
   lon: 2.17491
 introduction: |
-  Ah, the Sagrada Familia! My greatest work, a testament to God and nature, still breathing
-  and growing even after my departure. You stand before the Nativity Façade, a symphony in
-  stone.
+  Ah, the Sagrada Família! My greatest work, a testament to God and nature, still breathing 
+  and growing even after my departure. When complete, this basilica will reach toward 
+  heaven with eighteen towers, each carrying deep spiritual meaning. The tallest of these, 
+  dedicated to Jesus Christ, will stand at 172.5 meters - just one meter shorter than 
+  Montjuïc hill, as I believed no human creation should surpass God's natural work.
 challenge:
   title:
   question: |
-    Focus your gaze on the central portal of the Nativity Façade – the Portal of Charity. Above
-    the archway, among the many figures, you will see a prominent sculpture of an animal,
-    often associated with new beginnings and protection. Which specific animal stands watch
-    over the entrance to this joyful scene?
-  answer: none, fix it later.
+    Look now at the towers already completed - eight of the twelve that will represent 
+    Christ's chosen followers. Four rise from the Nativity Façade, four from the Passion 
+    Façade, each topped with colorful ceramic fruits and bearing a sacred name. What do 
+    these twelve towers, when all are built, represent?
+  answer: Apostoles
 success_text: |
   This is no mere church—it is my life's cathedral, begun in 1882. I took over a year later
   and devoted myself to it until my death in 1926. You stand now before the Nativity Façade,
   the only one completed in my lifetime. It is a song of life, growth, and divine light—brimming
-  with sculpted birds, plants, and joyous scenes of Christ’s birth. See how even the most humble
-  creatures are elevated here: above the central Portal of Charity, a donkey stands as a silent,
-  steadfast witness, a symbol of humility and the peace that came with the Lord's arrival. I
-  designed the columns like trees, branching to support vaults overhead. The forms obey gravity:
-  catenary arches, tilted columns, geometry born from hanging chains and inverted weights. This
-  façade, so ornate and teeming with life, shows the God of creation through nature itself. And
-  yes—it still rises. Future generations carry the work as the Middle Ages did with their
+  with sculpted birds, plants, and joyous scenes of Christ's birth. I designed the columns like 
+  trees, branching to support vaults overhead. The forms obey gravity: catenary arches, tilted 
+  columns, geometry born from hanging chains and inverted weights. This façade, so ornate and 
+  teeming with life, shows the God of creation through nature itself. 
+
+  Yes, the apostles—Christ's chosen twelve. Four towers rise from this façade, four from the 
+  Passion Façade, and four more will crown the future Glory Façade. Each bears the name of one 
+  of His followers, topped with ceramic fruits to symbolize the spiritual harvest they would 
+  bring to the world. Together with the central tower of Christ, they form a council in stone—
+  the faithful surrounding their Lord for all eternity, just as they did in life.
+
+  And yes—it still rises. Future generations carry the work as the Middle Ages did with their
   cathedrals: a temple of devotion across time.
 next_puzzles_id: 12
