@@ -7,8 +7,16 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygi.xyz/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Mon, 26 May 2025 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 11 Jan 2026 00:00:00 UT</lastBuildDate>
         <item>
+    <title>A year of Jane Street puzzles</title>
+    <link>https://sygi.xyz/posts/2026-01-11-jane-street.html</link>
+    <description><![CDATA[<p>Jane Street is a hedge fund with a strong puzzle culture. They have published a math/computing puzzle every month since 2014. Anyone can submit a solution, and each month’s puzzle page lists the people who solved it.</p>]]></description>
+    <pubDate>Sun, 11 Jan 2026 00:00:00 UT</pubDate>
+    <guid>https://sygi.xyz/posts/2026-01-11-jane-street.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>Gaudi guide</title>
     <link>https://sygi.xyz/posts/2025-05-26-gaudi-guide.html</link>
     <description><![CDATA[<p>When visiting New Zealand a few years back, we stumbled upon <a href="https://urbantics.co.nz/">Urbantics</a> scavenger hunt. It feels like an escape room outdoors, solving puzzles while getting to know the city’s history. I enjoyed it and tried to create a <a href="https://sygi.xyz/barcelona_guide/">Barcelona guide</a> in a similar format, as I’ll likely be there with my parents later this year.</p>]]></description>
