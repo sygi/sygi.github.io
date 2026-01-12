@@ -88,7 +88,8 @@ The second case was rarely technically necessary for me, but in practice I neede
 
 The extra variables that are added in the process of defining the problem are often only relevant under some constraint, i.e.:
 ```
-model.add(cell[y][x] == distance[y][x]).only_enforce_if(in_grid[y][x])
+model.add(cell[y][x] == distance[y][x]
+  ).only_enforce_if(in_grid[y][x])
 ```
 
 In the case above, when `in_grid` is chosen false for some cell, there is no constraint on distance and it can choose an arbitrary value. From the point of view of the puzzle solution it doesn't matter: for the empty grids, the distance wasn't defined.
@@ -97,7 +98,8 @@ However, from the point of view of ortools solver, once getting in a state where
 
 Even just printing them is often infeasible, so to be able to efficiently iterate over all solutions, one needs to add extra "dummy" constraints that fix the value of the variables in the cases where their value is not relevant, e.g.:
 ```
-model.add(distance[y][x]==0).only_enforce_if(in_grid[y][x].Not())
+model.add(distance[y][x]==0
+  ).only_enforce_if(in_grid[y][x].Not())
 ```
 
 Of course, this sounds easy in the simple example above, but fully tightening the formulation so that every variable has only a single reasonable value often requires work and is quite tedious.
