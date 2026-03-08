@@ -7,8 +7,16 @@
         <description><![CDATA[Posts on games, programming, and art.]]></description>
         <atom:link href="https://sygi.xyz/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sun, 11 Jan 2026 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 08 Mar 2026 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Three AI projects</title>
+    <link>https://sygi.xyz/posts/2026-03-08-three-ai-projects.html</link>
+    <description><![CDATA[<p>Recently, I built three small AI-related projects. The common theme was simple: using LLMs to write custom software is now easy enough that it is often worth trying an idea instead of debating it for a week.</p>]]></description>
+    <pubDate>Sun, 08 Mar 2026 00:00:00 UT</pubDate>
+    <guid>https://sygi.xyz/posts/2026-03-08-three-ai-projects.html</guid>
+    <dc:creator>Jakub Sygnowski</dc:creator>
+</item>
+<item>
     <title>A year of Jane Street puzzles</title>
     <link>https://sygi.xyz/posts/2026-01-11-jane-street.html</link>
     <description><![CDATA[<p>Jane Street is a hedge fund with a strong puzzle culture. They have published a math/computing puzzle every month since 2014. Anyone can submit a solution, and each month’s puzzle page lists the people who solved it.</p>]]></description>
