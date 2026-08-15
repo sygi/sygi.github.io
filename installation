@@ -13,7 +13,7 @@ stack ghc site.hs
 git checkout master
 # TODO: write a copy version that only copies if the file is actually different
 cp _site/* .  # not recursive
-cp -r -n _site/. .  # don't overwrite
+cp -r --update=none _site/. .  # don't overwrite
 git add <new files>
 git commit
 git push yet master
